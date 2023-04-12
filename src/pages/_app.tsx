@@ -1,9 +1,24 @@
-import { type AppType } from "next/dist/shared/lib/utils";
-
+import { AppType } from "next/app";
+import { Session } from "next-auth";
+import { SessionProvider } from "next-auth/react";
+import { api } from "~/utils/api";
 import "~/styles/globals.css";
 
-const MyApp: AppType = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />;
+import { NavBar } from '~/components/NavBar'
+import SubscribeForm from '~/components/SubscribeForm'
+
+const MyApp: AppType<{ session: Session | null }> = ({
+  Component,
+  pageProps: { session, ...pageProps },
+}) => {
+  return (
+    <SessionProvider session={session}>
+      <NavBar />
+      <Component {...pageProps} />
+      <SubscribeForm />
+    </SessionProvider>
+  );
 };
 
-export default MyApp;
+export default api.withTRPC(MyApp);
+

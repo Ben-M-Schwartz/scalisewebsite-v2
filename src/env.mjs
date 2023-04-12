@@ -6,6 +6,30 @@ import { z } from "zod";
  */
 const server = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
+  NEXTAUTH_SECRET:
+    process.env.NODE_ENV === "production"
+      ? z.string().min(1)
+      : z.string().min(1).optional(),
+  NEXTAUTH_URL: z.preprocess(
+    // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
+    // Since NextAuth.js automatically uses the VERCEL_URL if present.
+    (str) => process.env.VERCEL_URL ?? str,
+    // VERCEL_URL doesn't include `https` so it cant be validated as a URL
+    process.env.VERCEL ? z.string().min(1) : z.string().url(),
+  ),
+  // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
+  DISCORD_CLIENT_ID: z.string(),
+  DISCORD_CLIENT_SECRET: z.string(),
+  DATABASE_URL: z.string(),
+  GOOGLE_EMAIL: z.string(),
+  GOOGLE_CLIENT_ID: z.string(),
+  GOOGLE_CLIENT_SECRET: z.string(),
+  GOOGLE_REFRESH_TOKEN: z.string(),
+  STRIPE_PUBLISHABLE_KEY: z.string(),
+  STRIPE_SECRET_KEY: z.string(),
+  STRIPE_WEBHOOK_SECRET: z.string(),
+  DOMAIN: z.string(),
+  PAYMENT_METHOD_TYPES: z.string()
 });
 
 /**
@@ -24,6 +48,20 @@ const client = z.object({
  */
 const processEnv = {
   NODE_ENV: process.env.NODE_ENV,
+  NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+  NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+  DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
+  DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
+  DATABASE_URL: process.env.DATABASE_URL,
+  GOOGLE_EMAIL: process.env.GOOGLE_EMAIL,
+  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+  GOOGLE_REFRESH_TOKEN: process.env.GOOGLE_REFRESH_TOKEN,
+  STRIPE_PUBLISHABLE_KEY: process.env.STRIPE_PUBLISHABLE_KEY,
+  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+  STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+  DOMAIN: process.env.DOMAIN,
+  PAYMENT_METHOD_TYPES: process.env.PAYMENT_METHOD_TYPES
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 
