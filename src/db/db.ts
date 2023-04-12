@@ -1,22 +1,20 @@
+import 'dotenv/config'
 import { drizzle } from "drizzle-orm/planetscale-serverless";
-import { migrate } from 'drizzle-orm/planetscale-serverless/migrator'
+//import { migrate } from 'drizzle-orm/planetscale-serverless/migrator'
 
 import { connect } from '@planetscale/database'
-
+3
+4
 const config = {
-    url: process.env.DATABASE_URL || 'mysql://user:pass@host'
+  host: process.env.DATABASE_HOST,
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD
 }
-  
-async function connectToDatabase() {
-    const dbconnection = await connect(config)
-    return dbconnection
-}
-
-const connection = await connectToDatabase()
+const connection = connect(config)
 //for planetscale implementation
 //export default connection
 
 //for drizzle implementation
 export const db = drizzle(connection, { logger: true });
 
-await migrate(db, { migrationsFolder: './drizzle' });
+//await migrate(db, { migrationsFolder: './drizzle' });

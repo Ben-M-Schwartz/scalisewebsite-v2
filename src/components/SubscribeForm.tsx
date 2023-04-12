@@ -1,4 +1,5 @@
-import React, { ChangeEvent, FormEvent } from 'react';
+import React from 'react'
+import type { ChangeEvent, FormEvent } from 'react';
 import {
   SpotifyIcon,
   AppleMusicIcon,
@@ -6,8 +7,7 @@ import {
   FacebookIcon,
   InstagramIcon,
   TikTokIcon,
-  YoutubeIcon,
-  CartIcon
+  YoutubeIcon
   } from './icons'
 
 import Link from 'next/link'
@@ -16,8 +16,8 @@ interface State {
   email: string;
 }
 
-class SubscribeForm extends React.Component<{}, State> {
-  constructor(props: {}) {
+class SubscribeForm extends React.Component<Record<string, never>, State> {
+  constructor(props: Record<string, never>) {
     super(props);
 
     this.state = {

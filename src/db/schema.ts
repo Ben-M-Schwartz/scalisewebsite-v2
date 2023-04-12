@@ -1,5 +1,5 @@
 //drizzle implementation
-import { mysqlTable, int, decimal, varchar, foreignKey, uniqueIndex, index, serial } from 'drizzle-orm/mysql-core';
+import { mysqlTable, int, decimal, varchar, foreignKey, index, serial } from 'drizzle-orm/mysql-core';
 
 export const product_details = mysqlTable(
   'product_details',
