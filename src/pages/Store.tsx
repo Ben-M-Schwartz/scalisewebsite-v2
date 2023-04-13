@@ -6,7 +6,7 @@ import Head from "next/head";
 import { api } from "~/utils/api";
 
 const Store: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "Scalise Store" });
+  const hello = api.store.hello.useQuery();
 
   return (
     <>

@@ -1,5 +1,5 @@
 //drizzle implementation
-import { mysqlTable, int, decimal, varchar, foreignKey, index, serial } from 'drizzle-orm/mysql-core';
+import { mysqlTable, int, decimal, varchar, /* foreignKey, */ index, serial } from 'drizzle-orm/mysql-core';
 
 export const product_details = mysqlTable(
   'product_details',
@@ -22,16 +22,16 @@ export const product_quantity = mysqlTable(
   'product_quantity',
   {
     id: serial('id').primaryKey().notNull(),
-    product_id: int('product_id').references(() => product_details.id).notNull(),
+    product_id: int('product_id'), //.references(() => product_details.id).notNull(),
     size: varchar('size', { length: 255 }),
     quantity: int('quantity')
   },
   product_quantity => ({
     productIdIndex: index('product_quantity__product_id__idx').on(product_quantity.product_id),
-    productIdFK: foreignKey(({
+/*     productIdFK: foreignKey(({
         columns: [product_quantity.product_id],
         foreignColumns: [product_details.id],
-      })),
+      })), */
   })
 );
 
@@ -52,22 +52,22 @@ export const cart_items = mysqlTable(
     'cart_items',
     {
       id: serial('id').primaryKey().notNull(),
-      cart_id: int('cart_id').references(() => carts.id).notNull(),
-      product_id: int('product_id').references(() => product_details.id).notNull(),
+      cart_id: int('cart_id'),// .references(() => carts.id).notNull(),
+      product_id: int('product_id'),// .references(() => product_details.id).notNull(),
       size: varchar('size', { length: 255 }),
       quantity: int('quantity')
     },
     cart_items => ({
       cartIdIndex: index('cart_items__cart_id__idx').on(cart_items.cart_id),
       productIdIndex: index('cart_items__product_id__idx').on(cart_items.product_id),
-      cartIdFK: foreignKey(({
+/*       cartIdFK: foreignKey(({
           columns: [cart_items.cart_id],
           foreignColumns: [carts.id]
       })),
       productIdFK: foreignKey(({
           columns: [cart_items.product_id],
           foreignColumns: [product_details.id]
-      })),
+      })), */
     })
   );
 

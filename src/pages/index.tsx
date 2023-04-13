@@ -6,7 +6,7 @@ import Head from "next/head";
 import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from Scalise The Band" });
+  const hello = api.example.hello.useQuery({ text: "Scalise The Band Homepage" });
 
   return (
     <>
