@@ -3,13 +3,11 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from 'next/router'
 import { api } from "~/utils/api";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 
 const useSubscribe = () => {
-  const subscribe = useCallback(() => {
-    return api.subscription.subscribe.useMutation();
-  }, []);
-  return (token: string) => subscribe().mutateAsync({ token })
+  const subscribe = api.subscription.subscribe.useMutation();
+  return (token: string) => subscribe.mutateAsync({ token })
 }
 
 const Confirm: NextPage = () => {
@@ -18,7 +16,6 @@ const Confirm: NextPage = () => {
   const subscribe = useSubscribe()
   const [loading, setLoading] = useState(true);
   const [invalidLink, setInvalid] = useState(true);
-  //const [shouldSubscribe, setShouldSubscribe] = useState(true)
 
   useEffect(() => {
     if (token) {
@@ -33,7 +30,7 @@ const Confirm: NextPage = () => {
           setLoading(false);
         });
     }
-  }, [subscribe, token]);
+  }, [token]);
 
   return (
     <>

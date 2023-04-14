@@ -72,9 +72,9 @@ const emailMailingList = async (subject: string, body: string) => {
     }
 }
 
-const sendConfirmationEmail = async(email: string, token: string) => {
+const sendConfirmationEmail = async( url: string, email: string, token: string) => {
     const mailOptions: EmailOptions = {
-        // eslint-disable-next--line @typescript-eslint/no-non-null-assertion
+        /*eslint-disable-next--line @typescript-eslint/no-non-null-assertion*/
         from: process.env.GOOGLE_EMAIL!,
         to: email,
         subject: 'Confirm your subscription to SCALISE',
@@ -88,7 +88,7 @@ const sendConfirmationEmail = async(email: string, token: string) => {
           <h1>SCALISE</h1>
           <p>Please confirm your subscription.</p>
           <p>Before we send you any email, we need you to confirm your subscription.</p>
-          <a href="http://localhost:3000/Confirm/${token}" style="display: inline-block; background-color: #007bff; color: #fff; font-size: 16px; padding: 10px 20px; border-radius: 5px; text-decoration: none;">CONFIRM SUBSCRIPTION</a>
+          <a href="${url}/Confirm/${token}" style="display: inline-block; background-color: #007bff; color: #fff; font-size: 16px; padding: 10px 20px; border-radius: 5px; text-decoration: none;">CONFIRM SUBSCRIPTION</a>
           <p>If you didn’t subscribe to this list, ignore this email. We won’t subscribe you unless you tap or click the button above.</p>
         </body>
         </html>`
@@ -103,10 +103,10 @@ const sendConfirmationEmail = async(email: string, token: string) => {
 
 export const subscriptionRouter = createTRPCRouter({
   confirm: publicProcedure
-    .input(z.object({ email: z.string() }))
+    .input(z.object({ email: z.string(), url: z.string() }))
     .mutation(async ({ input }) => {
         const token = crypto.randomBytes(16).toString('hex');
-        await sendConfirmationEmail(input.email, token).then(async () => {
+        await sendConfirmationEmail(input.url, input.email, token).then(async () => {
         //save email and token in potential subscribers table
             type Potential_Subscriber = InferModel<typeof potential_subscribers, 'insert'>;
             const newPotential: Potential_Subscriber = {
