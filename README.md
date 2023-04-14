@@ -1,28 +1,21 @@
-# Create T3 App
+#Scalise
+# ScaliseTheBandWebsite
+Webpage for the band Scalise
+This is the second version of my code for this website
+I decided to move away from express and mongoDB in favor of nextJS and mySQL using planetscale.
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+Goals for the website given by the band:
 
-## What's next? How do I make an app with this?
-
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
-
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
-
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
-
-## Learn More
-
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
-
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+- Easily accessible for them to edit
+- Store implemented
+  + add weight of all the items to charge shipping
+  + Manage credit card payments securely.
+  + have an option for people to pay with paypal, apple pay, google pay?	
+- Keep track of mailing list and previously sent emails
+- Send out email campaigns and stylise the emails
+- Have media players and be linked to bandsintown page
+- Keep track of merch inventory and make download links when someone buys a digital copy
+- Be dynamic and respond to page size on mobile vs desktop vs tablet
+- Be able to play videos as the site's background image
+- Look sleek: e.g. when you click a dropdown it needs to have an animation not just pop up
+- Easily accessible analytics
