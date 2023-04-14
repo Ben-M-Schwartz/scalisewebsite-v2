@@ -17,6 +17,7 @@ const Confirm: NextPage = () => {
   const [loading, setLoading] = useState(true);
   const [invalidLink, setInvalid] = useState(true);
 
+  /*eslint-disable react-hooks/exhaustive-deps*/
   useEffect(() => {
     if (token) {
       subscribe(token)
@@ -31,6 +32,7 @@ const Confirm: NextPage = () => {
         });
     }
   }, [token]);
+  /*eslint-enabel react-hooks/exhaustive-deps*/
 
   return (
     <>

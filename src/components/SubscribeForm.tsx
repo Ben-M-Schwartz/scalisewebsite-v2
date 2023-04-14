@@ -25,7 +25,7 @@ const Subscribe: NextPage = () => {
   const { register, handleSubmit } = useForm<subscriptionForm>()
   const onSubmit = (formData: subscriptionForm) => {
     setIsSubmitted(true);
-    confirm.mutateAsync({email: formData.email, url: window.location.origin})
+    void confirm.mutateAsync({email: formData.email, url: window.location.origin})
   }
   return (
     <div className="flex flex-col justify-center items-center py-6 bg-white">
@@ -33,6 +33,7 @@ const Subscribe: NextPage = () => {
         <h1>Thank you for subscribing!</h1>
       ) :
       (
+        //eslint-disable-next-line @typescript-eslint/no-misused-promises
         <><p className="text-center mb-4">Sign up with your email address to receive news and updates.</p><form className="flex items-center" onSubmit={handleSubmit(onSubmit)}>
           <input className="bg-gray-200 rounded-l-lg py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="email" placeholder="Enter your email address" {...register("email", { required: true })} />
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-lg focus:outline-none focus:shadow-outline" type="submit">SIGN UP</button>

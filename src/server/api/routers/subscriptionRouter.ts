@@ -74,7 +74,7 @@ const emailMailingList = async (subject: string, body: string) => {
 
 const sendConfirmationEmail = async( url: string, email: string, token: string) => {
     const mailOptions: EmailOptions = {
-        /*eslint-disable-next--line @typescript-eslint/no-non-null-assertion*/
+        //eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         from: process.env.GOOGLE_EMAIL!,
         to: email,
         subject: 'Confirm your subscription to SCALISE',
