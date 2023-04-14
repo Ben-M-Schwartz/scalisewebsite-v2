@@ -1,8 +1,11 @@
 #Scalise
 # ScaliseTheBandWebsite
 Webpage for the band Scalise
+
 This is the second version of my code for this website
+
 I decided to move away from express and mongoDB in favor of nextJS and mySQL using planetscale.
+
 
 Goals for the website given by the band:
 
