@@ -18,14 +18,14 @@ type subscriptionForm = {
 }
 
 const Subscribe: NextPage = () => {
-  const subscribe = api.subscription.subscribe.useMutation()
+  //const subscribe = api.subscription.subscribe.useMutation()
+  const confirm = api.subscription.confirm.useMutation()
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const { register, handleSubmit } = useForm<subscriptionForm>()
   const onSubmit = (formData: subscriptionForm) => {
-    void subscribe.mutateAsync(formData).then(() => {
-      setIsSubmitted(true);
-    });
+    setIsSubmitted(true);
+    void confirm.mutateAsync(formData)
   }
   return (
     <div className="flex flex-col justify-center items-center py-6 bg-white">

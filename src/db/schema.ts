@@ -71,6 +71,15 @@ export const cart_items = mysqlTable(
     })
   );
 
+export const potential_subscribers = mysqlTable(
+  'potential_subscribers',
+  {
+    id: serial('id').primaryKey().notNull(),
+    email: varchar('email', { length: 255 }),
+    token: varchar('token', { length: 255 })
+  }
+)
+
 export const subscribers = mysqlTable(
   'subscribers',
   {
