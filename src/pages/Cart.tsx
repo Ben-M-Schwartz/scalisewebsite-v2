@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import React, { useState, useEffect } from 'react';
-//import Link from "next/link";
+import Link from "next/link";
 //import { useRouter } from "next/router";
 
 import { getCookie, hasCookie } from 'cookies-next';
@@ -22,12 +22,16 @@ const Cart: NextPage = () => {
       setEmptyCart(true);
       setLoading(false);
     } else {
-      if (queryResult.data) {
+      if (queryResult.data && queryResult.data.length > 0) {
+        setEmptyCart(false);
         const cart_items = queryResult.data;
         setTotalPrice(queryResult.data[0].total_price)
         setCartItems(cart_items);
+        setLoading(false);
+      }  else {
+        setEmptyCart(true);
       }
-      if(cartItems && cartItems.length > 0 && totalPrice){
+      if(queryResult.data){
         setLoading(false)
       };
     }
@@ -65,7 +69,7 @@ const Cart: NextPage = () => {
           <div className='text-white'>Loading...</div>
         )}
         {!loading && emptyCart && (
-          <h1 className='text-white text-2xl font-bold'>Your cart is empty</h1>
+          <><h1 className='text-white text-2xl font-bold'>Your cart is empty</h1><Link className='text-white' href='/Store'>Store</Link></>
         )}
         {!loading && !emptyCart && (
           <>
