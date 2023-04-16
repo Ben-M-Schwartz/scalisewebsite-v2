@@ -208,6 +208,15 @@ export const cartRouter = createTRPCRouter({
       }
     }),
 
+    clearCart: publicProcedure
+    .input(z.object({ cart_id: z.string() }))
+    .mutation(async ({ input }) => {
+      await db.delete(carts)
+      .where(eq(carts.cart_id, input.cart_id))
+      await db.delete(cart_items)
+      .where(eq(cart_items.cart_id, input.cart_id))
+    }),
+    
     getCart: publicProcedure
     .input(z.object({ cart_id: z.string() }))
     .query(async ({ input }) => {

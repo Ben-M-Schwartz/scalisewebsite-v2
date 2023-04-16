@@ -48,6 +48,11 @@ const Cart: NextPage = () => {
     fullRemoveFromCart.mutateAsync({ product_id: product_id.toString(), cart_id: cart_id, item_name: item_name, size: size, quantity: quantity, fullRemove: true})
   }
 
+  const clearCart = api.cart.clearCart.useMutation()
+  const handleClearCart = () => {
+    clearCart.mutateAsync({ cart_id: cart_id })
+  }
+
   return (
     <>
       <Head>
@@ -100,11 +105,12 @@ const Cart: NextPage = () => {
                 </tbody>
               </table>
             </div>
+            <button className = 'text-white text-xl font-bold' onClick={handleClearCart}>Clear Cart</button>
             <div className='flex flex-col items-center justify-center text-white'>
               <h1>Total: {totalPrice}</h1>
               <p>Tax: nothing for now</p>
               <p>Shipping: nothing for now</p>
-              <button>Checkout</button>
+              <button className = 'text-white text-xl font-bold'>Checkout</button>
             </div>
           </>
         )}
