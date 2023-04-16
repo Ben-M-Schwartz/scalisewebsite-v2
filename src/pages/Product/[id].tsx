@@ -48,6 +48,9 @@ const Product: NextPage = () => {
         addToCart
         .mutateAsync(mutateOptions).catch((error) => console.error(error))
       }
+
+
+      window.alert('Item added to cart!')
     };
 
     useEffect(() => {

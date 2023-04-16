@@ -2,9 +2,10 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import React, { useState, useEffect } from 'react';
 import Link from "next/link";
-//import { useRouter } from "next/router";
 
 import { getCookie, hasCookie } from 'cookies-next';
+
+import { useRouter } from 'next/router';
 
 import { api } from "~/utils/api";
 
@@ -12,7 +13,9 @@ const Cart: NextPage = () => {
   const [emptyCart, setEmptyCart] = useState(false);
   const [loading, setLoading] = useState(true);
   const [cartItems, setCartItems] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const router = useRouter();
 
   const cart_id = getCookie('cart_id')?.toString();
   const queryResult = api.cart.getCart.useQuery({ cart_id: cart_id });
@@ -39,22 +42,51 @@ const Cart: NextPage = () => {
 
   const addToCart = api.cart.updateCart.useMutation()
   const handleAddToCart = (item_name: string, size: string, quantity: number) => {
-    addToCart.mutateAsync({ cart_id: cart_id, name: item_name, size: size, quantity: quantity + 1})
+    addToCart.mutateAsync({ 
+      cart_id: cart_id, 
+      name: item_name, 
+      size: size, 
+      quantity: quantity + 1})
+      .then(() => {
+        router.reload()
+      })
   }
 
   const removeFromCart = api.cart.remove.useMutation()
   const handleRemoveOneFromCart = (product_id: string, item_name: string, size: string, quantity: number) => {
-    removeFromCart.mutateAsync({ product_id: product_id.toString(), cart_id: cart_id, item_name: item_name, size: size, quantity: quantity - 1, fullRemove: false})
+    removeFromCart.mutateAsync({ 
+      product_id: product_id.toString(), 
+      cart_id: cart_id, 
+      item_name: item_name, 
+      size: size, 
+      quantity: quantity - 1, 
+      fullRemove: false})
+    .then(() => {
+      router.reload()
+    })
   }
 
   const fullRemoveFromCart = api.cart.remove.useMutation()
   const handleRemoveAllFromCart = (product_id: string,item_name: string, size: string, quantity: number) => {
-    fullRemoveFromCart.mutateAsync({ product_id: product_id.toString(), cart_id: cart_id, item_name: item_name, size: size, quantity: quantity, fullRemove: true})
+    fullRemoveFromCart.mutateAsync({ 
+      product_id: product_id.toString(), 
+      cart_id: cart_id, 
+      item_name: item_name, 
+      size: size, 
+      quantity: quantity, 
+      fullRemove: true})
+    .then(() => {
+      router.reload()
+    })
   }
 
   const clearCart = api.cart.clearCart.useMutation()
   const handleClearCart = () => {
     clearCart.mutateAsync({ cart_id: cart_id })
+    .then(() => {
+      setEmptyCart(true)
+      router.reload()
+    })
   }
 
   return (
