@@ -8,13 +8,13 @@ export const product_details = mysqlTable(
     name: varchar('name', { length: 255 }),
     price: decimal('price', { precision: 10, scale: 2 }),
     image_path: varchar('image_path', { length: 255 }),
-    weight: decimal('weight', { precision: 10, scale: 2 })
+    weight: decimal('weight', { precision: 10, scale: 2 }),
+    sizes: varchar('sizes', { length: 255 }),
   },
   table => ({
     idIndex: index('product_details__name__idx').on(table.id),
     nameIndex: index('product_details__name__idx').on(table.name),
-    priceIndex: index('product_details__price__idx').on(table.price),
-    weightIndex: index('product_details__weight__idx').on(table.weight)
+    priceIndex: index('product_details__price__idx').on(table.price)
   })
 );
 
@@ -39,12 +39,12 @@ export const carts = mysqlTable(
   'carts',
   {
     id: serial('id').primaryKey().notNull(),
-    user_id: varchar('user_id', { length: 255 }),
+    cart_id: varchar('id', { length: 32 }).primaryKey().notNull(),
     total_price: decimal('total_price', { precision: 10, scale: 2 }),
     total_weight: decimal('total_weight', { precision: 10, scale: 2 })
   },
   table => ({
-    userIdIndex: index('carts__user_id__idx').on(table.user_id)
+    idIndex: index('carts__id__idx').on(table.id)
   })
 );
 
@@ -52,10 +52,14 @@ export const cart_items = mysqlTable(
     'cart_items',
     {
       id: serial('id').primaryKey().notNull(),
-      cart_id: int('cart_id'),// .references(() => carts.id).notNull(),
+      cart_id: varchar('cart_id', { length: 32 }),// .references(() => carts.id).notNull(),
       product_id: int('product_id'),// .references(() => product_details.id).notNull(),
       size: varchar('size', { length: 255 }),
-      quantity: int('quantity')
+      quantity: int('quantity'),
+      price: decimal('price', { precision: 10, scale: 2 }),
+      weight: decimal('weight', { precision: 10, scale: 2 }),
+      item_name:  varchar('item_name', { length: 255 }),
+    
     },
     cart_items => ({
       cartIdIndex: index('cart_items__cart_id__idx').on(cart_items.cart_id),

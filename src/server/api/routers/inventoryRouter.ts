@@ -32,7 +32,8 @@ export const inventoryRouter = createTRPCRouter({
         name: input.name,
         price: input.price,
         weight: input.weight,
-        image_path: 'temp'
+        image_path: 'temp',
+        sizes: input.sizes,
       }
       const result = await db.insert(product_details).values(newProduct)
       const productId = result.insertId

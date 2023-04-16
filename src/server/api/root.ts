@@ -1,6 +1,6 @@
 import { createTRPCRouter } from "~/server/api/trpc";
 import { exampleRouter } from "~/server/api/routers/example";
-import { storeRouter } from "~/server/api/routers/storeRouter"
+import { cartRouter } from "~/server/api/routers/cartRouter"
 import { subscriptionRouter } from "~/server/api/routers/subscriptionRouter"
 import { inventoryRouter } from "~/server/api/routers/inventoryRouter"
 
@@ -11,7 +11,7 @@ import { inventoryRouter } from "~/server/api/routers/inventoryRouter"
  */
 export const appRouter = createTRPCRouter({
   example: exampleRouter,
-  store: storeRouter,
+  cart: cartRouter,
   subscription: subscriptionRouter,
   inventory: inventoryRouter,
 });

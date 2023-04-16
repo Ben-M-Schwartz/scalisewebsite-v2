@@ -1,0 +1,1 @@
+ALTER TABLE `cart_items` ADD `item_name` varchar(255);

@@ -1,12 +1,31 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import React, { useState, useEffect } from 'react';
 //import Link from "next/link";
-//import { signIn, signOut, useSession } from "next-auth/react";
+//import { useRouter } from "next/router";
+
+import { getCookie, hasCookie } from 'cookies-next';
 
 import { api } from "~/utils/api";
 
 const Shows: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "Scalise Cart" });
+  const [emptyCart, setEmptyCart] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+
+  useEffect(() => {
+    if(!hasCookie('cart_id')) {
+      setEmptyCart(true)
+      setLoading(false)
+    } else {
+      const cartInfo = api.cart.getCart.useQuery({ cart_id: getCookie('cart_id')!.toString() })
+      const cart_items = cartInfo.data
+      const cart = cartInfo.data[0]
+      setLoading(false)
+    }
+  }, [])
+
+  if(loading) { return <div>Loading...</div>}
 
   return (
     <>
@@ -16,11 +35,37 @@ const Shows: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-white">
-              {hello.data ? hello.data.greeting : "Loading..."}
-            </p>
-          </div>
+        {emptyCart && <h1 className="text-white text-2xl font-bold">Your cart is empty</h1>}
+        {!emptyCart && cart_items && (
+        <><h1 className="text-white text-2xl font-bold">Cart</h1><div className="flex flex-col items-center justify-center">
+            <table className="table-auto w-full">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+            </table>
+            <table className="table-auto w-full">
+              <tbody>
+                {cart_items.map((item: any) => (
+                  <tr key={item.id}>
+                    <td>{item.product.name}</td>
+                    <td>{item.quantity}</td>
+                    <td>{item.product.price}</td>
+                    <td>
+                      <button>Remove</button></td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div><div className="flex flex-col items-center justify-center">
+              <h1>Total: {cart.total}</h1>
+              <p>Tax: nothing for now</p>
+              <p>Shipping: nothing for now</p>
+              <button>Checkout</button>
+            </div></>
+        )}
       </main>
     </>
   );
