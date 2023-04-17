@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { z } from "zod";
 import { carts, cart_items, product_details } from '~/db/schema'
 import { db } from '~/db/db'
 import { eq, and } from 'drizzle-orm/expressions';
-import { InferModel } from 'drizzle-orm';
+import { type InferModel } from 'drizzle-orm';
 
 import {
   createTRPCRouter,
@@ -58,7 +59,7 @@ export const cartRouter = createTRPCRouter({
         const itemQuery = await db.select().from(cart_items)
         .where(and(
           eq(cart_items.cart_id, input.cart_id), 
-          eq(cart_items.product_id, input.product_id), 
+          eq(cart_items.product_id, parseInt(input.product_id)), 
           eq(cart_items.size, input.size)
           ))
         const cart_item = itemQuery[0]
@@ -68,53 +69,61 @@ export const cartRouter = createTRPCRouter({
           .set({ quantity: newQuantity})
           .where(and(
             eq(cart_items.cart_id, input.cart_id), 
-            eq(cart_items.product_id, input.product_id), 
+            eq(cart_items.product_id, parseInt(input.product_id)), 
             eq(cart_items.size, input.size)
             ))
           await db.update(cart_items)
           .set({ price: (input.price * newQuantity).toString() })
           .where(and(
             eq(cart_items.cart_id, input.cart_id), 
-            eq(cart_items.product_id, input.product_id), 
+            eq(cart_items.product_id, parseInt(input.product_id)), 
             eq(cart_items.size, input.size)
             ))
         } else {
-          await db.insert(cart_items)
-          .values({ 
+          type NewCartItem = InferModel<typeof cart_items, 'insert'>
+          const newCartItem: NewCartItem = {
             cart_id: input.cart_id, 
-            product_id: input.product_id, 
+            product_id: parseInt(input.product_id), 
             price: (input.price * input.quantity).toString(), 
             quantity: input.quantity, 
-            weight: input.weight, 
+            weight: input.weight.toString(), 
             size: input.size, 
             item_name: input.name 
-          })
+          }
+          await db.insert(cart_items)
+          .values(newCartItem)
         }
         const newTotalPrice = Number(cart.total_price) + (input.price * input.quantity)
         const newTotalWeight = Number(cart.total_weight) + (input.weight * input.quantity)
         await db.update(carts)
         .set({ 
-          total_price: newTotalPrice, 
-          total_weight: newTotalWeight})
+          total_price: newTotalPrice.toString(), 
+          total_weight: newTotalWeight.toString()})
           .where(eq(carts.cart_id, input.cart_id))
       } else {
+        type NewCart = InferModel<typeof carts, 'insert'>;
+        const newCart: NewCart = {
+          cart_id: input.cart_id, 
+          total_price: (input.price * input.quantity).toString(), 
+          total_weight: (input.weight * input.quantity).toString()
+        }
         await db.insert(carts)
-        .values({ 
+        .values(newCart)
+
+        type NewCartItem = InferModel<typeof cart_items, 'insert'>
+        const newCartItem: NewCartItem = {
           cart_id: input.cart_id, 
-          total_price: (input.price * input.quantity), 
-          total_weight: (input.weight * input.quantity) 
-        })
-        await db.insert(cart_items)
-        .values({ 
-          cart_id: input.cart_id, 
-          product_id: input.product_id, 
+          product_id: parseInt(input.product_id), 
           price: (input.price * input.quantity).toString(), 
           quantity: input.quantity, 
-          weight: input.weight, 
+          weight: (input.weight).toString(), 
           size: input.size, 
-          item_name: input.name })
+          item_name: input.name 
+        }
+        await db.insert(cart_items)
+        .values(newCartItem)
       }
-    }),
+  }),
 
   updateCart: publicProcedure
   .input(z.object({
@@ -130,8 +139,8 @@ export const cartRouter = createTRPCRouter({
       eq(product_details.name, input.name)
     ))
     if(cart){
-      const currentPrice = parseFloat(cart[0].total_price)
-      const currentWeight = parseFloat(cart[0].total_weight)
+      const currentPrice = parseFloat(cart[0]!.total_price as string)
+      const currentWeight = parseFloat(cart[0]!.total_weight as string)
       await db.update(cart_items)
       .set({ quantity: input.quantity })
       .where(and(
@@ -140,7 +149,7 @@ export const cartRouter = createTRPCRouter({
         eq(cart_items.item_name, input.name)
         ))
       await db.update(cart_items)
-      .set({ price: item_details[0].price * input.quantity })
+      .set({ price: (parseInt(item_details[0]!.price as string) * input.quantity).toString() })
       .where(and(
         eq(cart_items.cart_id, input.cart_id),
         eq(cart_items.size, input.size),
@@ -148,8 +157,8 @@ export const cartRouter = createTRPCRouter({
         ))
       await db.update(carts)
       .set({ 
-        total_price: currentPrice + parseFloat(item_details[0].price), 
-        total_weight: currentWeight + parseFloat(item_details[0].weight)
+        total_price: (currentPrice + parseFloat(item_details[0]!.price as string)).toString(), 
+        total_weight: (currentWeight + parseFloat(item_details[0]!.weight as string)).toString()
       }).where(eq(carts.cart_id, input.cart_id))
     } else {
       throw new Error('Cart not found')
@@ -167,22 +176,22 @@ export const cartRouter = createTRPCRouter({
       const cart = await db.select().from(carts).where(eq(carts.cart_id, input.cart_id))
       const item_details = await db.select().from(product_details)
       .where(and(
-        eq(product_details.id, input.product_id)
+        eq(product_details.id, parseInt(input.product_id))
       ))
       if(cart){
-        const currentPrice = parseFloat(cart[0].total_price)
-        const currentWeight = parseFloat(cart[0].total_weight)
+        const currentPrice = parseFloat(cart[0]!.total_price as string)
+        const currentWeight = parseFloat(cart[0]!.total_weight as string)
         if(input.fullRemove){
           await db.delete(cart_items)
           .where(and(
             eq(cart_items.cart_id, input.cart_id), 
-            eq(cart_items.product_id, input.product_id), 
+            eq(cart_items.product_id, parseInt(input.product_id)), 
             eq(cart_items.size, input.size)
             ))
           await db.update(carts)
           .set({
-            total_price: currentPrice - (parseFloat(item_details[0].price) * input.quantity),
-            total_weight: currentWeight - (parseFloat(item_details[0].weight) * input.quantity)
+            total_price: (currentPrice - (parseFloat(item_details[0]!.price as string) * input.quantity)).toString(),
+            total_weight: (currentWeight - (parseFloat(item_details[0]!.weight as string) * input.quantity)).toString()
           })
         } else {
           await db.update(cart_items)
@@ -190,19 +199,19 @@ export const cartRouter = createTRPCRouter({
           .where(and(
             eq(cart_items.cart_id, input.cart_id), 
             eq(cart_items.size, input.size), 
-            eq(cart_items.product_id, input.product_id)
+            eq(cart_items.product_id, parseInt(input.product_id))
             ))
           await db.update(cart_items)
-          .set({ price: item_details[0].price * input.quantity })
+          .set({ price: (parseFloat(item_details[0]!.price as string) * input.quantity).toString() })
           .where(and(
             eq(cart_items.cart_id, input.cart_id),
             eq(cart_items.size, input.size),
-            eq(cart_items.product_id, input.product_id)
+            eq(cart_items.product_id, parseInt(input.product_id))
             ))
           await db.update(carts)
           .set({ 
-            total_price: currentPrice - parseFloat(item_details[0].price), 
-            total_weight: currentWeight - parseFloat(item_details[0].weight)
+            total_price: (currentPrice - parseFloat(item_details[0]!.price as string)).toString(), 
+            total_weight: (currentWeight - parseFloat(item_details[0]!.weight as string)).toString()
           }).where(eq(carts.cart_id, input.cart_id))
       }
       } else {
