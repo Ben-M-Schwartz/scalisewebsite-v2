@@ -1,10 +1,8 @@
 import { z } from "zod";
-
 import { carts, cart_items, product_details } from '~/db/schema'
 import { db } from '~/db/db'
-
 import { eq, and } from 'drizzle-orm/expressions';
-
+import { InferModel } from 'drizzle-orm';
 
 import {
   createTRPCRouter,
@@ -17,27 +15,31 @@ export const cartRouter = createTRPCRouter({
     cart_id: z.string(), 
     product_id: z.string(), 
     price: z.number(),  
-    quantity: z.string(), 
+    quantity: z.number(), 
     weight: z.number(), 
     size:  z.string(), 
     name: z.string() }))
   .mutation(async ({ input }) => {
+      type NewCart = InferModel<typeof carts, 'insert'>;
+      const newCart: NewCart = {
+        cart_id: input.cart_id, 
+        total_price: (input.price * input.quantity).toString(), 
+        total_weight: (input.weight * input.quantity).toString()
+      }
       await db.insert(carts)
-      .values({ 
+      .values(newCart)
+      type NewCartItem = InferModel<typeof cart_items, 'insert'>
+      const newCartItem: NewCartItem = {
         cart_id: input.cart_id, 
-        total_price: (input.price * input.quantity), 
-        total_weight: (input.weight * input.quantity)
-      })
-      await db.insert(cart_items)
-      .values({ 
-        cart_id: input.cart_id, 
-        product_id: input.product_id, 
-        price: input.price * input.quantity, 
+        product_id: parseInt(input.product_id), 
+        price: (input.price * input.quantity).toString(), 
         quantity: input.quantity, 
-        weight: input.weight, 
+        weight: (input.weight).toString(), 
         size: input.size, 
         item_name: input.name 
-      })
+      }
+      await db.insert(cart_items)
+      .values(newCartItem)
     }),
 
   addToCart:  publicProcedure
@@ -216,7 +218,7 @@ export const cartRouter = createTRPCRouter({
       await db.delete(cart_items)
       .where(eq(cart_items.cart_id, input.cart_id))
     }),
-    
+
     getCart: publicProcedure
     .input(z.object({ cart_id: z.string() }))
     .query(async ({ input }) => {

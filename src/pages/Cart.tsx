@@ -8,16 +8,32 @@ import { getCookie, hasCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 
 import { api } from "~/utils/api";
+import { nullable } from "zod";
+
+type CartItem = {
+  product_id: number | null;
+  price: string | null;
+  quantity: number | null;
+  size: string | null;
+  item_name: string | null;
+};
+
+type Cart = {
+  cart_id: string | null;
+  total_price: string | null;
+  total_weight: string | null;
+  cart_item: CartItem[] | null;
+};
 
 const Cart: NextPage = () => {
   const [emptyCart, setEmptyCart] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState<Cart[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
   const router = useRouter();
 
-  const cart_id = getCookie('cart_id')?.toString();
+  const cart_id = getCookie('cart_id')?.toString() || 'not found';
   const queryResult = api.cart.getCart.useQuery({ cart_id: cart_id });
 
   useEffect(() => {
@@ -27,8 +43,8 @@ const Cart: NextPage = () => {
     } else {
       if (queryResult.data && queryResult.data.length > 0) {
         setEmptyCart(false);
-        const cart_items = queryResult.data;
-        setTotalPrice(queryResult.data[0].total_price)
+        const cart_items = queryResult.data as Cart[];
+        setTotalPrice(parseFloat(queryResult.data[0]!.total_price as string))
         setCartItems(cart_items);
         setLoading(false);
       }  else {
@@ -57,7 +73,6 @@ const Cart: NextPage = () => {
     removeFromCart.mutateAsync({ 
       product_id: product_id.toString(), 
       cart_id: cart_id, 
-      item_name: item_name, 
       size: size, 
       quantity: quantity - 1, 
       fullRemove: false})
@@ -71,7 +86,6 @@ const Cart: NextPage = () => {
     fullRemoveFromCart.mutateAsync({ 
       product_id: product_id.toString(), 
       cart_id: cart_id, 
-      item_name: item_name, 
       size: size, 
       quantity: quantity, 
       fullRemove: true})
@@ -118,7 +132,7 @@ const Cart: NextPage = () => {
                 </thead>
                 <tbody>
                   {cartItems.map((item: any) => (
-                    <tr key={[item.cart_item.name, item.cart_item.size]}>
+                    <tr key = {item.cart_item.product_id}>
                       <td>{item.cart_item.item_name}</td>
                       <td>{item.cart_item.size}</td>
                       <td>
