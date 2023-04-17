@@ -240,7 +240,8 @@ export const cartRouter = createTRPCRouter({
           price: cart_items.price, 
           quantity: cart_items.quantity, 
           size: cart_items.size, 
-          item_name: cart_items.item_name}
+          item_name: cart_items.item_name
+        }
         })
         .from(carts)
         .leftJoin(cart_items, eq(carts.cart_id, cart_items.cart_id))
