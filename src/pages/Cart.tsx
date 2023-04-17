@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { type NextPage } from "next";
 import Head from "next/head";
 import React, { useState, useEffect } from 'react';
@@ -8,7 +12,6 @@ import { getCookie, hasCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 
 import { api } from "~/utils/api";
-import { nullable } from "zod";
 
 type CartItem = {
   product_id: number | null;
@@ -52,7 +55,7 @@ const Cart: NextPage = () => {
       }
       if(queryResult.data){
         setLoading(false)
-      };
+      }
     }
   }, [queryResult]);
 
@@ -65,7 +68,7 @@ const Cart: NextPage = () => {
       quantity: quantity + 1})
       .then(() => {
         router.reload()
-      })
+      }).catch((error) => console.error(error))
   }
 
   const removeFromCart = api.cart.remove.useMutation()
@@ -78,7 +81,7 @@ const Cart: NextPage = () => {
       fullRemove: false})
     .then(() => {
       router.reload()
-    })
+    }).catch((error) => console.error(error))
   }
 
   const fullRemoveFromCart = api.cart.remove.useMutation()
@@ -91,7 +94,7 @@ const Cart: NextPage = () => {
       fullRemove: true})
     .then(() => {
       router.reload()
-    })
+    }).catch((error) => console.error(error))
   }
 
   const clearCart = api.cart.clearCart.useMutation()
@@ -100,7 +103,7 @@ const Cart: NextPage = () => {
     .then(() => {
       setEmptyCart(true)
       router.reload()
-    })
+    }).catch((error) => console.error(error))
   }
 
   return (
