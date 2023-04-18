@@ -15,7 +15,7 @@ const connection = connect(config)
 //export default connection
 
 //for drizzle implementation
-export const db = drizzle(connection, { logger: true });
+export const db = drizzle(connection/* , { logger: true } */);
 
 //npx drizzle-kit generate:mysql --out migrations-folder --schema src/db/schema.ts
 
@@ -23,3 +23,4 @@ export const db = drizzle(connection, { logger: true });
   await migrate(db, { migrationsFolder: '/Users/benschwartz/Programming/scalisewebsite-v2/migrations-folder' });
 }
 migrateFunction() */
+
