@@ -54,7 +54,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
             return {
                 price_data: {
                     currency: 'usd',
-                    unit_amount: parseFloat(item.price as string) * 100,
+                    unit_amount: (parseFloat(item.price as string) / item.quantity as number) * 100,
                     product_data: {
                         name: item.item_name as string,
                         images:  ['none'/* `${domainURL}${item.image}` */],
@@ -69,14 +69,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
             //payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
-            success_url: `${domainURL as string}/views/stripeCheckout/success.html?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${domainURL as string}/views/stripeCheckout/canceled.html`,
+            success_url: `${domainURL as string}/success/{CHECKOUT_SESSION_ID}`,
+            cancel_url: `${domainURL as string}/canceled/{CHECKOUT_SESSION_ID}`,
             billing_address_collection: 'required',
             shipping_address_collection: {
                 allowed_countries: ['US', 'CA'],
             },
         }); 
-
         return session.url
     }),
 

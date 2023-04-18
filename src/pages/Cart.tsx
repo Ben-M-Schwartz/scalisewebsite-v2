@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { type NextPage } from "next";
 import Head from "next/head";
 import React, { useState, useEffect } from 'react';
@@ -118,10 +119,9 @@ const Cart: NextPage = () => {
       }
     })
     await createCheckoutSession.mutateAsync({cartItems: cart_items}).then((result) => {
-      router.push(result as string).catch((error) => console.error(error))
+      router.push(result as string).then().catch((error) => console.error(error))
     }).catch((error) => console.error(error))
   }
-  
 
   return (
     <>
@@ -145,34 +145,48 @@ const Cart: NextPage = () => {
                 <thead>
                   <tr>
                     <th>Product</th>
+                    <th></th>
                     <th>Size</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                     <th>Quantity</th>
+                    <th></th>
                     <th>Price</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
                   {cartItems.map((item: any) => (
                     <tr key = {item.cart_item.product_id}>
                       <td>{item.cart_item.item_name}</td>
+                      <td></td>
                       {item.cart_item.size !== 'NO SIZES' && (
                         <td>{item.cart_item.size}</td>
                       )}
                       {item.cart_item.size === 'NO SIZES' && (
                         <td></td>
                       )}
+                      <td></td>
                       <td>
                         <form onSubmit={(e) => {e.preventDefault(); handleAddToCart(item.cart_item.item_name, item.cart_item.size, item.cart_item.quantity)}}>
-                          <button type='submit'>+</button>
-                        </form>
-                        {item.cart_item.quantity}
-                        <form onSubmit={(e) => {e.preventDefault(); handleRemoveOneFromCart(item.cart_item.product_id, item.cart_item.size, item.cart_item.quantity)}}>
-                          <button disabled={item.cart_item.quantity <= 1} type='submit'>-</button>
+                          <button type='submit' className='text-white text-xl font-bold hover:text-blue-700 active:text-gray-500'>+</button>
                         </form>
                       </td>
+                      <td>
+                        {item.cart_item.quantity}
+                      </td>
+                      <td>
+                        <form onSubmit={(e) => {e.preventDefault(); handleRemoveOneFromCart(item.cart_item.product_id, item.cart_item.size, item.cart_item.quantity)}}>
+                          <button disabled={item.cart_item.quantity <= 1} type='submit' className='text-white text-xl font-bold hover:text-blue-700 active:text-gray-500 disabled:text-gray-400'>-</button>
+                        </form>
+                      </td>
+                      <td></td>
                       <td>{item.cart_item.price}</td>
+                      <td></td>
                       <td>
                         <form onSubmit={(e) => {e.preventDefault(); handleRemoveAllFromCart(item.cart_item.product_id, item.cart_item.size, item.cart_item.quantity)}}>
-                          <button type='submit'>Remove</button>
+                          <button type='submit' className='text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500'>Remove</button>
                         </form>
                       </td>
                     </tr>
@@ -180,12 +194,12 @@ const Cart: NextPage = () => {
                 </tbody>
               </table>
             </div>
-            <button className = 'text-white text-xl font-bold' onClick={handleClearCart}>Clear Cart</button>
+            <button className = 'text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500' onClick={handleClearCart}>Clear Cart</button>
             <div className='flex flex-col items-center justify-center text-white'>
               <h1>Total: {totalPrice}</h1>
               <p>Tax: nothing for now</p>
               <p>Shipping: nothing for now</p>
-              <button className = 'text-white text-xl font-bold' onClick={void handleCheckout}>Checkout</button>
+              <button className = 'text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500' onClick={handleCheckout}>Checkout</button>
             </div>
           </>
         )}
