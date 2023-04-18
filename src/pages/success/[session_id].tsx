@@ -13,13 +13,14 @@ const SuccessPage: NextPage = () => {
       <Head>
         <title>Confirmation</title>
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
         {session_id && (
-            <><h1>Payment Successful!</h1><p>Thank you for your purchase.</p><p>Check your email for order details</p></>
+            <><h1>Payment Successful!</h1>
+            <p>Thank you for your purchase.</p>
+            <p>Check your email for order details</p>
+            </>
         )}
-        <Link href="/">
-          <a>Back to Home</a>
-        </Link>
+        <Link href="/" className='text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500'>Back to Home</Link>
       </main>
     </>
   );

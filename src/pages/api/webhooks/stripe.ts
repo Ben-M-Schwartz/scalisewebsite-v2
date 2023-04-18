@@ -15,8 +15,6 @@ export const config = {
   },
 }
 
-class WebhookError extends Error {}
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -37,6 +35,7 @@ export default async function handler(
   }
 
   const session = event.data.object as Stripe.Checkout.Session
+  console.log(session)
 
   if (event.type === "checkout.session.completed") {
   }
