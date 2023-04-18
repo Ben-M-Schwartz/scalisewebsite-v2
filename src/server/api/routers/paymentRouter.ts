@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
-import Stripe from 'stripe'
 import { z } from "zod";
 
 import {
@@ -8,17 +7,9 @@ import {
     publicProcedure,
   } from "~/server/api/trpc";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2022-11-15',
-    typescript: true,
-    appInfo: { // For sample support and debugging, not required for production:
-      name: "stripe-samples/checkout-one-time-payments",
-      version: "0.0.1",
-      url: "https://github.com/stripe-samples/checkout-one-time-payments"
-    }
-  });
+import { stripe } from '~/utils/stripe'
 
-  export const paymentRouter = createTRPCRouter({
+export const paymentRouter = createTRPCRouter({
     testPayment: publicProcedure
     .query(async () => {
         await stripe.charges.create({
