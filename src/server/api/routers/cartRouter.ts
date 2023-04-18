@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { z } from "zod";
-import { carts, cart_items, product_details } from '~/db/schema'
+import { carts, cart_items, product_details, product_quantity } from '~/db/schema'
 import { db } from '~/db/db'
-import { eq, and } from 'drizzle-orm/expressions';
+import { eq, and, or } from 'drizzle-orm/expressions';
 import { type InferModel } from 'drizzle-orm';
 
 import {
@@ -134,6 +134,13 @@ export const cartRouter = createTRPCRouter({
   }))
   .mutation(async ({ input }) => {
     const cart = await db.select().from(carts).where(eq(carts.cart_id, input.cart_id))
+    const cart_item = await db.select().from(cart_items)
+    .where(and(
+      eq(cart_items.cart_id, input.cart_id), 
+      eq(cart_items.item_name, input.name), 
+      eq(cart_items.size, input.size)
+    ))
+    const quantityDiff = input.quantity - (cart_item[0]!.quantity as number)
     const item_details = await db.select().from(product_details)
     .where(and(
       eq(product_details.name, input.name)
@@ -157,8 +164,8 @@ export const cartRouter = createTRPCRouter({
         ))
       await db.update(carts)
       .set({ 
-        total_price: (currentPrice + parseFloat(item_details[0]!.price as string)).toString(), 
-        total_weight: (currentWeight + parseFloat(item_details[0]!.weight as string)).toString()
+        total_price: (currentPrice + (parseFloat(item_details[0]!.price as string) * quantityDiff)).toString(), 
+        total_weight: (currentWeight + (parseFloat(item_details[0]!.weight as string)* quantityDiff)).toString()
       }).where(eq(carts.cart_id, input.cart_id))
     } else {
       throw new Error('Cart not found')
@@ -194,24 +201,24 @@ export const cartRouter = createTRPCRouter({
             total_weight: (currentWeight - (parseFloat(item_details[0]!.weight as string) * input.quantity)).toString()
           })
         } else {
+          const cart_item = await db.select().from(cart_items)
+          .where(and(
+            eq(cart_items.cart_id, input.cart_id), 
+            eq(cart_items.product_id, parseInt(input.product_id)), 
+            eq(cart_items.size, input.size)
+          ))
+          const quantityDiff = cart_item[0]!.quantity as number - input.quantity
           await db.update(cart_items)
-          .set({ quantity: input.quantity })
+          .set({ quantity: input.quantity, price: (parseFloat(item_details[0]!.price as string) * input.quantity).toString() })
           .where(and(
             eq(cart_items.cart_id, input.cart_id), 
             eq(cart_items.size, input.size), 
             eq(cart_items.product_id, parseInt(input.product_id))
             ))
-          await db.update(cart_items)
-          .set({ price: (parseFloat(item_details[0]!.price as string) * input.quantity).toString() })
-          .where(and(
-            eq(cart_items.cart_id, input.cart_id),
-            eq(cart_items.size, input.size),
-            eq(cart_items.product_id, parseInt(input.product_id))
-            ))
           await db.update(carts)
           .set({ 
-            total_price: (currentPrice - parseFloat(item_details[0]!.price as string)).toString(), 
-            total_weight: (currentWeight - parseFloat(item_details[0]!.weight as string)).toString()
+            total_price: (currentPrice - (parseFloat(item_details[0]!.price as string) * quantityDiff)).toString(), 
+            total_weight: (currentWeight - (parseFloat(item_details[0]!.weight as string) * quantityDiff)).toString()
           }).where(eq(carts.cart_id, input.cart_id))
       }
       } else {
@@ -240,11 +247,20 @@ export const cartRouter = createTRPCRouter({
           price: cart_items.price, 
           quantity: cart_items.quantity, 
           size: cart_items.size, 
-          item_name: cart_items.item_name
+          item_name: cart_items.item_name,
+          max_quantity:  product_quantity.quantity
         }
         })
         .from(carts)
         .leftJoin(cart_items, eq(carts.cart_id, cart_items.cart_id))
+        .leftJoin(product_quantity, and(
+          eq(cart_items.product_id, product_quantity.product_id),
+          or(eq(cart_items.size, product_quantity.size), 
+          and(
+            eq(cart_items.size, ''),
+            eq(product_quantity.size, 'NO SIZES')
+          )
+        )))
         .where(eq(carts.cart_id, input.cart_id))
         return result
     })

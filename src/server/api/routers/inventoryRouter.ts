@@ -18,7 +18,19 @@ export const inventoryRouter = createTRPCRouter({
   get: publicProcedure
   .input(z.object({id: z.string()}))
   .query(async ({ input }) => {
-    return db.select().from(product_details).where(eq(product_details.id, parseInt(input.id)))
+    /* db.select().from(product_details).where(eq(product_details.id, parseInt(input.id))) */
+    const result = await db.select({
+      id: product_details.id,
+      price: product_details.price,
+      weight: product_details.weight,
+      name: product_details.name,
+      image_path: product_details.image_path,
+      product_quantity: {
+        size: product_quantity.size,
+        quantity: product_quantity.quantity
+      }
+    }).from(product_details).leftJoin(product_quantity, eq(product_details.id, product_quantity.product_id)).where(eq(product_details.id, parseInt(input.id)))
+    return result
   }),
   create: publicProcedure
     .input(

@@ -20,6 +20,7 @@ type CartItem = {
   quantity: number | null;
   size: string | null;
   item_name: string | null;
+  max_quantity: number | null;
 };
 
 type Cart = {
@@ -66,19 +67,19 @@ const Cart: NextPage = () => {
       cart_id: cart_id, 
       name: item_name, 
       size: size, 
-      quantity: quantity + 1})
+      quantity: quantity})
       .then(() => {
         router.reload()
       }).catch((error) => console.error(error))
   }
 
   const removeFromCart = api.cart.remove.useMutation()
-  const handleRemoveOneFromCart = (product_id: string, size: string, quantity: number) => {
+  const handleRemoveFromCart = (product_id: string, size: string, quantity: number) => {
     removeFromCart.mutateAsync({ 
       product_id: product_id.toString(), 
       cart_id: cart_id, 
       size: size, 
-      quantity: quantity - 1, 
+      quantity: quantity, 
       fullRemove: false})
     .then(() => {
       router.reload()
@@ -135,7 +136,9 @@ const Cart: NextPage = () => {
           <div className='text-white'>Loading...</div>
         )}
         {!loading && emptyCart && (
-          <><h1 className='text-white text-2xl font-bold'>Your cart is empty</h1><Link className='text-white' href='/Store'>Store</Link></>
+          <><h1 className='text-white text-2xl font-bold'>Your cart is empty</h1>
+          <Link className = 'text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500' href='/Store'>Store</Link>
+          </>
         )}
         {!loading && !emptyCart && (
           <>
@@ -145,45 +148,58 @@ const Cart: NextPage = () => {
                 <thead>
                   <tr>
                     <th>Product</th>
-                    <th></th>
                     <th>Size</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
                     <th>Quantity</th>
-                    <th></th>
                     <th>Price</th>
-                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
                   {cartItems.map((item: any) => (
                     <tr key = {item.cart_item.product_id}>
                       <td>{item.cart_item.item_name}</td>
-                      <td></td>
                       {item.cart_item.size !== 'NO SIZES' && (
                         <td>{item.cart_item.size}</td>
                       )}
                       {item.cart_item.size === 'NO SIZES' && (
                         <td></td>
                       )}
-                      <td></td>
                       <td>
-                        <form onSubmit={(e) => {e.preventDefault(); handleAddToCart(item.cart_item.item_name, item.cart_item.size, item.cart_item.quantity)}}>
-                          <button type='submit' className='text-white text-xl font-bold hover:text-blue-700 active:text-gray-500'>+</button>
+                        <div className='flex items-center'>
+                        <form onSubmit={(e) => {e.preventDefault(); handleAddToCart(item.cart_item.item_name, item.cart_item.size, parseInt(item.cart_item.quantity) + 1)}}>
+                          <button disabled={item.cart_item.quantity >= item.cart_item.max_quantity} type='submit' className='bg-gray-700 hover:bg-blue-500 active:bg-gray-900 disabled:bg-gray-400 px-1 py-1 rounded-l-lg'>+</button>
                         </form>
-                      </td>
-                      <td>
-                        {item.cart_item.quantity}
-                      </td>
-                      <td>
-                        <form onSubmit={(e) => {e.preventDefault(); handleRemoveOneFromCart(item.cart_item.product_id, item.cart_item.size, item.cart_item.quantity)}}>
-                          <button disabled={item.cart_item.quantity <= 1} type='submit' className='text-white text-xl font-bold hover:text-blue-700 active:text-gray-500 disabled:text-gray-400'>-</button>
+                        <input
+                          type="number"
+                          name="quantity"
+                          className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full rounded-none border border-gray-300 bg-gray-50 px-1 py-1 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                          value={item.cart_item.quantity}
+                          max={item.cart_item.max_quantity}
+                          min={1}
+/*                           onChange={(e) => {
+                            // Update the value in real-time
+                            // You can use this value to update the state of your component
+                            if(Number.isNaN(parseInt(e.target.value))){
+
+                            } else{
+                              if(e.target.value > item.cart_item.quantity){
+                                item.cart_item.quantity = Math.min(parseInt(e.target.value), item.cart_item.max_quantity)
+                                handleAddToCart(item.cart_item.item_name, item.cart_item.size, Math.min(parseInt(e.target.value), item.cart_item.max_quantity))
+                                if(e.target.value > item.cart_item.max_quantity){
+                                  window.alert(`Sorry, we only have ${item.cart_item.max_quantity} in stock`)
+                                }
+                              } else {
+                                item.cart_item.quantity = Math.max(parseInt(e.target.value), 1)
+                                handleRemoveFromCart(item.cart_item.product_id, item.cart_item.size, Math.max(parseInt(e.target.value), 1))
+                              }
+                            }
+                          }} */
+                        />
+                        <form onSubmit={(e) => {e.preventDefault(); handleRemoveFromCart(item.cart_item.product_id, item.cart_item.size, parseInt(item.cart_item.quantity) - 1)}}>
+                          <button disabled={item.cart_item.quantity <= 1} type='submit' className='bg-gray-700 hover:bg-blue-500 active:bg-gray-900 disabled:bg-gray-400 px-1 py-1 rounded-r-lg'>-</button>
                         </form>
+                        </div>
                       </td>
-                      <td></td>
                       <td>{item.cart_item.price}</td>
-                      <td></td>
                       <td>
                         <form onSubmit={(e) => {e.preventDefault(); handleRemoveAllFromCart(item.cart_item.product_id, item.cart_item.size, item.cart_item.quantity)}}>
                           <button type='submit' className='text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500'>Remove</button>
