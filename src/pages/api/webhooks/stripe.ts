@@ -8,7 +8,7 @@ import rawBody from "raw-body"
 import type Stripe from "stripe"
 
 import { db } from "~/db/db"
-import { orders, product_quantity } from "~/db/schema"
+import { orders, product_quantity, in_checkout_amounts } from "~/db/schema"
 import { type InferModel } from 'drizzle-orm';
 import { and, or, eq } from 'drizzle-orm/expressions'
 import { stripe } from "~/utils/stripe"
@@ -80,6 +80,7 @@ export default async function handler(
             and(eq(product_quantity.product_id, parseInt(product_id)), eq(product_quantity.size, 'NO SIZES'))))
     })
     await db.insert(orders).values(dbInsertValues)
+    await db.delete(in_checkout_amounts).where(eq(in_checkout_amounts.stripe_checkout_id, session.id))
   }
   return res.json({})
 }

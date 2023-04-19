@@ -15,6 +15,10 @@ type addToCartForm = {
     quantity: string;
   };
 
+type notifyForm = {
+  email: string;
+}
+
 const Product: NextPage = () => {
     const router = useRouter();
     const product = api.inventory.get.useQuery({ id: router.query.id as string },  { enabled: !!router.query.id });
@@ -26,13 +30,15 @@ const Product: NextPage = () => {
         image_path: string | null
         product_quantity: {
           size: string,
-          quantity: number
+          quantity_in_stock: number,
+          quantity_in_checkouts: number
         }
     }[]
-    const [ loadSizes, setLoadSizes ] = useState(true)
+    const [loadSizes, setLoadSizes ] = useState(true)
     const [soldOut, setSoldOut] = useState(false) 
     const [addToCartDisabled, setAddToCartDisabled] = useState(true)
     const [maxQuantity, setMaxQuantity] = useState(0);
+    const [pickedSize, setPickedSize] = useState('')
 
     /* 
     Check if cart_id cookies esists using hasCookie
@@ -41,8 +47,9 @@ const Product: NextPage = () => {
     */
     const addToCart = api.cart.addToCart.useMutation();
     const createNewCart = api.cart.createCart.useMutation();
-    const { register, handleSubmit } = useForm<addToCartForm>();
-    const onSubmit = (formData: addToCartForm) => {
+    const { register: cartRegister, handleSubmit: cartSubmit } = useForm<addToCartForm>();
+    const { register: notifyRegister, handleSubmit: notifySubmit } = useForm<notifyForm>();
+    const onSubmitCart = (formData: addToCartForm) => {
       const mutateOptions = {
         size: formData.size,
         quantity: parseInt(formData.quantity),
@@ -73,13 +80,14 @@ const Product: NextPage = () => {
         if (productData && productData[0]) {
           if (productData[0].product_quantity.size === 'NO SIZES') {
             setLoadSizes(false);
-            setMaxQuantity(productData[0].product_quantity.quantity)
+            setMaxQuantity(productData[0].product_quantity.quantity_in_stock + productData[0].product_quantity.quantity_in_checkouts)
             setAddToCartDisabled(false)
           }
         }
       }, [productData]);
 
     const handleSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setPickedSize(event.target.value)
         const selectedOption = event.target.options[event.target.selectedIndex];
         const maxQuantity = selectedOption!.dataset.maxQuantity;
         console.log(maxQuantity)
@@ -94,7 +102,16 @@ const Product: NextPage = () => {
           setAddToCartDisabled(false)
         }
     };
-      
+
+    const notify = api.subscription.notify.useMutation()
+    const notifyWhenInStock = (formData: notifyForm) => {
+      notify.mutateAsync({ 
+        product_id: router.query.id as string, 
+        name: productData[0]?.name as string,
+        size: pickedSize,
+        email: formData.email
+      }).catch(error=>console.log(error))
+    }
 
     if(!productData || !productData[0]) return null;
 
@@ -115,7 +132,7 @@ const Product: NextPage = () => {
             <div className="container flex flex-col gap-12 px-4 py-16 ">
                 <form
                 className="flex flex-col gap-4"
-                onSubmit={handleSubmit(onSubmit)}>
+                onSubmit={cartSubmit(onSubmitCart)}>
                     {loadSizes && (
                     <div>
                     <label
@@ -124,48 +141,73 @@ const Product: NextPage = () => {
                     >
                         Size
                     </label>
-                    <select id='size' {...register("size", { required: true })} onChange={handleSizeChange} defaultValue=''>
+                    <select id='size' 
+                    {...cartRegister("size", { required: true })}
+                    onChange={handleSizeChange} defaultValue=''
+                    >
                         <option value='' disabled selected>Select Size</option>
                         {productData.map((product) => (
-                            <option key={product.product_quantity.size} value={product.product_quantity.size} data-max-quantity={product.product_quantity.quantity}>
-                            {product.product_quantity.size}{product.product_quantity.quantity === 0 ? '(Out of Stock)' : ''}
+                            <option 
+                            key={product.product_quantity.size} 
+                            value={product.product_quantity.size} 
+                            data-max-quantity={product.product_quantity.quantity_in_stock - (product.product_quantity.quantity_in_checkouts || 0)}
+                            >
+                            {product.product_quantity.size}
+                            {product.product_quantity.quantity_in_stock - (product.product_quantity.quantity_in_checkouts  || 0) <= 0 
+                            ? '(Out of Stock)' : ''}
                             </option>
                             ))}
                     </select>
                     </div>
                     )}
                     {!soldOut && (
-                      <div>
-                      <label
-                          htmlFor="quantitiy"
-                          className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-                      >
-                          Quantity
-                      </label>
-                      <input
-                          id="quantities"
-                          className="block w-auto rounded-lg border border-gray-300 bg-gray-50 py-2 px-1 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                          {...register("quantity", { required: true })}
-                          type="number"
-                          max={maxQuantity}
-                      />
-                      </div>
-                    )}
-                    {soldOut && (
-                      <h2 className='text-white'>Sold Out</h2>
-                    )}
-                    <button
-                    type="submit"
-                    disabled={addToCartDisabled}
-                    className={`mb-2 mr-2 rounded-lg inline-block w-1/6 py-5 text-sm font-medium text-white focus:outline-none ${
-                      addToCartDisabled
-                        ? 'bg-gray-500 cursor-not-allowed'
-                        : 'bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-                    }`}
-                    >
+                      <><div>
+                  <label
+                    htmlFor="quantitiy"
+                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Quantity
+                  </label>
+                  <input
+                    id="quantities"
+                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-auto rounded-lg border border-gray-300 bg-gray-50 py-2 px-1 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                    {...cartRegister("quantity", { required: true })}
+                    type="number"
+                    max={maxQuantity} />
+                </div><button
+                  type="submit"
+                  disabled={addToCartDisabled}
+                  className={`mb-2 mr-2 rounded-lg inline-block w-1/6 py-5 text-sm font-medium text-white focus:outline-none ${addToCartDisabled
+                      ? 'bg-gray-500 cursor-not-allowed'
+                      : 'bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'}`}
+                >
                     Add To Cart
-                    </button>
+                  </button></>
+                    )}
                 </form>
+                {soldOut && (
+                      <>
+                      <h2 className='text-white'>Sold Out</h2>
+                      <form onSubmit={notifySubmit(notifyWhenInStock)}>
+                        <label htmlFor='notify' 
+                        className='text-white'>
+                          Notify when back in stock? 
+                          </label>
+                        <input 
+                        id='notify' 
+                        type='email' 
+                        placeholder='email@example.com'
+                        className='block w-auto rounded-lg border border-gray-300 bg-gray-50 py-2 px-1 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
+                        {...notifyRegister("email", {required: true})}
+                        />
+                        <button 
+                        type='submit' 
+                        className='mb-2 mr-2 rounded-lg inline-block w-auto px-2 py-1 text-sm font-medium text-white focus:outline-none bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
+                          Notify Me!
+                        </button>
+                      </form>
+                      </>
+                  )}
             </div>
             </main>
         </>

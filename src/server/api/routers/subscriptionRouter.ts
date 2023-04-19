@@ -1,6 +1,6 @@
 import { z } from "zod";
 import {db} from '~/db/db'
-import { subscribers, potential_subscribers } from '~/db/schema'
+import { subscribers, potential_subscribers, stockNotifications } from '~/db/schema'
 import { type InferModel } from 'drizzle-orm';
 import { eq } from 'drizzle-orm/expressions'
 
@@ -39,7 +39,7 @@ type EmailOptions = {
     html: string
 }
 //emailOptions - who sends what to whom
-const sendEmail = async (emailOptions: EmailOptions) => {
+export const sendEmail = async (emailOptions: EmailOptions) => {
     const emailTransporter = createTransporter();
     try {
       await emailTransporter.sendMail(emailOptions);
@@ -100,6 +100,66 @@ const sendConfirmationEmail = async( url: string, email: string, token: string) 
     })
 }
 
+const sendInitialNotificationEmail = async (email: string, product_name: string, product_size: string,) => {
+  const emailOptions: EmailOptions = {
+    //eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    from: process.env.GOOGLE_EMAIL!,
+    to: email,
+    subject: 'Scalise Store Notifications',
+    html: 
+    `<!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="UTF-8">
+        <title>Back in Stock Notification</title>
+        <style>
+          /* Email Styles */
+          body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+          }
+          h1 {
+            font-size: 24px;
+            margin-top: 0;
+          }
+          p {
+            margin-bottom: 1em;
+          }
+          .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            text-align: center;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+          }
+          .button:hover {
+            background-color: #0062cc;
+            cursor: pointer;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>Back in Stock Notification</h1>
+        <p>Thank you for signing up to be notified when ${product_name} ${product_size !== 'NO SIZES' ? `Size: ${product_size}` : ''} is back in stock. 
+        We'll let you know as soon as it becomes available again.</p>
+        <p>In the meantime, feel free to browse our selection of other items.</p>
+        <a href="http://localhost:3000/Store" class="button">Shop Now</a>
+      </body>
+    </html>`
+  }
+  await sendEmail(emailOptions).catch((error) => {
+    console.error(error)
+    throw new Error(`Failed to send confirmation of notifications email`);
+})
+}
+
 
 export const subscriptionRouter = createTRPCRouter({
   confirm: publicProcedure
@@ -118,6 +178,7 @@ export const subscriptionRouter = createTRPCRouter({
             throw new Error('Email Invalid')
         })
   }), 
+
   subscribe: publicProcedure
     .input(z.object({ token: z.string() }))
     .mutation(async ({ input }) => {
@@ -140,4 +201,15 @@ export const subscriptionRouter = createTRPCRouter({
         //About catching any errors otherwise because this is only used from the link in the email and
         //If it doesn't work I want the user to generate a new one since I know it works normally.
     }),
+
+    notify: publicProcedure
+    .input( z.object({product_id: z.string(), name: z.string(), size: z.string(), email: z.string()})
+    ).mutation(async ({input}) => {
+      await db.insert(stockNotifications).values({
+        product_id: parseInt(input.product_id),
+        size: input.size,
+        email: input.email
+      })
+      await sendInitialNotificationEmail(input.email, input.name, input.size)
+    })
 });

@@ -31,6 +31,18 @@ export const product_quantity = mysqlTable(
   })
 );
 
+export const in_checkout_amounts = mysqlTable(
+  'in_checkout_amounts',
+  {
+    id: serial('id').primaryKey().notNull(),
+    product_id: int('product_id'),
+    stripe_checkout_id:  varchar('stripe_checkout_id', { length: 255 }),
+    size: varchar('size', { length: 255 }),
+    quantity: int('quantity')
+  }
+)
+
+
 export const carts = mysqlTable(
   'carts',
   {
@@ -80,6 +92,15 @@ export const subscribers = mysqlTable(
   }
 );
 
+export const stockNotifications = mysqlTable(
+  'stockNotifications',
+  {
+    id: serial('id').primaryKey().notNull(),
+    email: varchar('email', { length: 255 }),
+    product_id: int('product_id'),
+    size: varchar('size', { length: 255 }),
+  }
+)
   
 export const orders = mysqlTable(
   'orders',

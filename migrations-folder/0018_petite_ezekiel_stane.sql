@@ -1,0 +1,1 @@
+RENAME TABLE `in_cart_amounts` TO `in_checkout_amounts`;

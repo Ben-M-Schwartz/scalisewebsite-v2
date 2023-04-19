@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { z } from "zod";
-import { carts, cart_items, product_details, product_quantity } from '~/db/schema'
+import { carts, cart_items, product_details, product_quantity, in_checkout_amounts } from '~/db/schema'
 import { db } from '~/db/db'
 import { eq, and, or } from 'drizzle-orm/expressions';
 import { type InferModel } from 'drizzle-orm';
+
 
 import {
   createTRPCRouter,
@@ -172,6 +173,9 @@ export const cartRouter = createTRPCRouter({
     }
   }),
 
+
+  //if doing a full remove set the quantity param to the full quantity of the item being removed
+  //otherwise set the quantity param to the new quantity
   remove: publicProcedure
     .input(z.object({ 
       cart_id: z.string(), 
@@ -248,7 +252,8 @@ export const cartRouter = createTRPCRouter({
           quantity: cart_items.quantity, 
           size: cart_items.size, 
           item_name: cart_items.item_name,
-          max_quantity:  product_quantity.quantity
+          quantity_in_stock:  product_quantity.quantity,
+          quantity_in_checkouts: in_checkout_amounts.quantity,
         }
         })
         .from(carts)
@@ -258,6 +263,14 @@ export const cartRouter = createTRPCRouter({
           or(eq(cart_items.size, product_quantity.size), 
           and(
             eq(cart_items.size, ''),
+            eq(product_quantity.size, 'NO SIZES')
+          )
+        )))
+        .leftJoin(in_checkout_amounts, and(
+          eq(in_checkout_amounts.product_id, product_quantity.product_id),
+          or(eq(in_checkout_amounts.size, product_quantity.size), 
+          and(
+            eq(in_checkout_amounts.size, ''),
             eq(product_quantity.size, 'NO SIZES')
           )
         )))

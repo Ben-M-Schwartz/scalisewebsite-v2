@@ -2,9 +2,10 @@ import { z } from "zod";
 
 import {db} from '~/db/db'
 
-import { product_details, product_quantity } from '~/db/schema'
+import { product_details, product_quantity, in_checkout_amounts } from '~/db/schema'
 import { type InferModel } from 'drizzle-orm';
-import { and, eq } from 'drizzle-orm/expressions'
+import { and, eq, or } from 'drizzle-orm/expressions'
+import { sql } from 'drizzle-orm/sql'
 
 import {
   createTRPCRouter,
@@ -27,9 +28,20 @@ export const inventoryRouter = createTRPCRouter({
       image_path: product_details.image_path,
       product_quantity: {
         size: product_quantity.size,
-        quantity: product_quantity.quantity
+        quantity_in_stock: product_quantity.quantity,
+        quantity_in_checkouts: in_checkout_amounts.quantity
       }
-    }).from(product_details).leftJoin(product_quantity, eq(product_details.id, product_quantity.product_id)).where(eq(product_details.id, parseInt(input.id)))
+    }).from(product_details)
+    .leftJoin(product_quantity, eq(product_details.id, product_quantity.product_id))
+    .leftJoin(in_checkout_amounts, and(
+      eq(in_checkout_amounts.product_id, product_quantity.product_id),
+      or(eq(in_checkout_amounts.size, product_quantity.size), 
+      and(
+        eq(in_checkout_amounts.size, ''),
+        eq(product_quantity.size, 'NO SIZES')
+      )
+    )))
+    .where(eq(product_details.id, parseInt(input.id)))
     return result
   }),
   create: publicProcedure
@@ -63,8 +75,10 @@ export const inventoryRouter = createTRPCRouter({
       await db.insert(product_quantity).values(newProductQuantities)
     }),
     update: publicProcedure
-    .input( z.object({product_id: z.string(), size: z.string(), quantity: z.string()}))
+    .input( z.object({product_id: z.string(), size: z.string(), quantity: z.string(), operation: z.string()}))
     .mutation(async ({ input }) => {
-      await db.update(product_quantity).set({quantity: parseInt(input.quantity)}).where(and(eq(product_quantity.product_id, parseInt(input.product_id)), eq(product_quantity.size, input.size)))
-    }),
+      await db.update(product_quantity)
+      .set({quantity: sql`\${product_quantity.quantity} \${input.operation} \${input.quantity}`})
+      .where(and(eq(product_quantity.product_id, parseInt(input.product_id)), eq(product_quantity.size, input.size)))
+    })
 });

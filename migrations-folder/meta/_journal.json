@@ -113,6 +113,27 @@
       "when": 1681872865050,
       "tag": "0015_luxuriant_imperial_guard",
       "breakpoints": false
+    },
+    {
+      "idx": 16,
+      "version": "5",
+      "when": 1681914599867,
+      "tag": "0016_lumpy_russian",
+      "breakpoints": false
+    },
+    {
+      "idx": 17,
+      "version": "5",
+      "when": 1681916354192,
+      "tag": "0017_slow_xorn",
+      "breakpoints": false
+    },
+    {
+      "idx": 18,
+      "version": "5",
+      "when": 1681916524135,
+      "tag": "0018_petite_ezekiel_stane",
+      "breakpoints": false
     }
   ]
 }

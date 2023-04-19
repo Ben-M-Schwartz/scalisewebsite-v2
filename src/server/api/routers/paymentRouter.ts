@@ -9,6 +9,11 @@ import {
 
 import { stripe } from '~/utils/stripe'
 
+import { db } from "~/db/db"
+import { in_checkout_amounts, product_quantity } from "~/db/schema"
+import { type InferModel } from 'drizzle-orm';
+import { eq } from 'drizzle-orm/expressions'
+
 export const paymentRouter = createTRPCRouter({
     testPayment: publicProcedure
     .query(async () => {
@@ -40,7 +45,28 @@ export const paymentRouter = createTRPCRouter({
         const items = input.cartItems;
         const domainURL = process.env.DOMAIN;
 
-        //conver cart_items to stripe line items
+        const comparisons = await Promise.all(items.map(async item => {
+            const stock = await db.select().from(product_quantity)
+            .where(eq(product_quantity.product_id, parseInt(item.product_id)))
+
+            const inCheckouts = await db.select().from(in_checkout_amounts)
+            .where(eq(in_checkout_amounts.product_id, parseInt(item.product_id)))
+
+            const max = stock[0]!.quantity as number - (inCheckouts[0]?.quantity || 0)
+            return {
+                item_name: item.item_name,
+                product_id: item.product_id,
+                quantity: item.quantity,
+                size: item.size,
+                max: max
+            }
+        }))
+        const cartOverflows = comparisons.filter(item => item.quantity > item.max)
+        if(cartOverflows.length > 0){
+            return ['Not Enough Inventory', cartOverflows]
+        }
+
+        //convert cart_items to stripe line items
         const lineItems = items.map(item => {
             return {
                 price_data: {
@@ -71,7 +97,39 @@ export const paymentRouter = createTRPCRouter({
                 allowed_countries: ['US', 'CA'],
             },
         }); 
-        return session.url
+        return [session.url, session.id];
+    }),
+
+    createOrder: publicProcedure
+    .input(
+        z.object({ 
+            cartItems: z.array(z.object(
+                {
+                    product_id: z.string(),
+                    price: z.string(),
+                    quantity: z.number(),
+                    size: z.string(),
+                    item_name: z.string(),
+                })),
+            checkoutId: z.string()
+            })
+    ).mutation(async ({input}) => {
+        const dbInsertValues: InferModel<typeof in_checkout_amounts, 'insert'>[] = []
+        input.cartItems.map((item) => {
+            dbInsertValues.push({
+                product_id: parseInt(item.product_id),
+                stripe_checkout_id: input.checkoutId,
+                size: item.size,
+                quantity: item.quantity
+            })
+        })
+        await db.insert(in_checkout_amounts).values(dbInsertValues)
+    }),
+
+    cancelOrder: publicProcedure
+    .input( z.object({id: z.string()}))
+    .mutation(async ({input}) => {
+        await db.delete(in_checkout_amounts).where(eq(in_checkout_amounts.stripe_checkout_id, input.id))
     }),
 
     getCheckoutSession: publicProcedure
