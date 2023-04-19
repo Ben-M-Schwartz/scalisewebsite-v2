@@ -19,8 +19,3 @@ export const db = drizzle(connection/* , { logger: true } */);
 
 //npx drizzle-kit generate:mysql --out migrations-folder --schema src/db/schema.ts
 
-/* const migrateFunction = async () => {
-  await migrate(db, { migrationsFolder: '/Users/benschwartz/Programming/scalisewebsite-v2/migrations-folder' });
-}
-migrateFunction() */
-

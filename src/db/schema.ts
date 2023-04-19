@@ -1,5 +1,5 @@
 //drizzle implementation
-import { mysqlTable, int, decimal, varchar, /* foreignKey, */ index, serial } from 'drizzle-orm/mysql-core';
+import { mysqlTable, int, decimal, varchar, index, serial } from 'drizzle-orm/mysql-core';
 
 export const product_details = mysqlTable(
   'product_details',
@@ -22,16 +22,12 @@ export const product_quantity = mysqlTable(
   'product_quantity',
   {
     id: serial('id').primaryKey().notNull(),
-    product_id: int('product_id'), //.references(() => product_details.id).notNull(),
+    product_id: int('product_id'),
     size: varchar('size', { length: 255 }),
     quantity: int('quantity')
   },
   product_quantity => ({
     productIdIndex: index('product_quantity__product_id__idx').on(product_quantity.product_id),
-/*     productIdFK: foreignKey(({
-        columns: [product_quantity.product_id],
-        foreignColumns: [product_details.id],
-      })), */
   })
 );
 
@@ -52,8 +48,8 @@ export const cart_items = mysqlTable(
     'cart_items',
     {
       id: serial('id').primaryKey().notNull(),
-      cart_id: varchar('cart_id', { length: 32 }),// .references(() => carts.id).notNull(),
-      product_id: int('product_id'),// .references(() => product_details.id).notNull(),
+      cart_id: varchar('cart_id', { length: 32 }),
+      product_id: int('product_id'),
       size: varchar('size', { length: 255 }),
       quantity: int('quantity'),
       price: decimal('price', { precision: 10, scale: 2 }),
@@ -64,14 +60,6 @@ export const cart_items = mysqlTable(
     cart_items => ({
       cartIdIndex: index('cart_items__cart_id__idx').on(cart_items.cart_id),
       productIdIndex: index('cart_items__product_id__idx').on(cart_items.product_id),
-/*       cartIdFK: foreignKey(({
-          columns: [cart_items.cart_id],
-          foreignColumns: [carts.id]
-      })),
-      productIdFK: foreignKey(({
-          columns: [cart_items.product_id],
-          foreignColumns: [product_details.id]
-      })), */
     })
   );
 
@@ -92,90 +80,26 @@ export const subscribers = mysqlTable(
   }
 );
 
+  
+export const orders = mysqlTable(
+  'orders',
+  {
+    id: serial('id').primaryKey().notNull(),
+    item: varchar('item', { length: 255 }),
+    size: varchar('size', { length: 255 }),
+    quantity: int('quantity'),
+    customer_name:  varchar('customer_name', { length: 255 }),
+    customer_email:  varchar('customer_email', { length: 255 }),
+    customer_phone:  varchar('customer_phone', { length: 255 }),
+    customer_city:  varchar('customer_city', { length: 255 }),
+    customer_state:  varchar('customer_state', { length: 255 }),
+    customer_zip:  varchar('customer_zip', { length: 255 }),
+    customer_country:  varchar('customer_country', { length: 255 }),
+    customer_addressLine1:  varchar('customer_addressLine1', { length: 255 }),
+    customer_addressLine2:  varchar('customer_addressLine2', { length: 255 }),
+    stripe_checkout_session_id:  varchar('stripe_checkout_session_id', { length: 255 }),
+    payment_intent_id:  varchar('payment_intent_id', { length: 255 }),
+    payment_status: varchar('payment_status', { length: 255 }),
+  }
+)
 
-
-
-/* 
-@planetscale/database implementation
-might work who knows I haven't tested it
-
-import connection from './db'
-
-export const createTables = async () => {
-    const productDetailsTableExists = await connection
-        .execute('SELECT 1 FROM `product_details` LIMIT 1')
-        .then(() => true)
-        .catch(() => false);
-
-    if(!productDetailsTableExists){
-        await connection.execute(`CREATE TABLE product_details (
-            id INT PRIMARY KEY AUTO_INCREMENT,
-            name VARCHAR(255),
-            price DECIMAL(10,2),
-            image_path VARCHAR(255),
-            weight DECIMAL(10,2),
-            INDEX(name),
-            INDEX(price),
-            INDEX(weight)
-        );`)
-    }
-
-    const productQuantityTableExists = await connection
-        .execute('SELECT 1 FROM `product_quantity` LIMIT 1')
-        .then(() => true)
-        .catch(() => false);
-    if(!productQuantityTableExists){
-        await connection.execute(`CREATE TABLE product_quantity (
-            id INT PRIMARY KEY AUTO_INCREMENT,
-            product_id INT,
-            size VARCHAR(255),
-            quantity INT,
-            FOREIGN KEY (product_id) REFERENCES product_details(id),
-            INDEX(product_id)
-        );`)
-    }
-
-    const cartTableExists = await connection
-        .execute('SELECT 1 FROM `carts` LIMIT 1')
-        .then(() => true)
-        .catch(() => false);
-    if(!cartTableExists){
-        await connection.execute(`CREATE TABLE carts (
-            id INT PRIMARY KEY AUTO_INCREMENT,
-            user_id VARCHAR(255),
-            total_price DECIMAL(10,2),
-            total_weight DECIMAL(10,2),
-            INDEX(user_id)
-        );`)
-    }
-
-    const cartItemsTableExists = await connection
-        .execute('SELECT 1 FROM `cart_items` LIMIT 1')
-        .then(() => true)
-        .catch(() => false)
-    if(!cartItemsTableExists){
-        await connection.execute(`CREATE TABLE cart_items (
-            id INT PRIMARY KEY AUTO_INCREMENT,
-            cart_id INT,
-            product_id INT,
-            size VARCHAR(255),
-            quantity INT,
-            FOREIGN KEY (cart_id) REFERENCES cart(id),
-            FOREIGN KEY (product_id) REFERENCES product_details(id),
-            INDEX(cart_id),
-            INDEX(product_id)
-        );`)
-    }
-
-    const subscribersTableExists = await connection
-        .execute('SELECT 1 FROM `subscribers` LIMIT 1')
-        .then(() => true)
-        .catch(() => false)
-    if(!subscribersTableExists){
-        await connection.execute(`
-        CREATE TABLE subscribers (
-            id INT PRIMARY KEY AUTO_INCREMENT,
-            email VARCHAR(255)
-        )`)
-    }
-} */

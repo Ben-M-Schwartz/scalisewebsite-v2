@@ -49,7 +49,11 @@ export const paymentRouter = createTRPCRouter({
                     product_data: {
                         name: item.item_name as string,
                         images:  ['none'/* `${domainURL}${item.image}` */],
-                        description: (item.size === 'NO SIZES') ? 'CD' : `Size: ${item.size as string}`,
+                        description: item.size === '' ? 'CD' : `Size: ${item.size as string}`,
+                        metadata: {
+                            size: item.size,
+                            product_id: item.product_id,
+                        }
                     },
                 },
                 quantity: item.quantity as number,
