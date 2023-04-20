@@ -14,9 +14,7 @@ import crypto from 'crypto'
 import nodemailer from 'nodemailer';
 import Handlebars from 'handlebars';
 
-export const config = {
-  runtime: 'edge'
-}
+
 
 const createTransporter = () => {
       try {

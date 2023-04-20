@@ -15,7 +15,6 @@ import { stripe } from "~/utils/stripe"
 import { sql } from 'drizzle-orm/sql'
 
 export const config = {
-  runtime: 'edge',
   api: {
     // Turn off the body parser so we can access raw body for verification.
     bodyParser: false,
