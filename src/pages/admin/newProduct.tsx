@@ -143,7 +143,7 @@ const NewProduct: NextPage = () => {
             </button>
           </form>
         </div>
-        <Link href='/admin' className='text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500'>Admin Home</Link>
+        <Link href='/admin/home' className='text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500'>Admin Home</Link>
       </main>
     </>
   );

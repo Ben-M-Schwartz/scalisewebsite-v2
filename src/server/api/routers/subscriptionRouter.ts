@@ -51,7 +51,6 @@ export const sendEmail = async (emailOptions: EmailOptions) => {
     }
   };
 
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 const emailMailingList = async (subject: string, body: string) => {
     const template = Handlebars.compile(`
         <h1>{{subject}}</h1>
@@ -59,19 +58,20 @@ const emailMailingList = async (subject: string, body: string) => {
     `);
     // Get list of subscribers from database or file
     const subList = await db.select().from(subscribers)
+
     // Send email to each subscriber using nodemailer
     for (const subscriber of subList) {
-        //console.log(subscriber.email)
-        const mailOptions: EmailOptions = {    
-        /* eslint-disable @typescript-eslint/no-non-null-assertion */
-        from: process.env.GOOGLE_EMAIL!,
-        to: subscriber.email!,
-        /* eslint-enable @typescript-eslint/no-non-null-assertion */
-        subject: subject,
-        html: template({ subject: subject, body: body })
-        };
-        await sendEmail(mailOptions)
-    }
+      //console.log(subscriber.email)
+      const mailOptions: EmailOptions = {    
+      /* eslint-disable @typescript-eslint/no-non-null-assertion */
+      from: process.env.GOOGLE_EMAIL!,
+      to: subscriber.email!,
+      /* eslint-enable @typescript-eslint/no-non-null-assertion */
+      subject: subject,
+      html: template({ subject: subject, body: body })
+      };
+      await sendEmail(mailOptions)
+  }
 }
 
 const sendConfirmationEmail = async( url: string, email: string, token: string) => {
@@ -213,5 +213,11 @@ export const subscriptionRouter = createTRPCRouter({
         email: input.email
       })
       await sendInitialNotificationEmail(input.email, input.name, input.size)
+    }),
+
+    emailList: publicProcedure
+    .input( z.object({ subject: z.string(), body: z.string() }))
+    .mutation(async ({input}) => {
+      await emailMailingList(input.subject, input.body)
     })
 });
