@@ -77,5 +77,17 @@ export default async function handler(
     await db.insert(orders).values(dbInsertValues)
     await db.delete(in_checkout_amounts).where(eq(in_checkout_amounts.stripe_checkout_id, session.id))
   }
+
+  if(event.type === "checkout.session.expired"){
+    await db.delete(in_checkout_amounts).where(eq(in_checkout_amounts.stripe_checkout_id, session.id))
+  }
+
+  if(event.type === "checkout.session.async_payment_failed"){
+    //add logic here
+  }
+  if(event.type === "checkout.session.async_payment_succeeded"){
+    //add logic here
+  }
+
   return res.json({})
 }
