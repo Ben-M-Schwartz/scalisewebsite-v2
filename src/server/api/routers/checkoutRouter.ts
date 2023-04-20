@@ -67,7 +67,7 @@ export const checkoutRouter = createTRPCRouter({
                     unit_amount: (item.price) * 100,
                     product_data: {
                         name: item.item_name as string,
-                        images:  [`${domainURL}/public/${item.image}.png`],
+                        images:  [`${domainURL as string}/public/${item.image as string}.png`],
                         description: item.size === '' ? 'CD' : `Size: ${item.size as string}`,
                         metadata: {
                             size: item.size,

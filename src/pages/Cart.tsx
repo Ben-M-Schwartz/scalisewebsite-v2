@@ -189,7 +189,7 @@ const Cart: NextPage = () => {
               {cartItems.map((item: any) => (
                 <div key={item.cart_item.product_id} className="flex items-center justify-center gap-10 py-4">
                     <div className= "h-32 w-32 relative flex items-center justify-center">
-                    <Image className='object-cover full' src={`/${item.cart_item.image}.png`} alt="image" fill/>
+                    <Image className='object-cover full' src={`/${item.cart_item.image as string}.png`} alt="image" fill/>
                     </div>
                   <div>
                     <div className="font-medium text-gray-100 pr-4">{item.cart_item.item_name}</div>

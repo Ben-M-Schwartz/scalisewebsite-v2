@@ -124,7 +124,7 @@ const Product: NextPage = () => {
             <h1 className="mt-12 pl-4 text-4xl text-white">Product Page</h1>
             <div className="flex flex-row gap-20">
               <div className="w-96 h-132 relative flex items-center justify-center">
-                  <Image className='object-cover full' src={`/${productData[0].image}.png`} alt="image" fill/>
+                  <Image className='object-cover full' src={`/${productData[0].image as string}.png`} alt="image" fill/>
               </div>
               <div className="w-1/2">
             <div className="container mx-auto flex flex-col gap-12">

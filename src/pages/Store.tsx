@@ -13,7 +13,7 @@ function Card({ product }: { product: Product }) {
   return (
     <div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-700">
       <div className="relative h-32 w-full">
-        <Image className="object-cover" src={`/${product.image}.png`} alt="image" fill />
+        <Image className="object-cover" src={`/${product.image as string}.png`} alt="image" fill />
       </div>
       <div className="p-5">
         <a href="#">
