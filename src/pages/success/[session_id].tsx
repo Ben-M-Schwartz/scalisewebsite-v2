@@ -2,6 +2,7 @@ import { type NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react'
 
 import { getCookie } from 'cookies-next';
 import { api } from "~/utils/api";
@@ -13,7 +14,12 @@ const SuccessPage: NextPage = () => {
 
   const cart_id = getCookie('cart_id')?.toString() || 'not found';
   const clearCart = api.cart.clearCart.useMutation()
-  clearCart.mutateAsync({ cart_id: cart_id }).catch((error) => console.error(error))
+
+  useEffect(() => {
+    if(session_id){
+      clearCart.mutateAsync({ cart_id: cart_id }).catch((error) => console.error(error))
+    }
+  }, [session_id])
 
   return (
     <>
