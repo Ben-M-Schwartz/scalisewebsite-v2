@@ -162,11 +162,44 @@ const sendInitialNotificationEmail = async (email: string, product_name: string,
 })
 }
 
+const userAlreadySubscribed = async (email: string, url: string) => {
+  const mailOptions: EmailOptions = {
+    //eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    from: process.env.GOOGLE_EMAIL!,
+    to: email,
+    subject: 'SCALISE subscription',
+    html: `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>SCALISE Subscription Confirmation</title>
+    </head>
+    <body>
+      <h1>SCALISE</h1>
+      <p>Accorrding to our database you are already subscribed.</p>
+      <p>If you are not recieving emails for our mailing list, check your spam folder.</p>
+      <p>Otherwise, please reach out through our contact form or email benschwartz33@gmail.com for assistance</p>
+      <a href=${url}/Contact>Contact</a>
+    </body>
+    </html>`
+};
+
+await sendEmail(mailOptions).catch((error) => {
+    console.error(error)
+    throw new Error(`Failed to send email`);
+})
+}
+
 
 export const subscriptionRouter = createTRPCRouter({
   confirm: publicProcedure
     .input(z.object({ email: z.string(), url: z.string() }))
     .mutation(async ({ input }) => {
+        const sub = await db.select().from(subscribers).where(eq(subscribers.email, input.email))
+        if(sub && sub.length > 0){
+          await userAlreadySubscribed(input.email, input.url).catch(error => console.error(error))
+        }
+        if(!sub || sub.length === 0){
         const token = crypto.randomBytes(16).toString('hex');
         await sendConfirmationEmail(input.url, input.email, token).then(async () => {
         //save email and token in potential subscribers table
@@ -177,8 +210,8 @@ export const subscriptionRouter = createTRPCRouter({
             await db.insert(potential_subscribers).values(newPotential)
         }).catch((error) => {
             console.error(error)
-            throw new Error('Email Invalid')
         })
+      }
   }), 
 
   subscribe: publicProcedure
