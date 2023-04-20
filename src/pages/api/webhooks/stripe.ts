@@ -10,8 +10,9 @@ import type Stripe from "stripe"
 import { db } from "~/db/db"
 import { orders, product_quantity, in_checkout_amounts } from "~/db/schema"
 import { type InferModel } from 'drizzle-orm';
-import { and, or, eq } from 'drizzle-orm/expressions'
+import { and, eq } from 'drizzle-orm/expressions'
 import { stripe } from "~/utils/stripe"
+import { sql } from 'drizzle-orm/sql'
 
 export const config = {
   api: {
@@ -69,15 +70,9 @@ export default async function handler(
             payment_intent_id:  session.payment_intent?.toString(),
             payment_status: session.payment_status,
         })
-        const result = await db.select().from(product_quantity).where(or(
-                and(eq(product_quantity.product_id, parseInt(product_id)), eq(product_quantity.size, size)),
-                and(eq(product_quantity.product_id, parseInt(product_id)), eq(product_quantity.size, 'NO SIZES'))))
-        const currentQuantity = result[0]!.quantity
         await db.update(product_quantity)
-        .set({quantity: currentQuantity! - quantity!})
-        .where(or(
-            and(eq(product_quantity.product_id, parseInt(product_id)), eq(product_quantity.size, size)),
-            and(eq(product_quantity.product_id, parseInt(product_id)), eq(product_quantity.size, 'NO SIZES'))))
+        .set({quantity: sql`${product_quantity.quantity} - ${item.quantity}`})
+        .where(and(eq(product_quantity.product_id, parseInt(product_id)), eq(product_quantity.size, size)))
     })
     await db.insert(orders).values(dbInsertValues)
     await db.delete(in_checkout_amounts).where(eq(in_checkout_amounts.stripe_checkout_id, session.id))

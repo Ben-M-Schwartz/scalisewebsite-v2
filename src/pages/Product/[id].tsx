@@ -24,8 +24,8 @@ const Product: NextPage = () => {
     const product = api.inventory.get.useQuery({ id: router.query.id as string },  { enabled: !!router.query.id });
     const productData = product.data as {
         name: string,
-        price: string,
-        weight: string,
+        price: number,
+        weight: number,
         id: number,
         image_path: string | null
         product_quantity: {
@@ -40,45 +40,41 @@ const Product: NextPage = () => {
     const [maxQuantity, setMaxQuantity] = useState(0);
     const [pickedSize, setPickedSize] = useState('')
 
-    /* 
-    Check if cart_id cookies esists using hasCookie
-    if it does not exist call the createNewCart mutation
-    if it does exist call the add to cart mutation
-    */
     const addToCart = api.cart.addToCart.useMutation();
-    const createNewCart = api.cart.createCart.useMutation();
     const { register: cartRegister, handleSubmit: cartSubmit } = useForm<addToCartForm>();
     const { register: notifyRegister, handleSubmit: notifySubmit } = useForm<notifyForm>();
+
+    //all possible sizing options used to sort the select html element
+    type sizes = 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL' | 'XXXL'
+    interface indexSignature { [key: string]: number}
+    const allOptions: indexSignature = {'S': 0, 'M':1, 'L':2, 'XL':3, 'XXL':4, 'XXXL':5, 'XXXXL':6}
+
     const onSubmitCart = (formData: addToCartForm) => {
       const mutateOptions = {
         size: formData.size,
         quantity: parseInt(formData.quantity),
-        price: parseFloat(productData[0]!.price),
-        product_id:  productData[0]!.id.toString(),
-        weight: parseFloat(productData[0]!.weight),
+        price: productData[0]!.price,
+        product_id:  productData[0]!.id,
+        weight: productData[0]!.weight,
         name: productData[0]!.name,
-        cart_id: 'temp string'
+        cart_id: ''
       }
 
       if(!hasCookie('cart_id')) {
         const new_cart_id = crypto.randomBytes(16).toString('hex');
         mutateOptions.cart_id = new_cart_id;
-        createNewCart
-        .mutateAsync(mutateOptions).catch((error) => console.error(error))
         setCookie('cart_id', new_cart_id)
       } else {
         mutateOptions.cart_id = getCookie('cart_id')!.toString();
-        addToCart
-        .mutateAsync(mutateOptions).catch((error) => console.error(error))
       }
-
-
-      window.alert('Item added to cart!')
+      addToCart.mutateAsync(mutateOptions).then(() => {
+        window.alert('Item added to cart!')
+      }).catch(() => window.alert('error'))
     };
 
     useEffect(() => {
         if (productData && productData[0]) {
-          if (productData[0].product_quantity.size === 'NO SIZES') {
+          if (productData[0].product_quantity.size === '') {
             setLoadSizes(false);
             setMaxQuantity(productData[0].product_quantity.quantity_in_stock + productData[0].product_quantity.quantity_in_checkouts)
             setAddToCartDisabled(false)
@@ -146,7 +142,12 @@ const Product: NextPage = () => {
                     onChange={handleSizeChange} defaultValue=''
                     >
                         <option value='' disabled selected>Select Size</option>
-                        {productData.map((product) => (
+                        {
+                        productData
+                        .sort((a,b) => {
+                          return allOptions[a.product_quantity.size.trim() as sizes]! - allOptions[b.product_quantity.size.trim() as sizes]!
+                          })
+                        .map((product) => (
                             <option 
                             key={product.product_quantity.size} 
                             value={product.product_quantity.size} 

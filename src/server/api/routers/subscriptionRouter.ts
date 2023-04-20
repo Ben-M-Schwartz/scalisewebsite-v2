@@ -147,7 +147,7 @@ const sendInitialNotificationEmail = async (email: string, product_name: string,
       </head>
       <body>
         <h1>Back in Stock Notification</h1>
-        <p>Thank you for signing up to be notified when ${product_name} ${product_size !== 'NO SIZES' ? `Size: ${product_size}` : ''} is back in stock. 
+        <p>Thank you for signing up to be notified when ${product_name} ${product_size !== '' ? `Size: ${product_size}` : ''} is back in stock. 
         We'll let you know as soon as it becomes available again.</p>
         <p>In the meantime, feel free to browse our selection of other items.</p>
         <a href="http://localhost:3000/Store" class="button">Shop Now</a>

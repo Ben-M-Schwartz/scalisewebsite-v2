@@ -12,30 +12,19 @@ import { stripe } from '~/utils/stripe'
 import { db } from "~/db/db"
 import { in_checkout_amounts, product_quantity } from "~/db/schema"
 import { type InferModel } from 'drizzle-orm';
-import { eq } from 'drizzle-orm/expressions'
+import { eq, and } from 'drizzle-orm/expressions'
 
-export const paymentRouter = createTRPCRouter({
-    testPayment: publicProcedure
-    .query(async () => {
-        await stripe.charges.create({
-            amount: 2000, // $20.00
-            currency: 'usd',
-            source: 'tok_visa', // Test card number
-            description: 'Test payment'
-        }).then((res) => {
-            return res
-        });
-    }),
-
+export const checkoutRouter = createTRPCRouter({
     checkOut: publicProcedure
     .input(
         z.object({ 
             cartItems: z.array(z.object(
                 {
-                    product_id: z.string(),
-                    price: z.string(),
+                    product_id: z.number(),
+                    price: z.number(),
                     quantity: z.number(),
                     size: z.string(),
+                    weight: z.number(),
                     item_name: z.string(),
                 }))
             })
@@ -44,13 +33,12 @@ export const paymentRouter = createTRPCRouter({
         //const cart = db.select().from(carts).where({id: input.cart_id})
         const items = input.cartItems;
         const domainURL = process.env.DOMAIN;
-
         const comparisons = await Promise.all(items.map(async item => {
             const stock = await db.select().from(product_quantity)
-            .where(eq(product_quantity.product_id, parseInt(item.product_id)))
+            .where(and(eq(product_quantity.product_id, item.product_id), eq(product_quantity.size, item.size)))
 
             const inCheckouts = await db.select().from(in_checkout_amounts)
-            .where(eq(in_checkout_amounts.product_id, parseInt(item.product_id)))
+            .where(and(eq(in_checkout_amounts.product_id, item.product_id), eq(in_checkout_amounts.size, item.size)))
 
             const max = stock[0]!.quantity as number - (inCheckouts[0]?.quantity || 0)
             return {
@@ -58,6 +46,8 @@ export const paymentRouter = createTRPCRouter({
                 product_id: item.product_id,
                 quantity: item.quantity,
                 size: item.size,
+                price: item.price,
+                weight: item.weight,
                 max: max
             }
         }))
@@ -71,7 +61,7 @@ export const paymentRouter = createTRPCRouter({
             return {
                 price_data: {
                     currency: 'usd',
-                    unit_amount: (parseFloat(item.price as string) / item.quantity as number) * 100,
+                    unit_amount: (item.price) * 100,
                     product_data: {
                         name: item.item_name as string,
                         images:  ['none'/* `${domainURL}${item.image}` */],
@@ -85,7 +75,6 @@ export const paymentRouter = createTRPCRouter({
                 quantity: item.quantity as number,
             };
         });
-
         const session = await stripe.checkout.sessions.create({
             //payment_method_types: ['card'],
             line_items: lineItems,
@@ -105,8 +94,8 @@ export const paymentRouter = createTRPCRouter({
         z.object({ 
             cartItems: z.array(z.object(
                 {
-                    product_id: z.string(),
-                    price: z.string(),
+                    product_id: z.number(),
+                    price: z.number(),
                     quantity: z.number(),
                     size: z.string(),
                     item_name: z.string(),
@@ -117,7 +106,7 @@ export const paymentRouter = createTRPCRouter({
         const dbInsertValues: InferModel<typeof in_checkout_amounts, 'insert'>[] = []
         input.cartItems.map((item) => {
             dbInsertValues.push({
-                product_id: parseInt(item.product_id),
+                product_id: item.product_id,
                 stripe_checkout_id: input.checkoutId,
                 size: item.size,
                 quantity: item.quantity

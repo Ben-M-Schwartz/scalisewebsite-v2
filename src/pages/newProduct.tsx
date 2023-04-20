@@ -21,8 +21,12 @@ const NewProduct: NextPage = () => {
   const onSubmit = (formData: SellItemForm) => {
     createListing
       .mutateAsync({
-        ...formData
-      });
+        name: formData.name,
+        sizes: formData.sizes || '',
+        price: parseFloat(formData.price),
+        weight: parseFloat(formData.weight),
+        quantities: formData.quantities,
+      }).then(() => window.alert('Success'));
   };
 
   return (
@@ -62,6 +66,9 @@ const NewProduct: NextPage = () => {
               </label>
               <input
                 id="price"
+                type='number'
+                min='0'
+                step='.01'
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                 {...register("price", { required: true })}
               />
@@ -76,6 +83,9 @@ const NewProduct: NextPage = () => {
               </label>
               <input
                 id="weight"
+                type='number'
+                step='.01'
+                min='0'
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                 {...register("weight", { required: true })}
               />
@@ -91,7 +101,7 @@ const NewProduct: NextPage = () => {
               <input
                 id="weight"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                {...register("sizes", { required: true })}
+                {...register("sizes", { required: false })}
               />
             </div>
 

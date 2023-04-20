@@ -16,9 +16,10 @@ import { api } from "~/utils/api";
 
 type CartItem = {
   product_id: number | null;
-  price: string | null;
+  price: number | null;
   quantity: number | null;
   size: string | null;
+  weight: number | null;
   item_name: string | null;
   quantity_in_stock: number | null;
   quantity_in_checkouts: number | null;
@@ -51,7 +52,7 @@ const Cart: NextPage = () => {
         setEmptyCart(false);
         const cart_items = queryResult.data as Cart[];
         console.log(cart_items)
-        setTotalPrice(parseFloat(queryResult.data[0]!.total_price as string))
+        setTotalPrice(queryResult.data[0]!.total_price as number)
         setCartItems(cart_items);
         setLoading(false);
       }  else {
@@ -63,13 +64,16 @@ const Cart: NextPage = () => {
     }
   }, [queryResult]);
 
-  const addToCart = api.cart.updateCart.useMutation()
-  const handleAddToCart = (item_name: string, size: string, quantity: number) => {
+  const addToCart = api.cart.addToCart.useMutation()
+  const handleAddToCart = (item_name: string, size: string, quantity: number, product_id: number, price: number, weight: number) => {
     addToCart.mutateAsync({ 
       cart_id: cart_id, 
       name: item_name, 
       size: size, 
       quantity: quantity,
+      product_id: product_id,
+      price: price,
+      weight: weight,
       })
       .then(() => {
         router.reload()
@@ -77,29 +81,22 @@ const Cart: NextPage = () => {
   }
 
   const removeFromCart = api.cart.remove.useMutation()
-  const handleRemoveFromCart = (product_id: string, size: string, quantity: number) => {
-    removeFromCart.mutateAsync({ 
-      product_id: product_id.toString(), 
-      cart_id: cart_id, 
-      size: size, 
-      quantity: quantity, 
-      fullRemove: false})
-    .then(() => {
-      router.reload()
-    }).catch((error) => console.error(error))
-  }
-
-  //removes all of one item from the cart
-  const handleRemoveAllFromCart = (product_id: string, size: string, quantity: number) => {
-    removeFromCart.mutateAsync({ 
-      product_id: product_id.toString(), 
-      cart_id: cart_id, 
-      size: size, 
-      quantity: quantity, 
-      fullRemove: true})
-    .then(() => {
-      router.reload()
-    }).catch((error) => console.error(error))
+  const handleRemoveFromCart = (product_id: number, size: string, quantity: number, price: number, weight: number, fullRemove: boolean) => {
+    if(cartItems.length <= 1){
+      handleClearCart()
+    } else {
+      removeFromCart.mutateAsync({ 
+        product_id: product_id, 
+        cart_id: cart_id, 
+        size: size, 
+        quantity: quantity, 
+        price: price,
+        weight: weight,
+        fullRemove: fullRemove})
+      .then(() => {
+        router.reload()
+      }).catch((error) => console.error(error))
+    }
   }
 
   const clearCart = api.cart.clearCart.useMutation()
@@ -116,30 +113,43 @@ const Cart: NextPage = () => {
   const handleCheckout = async () => {
     const cart_items = cartItems.map(item => {
       return {
-        product_id: item.cart_item?.product_id?.toString() as string,
-        price: item.cart_item?.price as string,
+        product_id: item.cart_item?.product_id as number,
+        price: item.cart_item?.price as number,
         quantity:  item.cart_item?.quantity as number,
         size: item.cart_item?.size as string,
-        item_name: item.cart_item?.item_name as string
+        item_name: item.cart_item?.item_name as string,
+        weight: item.cart_item?.weight as number
       }
     })
     await createCheckoutSession.mutateAsync({cartItems: cart_items})
-    .then((result) => {
+    .then(async (result) => {
 
       if(result[0] === 'Not Enough Inventory'){
         let errorMessage = 'Sorry! Unfortunately our inventory has changed\n'
-        const overflows = result[1] as unknown as {item_name: string, quantity: number, max: number, product_id: string, size: string}[]
-        for(let obj of overflows){
+        const overflows = result[1] as unknown as {item_name: string, quantity: number, max: number, product_id: number, size: string, price: number, weight: number}[]
+
+        const promises = []
+        for(const obj of overflows){
           if(obj.max === 0){
-            errorMessage += `${obj.item_name} is no longer available. See the store page to be notified when it is back in stock\n`
-            removeFromCart.mutateAsync({product_id: obj.product_id, cart_id: cart_id, size: obj.size, quantity: obj.quantity, fullRemove: true})
+            errorMessage += `${obj.item_name} ${obj.size ? `Size: ${obj.size}` : ''} 
+            is no longer available. See the store page to be notified when it is back in stock\n`
           } else {
-            errorMessage += `We now only have ${obj.max} left in stock for ${obj.item_name}`
-            removeFromCart.mutateAsync({product_id: obj.product_id, cart_id: cart_id, size: obj.size, quantity: obj.max, fullRemove: false})
+            errorMessage += `We now only have ${obj.max} left in stock for ${obj.item_name} ${obj.size ? `Size: ${obj.size}` : ''} `
           }
+          promises.push(removeFromCart.mutateAsync({
+            product_id: obj.product_id, 
+            cart_id: cart_id, 
+            size: obj.size, 
+            quantity: obj.quantity - obj.max, 
+            price: obj.price, 
+            weight: obj.weight, 
+            fullRemove: (obj.max === 0)}))
         }
-        window.alert(errorMessage);
-        router.reload();
+        
+        await Promise.all(promises).then(() => {
+          window.alert(errorMessage);
+          router.reload();
+        }).catch(error => console.log(error))
 
       } else {
         createOrder.mutateAsync({cartItems: cart_items, checkoutId: result[1] as string})
@@ -170,20 +180,21 @@ const Cart: NextPage = () => {
         )}
         {!loading && !emptyCart && (
           <>
-            <h1 className='text-white text-2xl font-bold'>Cart</h1>
+            <h1 className='text-white text-2xl font-bold'>Cart ({cartItems.length} Item(s))</h1>
             <div className='flex flex-col items-center justify-center'>
             <div className="divide-y">
               {cartItems.map((item: any) => (
                 <div key={item.cart_item.product_id} className="flex items-center justify-center gap-10 py-4">
                   <div>
-                    <div className="font-medium text-gray-100 w-2/5 pr-4">{item.cart_item.item_name}</div>
-                    {item.cart_item.size !== 'NO SIZES' && (
-                      <div className="text-gray-500">{item.cart_item.size}</div>
+                    <div className="font-medium text-gray-100 pr-4">{item.cart_item.item_name}</div>
+                    <div className="text-gray-500">Price: ${item.cart_item.price}</div>
+                    {item.cart_item.size !== '' && (
+                      <div className="text-gray-500">Size: {item.cart_item.size}</div>
                     )}
                   </div>
                   <div className="w-1/5 flex items-center">
                     <form onSubmit={(e) => {e.preventDefault(); 
-                      handleAddToCart(item.cart_item.item_name, item.cart_item.size, parseInt(item.cart_item.quantity) + 1)}}>
+                      handleAddToCart(item.cart_item.item_name, item.cart_item.size, 1, item.cart_item.product_id, item.cart_item.price, item.cart_item.weight)}}>
                       <button disabled={item.cart_item.quantity >= (item.cart_item.quantity_in_stock - (item.cart_item.quantity_in_checkouts ? item.cart_item.quantity_in_checkouts : 0))} type='submit' className='bg-gray-700 hover:bg-blue-500 active:bg-gray-900 disabled:bg-gray-400 px-1 py-1 rounded-l-lg'>+</button>
                     </form>
                     <input
@@ -195,13 +206,13 @@ const Cart: NextPage = () => {
                       min={1}
                       readOnly
                     />
-                    <form onSubmit={(e) => {e.preventDefault(); handleRemoveFromCart(item.cart_item.product_id, item.cart_item.size, parseInt(item.cart_item.quantity) - 1)}}>
+                    <form onSubmit={(e) => {e.preventDefault(); handleRemoveFromCart(item.cart_item.product_id, item.cart_item.size, 1, item.cart_item.price, item.cart_item.weight, false)}}>
                       <button disabled={item.cart_item.quantity <= 1} type='submit' className='bg-gray-700 hover:bg-blue-500 active:bg-gray-900 disabled:bg-gray-400 px-1 py-1 rounded-r-lg'>-</button>
                     </form>
                   </div>
                   <div className="text-right text-gray-100">
-                    <div>${item.cart_item.price}</div>
-                    <form onSubmit={(e) => {e.preventDefault(); handleRemoveAllFromCart(item.cart_item.product_id, item.cart_item.size, item.cart_item.quantity)}}>
+                    <div>Total: ${item.cart_item.price * item.cart_item.quantity}</div>
+                    <form onSubmit={(e) => {e.preventDefault(); handleRemoveFromCart(item.cart_item.product_id, item.cart_item.size, item.cart_item.quantity, item.cart_item.price, item.cart_item.weight, true)}}>
                       <button type='submit' className='text-gray-500 font-medium hover:underline hover:text-blue-700 active:text-gray-500'>Remove</button>
                     </form>
                   </div>

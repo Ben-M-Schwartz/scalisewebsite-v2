@@ -1,20 +1,17 @@
-//drizzle implementation
-import { mysqlTable, int, decimal, varchar, index, serial } from 'drizzle-orm/mysql-core';
+import { mysqlTable, int, double, varchar, index, serial, float } from 'drizzle-orm/mysql-core';
 
 export const product_details = mysqlTable(
   'product_details',
   {
     id: serial('id').primaryKey().notNull(),
     name: varchar('name', { length: 255 }),
-    price: decimal('price', { precision: 10, scale: 2 }),
+    price: double('price', { precision: 10, scale: 2 }),
     image_path: varchar('image_path', { length: 255 }),
-    weight: decimal('weight', { precision: 10, scale: 2 }),
-    sizes: varchar('sizes', { length: 255 }),
+    weight: float('weight'),
   },
-  table => ({
-    idIndex: index('product_details__name__idx').on(table.id),
-    nameIndex: index('product_details__name__idx').on(table.name),
-    priceIndex: index('product_details__price__idx').on(table.price)
+  product_details => ({
+    idIndex: index('productDetails_id_index').on(product_details.id),
+    nameIndex: index('product_name_index').on(product_details.name),
   })
 );
 
@@ -27,7 +24,7 @@ export const product_quantity = mysqlTable(
     quantity: int('quantity')
   },
   product_quantity => ({
-    productIdIndex: index('product_quantity__product_id__idx').on(product_quantity.product_id),
+    id_size_index_inventory: index('id_size_index_inventory').on(product_quantity.product_id, product_quantity.size)
   })
 );
 
@@ -39,7 +36,10 @@ export const in_checkout_amounts = mysqlTable(
     stripe_checkout_id:  varchar('stripe_checkout_id', { length: 255 }),
     size: varchar('size', { length: 255 }),
     quantity: int('quantity')
-  }
+  },
+  amounts => ({
+    id_size_index_checkouts: index('id_size_index_checkouts').on(amounts.product_id, amounts.size)
+  })
 )
 
 
@@ -48,11 +48,11 @@ export const carts = mysqlTable(
   {
     id: serial('id').primaryKey().notNull(),
     cart_id: varchar('id', { length: 32 }).primaryKey().notNull(),
-    total_price: decimal('total_price', { precision: 10, scale: 2 }),
-    total_weight: decimal('total_weight', { precision: 10, scale: 2 })
+    total_price: double('total_price', { precision: 10, scale: 2 }),
+    total_weight: float('total_weight')
   },
   table => ({
-    idIndex: index('carts__id__idx').on(table.id)
+    idIndex: index('cart_id_index').on(table.cart_id)
   })
 );
 
@@ -64,14 +64,14 @@ export const cart_items = mysqlTable(
       product_id: int('product_id'),
       size: varchar('size', { length: 255 }),
       quantity: int('quantity'),
-      price: decimal('price', { precision: 10, scale: 2 }),
-      weight: decimal('weight', { precision: 10, scale: 2 }),
+      price: double('price', { precision: 10, scale: 2 }),
+      weight: float('weight'),
       item_name:  varchar('item_name', { length: 255 }),
     
     },
     cart_items => ({
       cartIdIndex: index('cart_items__cart_id__idx').on(cart_items.cart_id),
-      productIdIndex: index('cart_items__product_id__idx').on(cart_items.product_id),
+      productId_Size__cartId_Index: index('product_id_size_cart_id_index').on(cart_items.product_id, cart_items.size, cart_items.cart_id),
     })
   );
 
@@ -81,7 +81,10 @@ export const potential_subscribers = mysqlTable(
     id: serial('id').primaryKey().notNull(),
     email: varchar('email', { length: 255 }),
     token: varchar('token', { length: 255 })
-  }
+  },
+  table => ({
+    subscriberIndex: index('subscriber_index').on(table.token)
+  })
 )
 
 export const subscribers = mysqlTable(
@@ -99,7 +102,10 @@ export const stockNotifications = mysqlTable(
     email: varchar('email', { length: 255 }),
     product_id: int('product_id'),
     size: varchar('size', { length: 255 }),
-  }
+  },
+  table => ({
+    notificationIndex: index('notificationIndex').on(table.product_id, table.size)
+  })
 )
   
 export const orders = mysqlTable(

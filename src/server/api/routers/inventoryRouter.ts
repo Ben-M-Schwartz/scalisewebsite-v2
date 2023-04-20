@@ -38,7 +38,7 @@ export const inventoryRouter = createTRPCRouter({
       or(eq(in_checkout_amounts.size, product_quantity.size), 
       and(
         eq(in_checkout_amounts.size, ''),
-        eq(product_quantity.size, 'NO SIZES')
+        eq(product_quantity.size, '')
       )
     )))
     .where(eq(product_details.id, parseInt(input.id)))
@@ -46,7 +46,7 @@ export const inventoryRouter = createTRPCRouter({
   }),
   create: publicProcedure
     .input(
-      z.object({ name: z.string(), price: z.string(), weight: z.string(), sizes: z.string(), quantities: z.string()})
+      z.object({ name: z.string(), price: z.number(), weight: z.number(), sizes: z.string(), quantities: z.string()})
     )
     .mutation(async ({ input }) => {
       type NewProduct = InferModel<typeof product_details, 'insert'>;
@@ -57,7 +57,6 @@ export const inventoryRouter = createTRPCRouter({
         price: input.price,
         weight: input.weight,
         image_path: 'temp',
-        sizes: input.sizes,
       }
       const result = await db.insert(product_details).values(newProduct)
       const productId = result.insertId
@@ -74,11 +73,12 @@ export const inventoryRouter = createTRPCRouter({
       }
       await db.insert(product_quantity).values(newProductQuantities)
     }),
+
     update: publicProcedure
     .input( z.object({product_id: z.string(), size: z.string(), quantity: z.string(), operation: z.string()}))
     .mutation(async ({ input }) => {
       await db.update(product_quantity)
-      .set({quantity: sql`\${product_quantity.quantity} \${input.operation} \${input.quantity}`})
+      .set({quantity: sql`${product_quantity.quantity} ${input.operation} ${input.quantity}`})
       .where(and(eq(product_quantity.product_id, parseInt(input.product_id)), eq(product_quantity.size, input.size)))
     })
 });
