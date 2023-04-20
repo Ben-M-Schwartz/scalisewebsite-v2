@@ -6,6 +6,15 @@
 
 /** @type {import("next").NextConfig} */
 const config = {
+  async redirect() {
+    return [
+      {
+        source: '/admin',
+        destination: '/admin/home'
+      }
+    ]
+  },
+
   reactStrictMode: true,
 /*   experimental: {
     appDir: true,
