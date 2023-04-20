@@ -20,18 +20,21 @@ const server = z.object({
   // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
   DISCORD_CLIENT_ID: z.string(),
   DISCORD_CLIENT_SECRET: z.string(),
+
   DATABASE_HOST: z.string(),
   DATABASE_USERNAME: z.string(),
   DATABASE_PASSWORD: z.string(),
+
   GOOGLE_EMAIL: z.string(),
-  GOOGLE_CLIENT_ID: z.string(),
-  GOOGLE_CLIENT_SECRET: z.string(),
-  GOOGLE_REFRESH_TOKEN: z.string(),
+  ZOHO_EMAIL: z.string(),
+  ZOHO_PASSWORD: z.string(),
+
   STRIPE_PUBLISHABLE_KEY: z.string(),
   STRIPE_SECRET_KEY: z.string(),
   STRIPE_WEBHOOK_SECRET: z.string(),
-  DOMAIN: z.string(),
-  PAYMENT_METHOD_TYPES: z.string()
+  PAYMENT_METHOD_TYPES: z.string(),
+  
+  DOMAIN: z.string()
 });
 
 /**
@@ -50,22 +53,26 @@ const client = z.object({
  */
 const processEnv = {
   NODE_ENV: process.env.NODE_ENV,
+
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
   DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
+
   DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
   DATABASE_HOST: process.env.DATABASE_HOST,
   DATABASE_USERNAME: process.env.DATABASE_USERNAME,
   DATABASE_PASSWORD: process.env.DATABASE_PASSWORD,
+
   GOOGLE_EMAIL: process.env.GOOGLE_EMAIL,
-  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
-  GOOGLE_REFRESH_TOKEN: process.env.GOOGLE_REFRESH_TOKEN,
+  ZOHO_EMAIL: process.env.ZOHO_EMAIL,
+  ZOHO_PASSWORD: process.env.ZOHO_PASSWORD,
+
   STRIPE_PUBLISHABLE_KEY: process.env.STRIPE_PUBLISHABLE_KEY,
   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
   STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+  PAYMENT_METHOD_TYPES: process.env.PAYMENT_METHOD_TYPES,
+
   DOMAIN: process.env.DOMAIN,
-  PAYMENT_METHOD_TYPES: process.env.PAYMENT_METHOD_TYPES
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 
