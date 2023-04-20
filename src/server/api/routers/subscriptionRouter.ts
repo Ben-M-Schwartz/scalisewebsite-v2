@@ -55,6 +55,7 @@ const emailMailingList = async (subject: string, body: string) => {
     const template = Handlebars.compile(`
         <h1>{{subject}}</h1>
         <p>{{body}}</p>
+        <a href={{domain}}/unsubscribe/{{email}}>Unsubscribe</a>
     `);
     // Get list of subscribers from database or file
     const subList = await db.select().from(subscribers)
@@ -68,7 +69,7 @@ const emailMailingList = async (subject: string, body: string) => {
       to: subscriber.email!,
       /* eslint-enable @typescript-eslint/no-non-null-assertion */
       subject: subject,
-      html: template({ subject: subject, body: body })
+      html: template({ subject: subject, body: body, domain: process.env.DOMAIN, email: subscriber.email })
       };
       await sendEmail(mailOptions)
   }
@@ -252,5 +253,11 @@ export const subscriptionRouter = createTRPCRouter({
     .input( z.object({ subject: z.string(), body: z.string() }))
     .mutation(async ({input}) => {
       await emailMailingList(input.subject, input.body)
+    }),
+
+    unsubscribe: publicProcedure
+    .input(z.object({email: z.string()}))
+    .mutation(async ({input}) => {
+      await db.delete(subscribers).where(eq(subscribers.email, input.email))
     })
 });
