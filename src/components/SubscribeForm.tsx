@@ -24,8 +24,12 @@ const Subscribe: NextPage = () => {
 
   const { register, handleSubmit } = useForm<subscriptionForm>()
   const onSubmit = (formData: subscriptionForm) => {
-    setIsSubmitted(true);
-    void confirm.mutateAsync({email: formData.email, url: window.location.origin})
+    try{
+      setIsSubmitted(true);
+      confirm.mutate({email: formData.email, url: window.location.origin})
+    } catch(error) {
+      window.alert(error)
+    }
   }
   return (
     <div className="flex flex-col justify-center items-center py-6 bg-white">
