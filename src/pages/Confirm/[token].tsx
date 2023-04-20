@@ -45,14 +45,14 @@ const Confirm: NextPage = () => {
           <div className="flex flex-col items-center gap-2">
           {invalidLink && loading && <p className='text-white'>Loading...</p>}
           {invalidLink && !loading && (
-          <><p className='text-white'>This confirmation link is no longer valid</p><Link href='/' className='text-white'>Home</Link></>
+          <><p className='text-white'>This confirmation link is no longer valid</p><Link href='/' className='text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500 text-center'>Home</Link></>
           )}
           {!invalidLink && loading && <p className='text-white'>Loading...</p>}
           {!invalidLink && !loading && (
             <><p className="text-2xl text-white">
               You Are Now Subscribed!
               You will start receiving emails from SCALISE
-            </p><Link href='/' className='text-white'>Home</Link></>
+            </p><Link href='/' className='text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500 text-center'>Home</Link></>
           )}
           </div>
       </main>

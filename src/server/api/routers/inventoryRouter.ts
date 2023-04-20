@@ -16,6 +16,15 @@ export const inventoryRouter = createTRPCRouter({
   list: publicProcedure.query(() => {
     return db.select().from(product_details);
   }),
+
+  listInventory: publicProcedure.query(() => {
+    return db.select({
+      product_id: product_details.id,
+      size: product_quantity.size,
+      quantity: product_quantity.quantity
+    }).from(product_details).leftJoin(product_quantity, eq(product_details.id, product_quantity.product_id))
+  }),
+
   get: publicProcedure
   .input(z.object({id: z.string()}))
   .query(async ({ input }) => {
@@ -75,10 +84,19 @@ export const inventoryRouter = createTRPCRouter({
     }),
 
     update: publicProcedure
-    .input( z.object({product_id: z.string(), size: z.string(), quantity: z.string(), operation: z.string()}))
+    .input( z.object({product_id: z.number(), size: z.string(), quantity: z.number(), operation: z.string()}))
     .mutation(async ({ input }) => {
       await db.update(product_quantity)
-      .set({quantity: sql`${product_quantity.quantity} ${input.operation} ${input.quantity}`})
-      .where(and(eq(product_quantity.product_id, parseInt(input.product_id)), eq(product_quantity.size, input.size)))
+      .set({quantity: input.operation === '+' ? sql`${product_quantity.quantity} + ${input.quantity}` : sql`${product_quantity.quantity} - ${input.quantity}`})
+      .where(and(eq(product_quantity.product_id, input.product_id), eq(product_quantity.size, input.size)))
+    }),
+
+    remove: publicProcedure
+    .input( z.object({ product_id: z.number() }))
+    .mutation(async ({ input }) => {
+      await db.transaction(async (tx) => {
+        await tx.delete(product_details).where(eq(product_details.id, input.product_id))
+        await tx.delete(product_quantity).where(eq(product_quantity.product_id, input.product_id))
+      })
     })
 });

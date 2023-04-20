@@ -176,6 +176,20 @@
       "when": 1681948661851,
       "tag": "0024_curved_the_phantom",
       "breakpoints": false
+    },
+    {
+      "idx": 25,
+      "version": "5",
+      "when": 1681957433577,
+      "tag": "0025_glossy_firestar",
+      "breakpoints": false
+    },
+    {
+      "idx": 26,
+      "version": "5",
+      "when": 1681957674482,
+      "tag": "0026_flaky_felicia_hardy",
+      "breakpoints": false
     }
   ]
 }
