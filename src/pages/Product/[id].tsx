@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { type NextPage } from "next";
 import Head from "next/head";
+import Image from "next/image"
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { useForm } from "react-hook-form";
@@ -27,7 +28,7 @@ const Product: NextPage = () => {
         price: number,
         weight: number,
         id: number,
-        image_path: string | null
+        image: string | null,
         product_quantity: {
           size: string,
           quantity_in_stock: number,
@@ -121,6 +122,11 @@ const Product: NextPage = () => {
             </Head>
             <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
             <h1 className="mt-12 pl-4 text-4xl text-white">Product Page</h1>
+            <div className="flex flex-row gap-20">
+              <div className="w-96 h-132 relative flex items-center justify-center">
+                  <Image className='object-cover full' src={`/${productData[0].image}.png`} alt="image" fill/>
+              </div>
+              <div className="w-1/2">
             <div className="container mx-auto flex flex-col gap-12">
                 <h1 className="mt-12 text-4xl text-white">{productData[0].name}</h1>
                 <p className='text-white'>$ {productData[0].price}</p>
@@ -178,7 +184,7 @@ const Product: NextPage = () => {
                 </div><button
                   type="submit"
                   disabled={addToCartDisabled}
-                  className={`mb-2 mr-2 rounded-lg inline-block w-1/6 py-5 text-sm font-medium text-white focus:outline-none ${addToCartDisabled
+                  className={`mb-2 mr-2 rounded-lg inline-block w-1/2 py-5 text-sm font-medium text-white focus:outline-none ${addToCartDisabled
                       ? 'bg-gray-500 cursor-not-allowed'
                       : 'bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'}`}
                 >
@@ -198,17 +204,19 @@ const Product: NextPage = () => {
                         id='notify' 
                         type='email' 
                         placeholder='email@example.com'
-                        className='block w-auto rounded-lg border border-gray-300 bg-gray-50 py-2 px-1 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
+                        className='block w-auto rounded-lg border border-gray-300 bg-gray-50 py-3 px-4 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
                         {...notifyRegister("email", {required: true})}
                         />
                         <button 
                         type='submit' 
-                        className='mb-2 mr-2 rounded-lg inline-block w-auto px-2 py-1 text-sm font-medium text-white focus:outline-none bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
+                        className='mb-2 mr-2 rounded-lg inline-block w-auto px-10 py-3 text-sm font-medium text-white focus:outline-none bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
                           Notify Me!
                         </button>
                       </form>
                       </>
                   )}
+            </div>
+            </div>
             </div>
             </main>
         </>

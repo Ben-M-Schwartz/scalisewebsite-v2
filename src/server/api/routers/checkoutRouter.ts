@@ -28,6 +28,7 @@ export const checkoutRouter = createTRPCRouter({
                     size: z.string(),
                     weight: z.number(),
                     item_name: z.string(),
+                    image: z.string(),
                 }))
             })
     )
@@ -66,7 +67,7 @@ export const checkoutRouter = createTRPCRouter({
                     unit_amount: (item.price) * 100,
                     product_data: {
                         name: item.item_name as string,
-                        images:  ['none'/* `${domainURL}${item.image}` */],
+                        images:  [`${domainURL}/public/${item.image}.png`],
                         description: item.size === '' ? 'CD' : `Size: ${item.size as string}`,
                         metadata: {
                             size: item.size,
@@ -81,12 +82,40 @@ export const checkoutRouter = createTRPCRouter({
             //payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
-            success_url: `https://${domainURL as string}/success/{CHECKOUT_SESSION_ID}`,
-            cancel_url: `https://${domainURL as string}/canceled/{CHECKOUT_SESSION_ID}`,
+            success_url: `${domainURL as string}/success/{CHECKOUT_SESSION_ID}`,
+            cancel_url: `${domainURL as string}/canceled/{CHECKOUT_SESSION_ID}`,
             billing_address_collection: 'required',
+            shipping_options: [
+                {
+                  shipping_rate_data: {
+                    type: 'fixed_amount',
+                    fixed_amount: {amount: 581, currency: 'usd'},
+                    display_name: 'USPS First',
+                    delivery_estimate: {
+                      minimum: {unit: 'business_day', value: 5},
+                      maximum: {unit: 'business_day', value: 7},
+                    },
+                  },
+                },
+                {
+                  shipping_rate_data: {
+                    type: 'fixed_amount',
+                    fixed_amount: {amount: 1018, currency: 'usd'},
+                    display_name: 'USPS Priority',
+                    delivery_estimate: {
+                      minimum: {unit: 'business_day', value: 1},
+                      maximum: {unit: 'business_day', value: 1},
+                    },
+                  },
+                },
+              ],
+              "phone_number_collection": {
+                "enabled": true
+              },
             shipping_address_collection: {
                 allowed_countries: ['US', 'CA'],
             },
+            expires_at: Math.floor((new Date().getTime() + 1800000) / 1000)
         }); 
         return [session.url, session.id];
     }),

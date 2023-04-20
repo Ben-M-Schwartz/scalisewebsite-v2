@@ -36,7 +36,7 @@ export const inventoryRouter = createTRPCRouter({
       price: product_details.price,
       weight: product_details.weight,
       name: product_details.name,
-      image_path: product_details.image_path,
+      image: product_details.image,
       product_quantity: {
         size: product_quantity.size,
         quantity_in_stock: product_quantity.quantity,
@@ -57,7 +57,7 @@ export const inventoryRouter = createTRPCRouter({
   }),
   create: publicProcedure
     .input(
-      z.object({ name: z.string(), price: z.number(), weight: z.number(), sizes: z.string(), quantities: z.string()})
+      z.object({ name: z.string(), price: z.number(), weight: z.number(), sizes: z.string(), quantities: z.string(), imageName: z.string()})
     )
     .mutation(async ({ input }) => {
       type NewProduct = InferModel<typeof product_details, 'insert'>;
@@ -67,7 +67,7 @@ export const inventoryRouter = createTRPCRouter({
         name: input.name,
         price: input.price,
         weight: input.weight,
-        image_path: 'temp',
+        image: input.imageName,
       }
       const result = await db.insert(product_details).values(newProduct)
       const productId = result.insertId

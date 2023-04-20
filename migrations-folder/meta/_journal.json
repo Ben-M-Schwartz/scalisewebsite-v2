@@ -190,6 +190,13 @@
       "when": 1681957674482,
       "tag": "0026_flaky_felicia_hardy",
       "breakpoints": false
+    },
+    {
+      "idx": 27,
+      "version": "5",
+      "when": 1682009321431,
+      "tag": "0027_shocking_spiral",
+      "breakpoints": false
     }
   ]
 }

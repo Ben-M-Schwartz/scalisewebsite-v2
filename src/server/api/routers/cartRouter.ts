@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { z } from "zod";
-import { carts, cart_items, product_quantity, in_checkout_amounts } from '~/db/schema'
+import { carts, cart_items, product_quantity, in_checkout_amounts, product_details } from '~/db/schema'
 import { db } from '~/db/db'
 import { eq, and } from 'drizzle-orm/expressions';
 import { type InferModel } from 'drizzle-orm';
@@ -151,6 +151,7 @@ export const cartRouter = createTRPCRouter({
           item_name: cart_items.item_name,
           quantity_in_stock:  product_quantity.quantity,
           quantity_in_checkouts: in_checkout_amounts.quantity,
+          image: product_details.image,
         }
         })
         .from(carts)
@@ -162,6 +163,7 @@ export const cartRouter = createTRPCRouter({
         .leftJoin(in_checkout_amounts, and(
           eq(in_checkout_amounts.product_id, product_quantity.product_id), eq(in_checkout_amounts.size, product_quantity.size)
         ))
+        .leftJoin(product_details, eq(cart_items.product_id, product_details.id))
         .where(eq(carts.cart_id, input.cart_id))
         return result
     })

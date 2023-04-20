@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-//import Image from "next/image";
+import Image from "next/image";
 import type { product_details } from '~/db/schema'
 import { type InferModel } from 'drizzle-orm';
 
@@ -13,7 +13,7 @@ function Card({ product }: { product: Product }) {
   return (
     <div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-700">
       <div className="relative h-32 w-full">
-        <p className='text-white'>Image Will Go Here</p>
+        <Image className="object-cover" src={`/${product.image}.png`} alt="image" fill />
       </div>
       <div className="p-5">
         <a href="#">

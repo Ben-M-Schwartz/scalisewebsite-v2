@@ -12,20 +12,22 @@ type SellItemForm = {
   weight: string;
   sizes: string;
   quantities: string;
+  imageName: string;
 };
 
 const NewProduct: NextPage = () => {
-  const createListing = api.inventory.create.useMutation();
+  const createProduct = api.inventory.create.useMutation();
 
   const { register, handleSubmit } = useForm<SellItemForm>();
   const onSubmit = (formData: SellItemForm) => {
-    createListing
+    createProduct
       .mutateAsync({
         name: formData.name,
         sizes: formData.sizes || '',
         price: parseFloat(formData.price),
         weight: parseFloat(formData.weight),
         quantities: formData.quantities,
+        imageName: formData.imageName,
       }).then(() => window.alert('Success'));
   };
 
@@ -116,6 +118,20 @@ const NewProduct: NextPage = () => {
                 id="quantities"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                 {...register("quantities", { required: true })}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="quantities"
+                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Image Name
+              </label>
+              <input
+                id="imageName"
+                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                {...register("imageName", { required: true })}
               />
             </div>
 

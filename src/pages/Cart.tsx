@@ -7,6 +7,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import React, { useState, useEffect } from 'react';
 import Link from "next/link";
+import Image from "next/image"
 
 import { getCookie, hasCookie } from 'cookies-next';
 
@@ -23,6 +24,7 @@ type CartItem = {
   item_name: string | null;
   quantity_in_stock: number | null;
   quantity_in_checkouts: number | null;
+  image: string | null;
 };
 
 type Cart = {
@@ -118,7 +120,8 @@ const Cart: NextPage = () => {
         quantity:  item.cart_item?.quantity as number,
         size: item.cart_item?.size as string,
         item_name: item.cart_item?.item_name as string,
-        weight: item.cart_item?.weight as number
+        weight: item.cart_item?.weight as number,
+        image: item.cart_item?.image as string,
       }
     })
     await createCheckoutSession.mutateAsync({cartItems: cart_items})
@@ -185,6 +188,9 @@ const Cart: NextPage = () => {
             <div className="divide-y">
               {cartItems.map((item: any) => (
                 <div key={item.cart_item.product_id} className="flex items-center justify-center gap-10 py-4">
+                    <div className= "h-32 w-32 relative flex items-center justify-center">
+                    <Image className='object-cover full' src={`/${item.cart_item.image}.png`} alt="image" fill/>
+                    </div>
                   <div>
                     <div className="font-medium text-gray-100 pr-4">{item.cart_item.item_name}</div>
                     <div className="text-gray-500">Price: ${item.cart_item.price}</div>
@@ -222,9 +228,7 @@ const Cart: NextPage = () => {
             </div>
             <button className = 'text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500' onClick={handleClearCart}>Clear Cart</button>
             <div className='flex flex-col items-center justify-center text-white'>
-              <h1>Total: {totalPrice}</h1>
-              <p>Tax: nothing for now</p>
-              <p>Shipping: nothing for now</p>
+              <h1>Subtotal: {totalPrice}</h1>
               <button className = 'text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500' onClick={handleCheckout}>Checkout</button>
             </div>
           </>
