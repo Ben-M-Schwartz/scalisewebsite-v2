@@ -12,7 +12,9 @@ import {
   publicProcedure,
 } from "~/server/api/trpc";
 
-
+export const config = {
+  runtime: 'edge'
+}
 
 export const inventoryRouter = createTRPCRouter({
   list: publicProcedure.query(() => {

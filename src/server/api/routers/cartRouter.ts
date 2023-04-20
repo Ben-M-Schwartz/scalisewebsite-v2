@@ -6,7 +6,9 @@ import { eq, and } from 'drizzle-orm/expressions';
 import { type InferModel } from 'drizzle-orm';
 import { sql } from 'drizzle-orm/sql'
 
-
+export const config = {
+  runtime: 'edge'
+}
 
 import {
   createTRPCRouter,
