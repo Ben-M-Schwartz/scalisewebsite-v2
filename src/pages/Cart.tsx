@@ -82,7 +82,7 @@ const Cart: NextPage = () => {
 
   const removeFromCart = api.cart.remove.useMutation()
   const handleRemoveFromCart = (product_id: number, size: string, quantity: number, price: number, weight: number, fullRemove: boolean) => {
-    if(cartItems.length <= 1){
+    if(cartItems.length <= 1 && fullRemove === true){
       handleClearCart()
     } else {
       removeFromCart.mutateAsync({ 

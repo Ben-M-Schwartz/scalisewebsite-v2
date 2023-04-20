@@ -12,6 +12,8 @@ import {
   publicProcedure,
 } from "~/server/api/trpc";
 
+
+
 export const inventoryRouter = createTRPCRouter({
   list: publicProcedure.query(() => {
     return db.select().from(product_details);
