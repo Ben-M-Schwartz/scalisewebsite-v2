@@ -6,12 +6,13 @@
 
 /** @type {import("next").NextConfig} */
 const config = {
-  async redirect() {
+  async redirects() {
     return [
       {
         source: '/admin',
-        destination: '/admin/home'
-      }
+        destination: '/admin/home',
+        permanent: true
+      },
     ]
   },
 
