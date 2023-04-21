@@ -100,7 +100,7 @@ const Product: NextPage = () => {
         }
     };
 
-    const notify = api.subscription.notify.useMutation()
+    const notify = api.subscription.notificationSignUp.useMutation()
     const notifyWhenInStock = (formData: notifyForm) => {
       notify.mutateAsync({ 
         product_id: router.query.id as string, 

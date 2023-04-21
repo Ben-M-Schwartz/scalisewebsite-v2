@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from 'next/link'
@@ -12,19 +13,22 @@ import { useRouter } from 'next/router'
 
 function Card({ product, productInventory }: { product: Product, productInventory: Inventory[] }) {
     const [operation, setOperation] = useState('+')
-    const sizes = new Map()
     const update = api.inventory.update.useMutation()
-
+    const sendNotifications = api.subscription.notify.useMutation()
+    const sizes:  Map<string, {updateQuantity: number, currentQuantity: number}> = new Map()
+    
     const router = useRouter()
 
     const handleUpdate = (e: { preventDefault: () => void; }) => {
         e.preventDefault()
-        const promises = []
-        for(const [size, quantity] of sizes){
-            console.log(size, quantity)
-            promises.push(update.mutateAsync({product_id: product.id, quantity: parseInt(quantity as string), size: size as string, operation: operation}))
+        const updatePromises = []
+        for(const [size, quantities] of sizes){
+            updatePromises.push(update.mutateAsync({product_id: product.id, quantity: quantities.updateQuantity, size: size, operation: operation}))
+            if(quantities.currentQuantity === 0){
+              sendNotifications.mutateAsync({item_name: product.name as string, product_id: product.id, size: size}).catch(error => console.error(error))
+            }
         }
-        Promise.all(promises).then(() => {
+        Promise.all(updatePromises).then(() => {
             window.alert('success')
             router.reload()
         }).catch((error) => console.error(error))
@@ -48,7 +52,10 @@ function Card({ product, productInventory }: { product: Product, productInventor
                 <>
                 <input key={p.size} id='size' type='hidden' value={p.size as string}/>
                 <p className='text-gray-100'>{p.size} - Current Quantity: {p.quantity}</p>
-                <input id='quantity' type='text' onChange={(e) => sizes.set(p.size, e.target.value)}/>
+                <input id='quantity' type='text' onChange={(e) => sizes.set(p.size as string, {
+                  currentQuantity: p.quantity as number,
+                  updateQuantity: parseInt(e.target.value)
+                })}/>
                 </>
             ))}
         <button
