@@ -1,85 +1,93 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion  */
 import { z } from "zod";
-import {db} from '~/db/db'
-import { subscribers, potential_subscribers, stockNotifications } from '~/db/schema'
-import { type InferModel } from 'drizzle-orm';
-import { eq, and } from 'drizzle-orm/expressions'
-
+import { db } from "~/db/db";
 import {
-  createTRPCRouter,
-  publicProcedure,
-} from "~/server/api/trpc";
+  subscribers,
+  potential_subscribers,
+  stockNotifications,
+} from "~/db/schema";
+import { type InferModel } from "drizzle-orm";
+import { eq, and } from "drizzle-orm/expressions";
 
-import crypto from 'crypto'
+import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
-import nodemailer from 'nodemailer';
-import Handlebars from 'handlebars';
+import crypto from "crypto";
 
-
+import nodemailer from "nodemailer";
+import Handlebars from "handlebars";
 
 const createTransporter = () => {
-      try {
-      const transporter = nodemailer.createTransport({
-        host: 'smtp.zoho.com',
-        secure: true,
-        port: 465,
-        auth: {
-          user: process.env.ZOHO_EMAIL,
-          pass: process.env.ZOHO_PASSWORD,
-        },
-      });
-      return transporter;
-    } catch (error) {
-      console.error(error);
-      throw new Error('Failed to create email transporter');
-    }
- } 
+  try {
+    const transporter = nodemailer.createTransport({
+      host: "smtp.zoho.com",
+      secure: true,
+      port: 465,
+      auth: {
+        user: process.env.ZOHO_EMAIL,
+        pass: process.env.ZOHO_PASSWORD,
+      },
+    });
+    return transporter;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to create email transporter");
+  }
+};
 
 type EmailOptions = {
-    from: string,
-    to: string,
-    subject: string,
-    html: string
-}
+  from: string;
+  to: string;
+  subject: string;
+  html: string;
+};
 //emailOptions - who sends what to whom
 export const sendEmail = async (emailOptions: EmailOptions) => {
-    const emailTransporter = createTransporter();
-    try {
-      await emailTransporter.sendMail(emailOptions);
-    } catch (error) {
-      console.error(error);
-      throw new Error(`Failed to send email to ${emailOptions.to}`);
-    }
-  };
+  const emailTransporter = createTransporter();
+  try {
+    await emailTransporter.sendMail(emailOptions);
+  } catch (error) {
+    console.error(error);
+    throw new Error(`Failed to send email to ${emailOptions.to}`);
+  }
+};
 
 const emailMailingList = async (subject: string, body: string) => {
-    const template = Handlebars.compile(`
+  const template = Handlebars.compile(`
         <h1>{{subject}}</h1>
         <p>{{body}}</p>
         <a href={{domain}}/unsubscribe/{{email}}>Unsubscribe</a>
     `);
-    // Get list of subscribers from database or file
-    const subList = await db.select().from(subscribers)
+  // Get list of subscribers from database or file
+  const subList = await db.select().from(subscribers);
 
-    // Send email to each subscriber using nodemailer
-    for (const subscriber of subList) {
-      //console.log(subscriber.email)
-      const mailOptions: EmailOptions = {    
+  // Send email to each subscriber using nodemailer
+  for (const subscriber of subList) {
+    //console.log(subscriber.email)
+    const mailOptions: EmailOptions = {
       from: process.env.GOOGLE_EMAIL!,
       to: subscriber.email!,
       subject: subject,
-      html: template({ subject: subject, body: body, domain: process.env.DOMAIN, email: subscriber.email })
-      };
-      await sendEmail(mailOptions)
+      html: template({
+        subject: subject,
+        body: body,
+        domain: process.env.DOMAIN,
+        email: subscriber.email,
+      }),
+    };
+    await sendEmail(mailOptions);
   }
-}
+};
 
-const sendConfirmationEmail = async( url: string, email: string, token: string) => {
-    const mailOptions: EmailOptions = {
-        from: process.env.GOOGLE_EMAIL!,
-        to: email,
-        subject: 'Confirm your subscription to SCALISE',
-        html: `<!DOCTYPE html>
+const sendConfirmationEmail = async (
+  url: string,
+  email: string,
+  token: string
+) => {
+  const mailOptions: EmailOptions = {
+    from: process.env.GOOGLE_EMAIL!,
+    to: email,
+    subject: "Confirm your subscription to SCALISE",
+    html: `<!DOCTYPE html>
         <html lang="en">
         <head>
           <meta charset="UTF-8">
@@ -92,22 +100,25 @@ const sendConfirmationEmail = async( url: string, email: string, token: string) 
           <a href="${url}/Confirm/${token}" style="display: inline-block; background-color: #007bff; color: #fff; font-size: 16px; padding: 10px 20px; border-radius: 5px; text-decoration: none;">CONFIRM SUBSCRIPTION</a>
           <p>If you didn’t subscribe to this list, ignore this email. We won’t subscribe you unless you tap or click the button above.</p>
         </body>
-        </html>`
-    };
+        </html>`,
+  };
 
-    await sendEmail(mailOptions).catch((error) => {
-        console.error(error)
-        throw new Error(`Failed to send email`);
-    })
-}
+  await sendEmail(mailOptions).catch((error) => {
+    console.error(error);
+    throw new Error(`Failed to send email`);
+  });
+};
 
-const sendInitialNotificationEmail = async (email: string, product_name: string, product_size: string,) => {
+const sendInitialNotificationEmail = async (
+  email: string,
+  product_name: string,
+  product_size: string
+) => {
   const emailOptions: EmailOptions = {
     from: process.env.GOOGLE_EMAIL!,
     to: email,
-    subject: 'Scalise Store Notifications',
-    html: 
-    `<!DOCTYPE html>
+    subject: "Scalise Store Notifications",
+    html: `<!DOCTYPE html>
     <html>
       <head>
         <meta charset="UTF-8">
@@ -147,27 +158,32 @@ const sendInitialNotificationEmail = async (email: string, product_name: string,
       </head>
       <body>
         <h1>Back in Stock Notification</h1>
-        <p>Thank you for signing up to be notified when ${product_name} ${product_size !== '' ? `size: ${product_size}` : ''} is back in stock. 
+        <p>Thank you for signing up to be notified when ${product_name} ${
+      product_size !== "" ? `size: ${product_size}` : ""
+    } is back in stock. 
         We'll let you know as soon as it becomes available again.</p>
         <p>In the meantime, feel free to browse our selection of other items.</p>
         <a href="${process.env.DOMAIN!}/Store" class="button">Shop Now</a>
       </body>
-    </html>`
-  }
+    </html>`,
+  };
   await sendEmail(emailOptions).catch((error) => {
-    console.error(error)
+    console.error(error);
     throw new Error(`Failed to send confirmation of notifications email`);
-})
-}
+  });
+};
 
-const sendNotifications = async (users: {email: string}[], item_name: string, size: string) => {
-  for(const user of users){
+const sendNotifications = async (
+  users: { email: string }[],
+  item_name: string,
+  size: string
+) => {
+  for (const user of users) {
     const emailOptions: EmailOptions = {
       from: process.env.GOOGLE_EMAIL!,
       to: user.email,
-      subject: 'Scalise Store Notifications',
-      html: 
-      `<!DOCTYPE html>
+      subject: "Scalise Store Notifications",
+      html: `<!DOCTYPE html>
       <html>
         <head>
           <meta charset="UTF-8">
@@ -193,25 +209,26 @@ const sendNotifications = async (users: {email: string}[], item_name: string, si
         </head>
         <body>
             <p>Good News!</p>
-            <p>${item_name} ${size !== '' ? `Size: ${size}` : ''} is back in stock!</p>
+            <p>${item_name} ${
+        size !== "" ? `Size: ${size}` : ""
+      } is back in stock!</p>
             <p>Thank you so much for your support</p>
             <a href="${process.env.DOMAIN!}/Store" class="button">Shop Now</a>
         </body>
-      </html>`
-          }
-      await sendEmail(emailOptions).catch((error) => {
-        console.error(error)
-        throw new Error(`Failed to send confirmation of notifications email`);
-    })
+      </html>`,
+    };
+    await sendEmail(emailOptions).catch((error) => {
+      console.error(error);
+      throw new Error(`Failed to send confirmation of notifications email`);
+    });
   }
-  }
-
+};
 
 const userAlreadySubscribed = async (email: string, url: string) => {
   const mailOptions: EmailOptions = {
     from: process.env.GOOGLE_EMAIL!,
     to: email,
-    subject: 'SCALISE subscription',
+    subject: "SCALISE subscription",
     html: `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -225,101 +242,139 @@ const userAlreadySubscribed = async (email: string, url: string) => {
       <p>Otherwise, please reach out through our contact form or email benschwartz33@gmail.com for assistance</p>
       <a href=${url}/Contact>Contact</a>
     </body>
-    </html>`
-};
+    </html>`,
+  };
 
-await sendEmail(mailOptions).catch((error) => {
-    console.error(error)
+  await sendEmail(mailOptions).catch((error) => {
+    console.error(error);
     throw new Error(`Failed to send email`);
-})
-}
-
+  });
+};
 
 export const subscriptionRouter = createTRPCRouter({
   confirm: publicProcedure
     .input(z.object({ email: z.string(), url: z.string() }))
     .mutation(async ({ input }) => {
-        const sub = await db.select().from(subscribers).where(eq(subscribers.email, input.email))
-        if(sub && sub.length > 0){
-          await userAlreadySubscribed(input.email, input.url).catch(error => console.error(error))
-        }
-        if(!sub || sub.length === 0){
-        const token = crypto.randomBytes(16).toString('hex');
-        await sendConfirmationEmail(input.url, input.email, token).then(async () => {
-        //save email and token in potential subscribers table
-            type Potential_Subscriber = InferModel<typeof potential_subscribers, 'insert'>;
-            const newPotential: Potential_Subscriber = {
-                email: input.email, token: token
-            }
-            await db.insert(potential_subscribers).values(newPotential)
-        }).catch((error) => {
-            console.error(error)
-        })
+      const sub = await db
+        .select()
+        .from(subscribers)
+        .where(eq(subscribers.email, input.email));
+      if (sub && sub.length > 0) {
+        await userAlreadySubscribed(input.email, input.url).catch((error) =>
+          console.error(error)
+        );
       }
-  }), 
+      if (!sub || sub.length === 0) {
+        const token = crypto.randomBytes(16).toString("hex");
+        await sendConfirmationEmail(input.url, input.email, token)
+          .then(async () => {
+            //save email and token in potential subscribers table
+            type Potential_Subscriber = InferModel<
+              typeof potential_subscribers,
+              "insert"
+            >;
+            const newPotential: Potential_Subscriber = {
+              email: input.email,
+              token: token,
+            };
+            await db.insert(potential_subscribers).values(newPotential);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    }),
 
   subscribe: publicProcedure
     .input(z.object({ token: z.string() }))
     .mutation(async ({ input }) => {
-        type Subscriber = InferModel<typeof subscribers, 'insert'>;
-        //get email from database using token
-        await db.select().from(potential_subscribers).where(eq(potential_subscribers.token, input.token)).then(
-            async (result) => {
-                if(!result[0]){
-                    throw new Error('No Such Token')
-                }
-                const newSubscriber: Subscriber = {
-                    email: result[0].email
-                }
-                await db.insert(subscribers).values(newSubscriber)
-                await db.delete(potential_subscribers).where(eq(potential_subscribers.token, input.token))
-            }
-        ).catch((error)=> {throw error})
+      type Subscriber = InferModel<typeof subscribers, "insert">;
+      //get email from database using token
+      await db
+        .select()
+        .from(potential_subscribers)
+        .where(eq(potential_subscribers.token, input.token))
+        .then(async (result) => {
+          if (!result[0]) {
+            throw new Error("No Such Token");
+          }
+          const newSubscriber: Subscriber = {
+            email: result[0].email,
+          };
+          await db.insert(subscribers).values(newSubscriber);
+          await db
+            .delete(potential_subscribers)
+            .where(eq(potential_subscribers.token, input.token));
+        })
+        .catch((error) => {
+          throw error;
+        });
     }),
 
-    notificationSignUp: publicProcedure
-    .input( z.object({product_id: z.string(), name: z.string(), size: z.string(), email: z.string()})
-    ).mutation(async ({input}) => {
+  notificationSignUp: publicProcedure
+    .input(
+      z.object({
+        product_id: z.string(),
+        name: z.string(),
+        size: z.string(),
+        email: z.string(),
+      })
+    )
+    .mutation(async ({ input }) => {
       await db.insert(stockNotifications).values({
         product_id: parseInt(input.product_id),
         size: input.size,
-        email: input.email
-      })
-      await sendInitialNotificationEmail(input.email, input.name, input.size)
+        email: input.email,
+      });
+      await sendInitialNotificationEmail(input.email, input.name, input.size);
     }),
 
-    notify: publicProcedure
-    .input( z.object({ item_name: z.string(), product_id: z.number(), size: z.string() }))
+  notify: publicProcedure
+    .input(
+      z.object({
+        item_name: z.string(),
+        product_id: z.number(),
+        size: z.string(),
+      })
+    )
     .mutation(async ({ input }) => {
-      const users = await db.select({
-        email: stockNotifications.email
-      }).from(stockNotifications)
-      .where(and(
-        eq(stockNotifications.product_id, input.product_id),
-        eq(stockNotifications.size, input.size)
-        )) as {email: string}[]
-
-      if(users.length > 0){
-        await sendNotifications(users, input.item_name, input.size)
-        .then(async () => {
-          await db.delete(stockNotifications).where(and(
+      const users = (await db
+        .select({
+          email: stockNotifications.email,
+        })
+        .from(stockNotifications)
+        .where(
+          and(
             eq(stockNotifications.product_id, input.product_id),
             eq(stockNotifications.size, input.size)
-          ));
-        })
-        .catch(error => console.error(error))
+          )
+        )) as { email: string }[];
+
+      if (users.length > 0) {
+        await sendNotifications(users, input.item_name, input.size)
+          .then(async () => {
+            await db
+              .delete(stockNotifications)
+              .where(
+                and(
+                  eq(stockNotifications.product_id, input.product_id),
+                  eq(stockNotifications.size, input.size)
+                )
+              );
+          })
+          .catch((error) => console.error(error));
       }
     }),
 
-    emailList: publicProcedure
-    .input( z.object({ subject: z.string(), body: z.string() }))
-    .mutation(async ({input}) => {
-      await emailMailingList(input.subject, input.body)
+  emailList: publicProcedure
+    .input(z.object({ subject: z.string(), body: z.string() }))
+    .mutation(async ({ input }) => {
+      await emailMailingList(input.subject, input.body);
     }),
 
-    unsubscribe: publicProcedure
-    .input(z.object({email: z.string()}))
-    .mutation(async ({input}) => {
-      await db.delete(subscribers).where(eq(subscribers.email, input.email))
-    })
+  unsubscribe: publicProcedure
+    .input(z.object({ email: z.string() }))
+    .mutation(async ({ input }) => {
+      await db.delete(subscribers).where(eq(subscribers.email, input.email));
+    }),
 });

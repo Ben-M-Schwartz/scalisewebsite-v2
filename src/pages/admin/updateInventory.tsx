@@ -1,94 +1,149 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from 'next/link'
+import Link from "next/link";
 import Image from "next/image";
-import type { product_details, product_quantity } from '~/db/schema'
-import { type InferModel } from 'drizzle-orm';
-type Product = InferModel<typeof product_details, 'select'>;
-type Inventory = InferModel<typeof product_quantity, 'select'>;
+import type { product_details, product_quantity } from "~/db/schema";
+import { type InferModel } from "drizzle-orm";
+type Product = InferModel<typeof product_details, "select">;
+type Inventory = InferModel<typeof product_quantity, "select">;
 import { api } from "~/utils/api";
-import { useState } from 'react'
-import { useRouter } from 'next/router'
+import { useState } from "react";
+import { useRouter } from "next/router";
 
-function Card({ product, productInventory }: { product: Product, productInventory: Inventory[] }) {
-    const [operation, setOperation] = useState('+')
-    const update = api.inventory.update.useMutation()
-    const sendNotifications = api.subscription.notify.useMutation()
-    const sizes:  Map<string, {updateQuantity: number, currentQuantity: number}> = new Map()
-    
-    const router = useRouter()
+function Card({
+  product,
+  productInventory,
+}: {
+  product: Product;
+  productInventory: Inventory[];
+}) {
+  const [operation, setOperation] = useState("+");
+  const update = api.inventory.update.useMutation();
+  const sendNotifications = api.subscription.notify.useMutation();
+  const sizes: Map<
+    string,
+    { updateQuantity: number; currentQuantity: number }
+  > = new Map();
 
-    const handleUpdate = (e: { preventDefault: () => void; }) => {
-        e.preventDefault()
-        const updatePromises = []
-        for(const [size, quantities] of sizes){
-            updatePromises.push(update.mutateAsync({product_id: product.id, quantity: quantities.updateQuantity, size: size, operation: operation}))
-            if(quantities.currentQuantity === 0){
-              sendNotifications.mutateAsync({item_name: product.name as string, product_id: product.id, size: size}).catch(error => console.error(error))
-            }
-        }
-        Promise.all(updatePromises).then(() => {
-            window.alert('success')
-            router.reload()
-        }).catch((error) => console.error(error))
+  const router = useRouter();
+
+  const handleUpdate = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    const updatePromises = [];
+    for (const [size, quantities] of sizes) {
+      updatePromises.push(
+        update.mutateAsync({
+          product_id: product.id,
+          quantity: quantities.updateQuantity,
+          size: size,
+          operation: operation,
+        })
+      );
+      if (quantities.currentQuantity === 0) {
+        sendNotifications
+          .mutateAsync({
+            item_name: product.name as string,
+            product_id: product.id,
+            size: size,
+          })
+          .catch((error) => console.error(error));
+      }
     }
+    Promise.all(updatePromises)
+      .then(() => {
+        window.alert("success");
+        router.reload();
+      })
+      .catch((error) => console.error(error));
+  };
 
   return (
     <div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-700">
       <div className="relative h-32 w-full">
-        <Image className="object-cover" src={`/${product.image as string}.png`} alt="image" fill />
+        <Image
+          className="object-cover"
+          src={`/${product.image as string}.png`}
+          alt="image"
+          fill
+        />
       </div>
       <div className="p-5">
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        {product.name} - ${product.price}
+          {product.name} - ${product.price}
         </h5>
         <form onSubmit={handleUpdate}>
-            <select id='operation' onChange={(e) => setOperation(e.target.value)}>
-                <option key='+' value='+'>Add</option>
-                <option key='-' value='-'>Remove</option>
-            </select>
-            {productInventory.map((p) => (
-                <>
-                <input key={p.size} id='size' type='hidden' value={p.size as string}/>
-                <p className='text-gray-100'>{p.size} - Current Quantity: {p.quantity}</p>
-                <input id='quantity' type='text' onChange={(e) => sizes.set(p.size as string, {
-                  currentQuantity: p.quantity as number,
-                  updateQuantity: parseInt(e.target.value)
-                })}/>
-                </>
-            ))}
-        <button
-          type='submit'
-          className="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Update
-          <svg
-            aria-hidden="true"
-            className="-mr-1 ml-2 h-4 w-4"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+          <select id="operation" onChange={(e) => setOperation(e.target.value)}>
+            <option key="+" value="+">
+              Add
+            </option>
+            <option key="-" value="-">
+              Remove
+            </option>
+          </select>
+          {productInventory.map((p) => (
+            <>
+              <input
+                key={p.size}
+                id="size"
+                type="hidden"
+                value={p.size as string}
+              />
+              <p className="text-gray-100">
+                {p.size} - Current Quantity: {p.quantity}
+              </p>
+              <input
+                id="quantity"
+                type="text"
+                onChange={(e) =>
+                  sizes.set(p.size as string, {
+                    currentQuantity: p.quantity as number,
+                    updateQuantity: parseInt(e.target.value),
+                  })
+                }
+              />
+            </>
+          ))}
+          <button
+            type="submit"
+            className="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            <path
-              fillRule="evenodd"
-              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            ></path>
-          </svg>
-        </button>
+            Update
+            <svg
+              aria-hidden="true"
+              className="-mr-1 ml-2 h-4 w-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          </button>
         </form>
       </div>
     </div>
   );
 }
 
-
 const updateInventory: NextPage = () => {
   const products = api.inventory.list.useQuery();
   const inventory = api.inventory.listInventory.useQuery();
-  interface indexSignature { [key: string]: number}
-  const allOptions: indexSignature = {'S': 0, 'M':1, 'L':2, 'XL':3, 'XXL':4, 'XXXL':5, 'XXXXL':6}
+  interface indexSignature {
+    [key: string]: number;
+  }
+  const allOptions: indexSignature = {
+    S: 0,
+    M: 1,
+    L: 2,
+    XL: 3,
+    XXL: 4,
+    XXXL: 5,
+    XXXXL: 6,
+  };
 
   return (
     <>
@@ -98,17 +153,32 @@ const updateInventory: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-      <h1 className="mt-12 pl-4 text-4xl text-white">Fill in the inventory changes</h1>
+        <h1 className="mt-12 pl-4 text-4xl text-white">
+          Fill in the inventory changes
+        </h1>
         <div className="container grid grid-cols-3 items-center justify-center gap-4">
           {products?.data?.map((product) => (
-            <Card key={product.id} product={product} 
-            productInventory={inventory?.data?.filter((p) => p.product_id === product.id)
-                .sort((a,b) => {
-                    return allOptions[a.size!.trim()]! - allOptions[b.size!.trim()]!
-                    }) as Inventory[]} />
+            <Card
+              key={product.id}
+              product={product}
+              productInventory={
+                inventory?.data
+                  ?.filter((p) => p.product_id === product.id)
+                  .sort((a, b) => {
+                    return (
+                      allOptions[a.size!.trim()]! - allOptions[b.size!.trim()]!
+                    );
+                  }) as Inventory[]
+              }
+            />
           ))}
         </div>
-        <Link href='/admin/home' className='text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500'>Admin Home</Link>
+        <Link
+          href="/admin/home"
+          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Admin Home
+        </Link>
       </main>
     </>
   );

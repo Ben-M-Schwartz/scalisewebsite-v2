@@ -2,10 +2,10 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import type { product_details } from '~/db/schema'
-import { type InferModel } from 'drizzle-orm';
+import type { product_details } from "~/db/schema";
+import { type InferModel } from "drizzle-orm";
 
-type Product = InferModel<typeof product_details, 'select'>;
+type Product = InferModel<typeof product_details, "select">;
 
 import { api } from "~/utils/api";
 
@@ -13,7 +13,12 @@ function Card({ product }: { product: Product }) {
   return (
     <div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-700">
       <div className="relative h-32 w-full">
-        <Image className="object-cover" src={`/${product.image as string}.png`} alt="image" fill />
+        <Image
+          className="object-cover"
+          src={`/${product.image as string}.png`}
+          alt="image"
+          fill
+        />
       </div>
       <div className="p-5">
         <a href="#">
@@ -45,7 +50,6 @@ function Card({ product }: { product: Product }) {
   );
 }
 
-
 const Store: NextPage = () => {
   const products = api.inventory.list.useQuery();
 
@@ -57,7 +61,7 @@ const Store: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-      <h1 className="mt-12 pl-4 text-4xl text-white">Items for Sale</h1>
+        <h1 className="mt-12 pl-4 text-4xl text-white">Items for Sale</h1>
         <div className="container grid grid-cols-3 items-center justify-center gap-4">
           {products?.data?.map((product) => (
             <Card key={product.id} product={product} />

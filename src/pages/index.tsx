@@ -12,11 +12,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-white">
-              Scalise The Band
-            </p>
-          </div>
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-2xl text-white">Scalise The Band</p>
+        </div>
       </main>
     </>
   );

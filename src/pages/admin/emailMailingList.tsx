@@ -2,24 +2,26 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { useForm } from 'react-hook-form'
+import { useForm } from "react-hook-form";
 //import { signIn, signOut, useSession } from "next-auth/react";
 
-import { api } from '~/utils/api'
+import { api } from "~/utils/api";
 
 type emailForm = {
   subject: string;
   body: string;
-}
+};
 
 const MailingList: NextPage = () => {
+  const { register, handleSubmit } = useForm<emailForm>();
 
-  const {register, handleSubmit} = useForm<emailForm>()
-
-  const sendEmails = api.subscription.emailList.useMutation()
+  const sendEmails = api.subscription.emailList.useMutation();
   const onSubmit = (formData: emailForm) => {
-    sendEmails.mutateAsync({...formData}).then(() => window.alert('success')).catch((error) => console.error(error))
-  }
+    sendEmails
+      .mutateAsync({ ...formData })
+      .then(() => window.alert("success"))
+      .catch((error) => console.error(error));
+  };
 
   return (
     <>
@@ -30,12 +32,12 @@ const MailingList: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <div className="container flex flex-col gap-12 px-4 py-16 ">
-          <h1 className='text-white text-4xl'>Email Mailing List</h1>
+          <h1 className="text-4xl text-white">Email Mailing List</h1>
           <form
             className="flex flex-col gap-4"
             onSubmit={handleSubmit(onSubmit)}
           >
-              <div>
+            <div>
               <label
                 htmlFor="subject"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
@@ -70,8 +72,13 @@ const MailingList: NextPage = () => {
             </button>
           </form>
         </div>
-        
-        <Link href='/admin/home' className='text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500'>Admin Home</Link>
+
+        <Link
+          href="/admin/home"
+          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Admin Home
+        </Link>
       </main>
     </>
   );

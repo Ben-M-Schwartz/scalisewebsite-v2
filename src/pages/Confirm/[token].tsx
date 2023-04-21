@@ -1,19 +1,19 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { useEffect, useState } from "react";
 
 const useSubscribe = () => {
   const subscribe = api.subscription.subscribe.useMutation();
-  return (token: string) => subscribe.mutateAsync({ token })
-}
+  return (token: string) => subscribe.mutateAsync({ token });
+};
 
 const Confirm: NextPage = () => {
-  const router = useRouter()
-  const token = router.query.token as string
-  const subscribe = useSubscribe()
+  const router = useRouter();
+  const token = router.query.token as string;
+  const subscribe = useSubscribe();
   const [loading, setLoading] = useState(true);
   const [invalidLink, setInvalid] = useState(true);
 
@@ -42,19 +42,37 @@ const Confirm: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-          <div className="flex flex-col items-center gap-2">
-          {invalidLink && loading && <p className='text-white'>Loading...</p>}
+        <div className="flex flex-col items-center gap-2">
+          {invalidLink && loading && <p className="text-white">Loading...</p>}
           {invalidLink && !loading && (
-          <><p className='text-white'>This confirmation link is no longer valid</p><Link href='/' className='text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500 text-center'>Home</Link></>
+            <>
+              <p className="text-white">
+                This confirmation link is no longer valid
+              </p>
+              <Link
+                href="/"
+                className="text-center text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+              >
+                Home
+              </Link>
+            </>
           )}
-          {!invalidLink && loading && <p className='text-white'>Loading...</p>}
+          {!invalidLink && loading && <p className="text-white">Loading...</p>}
           {!invalidLink && !loading && (
-            <><p className="text-2xl text-white">
-              You Are Now Subscribed!
-              You will start receiving emails from SCALISE
-            </p><Link href='/' className='text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500 text-center'>Home</Link></>
+            <>
+              <p className="text-2xl text-white">
+                You Are Now Subscribed! You will start receiving emails from
+                SCALISE
+              </p>
+              <Link
+                href="/"
+                className="text-center text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+              >
+                Home
+              </Link>
+            </>
           )}
-          </div>
+        </div>
       </main>
     </>
   );

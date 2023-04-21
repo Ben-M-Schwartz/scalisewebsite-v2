@@ -1,10 +1,10 @@
-import { type NextPage } from 'next';
-import Head from 'next/head';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react'
+import { type NextPage } from "next";
+import Head from "next/head";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-import { getCookie } from 'cookies-next';
+import { getCookie } from "cookies-next";
 import { api } from "~/utils/api";
 
 const SuccessPage: NextPage = () => {
@@ -12,14 +12,16 @@ const SuccessPage: NextPage = () => {
 
   const { session_id } = router.query;
 
-  const cart_id = getCookie('cart_id')?.toString() || 'not found';
-  const clearCart = api.cart.clearCart.useMutation()
+  const cart_id = getCookie("cart_id")?.toString() || "not found";
+  const clearCart = api.cart.clearCart.useMutation();
 
   useEffect(() => {
-    if(session_id){
-      clearCart.mutateAsync({ cart_id: cart_id }).catch((error) => console.error(error))
+    if (session_id) {
+      clearCart
+        .mutateAsync({ cart_id: cart_id })
+        .catch((error) => console.error(error));
     }
-  }, [session_id])
+  }, [session_id]);
 
   return (
     <>
@@ -28,12 +30,18 @@ const SuccessPage: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
         {session_id && (
-            <><h1>Payment Successful!</h1>
+          <>
+            <h1>Payment Successful!</h1>
             <p>Thank you for your purchase.</p>
             <p>Check your email for order details</p>
-            </>
+          </>
         )}
-        <Link href="/" className='text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500'>Back to Home</Link>
+        <Link
+          href="/"
+          className="text-xl font-bold hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Back to Home
+        </Link>
       </main>
     </>
   );

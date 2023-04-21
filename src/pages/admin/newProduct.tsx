@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link"
+import Link from "next/link";
 import { api } from "~/utils/api";
 import { useForm } from "react-hook-form";
 
@@ -23,12 +23,13 @@ const NewProduct: NextPage = () => {
     createProduct
       .mutateAsync({
         name: formData.name,
-        sizes: formData.sizes || '',
+        sizes: formData.sizes || "",
         price: parseFloat(formData.price),
         weight: parseFloat(formData.weight),
         quantities: formData.quantities,
         imageName: formData.imageName,
-      }).then(() => window.alert('Success'));
+      })
+      .then(() => window.alert("Success"));
   };
 
   return (
@@ -68,9 +69,9 @@ const NewProduct: NextPage = () => {
               </label>
               <input
                 id="price"
-                type='number'
-                min='0'
-                step='.01'
+                type="number"
+                min="0"
+                step=".01"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                 {...register("price", { required: true })}
               />
@@ -85,9 +86,9 @@ const NewProduct: NextPage = () => {
               </label>
               <input
                 id="weight"
-                type='number'
-                step='.01'
-                min='0'
+                type="number"
+                step=".01"
+                min="0"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                 {...register("weight", { required: true })}
               />
@@ -143,7 +144,12 @@ const NewProduct: NextPage = () => {
             </button>
           </form>
         </div>
-        <Link href='/admin/home' className='text-white text-xl font-bold hover:underline hover:text-blue-700 active:text-gray-500'>Admin Home</Link>
+        <Link
+          href="/admin/home"
+          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Admin Home
+        </Link>
       </main>
     </>
   );
