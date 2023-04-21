@@ -15,6 +15,12 @@ export const config = {
   runtime: "experimental-edge",
 };
 
+type sizesArray = {
+  size: string;
+  updateQuantity: number;
+  currentQuantity: number;
+}[];
+
 function Card({
   product,
   productInventory,
@@ -25,31 +31,28 @@ function Card({
   const [operation, setOperation] = useState("+");
   const update = api.inventory.update.useMutation();
   const sendNotifications = api.subscription.notify.useMutation();
-  const sizes: Map<
-    string,
-    { updateQuantity: number; currentQuantity: number }
-  > = new Map();
+  const [sizes, setSizes] = useState<sizesArray>([]);
 
   const router = useRouter();
 
   const handleUpdate = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const updatePromises = [];
-    for (const [size, quantities] of sizes) {
+    for (const sizeInfo of sizes) {
       updatePromises.push(
         update.mutateAsync({
           product_id: product.id,
-          quantity: quantities.updateQuantity,
-          size: size,
+          quantity: sizeInfo.updateQuantity,
+          size: sizeInfo.size,
           operation: operation,
         })
       );
-      if (quantities.currentQuantity === 0) {
+      if (sizeInfo.currentQuantity === 0) {
         sendNotifications
           .mutateAsync({
             item_name: product.name as string,
             product_id: product.id,
-            size: size,
+            size: sizeInfo.size,
           })
           .catch((error) => console.error(error));
       }
@@ -100,10 +103,14 @@ function Card({
                 id="quantity"
                 type="text"
                 onChange={(e) =>
-                  sizes.set(p.size as string, {
-                    currentQuantity: p.quantity as number,
-                    updateQuantity: parseInt(e.target.value),
-                  })
+                  setSizes([
+                    ...sizes,
+                    {
+                      size: p.size as string,
+                      currentQuantity: p.quantity as number,
+                      updateQuantity: parseInt(e.target.value),
+                    },
+                  ])
                 }
               />
             </>
@@ -163,9 +170,9 @@ const updateInventory: NextPage = () => {
           Fill in the inventory changes
         </h1>
         <div className="container grid grid-cols-3 items-center justify-center gap-4">
-          {products?.data?.map((product) => (
+          {products?.data?.map((product, index) => (
             <Card
-              key={product.id}
+              key={index}
               product={product}
               productInventory={
                 inventory?.data
