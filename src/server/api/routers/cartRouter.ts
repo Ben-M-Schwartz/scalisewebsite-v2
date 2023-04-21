@@ -173,7 +173,7 @@ export const cartRouter = createTRPCRouter({
   getCart: publicProcedure
     .input(z.object({ cart_id: z.string() }))
     .query(async ({ input }) => {
-      const result = await db
+      return await db
         .select({
           cart_id: cart_items.cart_id,
           total_price: carts.total_price,
@@ -211,6 +211,5 @@ export const cartRouter = createTRPCRouter({
           eq(cart_items.product_id, product_details.id)
         )
         .where(eq(carts.cart_id, input.cart_id));
-      return result;
     }),
 });

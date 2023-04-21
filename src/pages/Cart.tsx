@@ -5,16 +5,12 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { type NextPage } from "next";
 import Head from "next/head";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import Image from "next/image";
-
 import { getCookie, hasCookie } from "cookies-next";
-
 import { useRouter } from "next/router";
-
 import { api } from "~/utils/api";
-
+import { Item } from "~/components/cartItem";
 export const config = {
   runtime: "experimental-edge",
 };
@@ -32,7 +28,7 @@ type CartItem = {
 };
 
 type Cart = {
-  cart_id: string | null;
+  cart_id: string;
   total_price: string | null;
   total_weight: string | null;
   cart_item: CartItem | null;
@@ -41,34 +37,39 @@ type Cart = {
 const Cart: NextPage = () => {
   const [emptyCart, setEmptyCart] = useState(false);
   const [loading, setLoading] = useState(true);
+
   const [cartItems, setCartItems] = useState<Cart[]>([]);
+
   const [totalPrice, setTotalPrice] = useState(0);
 
   const router = useRouter();
 
   const cart_id = getCookie("cart_id")?.toString() || "not found";
-  const queryResult = api.cart.getCart.useQuery({ cart_id: cart_id });
 
   useEffect(() => {
     if (!hasCookie("cart_id")) {
       setEmptyCart(true);
       setLoading(false);
-    } else {
-      if (queryResult.data && queryResult.data.length > 0) {
-        setEmptyCart(false);
-        const cart_items = queryResult.data as Cart[];
-        console.log(cart_items);
-        setTotalPrice(queryResult.data[0]!.total_price as number);
-        setCartItems(cart_items);
-        setLoading(false);
-      } else {
-        setEmptyCart(true);
-      }
-      if (queryResult.data) {
-        setLoading(false);
-      }
     }
-  }, [queryResult]);
+  }, []);
+
+  api.cart.getCart.useQuery(
+    {
+      cart_id: cart_id,
+    },
+    {
+      onSuccess: (data) => {
+        if (data.length === 0 || !data) {
+          setEmptyCart(true);
+        } else {
+          setTotalPrice(data[0]!.total_price as number);
+          setCartItems(data as Cart[]);
+        }
+        setLoading(false);
+      },
+      staleTime: 60000, // 60 seconds
+    }
+  );
 
   const addToCart = api.cart.addToCart.useMutation();
   const handleAddToCart = (
@@ -88,9 +89,6 @@ const Cart: NextPage = () => {
         product_id: product_id,
         price: price,
         weight: weight,
-      })
-      .then(() => {
-        router.reload();
       })
       .catch((error) => console.error(error));
   };
@@ -118,7 +116,9 @@ const Cart: NextPage = () => {
           fullRemove: fullRemove,
         })
         .then(() => {
-          router.reload();
+          if (fullRemove) {
+            window.alert("Removed From Cart");
+          }
         })
         .catch((error) => console.error(error));
     }
@@ -212,6 +212,10 @@ const Cart: NextPage = () => {
       .catch((error) => console.error(error));
   };
 
+  const handleTotalUpdate = useCallback((newTotal: number) => {
+    setTotalPrice(Math.floor(newTotal * 100) / 100);
+  }, []);
+
   return (
     <>
       <Head>
@@ -241,109 +245,84 @@ const Cart: NextPage = () => {
             </h1>
             <div className="flex flex-col items-center justify-center">
               <div className="divide-y">
-                {cartItems.map((item: any) => (
-                  <div
-                    key={item.cart_item.product_id}
-                    className="flex items-center justify-center gap-10 py-4"
-                  >
-                    <div className="relative flex h-32 w-32 items-center justify-center">
-                      <Image
-                        className="full object-cover"
-                        src={`/${item.cart_item.image as string}.png`}
-                        alt="image"
-                        fill
-                      />
-                    </div>
-                    <div>
-                      <div className="pr-4 font-medium text-gray-100">
-                        {item.cart_item.item_name}
-                      </div>
-                      <div className="text-gray-500">
-                        Price: ${item.cart_item.price}
-                      </div>
-                      {item.cart_item.size !== "" && (
-                        <div className="text-gray-500">
-                          Size: {item.cart_item.size}
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex w-1/5 items-center">
-                      <form
-                        onSubmit={(e) => {
-                          e.preventDefault();
+                {cartItems.map((item: Cart, index) => (
+                  <>
+                    <div
+                      key={`div_${index}`}
+                      className="flex items-center justify-center gap-10 py-4"
+                    >
+                      <Item
+                        key={`item_${index}`}
+                        item={item.cart_item as CartItem}
+                        onAdd={() => {
+                          handleTotalUpdate(
+                            totalPrice + item.cart_item!.price!
+                          );
+                          //window.alert("Updated Quantity");
                           handleAddToCart(
-                            item.cart_item.item_name,
-                            item.cart_item.size,
+                            item.cart_item!.item_name!,
+                            item.cart_item!.size as string,
                             1,
-                            item.cart_item.product_id,
-                            item.cart_item.price,
-                            item.cart_item.weight
+                            item.cart_item!.product_id as number,
+                            item.cart_item!.price as number,
+                            item.cart_item!.weight as number
                           );
                         }}
-                      >
-                        <button
-                          disabled={
-                            item.cart_item.quantity >=
-                            item.cart_item.quantity_in_stock -
-                              (item.cart_item.quantity_in_checkouts
-                                ? item.cart_item.quantity_in_checkouts
-                                : 0)
-                          }
-                          type="submit"
-                          className="rounded-l-lg bg-gray-700 px-1 py-1 hover:bg-blue-500 active:bg-gray-900 disabled:bg-gray-400"
-                        >
-                          +
-                        </button>
-                      </form>
-                      <input
-                        type="number"
-                        name="quantity"
-                        className="block w-[50px] rounded-none border border-gray-300 bg-gray-50 px-1 py-1 text-sm text-gray-900 [appearance:textfield] focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                        value={item.cart_item.quantity}
-                        max={
-                          item.cart_item.quantity_in_stock -
-                          (item.cart_item.quantity_in_checkouts
-                            ? item.cart_item.quantity_in_checkouts
-                            : 0)
-                        }
-                        min={1}
-                        readOnly
-                      />
-                      <form
-                        onSubmit={(e) => {
-                          e.preventDefault();
+                        onRemove={() => {
+                          handleTotalUpdate(
+                            totalPrice - item.cart_item!.price!
+                          );
+                          //window.alert("Updated Quantity");
                           handleRemoveFromCart(
-                            item.cart_item.product_id,
-                            item.cart_item.size,
+                            item.cart_item!.product_id!,
+                            item.cart_item!.size as string,
                             1,
-                            item.cart_item.price,
-                            item.cart_item.weight,
+                            item.cart_item!.price as number,
+                            item.cart_item!.weight as number,
                             false
                           );
                         }}
-                      >
-                        <button
-                          disabled={item.cart_item.quantity <= 1}
-                          type="submit"
-                          className="rounded-r-lg bg-gray-700 px-1 py-1 hover:bg-blue-500 active:bg-gray-900 disabled:bg-gray-400"
-                        >
-                          -
-                        </button>
-                      </form>
-                    </div>
-                    <div className="text-right text-gray-100">
-                      <div>
-                        Total: ${item.cart_item.price * item.cart_item.quantity}
-                      </div>
+                        onTextUpdate={(changeAmount: number, op: "+" | "-") => {
+                          if (op === "+") {
+                            handleTotalUpdate(
+                              totalPrice + item.cart_item!.price! * changeAmount
+                            );
+                            //window.alert("Updated Quantity");
+                            handleAddToCart(
+                              item.cart_item!.item_name as string,
+                              item.cart_item!.size as string,
+                              changeAmount,
+                              item.cart_item!.product_id as number,
+                              item.cart_item!.price as number,
+                              item.cart_item!.weight as number
+                            );
+                          } else {
+                            handleTotalUpdate(
+                              totalPrice -
+                                (item.cart_item!.price as number) * changeAmount
+                            );
+                            //window.alert("Updated Quantity");
+                            handleRemoveFromCart(
+                              item.cart_item!.product_id as number,
+                              item.cart_item!.size as string,
+                              changeAmount,
+                              item.cart_item!.price as number,
+                              item.cart_item!.weight as number,
+                              false
+                            );
+                          }
+                        }}
+                      />
+
                       <form
                         onSubmit={(e) => {
                           e.preventDefault();
                           handleRemoveFromCart(
-                            item.cart_item.product_id,
-                            item.cart_item.size,
-                            item.cart_item.quantity,
-                            item.cart_item.price,
-                            item.cart_item.weight,
+                            item.cart_item!.product_id as number,
+                            item.cart_item!.size as string,
+                            item.cart_item!.quantity as number,
+                            item.cart_item!.price as number,
+                            item.cart_item!.weight as number,
                             true
                           );
                         }}
@@ -356,7 +335,7 @@ const Cart: NextPage = () => {
                         </button>
                       </form>
                     </div>
-                  </div>
+                  </>
                 ))}
               </div>
             </div>
@@ -383,21 +362,3 @@ const Cart: NextPage = () => {
 };
 
 export default Cart;
-
-//need to come back to the onchange for this input
-/*                           onChange={(e) => {
-                            if(Number.isNaN(parseInt(e.target.value))){
-
-                            } else{
-                              if(e.target.value > item.cart_item.quantity){
-                                item.cart_item.quantity = Math.min(parseInt(e.target.value), item.cart_item.quantity_in_stock - (item.cart_item.quantity_in_checkouts ? item.cart_item.quantity_in_checkouts : 0))
-                                handleAddToCart(item.cart_item.item_name, item.cart_item.size, Math.min(parseInt(e.target.value), item.cart_item.quantity_in_stock - (item.cart_item.quantity_in_checkouts ? item.cart_item.quantity_in_checkouts : 0)))
-                                if(e.target.value > item.cart_item.quantity_in_stock - (item.cart_item.quantity_in_checkouts ? item.cart_item.quantity_in_checkouts : 0)){
-                                  window.alert(`Sorry, we only have ${item.cart_item.quantity_in_stock - (item.cart_item.quantity_in_checkouts ? item.cart_item.quantity_in_checkouts : 0)} in stock`)
-                                }
-                              } else {
-                                item.cart_item.quantity = Math.max(parseInt(e.target.value), 1)
-                                handleRemoveFromCart(item.cart_item.product_id, item.cart_item.size, Math.max(parseInt(e.target.value), 1))
-                              }
-                            }
-                          }} */

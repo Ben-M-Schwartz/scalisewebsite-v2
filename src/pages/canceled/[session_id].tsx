@@ -31,7 +31,7 @@ export default function Cancelled() {
           <h1>Your payment was cancelled</h1>
           <Link
             href="/Store"
-            className="text-center text-xl font-bold text-white text-white hover:text-blue-700 hover:underline active:text-gray-500"
+            className="text-center text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
           >
             Back to Store
           </Link>

@@ -140,13 +140,15 @@ const updateInventory: NextPage = () => {
     [key: string]: number;
   }
   const allOptions: indexSignature = {
-    S: 0,
-    M: 1,
-    L: 2,
-    XL: 3,
-    XXL: 4,
-    XXXL: 5,
-    XXXXL: 6,
+    XXS: 0,
+    XS: 1,
+    S: 2,
+    M: 3,
+    L: 4,
+    XL: 5,
+    XXL: 6,
+    XXXL: 7,
+    XXXXL: 8,
   };
 
   return (
