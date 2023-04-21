@@ -15,6 +15,10 @@ import { useRouter } from "next/router";
 
 import { api } from "~/utils/api";
 
+export const config = {
+  runtime: "experimental-edge",
+};
+
 type CartItem = {
   product_id: number | null;
   price: number | null;

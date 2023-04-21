@@ -5,6 +5,10 @@ import Head from "next/head";
 
 import { api } from "~/utils/api";
 
+export const config = {
+  runtime: "experimental-edge",
+};
+
 const Videos: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "Scalise Videos" });
 

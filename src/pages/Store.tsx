@@ -4,8 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import type { product_details } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
-
 type Product = InferModel<typeof product_details, "select">;
+
+export const config = {
+  runtime: "experimental-edge",
+};
 
 import { api } from "~/utils/api";
 

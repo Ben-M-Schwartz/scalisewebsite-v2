@@ -7,6 +7,10 @@ import { useEffect } from "react";
 import { getCookie } from "cookies-next";
 import { api } from "~/utils/api";
 
+export const config = {
+  runtime: "experimental-edge",
+};
+
 const SuccessPage: NextPage = () => {
   const router = useRouter();
 

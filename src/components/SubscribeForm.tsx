@@ -14,6 +14,10 @@ import { api } from "~/utils/api";
 import { useForm } from "react-hook-form";
 import { type NextPage } from "next";
 
+export const config = {
+  runtime: "experimental-edge",
+};
+
 type subscriptionForm = {
   email: string;
 };

@@ -11,6 +11,10 @@ import { in_checkout_amounts, product_quantity } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
 import { eq, and } from "drizzle-orm/expressions";
 
+export const config = {
+  runtime: "edge",
+};
+
 export const checkoutRouter = createTRPCRouter({
   checkOut: publicProcedure
     .input(

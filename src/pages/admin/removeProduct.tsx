@@ -6,6 +6,10 @@ import Image from "next/image";
 import type { product_details } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
 
+export const config = {
+  runtime: "experimental-edge",
+};
+
 type Product = InferModel<typeof product_details, "select">;
 
 import { api } from "~/utils/api";

@@ -11,6 +11,10 @@ import { api } from "~/utils/api";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
+export const config = {
+  runtime: "experimental-edge",
+};
+
 function Card({
   product,
   productInventory,

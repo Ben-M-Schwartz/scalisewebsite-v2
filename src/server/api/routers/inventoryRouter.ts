@@ -13,6 +13,10 @@ import { sql } from "drizzle-orm/sql";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
+export const config = {
+  runtime: "edge",
+};
+
 export const inventoryRouter = createTRPCRouter({
   list: publicProcedure.query(() => {
     return db.select().from(product_details);

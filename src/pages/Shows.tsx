@@ -3,6 +3,10 @@ import Head from "next/head";
 import Link from "next/link";
 //import { signIn, signOut, useSession } from "next-auth/react";
 
+export const config = {
+  runtime: "experimental-edge",
+};
+
 const Shows: NextPage = () => {
   //TODO: write database and render logic for easily adding shows
   //TODO: figure out query params for bandsintown

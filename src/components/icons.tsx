@@ -1,3 +1,7 @@
+export const config = {
+  runtime: "experimental-edge",
+};
+
 export const SpotifyIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

@@ -8,11 +8,16 @@ import { api } from "~/utils/api";
 import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
 
+export const config = {
+  runtime: "experimental-edge",
+};
+
 import {
   setCookie,
   getCookie,
   hasCookie /* , deleteCookie */,
 } from "cookies-next";
+
 import crypto from "crypto";
 
 type addToCartForm = {

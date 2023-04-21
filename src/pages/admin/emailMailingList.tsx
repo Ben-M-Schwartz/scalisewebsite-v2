@@ -7,6 +7,10 @@ import { useForm } from "react-hook-form";
 
 import { api } from "~/utils/api";
 
+export const config = {
+  runtime: "experimental-edge",
+};
+
 type emailForm = {
   subject: string;
   body: string;

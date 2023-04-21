@@ -5,6 +5,10 @@ import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { useEffect, useState } from "react";
 
+export const config = {
+  runtime: "experimental-edge",
+};
+
 const useSubscribe = () => {
   const subscribe = api.subscription.subscribe.useMutation();
   return (token: string) => subscribe.mutateAsync({ token });

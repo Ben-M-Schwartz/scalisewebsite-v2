@@ -6,6 +6,10 @@ import Link from "next/link";
 import { api } from "~/utils/api";
 import { useForm } from "react-hook-form";
 
+export const config = {
+  runtime: "experimental-edge",
+};
+
 type SellItemForm = {
   name: string;
   price: string;
