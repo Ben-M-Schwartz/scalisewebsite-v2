@@ -1,13 +1,11 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-//import Link from "next/link";
+import Link from "next/link";
 //import { signIn, signOut, useSession } from "next-auth/react";
 
-import { api } from "~/utils/api";
-
 const Shows: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "Scalise Shows" });
-
+  //TODO: write database and render logic for easily adding shows
+  //TODO: figure out query params for bandsintown
   return (
     <>
       <Head>
@@ -16,11 +14,32 @@ const Shows: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-white">
-              {hello.data ? hello.data.greeting : "Loading..."}
-            </p>
-          </div>
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-2xl text-white">Store Page</p>
+          <Link
+            className="mb-2 mr-2 inline-block w-auto rounded-lg bg-blue-700 px-10 py-3 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            href="https://bandsintown.com/artist-subscribe/14899628?
+            affil_code=js_www.scalise.band
+            &app_id=js_www.scalise.band
+            &bg-color=%23ffffff
+            &border-color=rgba%28193%2C17%2C35%2C1%29
+            &came_from=700
+            &cta-bg-color=rgba%28255%2C255%2C255%2C1%29
+            &cta-border-color=rgba%28193%2C17%2C35%2C1%29
+            &cta-border-radius=0px
+            &cta-border-width=1px
+            &cta-text-color=rgba%28193%2C17%2C35%2C1%29
+            &font=Helvetica
+            &play-my-city=false
+            &signature=ZZ9a89bd3786a112c99a22dc7645c38bd72185dde34d03958907e235220d40f268
+            &spn=0
+            &text-color=%23424242
+            &utm_campaign=track
+            &utm_medium=web&utm_source=widget"
+          >
+            Follow
+          </Link>
+        </div>
       </main>
     </>
   );
