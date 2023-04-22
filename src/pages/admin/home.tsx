@@ -41,6 +41,18 @@ const Home: NextPage = () => {
         >
           Email Mailing List
         </Link>
+        <Link
+          href="/admin/addShow"
+          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Add New Show
+        </Link>
+        <Link
+          href="/admin/removeShow"
+          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Remove A Show
+        </Link>
       </main>
     </>
   );

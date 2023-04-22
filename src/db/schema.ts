@@ -145,3 +145,19 @@ export const orders = mysqlTable("orders", {
   payment_intent_id: varchar("payment_intent_id", { length: 255 }),
   payment_status: varchar("payment_status", { length: 255 }),
 });
+
+export const shows = mysqlTable(
+  "shows",
+  {
+    id: serial("id").primaryKey().notNull(),
+    date: varchar("date", { length: 255 }),
+    time: varchar("time", { length: 255 }),
+    location: varchar("location", { length: 255 }),
+    name: varchar("name", { length: 255 }),
+    bandsintown_link: varchar("bandsintown_link", { length: 255 }),
+    ticket_link: varchar("ticket_link", { length: 255 }),
+  },
+  (table) => ({
+    showIndex: index("showIndex").on(table.id),
+  })
+);
