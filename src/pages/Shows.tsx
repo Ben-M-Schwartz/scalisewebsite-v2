@@ -6,6 +6,7 @@ import { api } from "~/utils/api";
 
 export const config = {
   runtime: "experimental-edge",
+  regions: ["cle1"],
 };
 
 const Shows: NextPage = () => {
@@ -47,12 +48,16 @@ const Shows: NextPage = () => {
                     {show.name}
                   </div>
                   <Link
+                    rel="noopener noreferrer"
+                    target="_blank"
                     className="pr-4 text-xl font-bold text-gray-100 hover:text-blue-700 hover:underline active:text-gray-500"
                     href={show.bandsintown_link as string}
                   >
                     Share
                   </Link>
                   <Link
+                    rel="noopener noreferrer"
+                    target="_blank"
                     className="pr-4 text-xl font-bold text-gray-100 hover:text-blue-700 hover:underline active:text-gray-500"
                     href={show.ticket_link as string}
                   >

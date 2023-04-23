@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 
 export const config = {
   runtime: "experimental-edge",
+  regions: ["cle1"],
 };
 
 type NewProductForm = {

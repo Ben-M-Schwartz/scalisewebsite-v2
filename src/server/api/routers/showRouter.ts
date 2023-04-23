@@ -10,6 +10,7 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 export const config = {
   runtime: "edge",
+  regions: ["cle1"],
 };
 
 export const showRouter = createTRPCRouter({

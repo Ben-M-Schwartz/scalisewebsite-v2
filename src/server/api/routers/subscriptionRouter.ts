@@ -10,15 +10,26 @@ import { type InferModel } from "drizzle-orm";
 import { eq, and } from "drizzle-orm/expressions";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-
-import crypto from "crypto";
-
 import nodemailer from "nodemailer";
 import Handlebars from "handlebars";
 
 export const config = {
   runtime: "edge",
+  regions: ["cle1"],
 };
+//TODO: Figure out a cryptographic library that will work on edge since crypto douesnt seem to work
+const characters =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+function generateString(length: number) {
+  let result = " ";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+
+  return result;
+}
 
 const createTransporter = () => {
   try {
@@ -269,7 +280,7 @@ export const subscriptionRouter = createTRPCRouter({
         );
       }
       if (!sub || sub.length === 0) {
-        const token = crypto.randomBytes(16).toString("hex");
+        const token = generateString(16);
         await sendConfirmationEmail(input.url, input.email, token)
           .then(async () => {
             //save email and token in potential subscribers table

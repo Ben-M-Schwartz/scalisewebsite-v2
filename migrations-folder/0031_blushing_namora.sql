@@ -6,7 +6,8 @@ CREATE TABLE `cart_items` (
 	`quantity` int,
 	`price` double(10,2),
 	`weight` float,
-	`item_name` varchar(255)
+	`item_name` varchar(255),
+	`image` varchar(255)
 );
 
 CREATE TABLE `carts` (
@@ -63,6 +64,16 @@ CREATE TABLE `product_quantity` (
 	`quantity` int
 );
 
+CREATE TABLE `shows` (
+	`id` serial AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	`date` varchar(255),
+	`time` varchar(255),
+	`location` varchar(255),
+	`name` varchar(255),
+	`bandsintown_link` varchar(255),
+	`ticket_link` varchar(255)
+);
+
 CREATE TABLE `stockNotifications` (
 	`id` serial AUTO_INCREMENT PRIMARY KEY NOT NULL,
 	`email` varchar(255),
@@ -83,4 +94,5 @@ CREATE INDEX `subscriber_index` ON `potential_subscribers` (`token`);
 CREATE INDEX `productDetails_id_index` ON `product_details` (`id`);
 CREATE INDEX `product_name_index` ON `product_details` (`name`);
 CREATE INDEX `id_size_index_inventory` ON `product_quantity` (`product_id`,`size`);
+CREATE INDEX `showIndex` ON `shows` (`id`);
 CREATE INDEX `notificationIndex` ON `stockNotifications` (`product_id`,`size`);

@@ -14,6 +14,7 @@ import { sql } from "drizzle-orm/sql";
 
 export const config = {
   runtime: "edge",
+  regions: ["cle1"],
 };
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";

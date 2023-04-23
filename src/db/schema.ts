@@ -8,6 +8,11 @@ import {
   float,
 } from "drizzle-orm/mysql-core";
 
+export const config = {
+  runtime: "experimental-edge",
+  regions: ["cle1"],
+};
+
 export const product_details = mysqlTable(
   "product_details",
   {

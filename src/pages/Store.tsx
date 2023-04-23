@@ -8,6 +8,7 @@ type Product = InferModel<typeof product_details, "select">;
 
 export const config = {
   runtime: "experimental-edge",
+  regions: ["cle1"],
 };
 
 import { api } from "~/utils/api";

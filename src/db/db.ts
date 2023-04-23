@@ -4,6 +4,7 @@ import { drizzle } from "drizzle-orm/planetscale-serverless";
 
 export const config = {
   runtime: "experimental-edge",
+  regions: ["cle1"],
 };
 
 import { connect } from "@planetscale/database";

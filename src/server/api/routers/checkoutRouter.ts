@@ -13,6 +13,7 @@ import { eq, and } from "drizzle-orm/expressions";
 
 export const config = {
   runtime: "edge",
+  regions: ["cle1"],
 };
 
 export const checkoutRouter = createTRPCRouter({

@@ -8,6 +8,7 @@ import { useEffect } from "react";
 
 export const config = {
   runtime: "experimental-edge",
+  regions: ["cle1"],
 };
 
 export default function Cancelled() {

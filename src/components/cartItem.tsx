@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
+export const config = {
+  runtime: "experimental-edge",
+  regions: ["cle1"],
+};
+
 type CartItem = {
   product_id: number | null;
   price: number | null;
@@ -50,6 +55,7 @@ export function Item({
         <button
           onClick={() => {
             setQuantity((quantity as number) + 1);
+            setPrevQuantity((quantity as number) + 1);
             onAdd();
           }}
           disabled={
@@ -105,6 +111,7 @@ export function Item({
         <button
           onClick={() => {
             setQuantity((quantity as number) - 1);
+            setPrevQuantity((quantity as number) - 1);
             onRemove();
           }}
           disabled={(quantity as number) <= 1}

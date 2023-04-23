@@ -8,6 +8,7 @@ import { type InferModel } from "drizzle-orm";
 
 export const config = {
   runtime: "experimental-edge",
+  regions: ["cle1"],
 };
 
 type Product = InferModel<typeof product_details, "select">;

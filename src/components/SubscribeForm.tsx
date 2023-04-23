@@ -16,6 +16,7 @@ import { type NextPage } from "next";
 
 export const config = {
   runtime: "experimental-edge",
+  regions: ["cle1"],
 };
 
 type subscriptionForm = {

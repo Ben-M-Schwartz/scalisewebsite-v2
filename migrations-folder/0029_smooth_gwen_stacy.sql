@@ -1,1 +1,0 @@
-CREATE INDEX `showIndex` ON `shows` (`id`);

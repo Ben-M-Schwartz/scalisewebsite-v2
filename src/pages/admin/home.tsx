@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export const config = {
   runtime: "experimental-edge",
+  regions: ["cle1"],
 };
 
 const Home: NextPage = () => {

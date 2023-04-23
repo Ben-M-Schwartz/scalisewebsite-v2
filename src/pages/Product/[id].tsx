@@ -10,6 +10,7 @@ import React, { useState, useEffect } from "react";
 
 export const config = {
   runtime: "experimental-edge",
+  regions: ["cle1"],
 };
 
 import {
@@ -18,7 +19,18 @@ import {
   hasCookie /* , deleteCookie */,
 } from "cookies-next";
 
-import crypto from "crypto";
+const characters =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+function generateString(length: number) {
+  let result = " ";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+
+  return result;
+}
 
 type addToCartForm = {
   size: string;
@@ -88,7 +100,7 @@ const Product: NextPage = () => {
     };
 
     if (!hasCookie("cart_id")) {
-      const new_cart_id = crypto.randomBytes(16).toString("hex");
+      const new_cart_id = generateString(16);
       mutateOptions.cart_id = new_cart_id;
       setCookie("cart_id", new_cart_id);
     } else {

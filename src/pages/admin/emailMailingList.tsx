@@ -9,6 +9,7 @@ import { api } from "~/utils/api";
 
 export const config = {
   runtime: "experimental-edge",
+  regions: ["cle1"],
 };
 
 type emailForm = {

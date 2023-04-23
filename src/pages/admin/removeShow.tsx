@@ -1,18 +1,19 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 //import { signIn, signOut, useSession } from "next-auth/react";
 import { api } from "~/utils/api";
+import { useRouter } from "next/router";
 
 export const config = {
   runtime: "experimental-edge",
+  regions: ["cle1"],
 };
 
 const Shows: NextPage = () => {
-  //TODO: write database and render logic for easily adding shows
   //TODO: figure out query params for bandsintown
   const shows = api.shows.get.useQuery();
   const remove = api.shows.remove.useMutation();
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -49,7 +50,11 @@ const Shows: NextPage = () => {
                   </div>
                 </div>
                 <button
-                  onClick={() => remove.mutate({ id: show.id })}
+                  onClick={() => {
+                    remove.mutate({ id: show.id });
+                    window.alert("success");
+                    router.reload();
+                  }}
                   className="mb-2 mr-2 inline-block w-auto rounded-lg bg-blue-700 px-10 py-3 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   remove

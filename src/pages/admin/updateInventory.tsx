@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 
 export const config = {
   runtime: "experimental-edge",
+  regions: ["cle1"],
 };
 
 type sizesArray = {
