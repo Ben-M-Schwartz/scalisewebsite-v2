@@ -3,7 +3,6 @@ import Image from "next/image";
 
 export const config = {
   runtime: "experimental-edge",
-  regions: ["cle1"],
 };
 
 type CartItem = {
@@ -33,6 +32,9 @@ export function Item({
     item.quantity as number
   );
   const [prevQuantity, setPrevQuantity] = useState(item.quantity as number);
+  const [addDisabled, setAddDisabled] = useState(false);
+  const [removeDisabled, setRemoveDisabled] = useState(false);
+  const [isReadOnly, setReadOnly] = useState(false);
 
   return (
     <>
@@ -57,11 +59,14 @@ export function Item({
             setQuantity((quantity as number) + 1);
             setPrevQuantity((quantity as number) + 1);
             onAdd();
+            setAddDisabled(true);
+            setTimeout(() => setAddDisabled(false), 1000);
           }}
           disabled={
             (quantity as number) >=
-            item.quantity_in_stock! -
-              (item.quantity_in_checkouts ? item.quantity_in_checkouts : 0)
+              item.quantity_in_stock! -
+                (item.quantity_in_checkouts ? item.quantity_in_checkouts : 0) ||
+            addDisabled
           }
           type="submit"
           className="rounded-l-lg bg-gray-700 px-1 py-1 hover:bg-blue-500 active:bg-gray-900 disabled:bg-gray-400"
@@ -94,8 +99,9 @@ export function Item({
               } else if ((quantity as number) < prevQuantity) {
                 onTextUpdate(prevQuantity - (quantity as number), "-");
               }
-
               setPrevQuantity(quantity as number);
+              setReadOnly(true);
+              setTimeout(() => setReadOnly(false), 1000);
             }
           }}
           type="number"
@@ -107,14 +113,17 @@ export function Item({
             (item.quantity_in_checkouts ? item.quantity_in_checkouts : 0)
           }
           min={1}
+          readOnly={isReadOnly}
         />
         <button
           onClick={() => {
             setQuantity((quantity as number) - 1);
             setPrevQuantity((quantity as number) - 1);
             onRemove();
+            setRemoveDisabled(true);
+            setTimeout(() => setRemoveDisabled(false), 1000);
           }}
-          disabled={(quantity as number) <= 1}
+          disabled={(quantity as number) <= 1 || removeDisabled}
           type="submit"
           className="rounded-r-lg bg-gray-700 px-1 py-1 hover:bg-blue-500 active:bg-gray-900 disabled:bg-gray-400"
         >

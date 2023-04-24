@@ -5,12 +5,13 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { type NextPage } from "next";
 import Head from "next/head";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { getCookie, hasCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { Item } from "~/components/cartItem";
+import debounce from "lodash.debounce";
 export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
@@ -71,6 +72,7 @@ const Cart: NextPage = () => {
     }
   );
 
+  const [updateAmount, setUpdateAmount] = useState(0);
   const addToCart = api.cart.addToCart.useMutation();
   const handleAddToCart = (
     item_name: string,
@@ -214,6 +216,9 @@ const Cart: NextPage = () => {
 
   const handleTotalUpdate = useCallback((newTotal: number) => {
     setTotalPrice(Math.floor(newTotal * 100) / 100);
+  }, []);
+  const handleChangeUpdate = useCallback((changeAmount: number) => {
+    setUpdateAmount(changeAmount);
   }, []);
 
   return (
