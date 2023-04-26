@@ -20,6 +20,7 @@ type NewProductForm = {
   sizes: string;
   quantities: string;
   imageName: string;
+  is_taxed: number;
 };
 
 const NewProduct: NextPage = () => {
@@ -59,6 +60,7 @@ const NewProduct: NextPage = () => {
         weight: parseFloat(formData.weight),
         quantities: formData.quantities,
         imageName: formData.imageName,
+        is_taxed: formData.is_taxed,
       })
       .then(() => window.alert("Success"));
   };
@@ -164,6 +166,20 @@ const NewProduct: NextPage = () => {
                 id="imageName"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                 {...register("imageName", { required: true })}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="is_taxed"
+                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Is it taxed? (1 for yes 0 for no)
+              </label>
+              <input
+                id="is_taxed"
+                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                {...register("is_taxed", { required: true })}
               />
             </div>
 

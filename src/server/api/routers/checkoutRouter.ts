@@ -25,6 +25,7 @@ export const checkoutRouter = createTRPCRouter({
             product_id: z.number(),
             price: z.number(),
             quantity: z.number(),
+            is_taxed: z.number(),
             size: z.string(),
             weight: z.number(),
             item_name: z.string(),
@@ -99,6 +100,8 @@ export const checkoutRouter = createTRPCRouter({
             },
           },
           quantity: item.quantity as number,
+          tax_rates:
+            item.is_taxed === 1 ? ["txr_1N10EAHmtb6xoR6RcIowDGt8"] : undefined,
         };
       });
       //TODO: add is_taxed to items, calculate sales tax for those items, add shippo api to calculate shipping

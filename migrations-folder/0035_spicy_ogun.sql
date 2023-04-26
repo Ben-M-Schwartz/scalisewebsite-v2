@@ -1,0 +1,1 @@
+ALTER TABLE `product_details` ADD `is_taxed` int;

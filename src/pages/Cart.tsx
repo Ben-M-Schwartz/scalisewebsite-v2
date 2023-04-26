@@ -26,6 +26,7 @@ type CartItem = {
   quantity_in_stock: number | null;
   quantity_in_checkouts: number | null;
   image: string | null;
+  is_taxed: number | null;
 };
 
 type Cart = {
@@ -148,6 +149,7 @@ const Cart: NextPage = () => {
         item_name: item.cart_item?.item_name as string,
         weight: item.cart_item?.weight as number,
         image: item.cart_item?.image as string,
+        is_taxed: item.cart_item?.is_taxed as number,
       };
     });
     await createCheckoutSession

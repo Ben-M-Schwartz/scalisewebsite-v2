@@ -21,6 +21,7 @@ export const product_details = mysqlTable(
     price: double("price", { precision: 10, scale: 2 }),
     image: varchar("image_path", { length: 255 }),
     weight: float("weight"),
+    is_taxed: int("is_taxed"),
   },
   (product_details) => ({
     idIndex: index("productDetails_id_index").on(product_details.id),

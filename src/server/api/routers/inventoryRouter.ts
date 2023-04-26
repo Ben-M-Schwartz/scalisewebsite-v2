@@ -84,6 +84,7 @@ export const inventoryRouter = createTRPCRouter({
         sizes: z.string(),
         quantities: z.string(),
         imageName: z.string(),
+        is_taxed: z.number(),
       })
     )
     .mutation(async ({ input }) => {
@@ -95,6 +96,7 @@ export const inventoryRouter = createTRPCRouter({
         price: input.price,
         weight: input.weight,
         image: input.imageName,
+        is_taxed: input.is_taxed,
       };
       const result = await db.insert(product_details).values(newProduct);
       const productId = result.insertId;

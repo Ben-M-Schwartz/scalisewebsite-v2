@@ -115,7 +115,6 @@ const removeProduct: NextPage = () => {
   }
 
   const products = api.inventory.list.useQuery();
-
   return (
     <>
       <Head>

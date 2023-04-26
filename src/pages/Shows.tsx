@@ -10,7 +10,6 @@ export const config = {
 };
 
 const Shows: NextPage = () => {
-  //TODO: write database and render logic for easily adding shows
   //TODO: figure out query params for bandsintown
   const shows = api.shows.get.useQuery();
   return (
