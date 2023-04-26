@@ -104,7 +104,7 @@ export const checkoutRouter = createTRPCRouter({
             item.is_taxed === 1 ? ["txr_1N10EAHmtb6xoR6RcIowDGt8"] : undefined,
         };
       });
-      //TODO: add is_taxed to items, calculate sales tax for those items, add shippo api to calculate shipping
+      //TODO: add shippo api to calculate shipping
 
       const session = await stripe.checkout.sessions.create({
         //payment_method_types: ['card'],
