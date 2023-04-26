@@ -54,8 +54,8 @@ function Card({ product }: { product: Product }) {
   );
 }
 
-const Store: NextPage = () => {
-  const products = api.inventory.list.useQuery();
+const Store: NextPage<{ products: Product[] }> = (props) => {
+  const products = props.products;
 
   return (
     <>
@@ -67,7 +67,7 @@ const Store: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <h1 className="mt-12 pl-4 text-4xl text-white">Items for Sale</h1>
         <div className="container grid grid-cols-3 items-center justify-center gap-4">
-          {products?.data?.map((product) => (
+          {products.map((product) => (
             <Card key={product.id} product={product} />
           ))}
         </div>
@@ -77,3 +77,12 @@ const Store: NextPage = () => {
 };
 
 export default Store;
+
+export function getStaticProps() {
+  const queryResult = api.inventory.list.useQuery();
+  const products = queryResult.data;
+
+  return {
+    props: { products },
+  };
+}
