@@ -1,4 +1,4 @@
-import { type NextPage } from "next";
+import type { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -54,8 +54,8 @@ function Card({ product }: { product: Product }) {
   );
 }
 
-const Store: NextPage<{ products: Product[] }> = (props) => {
-  const products = props.products;
+const Store: NextPage = () => {
+  const products = api.inventory.list.useQuery();
 
   return (
     <>
@@ -67,7 +67,7 @@ const Store: NextPage<{ products: Product[] }> = (props) => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <h1 className="mt-12 pl-4 text-4xl text-white">Items for Sale</h1>
         <div className="container grid grid-cols-3 items-center justify-center gap-4">
-          {products.map((product) => (
+          {products?.data?.map((product) => (
             <Card key={product.id} product={product} />
           ))}
         </div>
@@ -78,11 +78,24 @@ const Store: NextPage<{ products: Product[] }> = (props) => {
 
 export default Store;
 
-export function getStaticProps() {
-  const queryResult = api.inventory.list.useQuery();
-  const products = queryResult.data;
-
+/* import { createServerSideHelpers } from "@trpc/react-query/server";
+import { appRouter } from "~/server/api/root";
+import superjson from "superjson";
+export const getStaticProps: GetStaticProps = async () => {
+  const helpers = createServerSideHelpers({
+    router: appRouter,
+    ctx: {},
+    transformer: superjson, // optional - adds superjson serialization
+  });
+  await helpers.inventory.list.prefetch();
   return {
-    props: { products },
+    props: {
+      trpcState: helpers.dehydrate(),
+    },
+    revalidate: 1,
   };
-}
+}; */
+
+/* export const getStaticPaths = () => {
+  return { paths: [], fallback: "blocking" };
+}; */

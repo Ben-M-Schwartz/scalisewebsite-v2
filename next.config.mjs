@@ -9,15 +9,15 @@ const config = {
   async redirects() {
     return [
       {
-        source: '/admin',
-        destination: '/admin/home',
-        permanent: true
+        source: "/admin",
+        destination: "/admin/home",
+        permanent: true,
       },
-    ]
+    ];
   },
 
   reactStrictMode: true,
-/*   experimental: {
+  /*   experimental: {
     appDir: true,
     serverComponentsExternalPackages: ["mysql2"],
   }, */
@@ -32,4 +32,5 @@ const config = {
     defaultLocale: "en",
   },
 };
+
 export default config;

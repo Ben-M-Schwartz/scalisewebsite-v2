@@ -71,8 +71,6 @@ const Cart: NextPage = () => {
       },
     }
   );
-
-  const [updateAmount, setUpdateAmount] = useState(0);
   const addToCart = api.cart.addToCart.useMutation();
   const handleAddToCart = (
     item_name: string,
@@ -217,9 +215,6 @@ const Cart: NextPage = () => {
 
   const handleTotalUpdate = useCallback((newTotal: number) => {
     setTotalPrice(Math.floor(newTotal * 100) / 100);
-  }, []);
-  const handleChangeUpdate = useCallback((changeAmount: number) => {
-    setUpdateAmount(changeAmount);
   }, []);
 
   return (
