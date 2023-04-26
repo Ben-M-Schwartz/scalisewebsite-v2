@@ -5,6 +5,8 @@ import Head from "next/head";
 import Link from "next/link";
 import { api } from "~/utils/api";
 import { useForm } from "react-hook-form";
+import { SignIn } from "@clerk/clerk-react";
+import { useAuth } from "@clerk/nextjs";
 
 export const config = {
   runtime: "experimental-edge",
@@ -21,9 +23,33 @@ type AddShowForm = {
 };
 
 const AddShow: NextPage = () => {
+  const { register, handleSubmit } = useForm<AddShowForm>();
+  const { isLoaded, userId, orgId } = useAuth();
+  if (!isLoaded)
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+        <div>Loading...</div>;
+      </main>
+    );
+  if (!userId)
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+        <h1 className="text-2xl text-white">
+          This page is for band members only
+        </h1>
+        <SignIn redirectUrl="/admin" />
+      </main>
+    );
+  if (orgId !== process.env.ADMIN_ORGID) {
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+      <h1 className="text-2xl text-white">
+        Sorry you are not authorized to visit this page
+      </h1>
+    </main>;
+  }
+
   const createShow = api.shows.create.useMutation();
 
-  const { register, handleSubmit } = useForm<AddShowForm>();
   const onSubmit = (formData: AddShowForm) => {
     createShow.mutateAsync({ ...formData }).then(() => window.alert("Success"));
   };

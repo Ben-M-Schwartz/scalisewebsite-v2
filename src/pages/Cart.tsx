@@ -5,13 +5,12 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { type NextPage } from "next";
 import Head from "next/head";
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { getCookie, hasCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { Item } from "~/components/cartItem";
-import debounce from "lodash.debounce";
 export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],

@@ -1,8 +1,8 @@
-import NextAuth from "next-auth";
-import { authOptions } from "~/server/auth";
+// import NextAuth from "next-auth";
+// import { authOptions } from "~/server/auth";
 
-/* export const config = {
-  runtime: "edge",
-}; */
+// /* export const config = {
+//   runtime: "edge",
+// }; */
 
-export default NextAuth(authOptions);
+// export default NextAuth(authOptions);

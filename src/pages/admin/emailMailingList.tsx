@@ -3,6 +3,8 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { SignIn } from "@clerk/clerk-react";
+import { useAuth } from "@clerk/nextjs";
 //import { signIn, signOut, useSession } from "next-auth/react";
 
 import { api } from "~/utils/api";
@@ -19,6 +21,29 @@ type emailForm = {
 
 const MailingList: NextPage = () => {
   const { register, handleSubmit } = useForm<emailForm>();
+  const { isLoaded, userId, orgId } = useAuth();
+  if (!isLoaded)
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+        <div>Loading...</div>;
+      </main>
+    );
+  if (!userId)
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+        <h1 className="text-2xl text-white">
+          This page is for band members only
+        </h1>
+        <SignIn redirectUrl="/admin" />
+      </main>
+    );
+  if (orgId !== process.env.ADMIN_ORGID) {
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+      <h1 className="text-2xl text-white">
+        Sorry you are not authorized to visit this page
+      </h1>
+    </main>;
+  }
 
   const sendEmails = api.subscription.emailList.useMutation();
   const onSubmit = (formData: emailForm) => {

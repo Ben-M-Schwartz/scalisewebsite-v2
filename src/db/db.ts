@@ -15,10 +15,5 @@ const database_config = {
   password: process.env.DATABASE_PASSWORD,
 };
 const connection = connect(database_config);
-//for planetscale implementation
-//export default connection
 
-//for drizzle implementation
 export const db = drizzle(connection /* , { logger: true } */);
-
-//npx drizzle-kit generate:mysql --out migrations-folder --schema src/db/schema.ts

@@ -166,3 +166,5 @@ export const shows = mysqlTable(
     showIndex: index("showIndex").on(table.id),
   })
 );
+
+//npx drizzle-kit generate:mysql --out migrations-folder --schema src/db/schema.ts

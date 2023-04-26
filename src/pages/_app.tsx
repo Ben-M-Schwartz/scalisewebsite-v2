@@ -1,9 +1,10 @@
 import type { AppType } from "next/app";
-import type { Session } from "next-auth";
-import { SessionProvider } from "next-auth/react";
+/* import type { Session } from "next-auth"; */
+/* import { SessionProvider } from "next-auth/react"; */
 import { Analytics } from "@vercel/analytics/react";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
 import { NavBar } from "~/components/NavBar";
 import SubscribeForm from "~/components/SubscribeForm";
@@ -21,17 +22,14 @@ export const config = {
 //TODO: Smooth transitions between product pages with a slider/navbar with product images
 //TODO: Develop the rest of the front end visuals and UI
 
-const MyApp: AppType<{ session: Session | null }> = ({
-  Component,
-  pageProps: { session, ...pageProps },
-}) => {
+const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <SessionProvider session={session}>
+    <ClerkProvider {...pageProps}>
       <NavBar />
       <Component {...pageProps} />
       <SubscribeForm />
       <Analytics />
-    </SessionProvider>
+    </ClerkProvider>
   );
 };
 

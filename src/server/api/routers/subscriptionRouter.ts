@@ -79,7 +79,7 @@ const emailMailingList = async (subject: string, body: string) => {
   for (const subscriber of subList) {
     //console.log(subscriber.email)
     const mailOptions: EmailOptions = {
-      from: process.env.GOOGLE_EMAIL!,
+      from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
       to: subscriber.email!,
       subject: subject,
       html: template({
@@ -99,7 +99,7 @@ const sendConfirmationEmail = async (
   token: string
 ) => {
   const mailOptions: EmailOptions = {
-    from: process.env.GOOGLE_EMAIL!,
+    from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
     to: email,
     subject: "Confirm your subscription to SCALISE",
     html: `<!DOCTYPE html>
@@ -130,7 +130,7 @@ const sendInitialNotificationEmail = async (
   product_size: string
 ) => {
   const emailOptions: EmailOptions = {
-    from: process.env.GOOGLE_EMAIL!,
+    from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
     to: email,
     subject: "Scalise Store Notifications",
     html: `<!DOCTYPE html>
@@ -195,7 +195,7 @@ const sendNotifications = async (
 ) => {
   for (const user of users) {
     const emailOptions: EmailOptions = {
-      from: process.env.GOOGLE_EMAIL!,
+      from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
       to: user.email,
       subject: "Scalise Store Notifications",
       html: `<!DOCTYPE html>
@@ -241,7 +241,7 @@ const sendNotifications = async (
 
 const userAlreadySubscribed = async (email: string, url: string) => {
   const mailOptions: EmailOptions = {
-    from: process.env.GOOGLE_EMAIL!,
+    from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
     to: email,
     subject: "SCALISE subscription",
     html: `<!DOCTYPE html>
