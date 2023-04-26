@@ -1,4 +1,4 @@
-import type { NextPage, GetStaticProps } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -53,9 +53,11 @@ function Card({ product }: { product: Product }) {
     </div>
   );
 }
-
 const Store: NextPage = () => {
-  const products = api.inventory.list.useQuery();
+  const products = api.inventory.list.useQuery(undefined, {
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+  });
 
   return (
     <>
@@ -78,7 +80,9 @@ const Store: NextPage = () => {
 
 export default Store;
 
-/* import { createServerSideHelpers } from "@trpc/react-query/server";
+/* 
+Doesn't work because it can't find module fs
+import { createServerSideHelpers } from "@trpc/react-query/server";
 import { appRouter } from "~/server/api/root";
 import superjson from "superjson";
 export const getStaticProps: GetStaticProps = async () => {
@@ -98,4 +102,24 @@ export const getStaticProps: GetStaticProps = async () => {
 
 /* export const getStaticPaths = () => {
   return { paths: [], fallback: "blocking" };
+}; */
+
+/* 
+also doesn't work
+
+interface Props {
+  products: Product[];
+}
+
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
+  const products = api.inventory.list.useQuery(undefined, {
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+  });
+
+  return {
+    props: {
+      products: products.data as Product[],
+    },
+  };
 }; */

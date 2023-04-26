@@ -19,8 +19,8 @@ export const config = {
 };
 
 export const inventoryRouter = createTRPCRouter({
-  list: publicProcedure.query(() => {
-    return db.select().from(product_details);
+  list: publicProcedure.query(async () => {
+    return await db.select().from(product_details);
   }),
 
   listInventory: publicProcedure.query(() => {
