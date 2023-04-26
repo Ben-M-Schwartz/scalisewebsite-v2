@@ -16,13 +16,13 @@ const Shows: NextPage = () => {
   const { isLoaded, userId, orgId } = useAuth();
   if (!isLoaded)
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-        <div>Loading...</div>;
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+        <div className="text-white">Loading...</div>;
       </main>
     );
   if (!userId)
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
         <h1 className="text-2xl text-white">
           This page is for band members only
         </h1>
@@ -30,7 +30,7 @@ const Shows: NextPage = () => {
       </main>
     );
   if (orgId !== process.env.ADMIN_ORGID) {
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
       <h1 className="text-2xl text-white">
         Sorry you are not authorized to visit this page
       </h1>

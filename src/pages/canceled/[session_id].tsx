@@ -27,7 +27,7 @@ export default function Cancelled() {
       <Head>
         <title>Cancellation</title>
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
         <div className="flex flex-col items-center gap-2 text-white">
           <h1>Your payment was cancelled</h1>
           <Link
