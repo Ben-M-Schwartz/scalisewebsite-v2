@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { SignIn } from "@clerk/clerk-react";
+import { SignIn, useClerk } from "@clerk/clerk-react";
 import { useAuth } from "@clerk/nextjs";
 
 export const config = {
@@ -10,7 +10,8 @@ export const config = {
 };
 
 const Home: NextPage = () => {
-  const { isLoaded, userId, orgId } = useAuth();
+  const { isLoaded, userId } = useAuth();
+  const { signOut } = useClerk();
   if (!isLoaded)
     return (
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
@@ -29,13 +30,19 @@ const Home: NextPage = () => {
         <SignIn redirectUrl="/admin" />
       </main>
     );
-  if (orgId !== process.env.ADMIN_ORGID) {
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-      <h1 className="text-2xl text-white">
-        Sorry you are not authorized to visit this page
-      </h1>
-    </main>;
-  }
+  // if (userId && userId !== process.env.AUTHORIZED_USERS) {
+  //   return (
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+  //       <h1 className="text-2xl text-white">
+  //         Sorry you are not authorized to visit this page
+  //       </h1>
+  //       {/*eslint-disable-next-line @typescript-eslint/no-misused-promises*/}
+  //       <button onClick={() => signOut()} className="text-white">
+  //         Sign out
+  //       </button>
+  //     </main>
+  //   );
+  // }
   return (
     <>
       <Head>

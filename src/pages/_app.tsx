@@ -7,7 +7,6 @@ import "~/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
-import { usePathname } from "next/navigation";
 
 import { NavBar } from "~/components/navBar/NavBar";
 import SubscribeForm from "~/components/SubscribeForm";
@@ -19,13 +18,10 @@ export const config = {
 
 //TODO: Test out different email senders
 //TODO: Set up email templating for mailing list
-//TODO  Smooth transitions between pages
-//TODO: Smooth transitions between product pages with a slider/navbar with product images
-//TODO: Develop the rest of the front end visuals and UI
+//TODO: Figure out why clerk isn't loadign on vercel deployment
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   const router = useRouter();
-  const pathname = usePathname();
   return (
     <ClerkProvider {...pageProps}>
       <NavBar />
