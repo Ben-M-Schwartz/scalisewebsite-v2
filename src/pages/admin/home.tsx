@@ -14,7 +14,10 @@ const Home: NextPage = () => {
   if (!isLoaded)
     return (
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <div>Loading...</div>;
+        <div className="flex flex-row justify-between gap-2 text-white">
+          <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
+          <p className="flex">Loading...</p>
+        </div>
       </main>
     );
   if (!userId)

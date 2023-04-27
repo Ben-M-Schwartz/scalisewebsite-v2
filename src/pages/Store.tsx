@@ -54,10 +54,23 @@ function Card({ product }: { product: Product }) {
   );
 }
 const Store: NextPage = () => {
-  const products = api.inventory.list.useQuery(undefined, {
+  const { data, isLoading } = api.inventory.list.useQuery(undefined, {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
+
+  const products = data;
+
+  if (isLoading) {
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+        <div className="flex flex-row justify-between gap-2 text-white">
+          <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
+          <p className="flex">Loading...</p>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <>
@@ -67,7 +80,7 @@ const Store: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
         <h1 className="mt-12 pl-4 text-4xl text-white">Items for Sale</h1>
         <div className="sm: container flex flex-col items-center justify-center gap-4 sm:grid sm:grid-cols-2 sm:items-center sm:justify-center lg:grid-cols-3">
-          {products?.data?.map((product) => (
+          {products!.map((product) => (
             <Card key={product.id} product={product} />
           ))}
         </div>
