@@ -171,6 +171,16 @@ export const cartRouter = createTRPCRouter({
       await db.delete(cart_items).where(eq(cart_items.cart_id, input.cart_id));
     }),
 
+  getCartAmount: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ input }) => {
+      const items = await db
+        .select()
+        .from(cart_items)
+        .where(eq(cart_items.cart_id, input.id));
+      return items.length || 0;
+    }),
+
   getCart: publicProcedure
     .input(z.object({ cart_id: z.string() }))
     .query(async ({ input }) => {
