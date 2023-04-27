@@ -64,6 +64,8 @@ const Product: NextPage = () => {
   const [addToCartDisabled, setAddToCartDisabled] = useState(true);
   const [maxQuantity, setMaxQuantity] = useState(0);
   const [pickedSize, setPickedSize] = useState("");
+  const [processing, setProcessing] = useState(false);
+  const [buttonText, setButtonText] = useState("Add to Cart");
 
   const addToCart = api.cart.addToCart.useMutation();
   const { register: cartRegister, handleSubmit: cartSubmit } =
@@ -89,6 +91,7 @@ const Product: NextPage = () => {
   };
 
   const onSubmitCart = (formData: addToCartForm) => {
+    setProcessing(true);
     const mutateOptions = {
       size: formData.size,
       quantity: parseInt(formData.quantity),
@@ -109,7 +112,8 @@ const Product: NextPage = () => {
     addToCart
       .mutateAsync(mutateOptions)
       .then(() => {
-        window.alert("Item added to cart!");
+        setButtonText("Added to Cart!");
+        setProcessing(false);
       })
       .catch(() => window.alert("error"));
   };
@@ -251,17 +255,33 @@ const Product: NextPage = () => {
                         max={maxQuantity}
                       />
                     </div>
-                    <button
-                      type="submit"
-                      disabled={addToCartDisabled}
-                      className={`mb-2 mr-2 inline-block w-1/2 rounded-lg py-5 text-sm font-medium text-white focus:outline-none ${
-                        addToCartDisabled
-                          ? "cursor-not-allowed bg-gray-500"
-                          : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                      }`}
-                    >
-                      Add To Cart
-                    </button>
+
+                    {!processing && (
+                      <button
+                        type="submit"
+                        id="submitButton"
+                        disabled={addToCartDisabled}
+                        className={`mb-2 mr-2 inline-block w-1/2 rounded-lg py-5 text-sm font-medium text-white focus:outline-none ${
+                          addToCartDisabled
+                            ? "cursor-not-allowed bg-gray-500"
+                            : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        }`}
+                      >
+                        {buttonText}
+                      </button>
+                    )}
+                    {processing && (
+                      <button
+                        type="button"
+                        className="mb-2 mr-2 w-1/2 rounded-lg bg-blue-700 py-5 text-sm font-medium text-white dark:bg-blue-600"
+                        disabled
+                      >
+                        <div className="flex flex-row justify-between px-2">
+                          <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
+                          <p className="flex">Processing...</p>
+                        </div>
+                      </button>
+                    )}
                   </>
                 )}
               </form>

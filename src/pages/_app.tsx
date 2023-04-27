@@ -31,7 +31,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       <NavBar />
       <AnimatePresence mode="wait">
         <motion.div
-          key={pathname}
+          key={router.route}
           initial="initialState"
           animate="animateState"
           exit="exitState"
@@ -40,17 +40,20 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           }}
           variants={{
             initialState: {
-              opacity: 0,
+              opacity: 0.5,
+              //clipPath: "polygon(100%, 0, 100%, 0, 100%, 100%, 100%, 100%)",
             },
             animateState: {
               opacity: 1,
+              //clipPath: "polygon(0, 0, 100%, 0, 100%, 100%, 0, 100%)",
             },
             exitState: {
-              opacity: 0,
+              opacity: 0.5,
+              //clipPath: "polygon(0, 0, 0, 0, 0, 100%, 0, 100%)",
             },
           }}
         >
-          <Component {...pageProps} key={pathname} />
+          <Component {...pageProps} />
         </motion.div>
       </AnimatePresence>
       <SubscribeForm />
