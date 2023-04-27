@@ -1,6 +1,7 @@
 import { motion, useCycle } from "framer-motion";
 import { PageLinks, SocialLinks, CartLink, HomeLink } from "./navItems";
 import { MenuToggle } from "./menuToggle";
+import { MenuBackground } from "./menuBackground";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -22,10 +23,10 @@ export function NavBar() {
 
   /*eslint-disable react-hooks/exhaustive-deps*/
   useEffect(() => {
-    if (!isHidden) {
-      setTimeout(() => toggleHidden(), 400);
-    }
     closeMenu();
+    if (!isHidden) {
+      setTimeout(() => toggleHidden(), 1000);
+    }
   }, [router.asPath]);
 
   return (
@@ -39,11 +40,17 @@ export function NavBar() {
             animate={isOpen ? "open" : "closed"}
             className="flex align-middle md:hidden"
           >
+            <div
+              className={`${isHidden ? "hidden" : "block"} w-ful z-0 h-full`}
+            >
+              <MenuBackground />
+            </div>
+
             <MenuToggle
               toggle={() => {
                 isHidden
                   ? toggleHidden()
-                  : setTimeout(() => toggleHidden(), 400);
+                  : setTimeout(() => toggleHidden(), 1000);
                 toggleOpen();
               }}
             />

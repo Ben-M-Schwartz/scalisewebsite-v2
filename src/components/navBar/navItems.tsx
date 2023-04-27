@@ -42,17 +42,19 @@ const list_variants = {
 
 export function HomeLink() {
   return (
-    <Link href="/" className="items-center">
-      <motion.div
-        variants={item_variants}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
-          Scalise
-        </span>
-      </motion.div>
-    </Link>
+    <div className="z-10">
+      <Link href="/" className="items-center">
+        <motion.div
+          variants={item_variants}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
+            Scalise
+          </span>
+        </motion.div>
+      </Link>
+    </div>
   );
 }
 
@@ -66,7 +68,7 @@ export function CartLink() {
   return (
     <Link
       href="/Cart"
-      className="block rounded text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+      className="z-10 block rounded text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
     >
       <motion.div
         className="flex items-center justify-center align-middle"
