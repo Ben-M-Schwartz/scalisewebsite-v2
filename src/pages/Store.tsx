@@ -6,12 +6,12 @@ import { product_details } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
 type Product = InferModel<typeof product_details, "select">;
 
-export const config = {
+/* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
-};
+}; */
 
-import { api } from "~/utils/api";
+//import { api } from "~/utils/api";
 
 function Card({ product }: { product: Product }) {
   return (

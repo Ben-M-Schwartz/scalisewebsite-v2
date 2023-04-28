@@ -26,17 +26,18 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     <ClerkProvider {...pageProps}>
       <NavBar />
       <AnimatePresence mode="wait">
+        {/* motion just here as a placeholder for now */}
         <motion.div
           key={router.route}
           initial="initialState"
           animate="animateState"
           exit="exitState"
           transition={{
-            duration: 0.5,
+            duration: 0,
           }}
           variants={{
             initialState: {
-              opacity: 0.5,
+              opacity: 1,
               //clipPath: "polygon(100%, 0, 100%, 0, 100%, 100%, 100%, 100%)",
             },
             animateState: {
@@ -44,7 +45,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
               //clipPath: "polygon(0, 0, 100%, 0, 100%, 100%, 0, 100%)",
             },
             exitState: {
-              opacity: 0.5,
+              opacity: 1,
               //clipPath: "polygon(0, 0, 0, 0, 0, 100%, 0, 100%)",
             },
           }}
