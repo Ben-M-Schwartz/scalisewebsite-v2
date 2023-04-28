@@ -25,8 +25,10 @@ const Confirm: NextPage = () => {
   /*eslint-disable react-hooks/exhaustive-deps*/
   useEffect(() => {
     if (token) {
+      window.alert(token);
       subscribe(token)
         .then(() => {
+          window.alert("done");
           setLoading(false);
           setInvalid(false);
         })
@@ -46,7 +48,12 @@ const Confirm: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
         <div className="flex flex-col items-center gap-2">
-          {invalidLink && loading && <p className="text-white">Loading...</p>}
+          {invalidLink && loading && (
+            <div className="flex flex-row justify-between gap-2 text-white">
+              <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
+              <p className="flex">Loading...</p>
+            </div>
+          )}
           {invalidLink && !loading && (
             <>
               <p className="text-white">
