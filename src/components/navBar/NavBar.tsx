@@ -57,15 +57,11 @@ export function NavBar() {
           </motion.nav>
         </div>
         <motion.nav
-          className="absolute left-0 w-full md:hidden"
+          className="absolute left-0 top-0 h-full w-full md:hidden"
           initial={false}
           animate={isOpen ? "open" : "closed"}
         >
-          <div
-            className={`${
-              isHidden ? "hidden" : "block"
-            } h-full w-full bg-black`}
-          >
+          <div className={`${isHidden ? "hidden" : "block"} h-screen w-full`}>
             <PageLinks />
             <SocialLinks />
           </div>
