@@ -7,10 +7,10 @@ import { useEffect } from "react";
 import { getCookie } from "cookies-next";
 import { api } from "~/utils/api";
 
-export const config = {
+/* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
-};
+}; */
 
 const SuccessPage: NextPage = () => {
   const router = useRouter();

@@ -3,10 +3,10 @@ import Head from "next/head";
 import Link from "next/link";
 //import { signIn, signOut, useSession } from "next-auth/react";
 
-export const config = {
+/* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
-};
+}; */
 
 const Home: NextPage = () => {
   return (

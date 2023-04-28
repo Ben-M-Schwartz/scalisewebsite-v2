@@ -8,10 +8,10 @@ import { api } from "~/utils/api";
 import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
 
-export const config = {
+/* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
-};
+}; */
 
 import {
   setCookie,

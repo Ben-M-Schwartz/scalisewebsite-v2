@@ -4,10 +4,10 @@ import Link from "next/link";
 import { SignIn, useClerk } from "@clerk/clerk-react";
 import { useAuth } from "@clerk/nextjs";
 
-export const config = {
+/* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
-};
+}; */
 
 const Home: NextPage = () => {
   const { isLoaded, userId } = useAuth();

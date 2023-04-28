@@ -6,10 +6,10 @@ import { api } from "~/utils/api";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-export const config = {
+/* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
-};
+}; */
 
 export default function Cancelled() {
   const router = useRouter();

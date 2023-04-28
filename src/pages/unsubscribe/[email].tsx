@@ -7,10 +7,10 @@ import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { useState } from "react";
 
-export const config = {
+/* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
-};
+}; */
 
 const Product: NextPage = () => {
   const [isUnsubscribed, setUnsubscribed] = useState(false);
