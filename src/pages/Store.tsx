@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import type { product_details } from "~/db/schema";
+import { product_details } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
 type Product = InferModel<typeof product_details, "select">;
 
@@ -53,8 +53,22 @@ function Card({ product }: { product: Product }) {
     </div>
   );
 }
-const Store: NextPage = () => {
-  const { data, isLoading } = api.inventory.list.useQuery(undefined, {
+import { db } from "~/db/db";
+import type { InferGetStaticPropsType, GetStaticProps } from "next";
+
+export const getStaticProps: GetStaticProps = async () => {
+  const result = await db.select().from(product_details);
+  return {
+    props: {
+      products: result,
+    },
+  };
+};
+
+const Store: NextPage = (
+  props: InferGetStaticPropsType<typeof getStaticProps>
+) => {
+  /*   const { data, isLoading } = api.inventory.list.useQuery(undefined, {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
@@ -70,7 +84,9 @@ const Store: NextPage = () => {
         </div>
       </main>
     );
-  }
+  } */
+
+  const products = props.products as Product[];
 
   return (
     <>
@@ -80,7 +96,7 @@ const Store: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
         <h1 className="mt-12 pl-4 text-4xl text-white">Items for Sale</h1>
         <div className="sm: container flex flex-col items-center justify-center gap-4 sm:grid sm:grid-cols-2 sm:items-center sm:justify-center lg:grid-cols-3">
-          {products!.map((product) => (
+          {products.map((product) => (
             <Card key={product.id} product={product} />
           ))}
         </div>

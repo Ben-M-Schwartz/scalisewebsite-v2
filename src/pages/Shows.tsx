@@ -9,9 +9,28 @@ export const config = {
   regions: ["cle1"],
 };
 
-const Shows: NextPage = () => {
+import { db } from "~/db/db";
+import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import { shows } from "~/db/schema";
+import { type InferModel } from "drizzle-orm";
+type ShowType = InferModel<typeof shows, "select">;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const result = await db.select().from(shows);
+
+  return {
+    props: {
+      shows: result,
+    },
+  };
+};
+
+const Shows: NextPage = (
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
   //TODO: figure out query params for bandsintown
-  const shows = api.shows.get.useQuery();
+  //const shows = api.shows.get.useQuery();
+  const shows = props.shows as ShowType[];
   return (
     <>
       <Head>
@@ -20,7 +39,7 @@ const Shows: NextPage = () => {
       <main className="flex min-h-screen  flex-col items-center justify-center bg-gray-800">
         <div className="flex flex-col items-center gap-2">
           <p className="text-2xl text-white">Shows</p>
-          {shows.data?.length === 0 && (
+          {shows.length === 0 && (
             <>
               <p className="text-white">
                 We do not currently have any shows booked
@@ -31,7 +50,7 @@ const Shows: NextPage = () => {
               </p>
             </>
           )}
-          {shows.data?.map((show, index) => (
+          {shows.map((show, index) => (
             <div key={index} className="flex flex-col items-center gap-2">
               <div className="divide-y">
                 <div className="flex-row gap-2 text-center sm:flex sm:items-center sm:justify-center sm:gap-10 md:py-4">
