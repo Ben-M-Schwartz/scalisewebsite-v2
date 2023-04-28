@@ -26,8 +26,8 @@ const Confirm: NextPage = () => {
     if (token) {
       subscribe(token)
         .then(() => {
-          setLoading(false);
           setInvalid(false);
+          setLoading(false);
         })
         .catch(() => {
           //console.error(error);
@@ -36,6 +36,8 @@ const Confirm: NextPage = () => {
         });
     }
   }, [token, subscribe]);
+
+  window.alert(token);
 
   return (
     <>
