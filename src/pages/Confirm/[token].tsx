@@ -12,7 +12,7 @@ export const config = {
 
 const useSubscribe = () => {
   const subscribe = api.subscription.subscribe.useMutation();
-  return (token: string) => subscribe.mutateAsync({ token });
+  return async (token: string) => subscribe.mutateAsync({ token });
 };
 
 const Confirm: NextPage = () => {
@@ -35,9 +35,7 @@ const Confirm: NextPage = () => {
           setLoading(false);
         });
     }
-  }, [token, subscribe]);
-
-  window.alert(token);
+  }, [token]);
 
   return (
     <>
