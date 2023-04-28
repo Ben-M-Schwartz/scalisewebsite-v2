@@ -41,13 +41,41 @@ type notifyForm = {
   email: string;
 };
 
-const Product: NextPage = () => {
+import { getProductPage } from "~/server/api/routers/inventoryRouter";
+import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id } = context.params as { id: string };
+  const result = await getProductPage(id);
+
+  return {
+    props: {
+      product: result,
+    },
+  };
+};
+
+const Product: NextPage = (
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
   const router = useRouter();
-  const product = api.inventory.get.useQuery(
+  /*   const product = api.inventory.get.useQuery(
     { id: router.query.id as string },
     { enabled: !!router.query.id }
-  );
-  const productData = product.data as {
+  ); */
+  /*   const productData = product.data as {
+    name: string;
+    price: number;
+    weight: number;
+    id: number;
+    image: string | null;
+    product_quantity: {
+      size: string;
+      quantity_in_stock: number;
+      quantity_in_checkouts: number;
+    };
+  }[]; */
+  const productData = props.product as {
     name: string;
     price: number;
     weight: number;

@@ -18,6 +18,39 @@ export const config = {
   regions: ["cle1"],
 };
 
+export const getProductPage = async (id: string) => {
+  const result = await db
+    .select({
+      id: product_details.id,
+      price: product_details.price,
+      weight: product_details.weight,
+      name: product_details.name,
+      image: product_details.image,
+      product_quantity: {
+        size: product_quantity.size,
+        quantity_in_stock: product_quantity.quantity,
+        quantity_in_checkouts: in_checkout_amounts.quantity,
+      },
+    })
+    .from(product_details)
+    .leftJoin(
+      product_quantity,
+      eq(product_details.id, product_quantity.product_id)
+    )
+    .leftJoin(
+      in_checkout_amounts,
+      and(
+        eq(in_checkout_amounts.product_id, product_quantity.product_id),
+        or(
+          eq(in_checkout_amounts.size, product_quantity.size),
+          and(eq(in_checkout_amounts.size, ""), eq(product_quantity.size, ""))
+        )
+      )
+    )
+    .where(eq(product_details.id, parseInt(id)));
+  return result;
+};
+
 export const inventoryRouter = createTRPCRouter({
   list: publicProcedure.query(async () => {
     return await db.select().from(product_details);
@@ -41,39 +74,7 @@ export const inventoryRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .query(async ({ input }) => {
       /* db.select().from(product_details).where(eq(product_details.id, parseInt(input.id))) */
-      const result = await db
-        .select({
-          id: product_details.id,
-          price: product_details.price,
-          weight: product_details.weight,
-          name: product_details.name,
-          image: product_details.image,
-          product_quantity: {
-            size: product_quantity.size,
-            quantity_in_stock: product_quantity.quantity,
-            quantity_in_checkouts: in_checkout_amounts.quantity,
-          },
-        })
-        .from(product_details)
-        .leftJoin(
-          product_quantity,
-          eq(product_details.id, product_quantity.product_id)
-        )
-        .leftJoin(
-          in_checkout_amounts,
-          and(
-            eq(in_checkout_amounts.product_id, product_quantity.product_id),
-            or(
-              eq(in_checkout_amounts.size, product_quantity.size),
-              and(
-                eq(in_checkout_amounts.size, ""),
-                eq(product_quantity.size, "")
-              )
-            )
-          )
-        )
-        .where(eq(product_details.id, parseInt(input.id)));
-      return result;
+      return await getProductPage(input.id);
     }),
   create: publicProcedure
     .input(
