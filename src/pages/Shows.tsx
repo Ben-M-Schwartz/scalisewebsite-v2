@@ -15,6 +15,8 @@ import { shows } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
 type ShowType = InferModel<typeof shows, "select">;
 
+//might switch this to static or initial props
+//TODO: ask graden if he would prefer faster loading or easier changing of shows ofr him
 export const getServerSideProps: GetServerSideProps = async () => {
   const result = await db.select().from(shows);
 
