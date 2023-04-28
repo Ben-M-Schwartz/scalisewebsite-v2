@@ -22,13 +22,10 @@ const Confirm: NextPage = () => {
   const [loading, setLoading] = useState(true);
   const [invalidLink, setInvalid] = useState(true);
 
-  /*eslint-disable react-hooks/exhaustive-deps*/
   useEffect(() => {
     if (token) {
-      window.alert(token);
       subscribe(token)
         .then(() => {
-          window.alert("done");
           setLoading(false);
           setInvalid(false);
         })
@@ -38,8 +35,7 @@ const Confirm: NextPage = () => {
           setLoading(false);
         });
     }
-  }, [token]);
-  /*eslint-enabel react-hooks/exhaustive-deps*/
+  }, [token, subscribe]);
 
   return (
     <>
