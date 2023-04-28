@@ -17,14 +17,14 @@ const useSubscribe = () => {
 
 const Confirm: NextPage = () => {
   const router = useRouter();
-  const token = router.query.token as string;
+  const { token } = router.query;
   const subscribe = useSubscribe();
   const [loading, setLoading] = useState(true);
   const [invalidLink, setInvalid] = useState(true);
 
   useEffect(() => {
     if (token) {
-      subscribe(token)
+      subscribe(token as string)
         .then(() => {
           setInvalid(false);
           setLoading(false);
@@ -43,6 +43,7 @@ const Confirm: NextPage = () => {
         <title>Confirm</title>
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+        <h1 className="text-white">{token}</h1>
         <div className="flex flex-col items-center gap-2">
           {invalidLink && loading && (
             <div className="flex flex-row justify-between gap-2 text-white">
