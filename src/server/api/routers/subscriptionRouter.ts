@@ -320,6 +320,7 @@ export const subscriptionRouter = createTRPCRouter({
           await db
             .delete(potential_subscribers)
             .where(eq(potential_subscribers.token, input.token));
+          return "success";
         })
         .catch((error) => {
           throw error;

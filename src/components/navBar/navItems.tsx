@@ -88,7 +88,7 @@ export function PageLinks() {
   return (
     <motion.ul
       variants={list_variants}
-      className="absolute left-0 top-32 flex w-full flex-col justify-center overflow-hidden rounded-lg text-center font-medium md:relative md:left-0 md:top-0 md:mt-0 md:flex-row md:border-0 md:p-4"
+      className="absolute left-0 top-32 flex w-full flex-col justify-center gap-5 overflow-hidden rounded-lg text-center font-medium md:relative md:left-0 md:top-0 md:mt-0 md:flex-row md:border-0 md:p-4"
     >
       <motion.li
         variants={item_variants}
@@ -118,7 +118,7 @@ export function PageLinks() {
             (router.pathname === "/Shows"
               ? "font-bold underline underline-offset-8"
               : "") +
-            "block rounded py-2 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:pl-3 md:pr-4 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+            "block rounded py-2 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
           }
         >
           Shows
@@ -135,7 +135,7 @@ export function PageLinks() {
             (router.pathname === "/Videos"
               ? "font-bold underline underline-offset-8"
               : "") +
-            "block rounded py-2 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:pl-3 md:pr-4 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+            "block rounded py-2 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
           }
         >
           Videos
@@ -152,7 +152,7 @@ export function PageLinks() {
             (router.pathname === "/Store"
               ? "font-bold underline underline-offset-8"
               : "") +
-            "block rounded py-2 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:pl-3 md:pr-4 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+            "block rounded py-2 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
           }
         >
           Store
@@ -169,7 +169,7 @@ export function PageLinks() {
             (router.pathname === "/Contact"
               ? "font-bold underline underline-offset-8"
               : "") +
-            "block rounded py-2 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:pl-3 md:pr-4 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+            "block rounded py-2 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
           }
         >
           Contact
