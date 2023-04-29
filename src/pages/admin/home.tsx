@@ -69,6 +69,12 @@ const Home: NextPage = () => {
           Update Inventory
         </Link>
         <Link
+          href="/admin/emailEditor"
+          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Create Email
+        </Link>
+        <Link
           href="/admin/emailMailingList"
           className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
         >
