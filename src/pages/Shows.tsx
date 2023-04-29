@@ -1,8 +1,24 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-//import { signIn, signOut, useSession } from "next-auth/react";
-import { api } from "~/utils/api";
+import {
+  ShareIcon,
+  LinkIcon,
+  TwitterIcon,
+  FacebookIcon,
+  EmailIcon,
+  BandsintownIcon,
+  CheckIcon,
+} from "~/components/icons";
+
+import { motion } from "framer-motion";
+import { useState } from "react";
+
+import {
+  TwitterShareButton,
+  EmailShareButton,
+  FacebookShareButton,
+} from "next-share";
 
 export const config = {
   runtime: "experimental-edge",
@@ -15,8 +31,31 @@ import { shows } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
 type ShowType = InferModel<typeof shows, "select">;
 
+const variants = {
+  hidden: {
+    opacity: 0,
+    x: -20,
+    y: -5,
+    transition: {
+      x: { stiffness: 1000 },
+    },
+    transitionEnd: {
+      display: "none",
+    },
+  },
+  shown: {
+    opacity: 1,
+    x: -50,
+    y: -5,
+    transition: {
+      x: { stiffness: 1000, velocity: -100 },
+    },
+    display: "flex",
+  },
+};
+
 //might switch this to static or initial props
-//TODO: ask graden if he would prefer faster loading or easier changing of shows ofr him
+//TODO: ask graden if he would prefer faster loading or easier changing of shows for him
 export const getServerSideProps: GetServerSideProps = async () => {
   const result = await db.select().from(shows);
 
@@ -33,6 +72,8 @@ const Shows: NextPage = (
   //TODO: figure out query params for bandsintown
   //const shows = api.shows.get.useQuery();
   const shows = props.shows as ShowType[];
+  const [isHover, setHover] = useState(false);
+  const [isCopied, setCopied] = useState(false);
   return (
     <>
       <Head>
@@ -52,42 +93,111 @@ const Shows: NextPage = (
               </p>
             </>
           )}
-          {shows.map((show, index) => (
-            <div key={index} className="flex flex-col items-center gap-2">
-              <div className="divide-y">
-                <div className="flex-row gap-2 text-center sm:flex sm:items-center sm:justify-center sm:gap-10 md:py-4">
-                  <div className="pr-4 font-medium text-gray-100">
-                    {show.date}
+          <div className="py-5">
+            {shows.map((show, index) => (
+              <Link
+                href={show.bandsintown_link as string}
+                key={index}
+                className="z-0 flex w-screen flex-col items-center gap-2 hover:bg-gray-600"
+              >
+                <div className="divide-y">
+                  <div className="flex flex-col justify-center gap-2 py-6 text-center sm:flex-row sm:justify-between sm:gap-24 sm:text-left md:gap-36 md:py-4 lg:gap-48">
+                    <div>
+                      <div className="font-bold text-gray-100">{show.date}</div>
+                      <div className="font-small text-gray-100">
+                        {show.location}
+                      </div>
+                      <div className="font-small text-gray-100 sm:order-2">
+                        {show.name}
+                      </div>
+                    </div>
+                    <motion.div
+                      onHoverStart={() => setHover(true)}
+                      onHoverEnd={() => setHover(false)}
+                      whileTap="hover"
+                      whileFocus="hover"
+                      className="flex flex-row justify-center gap-3 text-white sm:flex-col"
+                    >
+                      <motion.div
+                        initial="hidden"
+                        animate={isHover ? "shown" : "hidden"}
+                        whileHover="shown"
+                        variants={variants}
+                        className="absolute left-1/2 flex flex-row gap-1 bg-gray-800 px-2 py-2 md:gap-3 lg:gap-4"
+                      >
+                        <TwitterShareButton
+                          url={show.bandsintown_link as string}
+                          title={"Check out this upcoming event from Scalise!"}
+                        >
+                          <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
+                            <TwitterIcon />
+                          </div>
+                        </TwitterShareButton>
+                        <FacebookShareButton
+                          url={show.bandsintown_link as string}
+                          quote={"Check out this upcoming event from Scalise!"}
+                          hashtag={"#music"}
+                        >
+                          {" "}
+                          <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
+                            <FacebookIcon />
+                          </div>
+                        </FacebookShareButton>
+                        <EmailShareButton
+                          url={show.bandsintown_link as string}
+                          subject={
+                            "Check out this upcoming event from Scalise!"
+                          }
+                          body=""
+                        >
+                          <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
+                            <EmailIcon />
+                          </div>
+                        </EmailShareButton>
+                        <button
+                          onClick={() => {
+                            navigator.clipboard
+                              .writeText(show.bandsintown_link as string)
+                              .then(() => {
+                                setCopied(true);
+                                setTimeout(() => {
+                                  setCopied(false);
+                                }, 500);
+                              })
+                              .catch((error) => console.error(error));
+                          }}
+                        >
+                          <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
+                            {!isCopied && <LinkIcon />}
+                            {isCopied && (
+                              <div className="animate-bounce animate-pulse text-green-400">
+                                <CheckIcon />
+                              </div>
+                            )}
+                          </div>
+                        </button>
+                      </motion.div>
+                      <div className="flex flex-row justify-center gap-2">
+                        <p>Share:</p>
+                        <ShareIcon />
+                      </div>
+                    </motion.div>
+                    <Link
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="flex flex-col justify-center rounded-sm border bg-rose-800 px-10 py-3 text-white hover:border-rose-900 hover:bg-rose-700 sm:py-0"
+                      href={show.ticket_link as string}
+                    >
+                      Tickets
+                    </Link>
                   </div>
-                  <div className="pr-4 font-medium text-gray-100">
-                    {show.location}
-                  </div>
-                  <div className="pr-4 font-medium text-gray-100">
-                    {show.name}
-                  </div>
-                  <Link
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="pr-4 text-xl font-bold text-gray-100 hover:text-blue-700 hover:underline active:text-gray-500"
-                    href={show.bandsintown_link as string}
-                  >
-                    Share
-                  </Link>
-                  <Link
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="pr-4 text-xl font-bold text-gray-100 hover:text-blue-700 hover:underline active:text-gray-500"
-                    href={show.ticket_link as string}
-                  >
-                    Tickets
-                  </Link>
                 </div>
-              </div>
-            </div>
-          ))}
+              </Link>
+            ))}
+          </div>
 
           <Link
-            className="mb-2 mr-2 inline-block w-auto rounded-lg bg-blue-700 px-10 py-3 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="mb-2 mr-2 inline-block w-auto rounded-lg bg-rose-800 px-5 py-3 text-sm font-medium text-white hover:bg-rose-600 focus:outline-none focus:ring-4 focus:ring-blue-300"
             href="https://bandsintown.com/artist-subscribe/14899628?
             affil_code=js_www.scalise.band
             &app_id=js_www.scalise.band
@@ -107,7 +217,10 @@ const Shows: NextPage = (
             &utm_campaign=track
             &utm_medium=web&utm_source=widget"
           >
-            Follow
+            <div className="flex flex-row items-center gap-1">
+              <BandsintownIcon />
+              Follow
+            </div>
           </Link>
         </div>
       </main>

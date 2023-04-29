@@ -42,6 +42,7 @@ const Subscribe: NextPage = () => {
         <h1>Thank you for subscribing!</h1>
       ) : (
         <>
+          <h1 className="text-center text-4xl font-bold">Subscribe</h1>
           <p className="mb-4 text-center">
             Sign up with your email address to receive news and updates.
           </p>
@@ -53,7 +54,7 @@ const Subscribe: NextPage = () => {
               {...register("email", { required: true })}
             />
             <button
-              className="focus:shadow-outline rounded-r-lg bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
+              className="focus:shadow-outline border border-rose-700 px-4 py-2 font-bold text-rose-700 hover:bg-rose-700 hover:text-white active:bg-rose-400"
               type="submit"
             >
               SIGN UP
@@ -61,7 +62,7 @@ const Subscribe: NextPage = () => {
           </form>
         </>
       )}
-      <div className="mt-4 flex justify-center bg-white">
+      <div className="mt-4 flex justify-center gap-2 bg-white">
         <Link
           href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
           className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
