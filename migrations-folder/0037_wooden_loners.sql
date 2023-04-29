@@ -1,0 +1,1 @@
+CREATE INDEX `designIndex` ON `emailDesigns` (`name`);

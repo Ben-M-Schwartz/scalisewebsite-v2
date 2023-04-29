@@ -6,6 +6,7 @@ import {
   index,
   serial,
   float,
+  json,
 } from "drizzle-orm/mysql-core";
 
 export const config = {
@@ -165,6 +166,18 @@ export const shows = mysqlTable(
   },
   (table) => ({
     showIndex: index("showIndex").on(table.id),
+  })
+);
+
+export const emailDesigns = mysqlTable(
+  "emailDesigns",
+  {
+    id: serial("id").primaryKey().notNull(),
+    name: varchar("name", { length: 255 }),
+    json: json("json"),
+  },
+  (table) => ({
+    designIndex: index("designIndex").on(table.name),
   })
 );
 

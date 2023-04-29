@@ -5,6 +5,7 @@ import {
   subscribers,
   potential_subscribers,
   stockNotifications,
+  emailDesigns,
 } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
 import { eq, and } from "drizzle-orm/expressions";
@@ -392,5 +393,33 @@ export const subscriptionRouter = createTRPCRouter({
     .input(z.object({ email: z.string() }))
     .mutation(async ({ input }) => {
       await db.delete(subscribers).where(eq(subscribers.email, input.email));
+    }),
+
+  getEmailDesignNames: publicProcedure.query(async () => {
+    return await db.select({ name: emailDesigns.name }).from(emailDesigns);
+  }),
+
+  getEmailDesign: publicProcedure
+    .input(z.object({ name: z.string() }))
+    .query(async ({ input }) => {
+      return await db
+        .select({ json: emailDesigns.json })
+        .from(emailDesigns)
+        .where(eq(emailDesigns.name, input.name));
+    }),
+
+  saveEmailDesign: publicProcedure
+    .input(z.object({ name: z.string(), json: z.any() }))
+    .mutation(async ({ input }) => {
+      type designInput = InferModel<typeof emailDesigns, "insert">;
+      const newDesign: designInput = {
+        name: input.name,
+        json: input.json,
+      };
+
+      await db
+        .insert(emailDesigns)
+        .values(newDesign)
+        .catch((error) => console.error(error));
     }),
 });
