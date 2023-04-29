@@ -155,7 +155,8 @@ const Shows: NextPage = (
                           </div>
                         </EmailShareButton>
                         <button
-                          onClick={() => {
+                          onClick={(e) => {
+                            e.preventDefault();
                             navigator.clipboard
                               .writeText(show.bandsintown_link as string)
                               .then(() => {
