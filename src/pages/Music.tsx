@@ -16,7 +16,9 @@ const Music: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
         <div className="w-full bg-rose-800">
-          <h1 className="py-10 text-center text-8xl text-white">MUSIC</h1>
+          <h1 className="py-4 text-center text-8xl text-white sm:py-6 md:py-8 lg:py-10">
+            MUSIC
+          </h1>
         </div>
 
         <div className="relative min-h-screen w-screen">
