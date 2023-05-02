@@ -89,18 +89,6 @@ const Home: NextPage = () => {
         </div>
 
         <div className="relative min-h-screen w-screen">
-          {/*           <div className="z-0">
-            <video
-              src="/TellMeYouNeedMe.mp4"
-              playsInline
-              autoPlay
-              loop
-              muted
-              preload="auto"
-              className="absolute z-0"
-            />
-          </div> */}
-
           <div className="flex flex-col gap-20 pb-20">
             <video
               src="/TellMeYouNeedMe.mp4"
