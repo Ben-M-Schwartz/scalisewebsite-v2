@@ -2,6 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+//import { useRef, useEffect } from "react";
 
 export const config = {
   runtime: "experimental-edge",
@@ -9,6 +10,13 @@ export const config = {
 };
 
 const Home: NextPage = () => {
+  /*   const vidRef = useRef(null);
+
+  useEffect(() => {
+    if (vidRef && vidRef.current) {
+      videoRef.current.play();
+    }
+  }, [vidRef]); */
   return (
     <>
       <Head>
@@ -87,33 +95,21 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
+        <div className="relative min-h-screen w-screen">
+          <div className="z0">
+            <video
+              src="/TellMeYouNeedMe.mp4"
+              //ref = { vidRef }
+              playsInline
+              autoPlay
+              loop
+              muted
+            />
+          </div>
+        </div>
       </main>
     </>
   );
 };
 
 export default Home;
-
-/* const AuthShowcase: React.FC = () => {
-  const { data: sessionData } = useSession();
-
-  const { data: secretMessage } = api.example.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined },
-  );
-
-  return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-center text-2xl text-white">
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-      <button
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        onClick={sessionData ? () => void signOut() : () => void signIn()}
-      >
-        {sessionData ? "Sign out" : "Sign in"}
-      </button>
-    </div>
-  );
-}; */
