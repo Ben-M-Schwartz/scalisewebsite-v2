@@ -2,7 +2,6 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-//import { useRef, useEffect } from "react";
 
 export const config = {
   runtime: "experimental-edge",
@@ -10,13 +9,6 @@ export const config = {
 };
 
 const Home: NextPage = () => {
-  /*   const vidRef = useRef(null);
-
-  useEffect(() => {
-    if (vidRef && vidRef.current) {
-      videoRef.current.play();
-    }
-  }, [vidRef]); */
   return (
     <>
       <Head>
@@ -95,16 +87,158 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
+
         <div className="relative min-h-screen w-screen">
-          <div className="z0">
+          {/*           <div className="z-0">
             <video
               src="/TellMeYouNeedMe.mp4"
-              //ref = { vidRef }
               playsInline
               autoPlay
               loop
               muted
+              preload="auto"
+              className="absolute z-0"
             />
+          </div> */}
+
+          <div className="flex flex-col gap-20 pb-20">
+            <video
+              src="/TellMeYouNeedMe.mp4"
+              playsInline
+              autoPlay
+              loop
+              muted
+              className="absolute z-0 h-full object-cover"
+            />
+            <div className="z-10 flex flex-col items-center justify-center gap-3 pt-20 sm:px-10 md:flex-row md:items-center md:justify-center md:gap-10">
+              <div className="md:order-0 w-1/2 text-center md:h-1/2 md:w-1/2 lg:h-2/3 lg:w-2/3">
+                <div className="flex flex-col items-center justify-center gap-3">
+                  <h1 className="text-center text-4xl font-bold text-white">
+                    TRANSFERRED TO HOUSTON
+                  </h1>
+                  <Link
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="flex w-full flex-col justify-center rounded-sm border-4 border-white py-2 text-center text-xl text-white hover:bg-white hover:font-bold hover:text-rose-800 md:w-1/2"
+                    href="https://distrokid.com/hyperfollow/scalise/transferred-to-houston"
+                  >
+                    Listen Here
+                  </Link>
+                </div>
+              </div>
+              <div className="h-1/2 w-1/2 lg:h-2/3 lg:w-2/3">
+                <Image
+                  src="/transferred.png"
+                  alt="Transferred To Houston Image"
+                  width={504}
+                  height={504}
+                />
+              </div>
+            </div>
+
+            <div className="z-10 flex flex-col items-center justify-center gap-3 sm:px-10 md:flex-row md:items-center md:justify-center md:gap-10">
+              <div className="w-1/2 text-center md:order-1 md:h-1/2 md:w-1/2 lg:h-2/3 lg:w-2/3">
+                <div className="flex flex-col items-center justify-center gap-3">
+                  <h1 className="z-1 tex-center text-4xl font-bold text-white">
+                    REST OF THE WEEK
+                  </h1>
+                  <Link
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="flex w-full flex-col justify-center rounded-sm border-4 border-white py-2 text-center text-xl text-white hover:bg-white hover:font-bold hover:text-rose-800 md:w-1/2"
+                    href="https://distrokid.com/hyperfollow/scalise/rest-of-the-week"
+                  >
+                    Listen Here
+                  </Link>
+                </div>
+              </div>
+              <div className="h-1/2 w-1/2 lg:h-2/3 lg:w-2/3">
+                <Image
+                  src="/restOfTheWeek.png"
+                  alt="Rest Of The Week Image"
+                  width={504}
+                  height={504}
+                />
+              </div>
+            </div>
+
+            <div className="z-10 flex flex-col items-center justify-center gap-3 sm:px-10 md:flex-row md:items-center md:justify-center md:gap-10">
+              <div className="md:order-0 w-1/2 text-center md:h-1/2 md:w-1/2 lg:h-2/3 lg:w-2/3">
+                <div className="flex flex-col items-center justify-center gap-3">
+                  <h1 className="z-1 tex-center text-4xl font-bold text-white">
+                    FRUIT SNACKS
+                  </h1>
+                  <Link
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="flex w-full flex-col justify-center rounded-sm border-4 border-white px-2 py-2 text-center text-xl text-white hover:bg-white hover:font-bold hover:text-rose-800 md:w-1/2"
+                    href="https://distrokid.com/hyperfollow/scalise/fruit-snacks"
+                  >
+                    Listen Here
+                  </Link>
+                </div>
+              </div>
+              <div className="h-1/2 w-1/2 lg:h-2/3 lg:w-2/3">
+                <Image
+                  src="/fruitSnacks.jpeg"
+                  alt="Fruit Snacks Image"
+                  width={504}
+                  height={504}
+                />
+              </div>
+            </div>
+
+            <div className="z-10 flex flex-col items-center justify-center gap-3 sm:px-10 md:flex-row md:items-center md:justify-center md:gap-10">
+              <div className="w-1/2 text-center md:order-1 md:h-1/2 md:w-1/2 lg:h-2/3 lg:w-2/3">
+                <div className="flex flex-col items-center justify-center gap-3">
+                  <h1 className="tex-center text-4xl font-bold text-white">
+                    TELL ME YOU NEED ME
+                  </h1>
+                  <Link
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="flex w-full flex-col justify-center rounded-sm border-4 border-white py-2 text-center text-xl text-white hover:bg-white hover:font-bold hover:text-rose-800 md:w-1/2"
+                    href="https://distrokid.com/hyperfollow/scalise/tell-me-you-need-me"
+                  >
+                    Listen Here
+                  </Link>
+                </div>
+              </div>
+              <div className="h-1/2 w-1/2 lg:h-2/3 lg:w-2/3">
+                <Image
+                  src="/tellMeYouNeedMe.jpeg"
+                  alt="Tell Me You Need Me Image"
+                  width={504}
+                  height={504}
+                />
+              </div>
+            </div>
+
+            <div className="z-10 flex flex-col items-center justify-center gap-3 sm:px-10 md:flex-row md:items-center md:justify-center md:gap-10">
+              <div className="md:order-0 w-1/2 text-center md:h-1/2 md:w-1/2 lg:h-2/3 lg:w-2/3">
+                <div className="flex flex-col items-center justify-center gap-3">
+                  <h1 className="z-1 tex-center text-4xl font-bold text-white">
+                    AIRBAG
+                  </h1>
+                  <Link
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="flex w-full flex-col justify-center rounded-sm border-4 border-white py-2 text-center text-xl text-white hover:bg-white hover:font-bold hover:text-rose-800 md:w-1/2"
+                    href="https://distrokid.com/hyperfollow/scalise/airbag"
+                  >
+                    Listen Here
+                  </Link>
+                </div>
+              </div>
+              <div className="h-1/2 w-1/2 lg:h-2/3 lg:w-2/3">
+                <Image
+                  src="/airbag.jpeg"
+                  alt="Airbag Image"
+                  width={504}
+                  height={504}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </main>
