@@ -60,6 +60,12 @@ const AddShow: NextPage = () => {
         <title>New Show</title>
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+        <Link
+          href="/admin/home"
+          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Admin Home
+        </Link>
         <div className="container flex flex-col gap-12 px-4 py-16 ">
           <h1 className="text-4xl text-white">
             Create a listing for a new show
@@ -131,7 +137,7 @@ const AddShow: NextPage = () => {
                 htmlFor="bandsintown_link"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
-                Bands in town link for sharing
+                Link for sharing
               </label>
               <input
                 id="bandsintown_link"
@@ -162,12 +168,6 @@ const AddShow: NextPage = () => {
             </button>
           </form>
         </div>
-        <Link
-          href="/admin/home"
-          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
-        >
-          Admin Home
-        </Link>
       </main>
     </>
   );

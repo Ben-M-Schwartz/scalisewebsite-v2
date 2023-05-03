@@ -15,8 +15,8 @@ type Product = InferModel<typeof product_details, "select">;
 
 function Card({ product }: { product: Product }) {
   return (
-    <div className="borderx max-w-sm rounded-lg">
-      <Link href={`/Product/${product.id}`}>
+    <div className="borderx max-w-sm">
+      <Link href={`/Product/${(product.name as string).replace(/\s+/g, "-")}`}>
         <div className="relative h-full w-full">
           <Image
             className=""
@@ -85,7 +85,7 @@ const Store: NextPage = (
             STORE
           </h1>
         </div>
-        <div className="sm: container flex flex-col items-center justify-center gap-4 sm:grid sm:grid-cols-2 sm:items-center sm:justify-center lg:grid-cols-3">
+        <div className="container flex flex-col items-center justify-center gap-4 sm:grid sm:grid-cols-2 sm:items-center sm:justify-center lg:grid-cols-3">
           {products.map((product) => (
             <Card key={product.id} product={product} />
           ))}

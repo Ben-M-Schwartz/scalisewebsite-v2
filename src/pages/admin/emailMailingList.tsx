@@ -86,6 +86,12 @@ const MailingList: NextPage = () => {
         <title>Mail</title>
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+        <Link
+          href="/admin/home"
+          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Admin Home
+        </Link>
         <div className="container flex flex-col gap-12 px-4 py-16 ">
           <h1 className="text-4xl text-white">Email Mailing List</h1>
           <form
@@ -154,13 +160,6 @@ const MailingList: NextPage = () => {
             </button>
           </form>
         </div>
-
-        <Link
-          href="/admin/home"
-          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
-        >
-          Admin Home
-        </Link>
       </main>
     </>
   );

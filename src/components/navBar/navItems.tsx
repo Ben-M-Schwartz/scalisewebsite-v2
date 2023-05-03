@@ -11,8 +11,10 @@ import {
 } from "../icons";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
-/* import { api } from "~/utils/api";
-import { getCookie, hasCookie } from "cookies-next"; */
+import { api } from "~/utils/api";
+import { getCookie, hasCookie } from "cookies-next";
+import { useState, useContext } from "react";
+import { CartContext, type CartContextType } from "~/pages/_app";
 
 const item_variants = {
   open: {
@@ -59,11 +61,23 @@ export function HomeLink() {
 }
 
 export function CartLink() {
-  /*   const cartAmount = hasCookie("cart_id")
-    ? api.cart.getCartAmount.useQuery({
-        id: getCookie("cart_id")!.toString(),
-      }).data
-    : 0; */
+  const [enabled, setEnabled] = useState(true);
+  const { cartAmount, updateAmount } = useContext<CartContextType>(CartContext);
+
+  hasCookie("cart_id")
+    ? api.cart.getCartAmount.useQuery(
+        {
+          id: getCookie("cart_id")!.toString(),
+        },
+        {
+          onSuccess: (data) => {
+            updateAmount(data);
+            setEnabled(false);
+          },
+          enabled: enabled,
+        }
+      )
+    : 0;
 
   return (
     <Link
@@ -77,7 +91,7 @@ export function CartLink() {
         whileTap={{ scale: 0.95 }}
       >
         <CartIcon />
-        {/* <p className="pr-4 text-white">{(cartAmount as number) || 0}</p> */}
+        <p className="pr-4 text-white">{cartAmount || 0}</p>
       </motion.div>
     </Link>
   );

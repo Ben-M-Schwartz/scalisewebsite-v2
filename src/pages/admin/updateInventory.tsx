@@ -70,12 +70,13 @@ function Card({
 
   return (
     <div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-700">
-      <div className="relative h-32 w-full">
+      <div className="relative h-full w-full">
         <Image
-          className="object-cover"
-          src={`/${product.image as string}.png`}
+          className=""
+          src={`/${product.image as string}`}
           alt="image"
-          fill
+          height={360}
+          width={423}
         />
       </div>
       <div className="p-5">
@@ -192,10 +193,16 @@ const updateInventory: NextPage = () => {
         <title>Update</title>
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+        <Link
+          href="/admin/home"
+          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Admin Home
+        </Link>
         <h1 className="mt-12 pl-4 text-4xl text-white">
           Fill in the inventory changes
         </h1>
-        <div className="container grid grid-cols-3 items-center justify-center gap-4">
+        <div className="container flex flex-col items-center justify-center gap-4 sm:grid sm:grid-cols-2 sm:items-center sm:justify-center lg:grid-cols-3">
           {products?.data?.map((product, index) => (
             <Card
               key={index}
@@ -212,12 +219,6 @@ const updateInventory: NextPage = () => {
             />
           ))}
         </div>
-        <Link
-          href="/admin/home"
-          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
-        >
-          Admin Home
-        </Link>
       </main>
     </>
   );

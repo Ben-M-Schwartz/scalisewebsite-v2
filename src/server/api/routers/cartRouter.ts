@@ -178,7 +178,10 @@ export const cartRouter = createTRPCRouter({
         .select()
         .from(cart_items)
         .where(eq(cart_items.cart_id, input.id));
-      return items.length || 0;
+      return (
+        items.reduce((sum, current) => sum + (current.quantity as number), 0) ||
+        0
+      );
     }),
 
   getCart: publicProcedure

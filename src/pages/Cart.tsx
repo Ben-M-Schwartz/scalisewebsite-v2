@@ -5,7 +5,8 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { type NextPage } from "next";
 import Head from "next/head";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
+import { CartContext, type CartContextType } from "~/pages/_app";
 import Link from "next/link";
 import { getCookie, hasCookie } from "cookies-next";
 import { useRouter } from "next/router";
@@ -47,6 +48,8 @@ const Cart: NextPage = () => {
   const router = useRouter();
 
   const cart_id = getCookie("cart_id")?.toString() || "not found";
+
+  const { updateAmount } = useContext<CartContextType>(CartContext);
 
   useEffect(() => {
     if (!hasCookie("cart_id")) {
@@ -90,6 +93,7 @@ const Cart: NextPage = () => {
         price: price,
         weight: weight,
       })
+      .then(() => updateAmount(quantity))
       .catch((error) => console.error(error));
   };
 
@@ -116,6 +120,7 @@ const Cart: NextPage = () => {
           fullRemove: fullRemove,
         })
         .then(() => {
+          updateAmount(-quantity);
           if (fullRemove) {
             window.alert("Removed From Cart");
           }
@@ -222,7 +227,7 @@ const Cart: NextPage = () => {
       <Head>
         <title>SCALISE</title>
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-900">
         {loading && (
           <div className="flex flex-row justify-between gap-2 text-white">
             <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
@@ -244,9 +249,7 @@ const Cart: NextPage = () => {
         )}
         {!loading && !emptyCart && (
           <>
-            <h1 className="text-2xl font-bold text-white">
-              Cart ({cartItems.length} Item(s))
-            </h1>
+            <h1 className="text-2xl font-bold text-white">Cart</h1>
             <div className="flex flex-col items-center justify-center">
               <div className="divide-y">
                 {cartItems.map((item: Cart, index) => (
@@ -350,7 +353,10 @@ const Cart: NextPage = () => {
               Clear Cart
             </button>
             <div className="flex flex-col items-center justify-center text-white">
-              <h1>Subtotal: {totalPrice}</h1>
+              <h1>
+                Subtotal: ${totalPrice}
+                {totalPrice % 1 === 0 ? ".00" : ""}
+              </h1>
               <button
                 className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
                 onClick={handleCheckout}

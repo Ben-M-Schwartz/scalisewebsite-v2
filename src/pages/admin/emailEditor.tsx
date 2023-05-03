@@ -71,6 +71,20 @@ export default function Email() {
 
   return (
     <>
+      <div className="flex flex-row gap-4">
+        <Link
+          href="/admin/emailMailingList"
+          className="text-xl font-bold text-gray-800 hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Email Mailing List
+        </Link>
+        <Link
+          href="/admin/home"
+          className="text-xl font-bold text-gray-800 hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Admin Home
+        </Link>
+      </div>
       <div className="">
         <div className="flex flex-row gap-4">
           <input
@@ -131,20 +145,6 @@ export default function Email() {
         <div className="h-screen overflow-hidden">
           <EmailEditor ref={emailEditorRef} onLoad={onLoad} onReady={onReady} />
         </div>
-      </div>
-      <div className="flex flex-row gap-4">
-        <Link
-          href="/admin/emailMailingList"
-          className="text-xl font-bold text-gray-800 hover:text-blue-700 hover:underline active:text-gray-500"
-        >
-          Email Mailing List
-        </Link>
-        <Link
-          href="/admin/home"
-          className="text-xl font-bold text-gray-800 hover:text-blue-700 hover:underline active:text-gray-500"
-        >
-          Admin Home
-        </Link>
       </div>
     </>
   );

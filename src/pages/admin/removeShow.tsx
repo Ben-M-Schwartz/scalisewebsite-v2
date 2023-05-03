@@ -45,20 +45,15 @@ const Shows: NextPage = () => {
       <Head>
         <title>Shows</title>
       </Head>
-      <main className="flex  min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+      <main className="flex  min-h-screen flex-col items-center justify-center bg-gray-800">
+        <Link
+          href="/admin/home"
+          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Admin Home
+        </Link>
         <div className="flex flex-col items-center gap-2">
-          <p className="text-2xl text-white">Store Page</p>
-          {shows.data?.length === 0 && (
-            <>
-              <p className="text-white">
-                We do not currently have any shows booked
-              </p>
-              <p className="text-white">
-                If you would like to book us for a show go to our contact page
-                or reach out on social medai
-              </p>
-            </>
-          )}
+          <p className="text-2xl text-white">Remove Shows</p>
           {shows.data?.map((show, index) => (
             <div key={index} className="flex flex-col items-center gap-2">
               <div className="divide-y">
@@ -72,27 +67,21 @@ const Shows: NextPage = () => {
                   <div className="pr-4 font-medium text-gray-100">
                     {show.name}
                   </div>
+                  <button
+                    onClick={() => {
+                      remove.mutate({ id: show.id });
+                      window.alert("success");
+                      router.reload();
+                    }}
+                    className="mb-2 mr-2 inline-block w-auto rounded-lg bg-blue-700 px-10 py-3 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    remove
+                  </button>
                 </div>
-                <button
-                  onClick={() => {
-                    remove.mutate({ id: show.id });
-                    window.alert("success");
-                    router.reload();
-                  }}
-                  className="mb-2 mr-2 inline-block w-auto rounded-lg bg-blue-700 px-10 py-3 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  remove
-                </button>
               </div>
             </div>
           ))}
         </div>
-        <Link
-          href="/admin/home"
-          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
-        >
-          Admin Home
-        </Link>
       </main>
     </>
   );

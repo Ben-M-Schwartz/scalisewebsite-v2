@@ -18,7 +18,7 @@ export const config = {
   regions: ["cle1"],
 };
 
-export const getProductPage = async (id: string) => {
+export const getProductPage = async (name: string) => {
   const result = await db
     .select({
       id: product_details.id,
@@ -47,7 +47,7 @@ export const getProductPage = async (id: string) => {
         )
       )
     )
-    .where(eq(product_details.id, parseInt(id)));
+    .where(eq(product_details.name, name));
   return result;
 };
 

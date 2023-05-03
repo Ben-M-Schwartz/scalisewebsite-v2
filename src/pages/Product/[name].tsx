@@ -7,8 +7,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { useForm } from "react-hook-form";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { CarretDown } from "~/components/icons";
+import { CartContext, type CartContextType } from "~/pages/_app";
 
 export const config = {
   runtime: "experimental-edge",
@@ -47,8 +48,8 @@ import { getProductPage } from "~/server/api/routers/inventoryRouter";
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id } = context.params as { id: string };
-  const result = await getProductPage(id);
+  const { name } = context.params as { name: string };
+  const result = await getProductPage(name.replace(/-/g, " "));
 
   return {
     props: {
@@ -97,6 +98,8 @@ const Product: NextPage = (
   const [processing, setProcessing] = useState(false);
   const [buttonText, setButtonText] = useState("Add to Cart");
 
+  const { updateAmount } = useContext<CartContextType>(CartContext);
+
   const addToCart = api.cart.addToCart.useMutation();
   const { register: cartRegister, handleSubmit: cartSubmit } =
     useForm<addToCartForm>();
@@ -142,6 +145,7 @@ const Product: NextPage = (
     addToCart
       .mutateAsync(mutateOptions)
       .then(() => {
+        updateAmount(mutateOptions.quantity);
         setButtonText("Added to Cart!");
         setProcessing(false);
       })
@@ -165,7 +169,6 @@ const Product: NextPage = (
     setPickedSize(event.target.value);
     const selectedOption = event.target.options[event.target.selectedIndex];
     const maxQuantity = selectedOption!.dataset.maxQuantity;
-    console.log(maxQuantity);
     setMaxQuantity(parseInt(maxQuantity as string));
     if (parseInt(maxQuantity as string) === 0) {
       setSoldOut(true);
@@ -251,15 +254,15 @@ const Product: NextPage = (
                     >
                       Size
                     </label>
-                    <div className="flex w-1/4 flex-row items-center">
+                    <div className="flex w-1/2 flex-row items-center">
                       <select
                         id="size"
                         {...cartRegister("size", { required: true })}
                         onChange={handleSizeChange}
                         defaultValue=""
-                        className="appearance-none border bg-black py-2 pl-4 pr-10 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                        className="z-10 h-12 w-full appearance-none border bg-transparent pl-4 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                       >
-                        <option value="" disabled>
+                        <option value="" data-max-quantity={0} disabled>
                           Select Size
                         </option>
                         {productData
@@ -288,12 +291,12 @@ const Product: NextPage = (
                                 (product.product_quantity
                                   .quantity_in_checkouts || 0) <=
                               0
-                                ? "(Out of Stock)"
+                                ? "(Sold Out)"
                                 : ""}
                             </option>
                           ))}
                       </select>
-                      <div className="absolute h-5 w-5 translate-x-28">
+                      <div className="absolute h-5 w-5 translate-x-44">
                         <CarretDown />
                       </div>
                     </div>
@@ -357,12 +360,12 @@ const Product: NextPage = (
                       id="notify"
                       type="email"
                       placeholder="email@example.com"
-                      className="block w-auto rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                      className="mb-4 block w-auto rounded-lg border bg-black px-6 py-2 text-sm text-white [appearance:textfield] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                       {...notifyRegister("email", { required: true })}
                     />
                     <button
                       type="submit"
-                      className="mb-2 mr-2 inline-block w-auto rounded-lg bg-blue-700 px-10 py-3 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-white hover:bg-white hover:text-black"
                     >
                       Notify Me!
                     </button>

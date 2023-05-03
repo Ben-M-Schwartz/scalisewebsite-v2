@@ -42,12 +42,13 @@ function Card({ product }: { product: Product }) {
 
   return (
     <div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-700">
-      <div className="relative h-32 w-full">
+      <div className="relative h-full w-full">
         <Image
-          className="object-cover"
-          src={`/${product.image as string}.png`}
+          className=""
+          src={`/${product.image as string}`}
           alt="image"
-          fill
+          height={360}
+          width={423}
         />
       </div>
       <div className="p-5">
@@ -121,6 +122,12 @@ const removeProduct: NextPage = () => {
         <title>Remove</title>
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+        <Link
+          href="/admin/home"
+          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Admin Home
+        </Link>
         <h1 className="mt-12 pl-4 text-4xl text-white">
           Which product would you like to remove from the website?
         </h1>
@@ -129,12 +136,6 @@ const removeProduct: NextPage = () => {
             <Card key={product.id} product={product} />
           ))}
         </div>
-        <Link
-          href="/admin/home"
-          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
-        >
-          Admin Home
-        </Link>
       </main>
     </>
   );
