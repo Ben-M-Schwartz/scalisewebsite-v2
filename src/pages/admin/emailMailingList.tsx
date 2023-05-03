@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { SignIn } from "@clerk/clerk-react";
 import { useAuth } from "@clerk/nextjs";
+import { useState } from "react";
 //import { signIn, signOut, useSession } from "next-auth/react";
 
 import { api } from "~/utils/api";
@@ -15,13 +16,17 @@ export const config = {
 };
 
 type emailForm = {
+  testRecipient: string;
   subject: string;
-  body: string;
+  html: string;
 };
 
 const MailingList: NextPage = () => {
   const { register, handleSubmit } = useForm<emailForm>();
   const { isLoaded, userId, orgId } = useAuth();
+
+  const [sendtest, setSendtest] = useState(false);
+
   if (!isLoaded)
     return (
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
@@ -47,10 +52,32 @@ const MailingList: NextPage = () => {
 
   const sendEmails = api.subscription.emailList.useMutation();
   const onSubmit = (formData: emailForm) => {
-    sendEmails
-      .mutateAsync({ ...formData })
-      .then(() => window.alert("success"))
-      .catch((error) => console.error(error));
+    if (!sendtest) {
+      const answer = window.confirm(
+        "Are you sure this email is ready to be sent to the mailing list?"
+      );
+      if (answer) {
+        sendEmails
+          .mutateAsync({
+            subject: formData.subject,
+            html: formData.html,
+            testRecipient: "",
+          })
+          .then(() => window.alert("success"))
+          .catch((error) => console.error(error));
+      } else {
+        return;
+      }
+    } else {
+      sendEmails
+        .mutateAsync({
+          subject: formData.subject,
+          html: formData.html,
+          testRecipient: formData.testRecipient,
+        })
+        .then(() => window.alert("success"))
+        .catch((error) => console.error(error));
+    }
   };
 
   return (
@@ -68,7 +95,7 @@ const MailingList: NextPage = () => {
             <div>
               <label
                 htmlFor="subject"
-                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                className="mb-2 block text-sm font-medium text-white"
               >
                 Subject
               </label>
@@ -81,14 +108,41 @@ const MailingList: NextPage = () => {
             <div>
               <label
                 htmlFor="body"
-                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                className="mb-2 block text-sm font-medium text-white"
               >
-                Body
+                HTML exported from page /admin/emailEditor
               </label>
-              <input
+              <textarea
                 id="body"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                {...register("body", { required: true })}
+                {...register("html", { required: true })}
+              />
+            </div>
+
+            <label
+              htmlFor="testsend"
+              className="mb-2 block text-sm font-medium text-white"
+            >
+              Send test email?
+            </label>
+            <input
+              type="checkbox"
+              id="testsend"
+              onChange={() => setSendtest(!sendtest)}
+              checked={sendtest}
+            />
+
+            <div className={sendtest ? "block" : "hidden"}>
+              <label
+                htmlFor="testRecipient"
+                className="mb-2 block text-sm font-medium text-white"
+              >
+                Address to send test email to:
+              </label>
+              <input
+                type="text"
+                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                {...register("testRecipient", { required: sendtest })}
               />
             </div>
 

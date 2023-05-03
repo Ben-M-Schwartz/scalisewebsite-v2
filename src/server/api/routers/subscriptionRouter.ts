@@ -67,12 +67,22 @@ export const sendEmail = async (emailOptions: EmailOptions) => {
   }
 };
 
-const emailMailingList = async (subject: string, body: string) => {
-  const template = Handlebars.compile(`
+const emailMailingList = async (subject: string, html: string) => {
+  /*   const template = Handlebars.compile(`
         <h1>{{subject}}</h1>
         <p>{{body}}</p>
         <a href={{domain}}/unsubscribe/{{email}}>Unsubscribe</a>
     `);
+
+    html in email options: template({
+        subject: subject,
+        body: body,
+        domain: process.env.DOMAIN,
+        email: subscriber.email,
+      })
+    
+    
+    */
   // Get list of subscribers from database or file
   const subList = await db.select().from(subscribers);
 
@@ -83,15 +93,24 @@ const emailMailingList = async (subject: string, body: string) => {
       from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
       to: subscriber.email!,
       subject: subject,
-      html: template({
-        subject: subject,
-        body: body,
-        domain: process.env.DOMAIN,
-        email: subscriber.email,
-      }),
+      html: html,
     };
     await sendEmail(mailOptions);
   }
+};
+
+const testEmail = async (
+  subject: string,
+  html: string,
+  testRecipient: string
+) => {
+  const mailOptions: EmailOptions = {
+    from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
+    to: testRecipient,
+    subject: subject,
+    html: html,
+  };
+  await sendEmail(mailOptions);
 };
 
 const sendConfirmationEmail = async (
@@ -267,6 +286,40 @@ const userAlreadySubscribed = async (email: string, url: string) => {
   });
 };
 
+const sendContactFormEmail = async (
+  firstName: string,
+  lastName: string,
+  email: string,
+  subject: string,
+  message: string
+) => {
+  const template = Handlebars.compile(`
+        <h1>Subject: {{subject}}</h1>
+        <h2>From: {{firstName}} {{lastName}}</h2>
+        <h3>Email: <a href="mailto:{{email}}">{{email}}</a></h3>
+        <h3>Message:</h3>
+        <p>{{body}}</p>
+    `);
+
+  const mailOptions: EmailOptions = {
+    from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
+    to: "benschwartz33@gmail.com",
+    subject: "Scalise Contact Form Submission",
+    html: template({
+      subject: subject,
+      body: message,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+    }),
+  };
+
+  await sendEmail(mailOptions).catch((error) => {
+    console.error(error);
+    throw new Error(`Failed to send email`);
+  });
+};
+
 export const subscriptionRouter = createTRPCRouter({
   confirm: publicProcedure
     .input(z.object({ email: z.string(), url: z.string() }))
@@ -384,9 +437,19 @@ export const subscriptionRouter = createTRPCRouter({
     }),
 
   emailList: publicProcedure
-    .input(z.object({ subject: z.string(), body: z.string() }))
+    .input(
+      z.object({
+        subject: z.string(),
+        html: z.string(),
+        testRecipient: z.string(),
+      })
+    )
     .mutation(async ({ input }) => {
-      await emailMailingList(input.subject, input.body);
+      if (input.testRecipient !== "") {
+        await testEmail(input.subject, input.html, input.testRecipient);
+      } else {
+        await emailMailingList(input.subject, input.html);
+      }
     }),
 
   unsubscribe: publicProcedure
@@ -421,5 +484,25 @@ export const subscriptionRouter = createTRPCRouter({
         .insert(emailDesigns)
         .values(newDesign)
         .catch((error) => console.error(error));
+    }),
+
+  contactForm: publicProcedure
+    .input(
+      z.object({
+        firstName: z.string(),
+        lastName: z.string(),
+        email: z.string(),
+        subject: z.string(),
+        message: z.string(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      await sendContactFormEmail(
+        input.firstName,
+        input.lastName,
+        input.email,
+        input.subject,
+        input.message
+      );
     }),
 });

@@ -128,6 +128,7 @@ const Shows: NextPage = (
                         <TwitterShareButton
                           url={show.bandsintown_link as string}
                           title={"Check out this upcoming event from Scalise!"}
+                          blankTarget
                         >
                           <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
                             <TwitterIcon />
@@ -137,6 +138,7 @@ const Shows: NextPage = (
                           url={show.bandsintown_link as string}
                           quote={"Check out this upcoming event from Scalise!"}
                           hashtag={"#music"}
+                          blankTarget
                         >
                           {" "}
                           <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
@@ -149,6 +151,7 @@ const Shows: NextPage = (
                             "Check out this upcoming event from Scalise!"
                           }
                           body=""
+                          blankTarget
                         >
                           <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
                             <EmailIcon />

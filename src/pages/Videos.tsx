@@ -66,7 +66,7 @@ const Videos: NextPage = () => {
           </div>
         </div>
         <h1 className="py-10 text-8xl text-white">Vlogs</h1>
-        <div className="grid grid-cols-1 gap-4 pb-10 md:grid-cols-2">
+        <div className="grid w-full grid-cols-1 gap-4 px-10 pb-10 md:grid-cols-2">
           <div>
             <iframe
               width="100%"
