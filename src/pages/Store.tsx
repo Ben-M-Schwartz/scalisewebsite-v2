@@ -19,7 +19,7 @@ function Card({ product }: { product: Product }) {
       <div className="relative h-32 w-full">
         <Image
           className=""
-          src={`/${product.image as string}.png`}
+          src={`/${product.image as string}`}
           alt="image"
           fill
         />

@@ -201,7 +201,7 @@ const Product: NextPage = (
           <div className="h-132 relative flex w-96 items-center justify-center">
             <Image
               className="full object-cover"
-              src={`/${productData[0].image as string}.png`}
+              src={`/${productData[0].image as string}`}
               alt="image"
               fill
             />

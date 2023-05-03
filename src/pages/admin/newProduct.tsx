@@ -158,7 +158,9 @@ const NewProduct: NextPage = () => {
                 htmlFor="quantities"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
-                Image Name
+                Image Name (note: The image must be uploaded into the public
+                folder in this directory. Include the file type in the image
+                name i.e image.png)
               </label>
               <input
                 id="imageName"
