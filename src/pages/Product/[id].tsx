@@ -3,10 +3,12 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
+import { CarretDown } from "~/components/icons";
 
 export const config = {
   runtime: "experimental-edge",
@@ -188,32 +190,55 @@ const Product: NextPage = (
       .catch((error) => console.log(error));
   };
 
-  if (!productData || !productData[0]) return null;
+  if (!productData || !productData[0])
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+        <div className="flex flex-row justify-between gap-2 text-white">
+          <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
+          <p className="flex">Loading...</p>
+        </div>
+      </main>
+    );
+
+  const Title = `${productData[0].name} - Scalise`;
 
   return (
     <>
       <Head>
-        <title>{productData[0].name} - SCALISE</title>
+        <title>{Title}</title>
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <h1 className="mt-12 pl-4 text-4xl text-white">Product Page</h1>
-        <div className="flex flex-row gap-20">
-          <div className="h-132 relative flex w-96 items-center justify-center">
+      <main className="min-h-screen bg-black">
+        <div className="flex flex-col items-center justify-center pb-20 md:flex-row md:gap-10 md:pb-0 xl:px-28">
+          <div className="relative flex h-full w-2/3 flex-col md:w-1/2">
+            <div className="flex flex-row items-center gap-4 py-10">
+              <Link
+                className="text-xl text-white hover:text-blue-400 hover:underline active:text-blue-700 active:underline"
+                href="/Store"
+              >
+                STORE
+              </Link>
+              <p className="text-white">&gt;</p>
+              <p className="text-xl text-white">{productData[0].name}</p>
+            </div>
             <Image
-              className="full object-cover"
+              className="full object-cover shadow-lg"
               src={`/${productData[0].image as string}`}
               alt="image"
-              fill
+              height={719}
+              width={540}
             />
           </div>
-          <div className="w-1/2">
-            <div className="container mx-auto flex flex-col gap-12">
-              <h1 className="mt-12 text-4xl text-white">
+          <div className="w-2/3 md:w-1/3">
+            <div className="container flex flex-col gap-4 pb-16">
+              <h1 className="mt-12 text-4xl text-white md:mt-8 md:text-8xl">
                 {productData[0].name}
               </h1>
-              <p className="text-white">$ {productData[0].price}</p>
+              <p className="text-xl text-white">
+                $ {productData[0].price}
+                {productData[0].price % 1 === 0 ? ".00" : ""}
+              </p>
             </div>
-            <div className="container flex flex-col gap-12 px-4 py-16 ">
+            <div className="container flex flex-col gap-12">
               <form
                 className="flex flex-col gap-4"
                 onSubmit={cartSubmit(onSubmitCart)}
@@ -222,48 +247,56 @@ const Product: NextPage = (
                   <div>
                     <label
                       htmlFor="size"
-                      className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                      className="block text-sm font-medium text-white"
                     >
                       Size
                     </label>
-                    <select
-                      id="size"
-                      {...cartRegister("size", { required: true })}
-                      onChange={handleSizeChange}
-                      defaultValue=""
-                    >
-                      <option value="" disabled selected>
-                        Select Size
-                      </option>
-                      {productData
-                        .sort((a, b) => {
-                          return (
-                            allOptions[
-                              a.product_quantity.size.trim() as sizes
-                            ]! -
-                            allOptions[b.product_quantity.size.trim() as sizes]!
-                          );
-                        })
-                        .map((product) => (
-                          <option
-                            key={product.product_quantity.size}
-                            value={product.product_quantity.size}
-                            data-max-quantity={
-                              product.product_quantity.quantity_in_stock -
-                              (product.product_quantity.quantity_in_checkouts ||
-                                0)
-                            }
-                          >
-                            {product.product_quantity.size}
-                            {product.product_quantity.quantity_in_stock -
-                              (product.product_quantity.quantity_in_checkouts ||
-                                0) <=
-                            0
-                              ? "(Out of Stock)"
-                              : ""}
-                          </option>
-                        ))}
-                    </select>
+                    <div className="flex w-1/4 flex-row items-center">
+                      <select
+                        id="size"
+                        {...cartRegister("size", { required: true })}
+                        onChange={handleSizeChange}
+                        defaultValue=""
+                        className="appearance-none border bg-black py-2 pl-4 pr-10 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                      >
+                        <option value="" disabled>
+                          Select Size
+                        </option>
+                        {productData
+                          .sort((a, b) => {
+                            return (
+                              allOptions[
+                                a.product_quantity.size.trim() as sizes
+                              ]! -
+                              allOptions[
+                                b.product_quantity.size.trim() as sizes
+                              ]!
+                            );
+                          })
+                          .map((product) => (
+                            <option
+                              key={product.product_quantity.size}
+                              value={product.product_quantity.size}
+                              data-max-quantity={
+                                product.product_quantity.quantity_in_stock -
+                                (product.product_quantity
+                                  .quantity_in_checkouts || 0)
+                              }
+                            >
+                              {product.product_quantity.size}
+                              {product.product_quantity.quantity_in_stock -
+                                (product.product_quantity
+                                  .quantity_in_checkouts || 0) <=
+                              0
+                                ? "(Out of Stock)"
+                                : ""}
+                            </option>
+                          ))}
+                      </select>
+                      <div className="absolute h-5 w-5 translate-x-28">
+                        <CarretDown />
+                      </div>
+                    </div>
                   </div>
                 )}
                 {!soldOut && (
@@ -271,16 +304,18 @@ const Product: NextPage = (
                     <div>
                       <label
                         htmlFor="quantitiy"
-                        className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                        className="block text-sm font-medium text-white"
                       >
                         Quantity
                       </label>
                       <input
                         id="quantities"
-                        className="block w-auto rounded-lg border border-gray-300 bg-gray-50 px-1 py-2 text-sm text-gray-900 [appearance:textfield] focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                        className="block w-1/4 rounded-lg border bg-black px-6 py-2 text-center text-sm text-white [appearance:textfield] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                         {...cartRegister("quantity", { required: true })}
                         type="number"
+                        defaultValue={1}
                         max={maxQuantity}
+                        min={1}
                       />
                     </div>
 
@@ -289,10 +324,8 @@ const Product: NextPage = (
                         type="submit"
                         id="submitButton"
                         disabled={addToCartDisabled}
-                        className={`mb-2 mr-2 inline-block w-1/2 rounded-lg py-5 text-sm font-medium text-white focus:outline-none ${
-                          addToCartDisabled
-                            ? "cursor-not-allowed bg-gray-500"
-                            : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        className={`mb-2 mr-2 inline-block w-1/2 rounded-lg border py-5 text-sm font-medium text-white hover:bg-white hover:text-black ${
+                          addToCartDisabled ? "cursor-not-allowed" : ""
                         }`}
                       >
                         {buttonText}
@@ -301,10 +334,10 @@ const Product: NextPage = (
                     {processing && (
                       <button
                         type="button"
-                        className="mb-2 mr-2 w-1/2 rounded-lg bg-blue-700 py-5 text-sm font-medium text-white dark:bg-blue-600"
+                        className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-white"
                         disabled
                       >
-                        <div className="flex flex-row justify-between px-2">
+                        <div className="flex flex-row justify-center gap-2 px-2">
                           <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
                           <p className="flex">Processing...</p>
                         </div>

@@ -41,7 +41,7 @@ export function Item({
       <div className="relative flex h-32 w-32 items-center justify-center">
         <Image
           className="full object-cover"
-          src={`/${item.image as string}.png`}
+          src={`/${item.image as string}`}
           alt="image"
           fill
         />
