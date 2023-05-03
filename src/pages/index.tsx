@@ -3,10 +3,10 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
-export const config = {
+/* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
-};
+}; */
 
 const Home: NextPage = () => {
   return (
@@ -41,6 +41,7 @@ const Home: NextPage = () => {
             quality={1}
             style={{ objectFit: "cover" }}
             className="absolute z-0 blur-sm"
+            priority
           />
           <h1 className="z-1 relative text-center text-4xl font-bold text-white sm:text-6xl md:text-7xl lg:text-8xl">
             Album Release Party
