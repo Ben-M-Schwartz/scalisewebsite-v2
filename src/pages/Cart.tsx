@@ -227,36 +227,46 @@ const Cart: NextPage = () => {
       <Head>
         <title>SCALISE</title>
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-900">
+      <main className="flex flex-col items-center bg-gray-900 pb-20">
         {loading && (
-          <div className="flex flex-row justify-between gap-2 text-white">
+          <div className="m-auto flex flex-row justify-between gap-2 text-white">
             <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
             <p className="flex">Loading...</p>
           </div>
         )}
         {!loading && emptyCart && (
           <>
-            <h1 className="text-2xl font-bold text-white">
-              Your cart is empty
-            </h1>
-            <Link
-              className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
-              href="/Store"
-            >
-              Store
-            </Link>
+            <div className="flex flex-col items-center justify-center gap-2 pb-20 pt-32">
+              <h1 className="text-2xl font-bold text-white">
+                Your cart is empty
+              </h1>
+              <Link
+                className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-white bg-rose-700 py-4 text-center text-white hover:border-rose-700 hover:bg-white hover:text-rose-700 active:bg-rose-400"
+                href="/Store"
+              >
+                Return To Store
+              </Link>
+            </div>
           </>
         )}
         {!loading && !emptyCart && (
           <>
-            <h1 className="text-2xl font-bold text-white">Cart</h1>
-            <div className="flex flex-col items-center justify-center">
-              <div className="divide-y">
+            <div className="border-bo flex w-full flex-row items-center justify-start gap-4 px-4 pt-10 sm:w-2/3 sm:px-0">
+              <h1 className="text-2xl font-bold text-white">Shopping Cart</h1>
+              <button
+                className="focus:shadow-outline rounded-lg border border-white bg-transparent px-2 py-1 text-xs text-white hover:border-black hover:bg-gray-100 hover:text-black active:bg-blue-600"
+                onClick={handleClearCart}
+              >
+                Clear Cart
+              </button>
+            </div>
+            <div className="flex w-full flex-col justify-between border-b border-b-white px-4 sm:w-2/3 sm:px-0">
+              <div className="divide-y divide-gray-600">
                 {cartItems.map((item: Cart, index) => (
                   <>
                     <div
                       key={`div_${index}`}
-                      className="flex items-center justify-center gap-10 py-4"
+                      className="flex items-center justify-between gap-4 py-4"
                     >
                       <Item
                         key={`item_${index}`}
@@ -338,7 +348,7 @@ const Cart: NextPage = () => {
                           type="submit"
                           className="font-medium text-gray-500 hover:text-blue-700 hover:underline active:text-gray-500"
                         >
-                          Remove
+                          Delete
                         </button>
                       </form>
                     </div>
@@ -346,19 +356,16 @@ const Cart: NextPage = () => {
                 ))}
               </div>
             </div>
-            <button
-              className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
-              onClick={handleClearCart}
-            >
-              Clear Cart
-            </button>
-            <div className="flex flex-col items-center justify-center text-white">
-              <h1>
-                Subtotal: ${totalPrice}
-                {totalPrice % 1 === 0 ? ".00" : ""}
-              </h1>
+            <div className="flex w-2/3 flex-col items-end justify-center gap-4 pt-4 text-white">
+              <div className="flex w-full grow flex-row justify-between sm:w-1/3">
+                <p>Subtotal: </p>
+                <p className="text-xl font-bold">
+                  ${totalPrice}
+                  {totalPrice % 1 === 0 ? ".00" : ""}
+                </p>
+              </div>
               <button
-                className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+                className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-white bg-rose-700 py-4 text-white hover:border-rose-700 hover:bg-white hover:text-rose-700 active:bg-rose-400 sm:w-1/3"
                 onClick={handleCheckout}
               >
                 Checkout
