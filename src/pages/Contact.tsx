@@ -56,10 +56,10 @@ const Contact: NextPage = () => {
         <title>CONTACT-SCALISE</title>
       </Head>
       <main className="justify-cente flex flex-col items-center">
-        <div className="flex flex-row items-center justify-center gap-10 pb-32 pt-16">
-          <div className="flex w-1/2 flex-col justify-center gap-2">
-            <h1 className="text-left text-7xl">Contact Us.</h1>
-            <p className="w-4/5 text-left">
+        <div className="flex flex-col items-center justify-center gap-10 pb-32 pt-16 md:flex-row">
+          <div className="flex w-full flex-col items-center justify-center gap-2 md:w-1/2">
+            <h1 className="text-center text-7xl md:text-left">Contact Us</h1>
+            <p className="w-2/3 text-center md:w-4/5 md:text-left">
               You can also reach out to us at{" "}
               <a
                 href="mailto:graden@scalise.band"
