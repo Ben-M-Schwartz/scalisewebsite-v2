@@ -105,7 +105,7 @@ const Shows: NextPage = (
                 className="z-0 flex w-full flex-col items-center gap-2 hover:bg-gray-600"
               >
                 <div className="flex w-full flex-col items-center justify-center gap-2 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
-                  <div className="w-1/3">
+                  <div className="w-full sm:w-1/3">
                     <div className="font-bold text-gray-100">{show.date}</div>
                     <div className="font-small text-gray-100">
                       {show.location}
