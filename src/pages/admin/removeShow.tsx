@@ -14,6 +14,9 @@ import { useAuth } from "@clerk/nextjs";
 const Shows: NextPage = () => {
   const router = useRouter();
   const { isLoaded, userId, orgId } = useAuth();
+  const shows = api.shows.get.useQuery();
+  const remove = api.shows.remove.useMutation();
+
   if (!isLoaded)
     return (
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
@@ -37,8 +40,6 @@ const Shows: NextPage = () => {
     </main>;
   }
 
-  const shows = api.shows.get.useQuery();
-  const remove = api.shows.remove.useMutation();
   return (
     <>
       <Head>

@@ -65,6 +65,7 @@ function Card({
     Promise.all(updatePromises)
       .then(() => {
         window.alert("success");
+        router.reload();
       })
       .catch((error) => console.error(error));
   };
@@ -151,6 +152,9 @@ function Card({
 const updateInventory: NextPage = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isLoaded, userId, orgId } = useAuth();
+  const products = api.inventory.list.useQuery();
+  const inventory = api.inventory.listInventory.useQuery();
+
   if (!isLoaded)
     return (
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
@@ -174,8 +178,6 @@ const updateInventory: NextPage = () => {
     </main>;
   }
 
-  const products = api.inventory.list.useQuery();
-  const inventory = api.inventory.listInventory.useQuery();
   interface indexSignature {
     [key: string]: number;
   }

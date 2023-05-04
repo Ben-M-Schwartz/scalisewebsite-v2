@@ -27,6 +27,24 @@ type NewProductForm = {
 const NewProduct: NextPage = () => {
   const { register, handleSubmit } = useForm<NewProductForm>();
   const { isLoaded, userId, orgId } = useAuth();
+
+  const createProduct = api.inventory.create.useMutation();
+
+  const onSubmit = (formData: NewProductForm) => {
+    createProduct
+      .mutateAsync({
+        name: formData.name,
+        sizes: formData.sizes || "",
+        price: parseFloat(formData.price),
+        weight: parseFloat(formData.weight),
+        quantities: formData.quantities,
+        imageName: formData.imageName,
+        is_taxed: parseInt(formData.is_taxed),
+        store_order: parseInt(formData.store_order) || 1,
+      })
+      .then(() => window.alert("Success"));
+  };
+
   if (!isLoaded)
     return (
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
@@ -49,23 +67,6 @@ const NewProduct: NextPage = () => {
       </h1>
     </main>;
   }
-
-  const createProduct = api.inventory.create.useMutation();
-
-  const onSubmit = (formData: NewProductForm) => {
-    createProduct
-      .mutateAsync({
-        name: formData.name,
-        sizes: formData.sizes || "",
-        price: parseFloat(formData.price),
-        weight: parseFloat(formData.weight),
-        quantities: formData.quantities,
-        imageName: formData.imageName,
-        is_taxed: parseInt(formData.is_taxed),
-        store_order: parseInt(formData.store_order) || 1,
-      })
-      .then(() => window.alert("Success"));
-  };
 
   return (
     <>

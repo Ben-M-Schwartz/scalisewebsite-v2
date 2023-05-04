@@ -41,10 +41,9 @@ type Cart = {
 const Cart: NextPage = () => {
   const [emptyCart, setEmptyCart] = useState(false);
   const [loading, setLoading] = useState(true);
-
   const [cartItems, setCartItems] = useState<Cart[]>([]);
-
   const [totalPrice, setTotalPrice] = useState(0);
+  const [disableCheckout, setDisableCheckout] = useState(false);
 
   const router = useRouter();
 
@@ -84,6 +83,7 @@ const Cart: NextPage = () => {
     price: number,
     weight: number
   ) => {
+    setDisableCheckout(true);
     addToCart
       .mutateAsync({
         cart_id: cart_id,
@@ -94,7 +94,10 @@ const Cart: NextPage = () => {
         price: price,
         weight: weight,
       })
-      .then(() => updateAmount(quantity))
+      .then(() => {
+        updateAmount(quantity);
+        setDisableCheckout(false);
+      })
       .catch((error) => console.error(error));
   };
 
@@ -107,6 +110,7 @@ const Cart: NextPage = () => {
     weight: number,
     fullRemove: boolean
   ) => {
+    setDisableCheckout(true);
     if (cartItems.length <= 1 && fullRemove === true) {
       handleClearCart();
     } else {
@@ -125,6 +129,7 @@ const Cart: NextPage = () => {
           if (fullRemove) {
             window.alert("Removed From Cart");
           }
+          setDisableCheckout(false);
         })
         .catch((error) => console.error(error));
     }
@@ -368,6 +373,7 @@ const Cart: NextPage = () => {
               <button
                 className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-white bg-rose-700 py-4 text-white hover:border-rose-700 hover:bg-white hover:text-rose-700 active:bg-rose-400 sm:w-1/3"
                 onClick={handleCheckout}
+                disabled={disableCheckout}
               >
                 Checkout
               </button>

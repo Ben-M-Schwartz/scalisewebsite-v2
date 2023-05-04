@@ -26,6 +26,13 @@ type AddShowForm = {
 const AddShow: NextPage = () => {
   const { register, handleSubmit } = useForm<AddShowForm>();
   const { isLoaded, userId, orgId } = useAuth();
+
+  const createShow = api.shows.create.useMutation();
+
+  const onSubmit = (formData: AddShowForm) => {
+    createShow.mutateAsync({ ...formData }).then(() => window.alert("Success"));
+  };
+
   if (!isLoaded)
     return (
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
@@ -48,12 +55,6 @@ const AddShow: NextPage = () => {
       </h1>
     </main>;
   }
-
-  const createShow = api.shows.create.useMutation();
-
-  const onSubmit = (formData: AddShowForm) => {
-    createShow.mutateAsync({ ...formData }).then(() => window.alert("Success"));
-  };
 
   return (
     <>
