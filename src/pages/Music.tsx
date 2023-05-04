@@ -39,7 +39,7 @@ const Music: NextPage = () => {
         <div className="relative min-h-screen w-screen">
           <div className="flex flex-col">
             <div className="flex flex-col items-center gap-10 bg-black py-24">
-              <div className="flex flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-0">
+              <div className="flex flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
                 <div className="w-1/2 text-center md:order-1">
                   <div className="flex flex-col items-center justify-center gap-3">
                     <h1 className="text-center text-4xl font-bold text-white">
@@ -138,8 +138,6 @@ const Music: NextPage = () => {
                     Spotify
                   </Link>
                   <Link
-                    rel="noopener noreferrer"
-                    target="_blank"
                     className="flex w-full flex-col justify-center rounded-sm border-4 border-white px-2 py-2 text-center text-xl text-white hover:bg-white hover:text-rose-800 md:w-1/2"
                     href="/Store"
                   >

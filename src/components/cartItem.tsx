@@ -38,22 +38,24 @@ export function Item({
 
   return (
     <>
-      <div className="relative flex h-32 w-32 items-center justify-center">
-        <Image
-          className="full object-cover"
-          src={`/${item.image as string}`}
-          alt="image"
-          fill
-        />
+      <div className="flex w-2/3 flex-row items-center justify-start gap-4">
+        <div className="relative flex h-32 w-32 items-center justify-center">
+          <Image
+            className="full object-cover"
+            src={`/${item.image as string}`}
+            alt="image"
+            fill
+          />
+        </div>
+        <div>
+          <div className="pr-4 font-medium text-gray-100">{item.item_name}</div>
+          {item.size !== "" && (
+            <div className="text-gray-500">Size: {item.size}</div>
+          )}
+          <div className="text-gray-500">Price: ${item.price}</div>
+        </div>
       </div>
-      <div>
-        <div className="pr-4 font-medium text-gray-100">{item.item_name}</div>
-        <div className="text-gray-500">Price: ${item.price}</div>
-        {item.size !== "" && (
-          <div className="text-gray-500">Size: {item.size}</div>
-        )}
-      </div>
-      <div className="flex w-1/5 items-center">
+      <div className="flex items-center">
         <button
           onClick={() => {
             setQuantity((quantity as number) - 1);
@@ -131,7 +133,10 @@ export function Item({
         </button>
       </div>
       <div className="text-right text-gray-100">
-        <div>Total: ${item.price! * (quantity as number)}</div>
+        <div>
+          Total: ${item.price! * (quantity as number)}
+          {item.price! % 1 === 0 ? ".00" : ""}
+        </div>
       </div>
     </>
   );
