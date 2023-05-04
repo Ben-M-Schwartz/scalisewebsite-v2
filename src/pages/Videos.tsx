@@ -25,7 +25,9 @@ const Videos: NextPage = () => {
             className="absolute z-0 object-cover object-[15%_15%]"
             priority
           />
-          <h1 className="z-10 py-32 text-center text-8xl text-white">Videos</h1>
+          <h1 className="z-10 py-32 text-center text-8xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+            VIDEOS
+          </h1>
         </div>
         <div>
           <h1 className="py-10 text-8xl text-white">Live</h1>

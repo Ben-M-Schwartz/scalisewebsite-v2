@@ -89,9 +89,11 @@ const Store: NextPage = (
             className="absolute z-0 object-cover object-[35%_35%]"
             priority
           />
-          <h1 className="z-10 py-24 text-center text-8xl text-white">STORE</h1>
+          <h1 className="z-10 py-24 text-center text-8xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+            STORE
+          </h1>
         </div>
-        <div className="container flex flex-col items-center justify-center gap-4 pt-4 sm:grid sm:grid-cols-2 sm:items-center sm:justify-center lg:grid-cols-3">
+        <div className="container flex flex-col items-center justify-center gap-4 pt-16 sm:grid sm:grid-cols-2 sm:items-center sm:justify-center lg:grid-cols-3">
           {products.map((product) => (
             <Card key={product.id} product={product} />
           ))}

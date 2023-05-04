@@ -25,7 +25,9 @@ const Music: NextPage = () => {
             className="absolute z-0 object-[15%_15%]"
             priority
           />
-          <h1 className="z-10 py-24 text-center text-8xl text-white">MUSIC</h1>
+          <h1 className="z-10 py-24 text-center text-8xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+            MUSIC
+          </h1>
         </div>
 
         <div className="relative min-h-screen w-screen">
