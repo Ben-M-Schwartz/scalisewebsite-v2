@@ -33,6 +33,7 @@
     "react-dom": "18.2.0",
     "react-email-editor": "^1.7.8",
     "react-hook-form": "^7.43.9",
+    "sharp": "^0.32.1",
     "stripe": "^12.2.0",
     "superjson": "1.12.2",
     "zod": "^3.21.4"
