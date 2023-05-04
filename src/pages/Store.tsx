@@ -86,7 +86,7 @@ const Store: NextPage = (
             alt="background photo"
             fill
             quality={75}
-            className="absolute z-0 object-cover object-[35%_35%]"
+            className="absolute z-0 object-cover object-[0%_35%]"
             priority
           />
           <h1 className="z-10 py-24 text-center text-8xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">

@@ -33,7 +33,7 @@ const Home: NextPage = () => {
         />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <div className="relative min-h-screen w-screen py-10">
+        <div className="relative min-h-screen w-screen pb-20 pt-12">
           <Image
             src="/Red_Felt.png"
             alt="Red Felt"
@@ -43,22 +43,22 @@ const Home: NextPage = () => {
             className="absolute z-0 blur-sm"
             priority
           />
-          <h1 className="z-1 relative text-center text-4xl font-bold text-white sm:text-6xl md:text-7xl lg:text-8xl">
+          <h1 className="z-1 relative pb-6 text-center text-5xl text-white sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
             Album Release Party
           </h1>
           <div className="z-1 relative flex flex-col items-center justify-center gap-10 md:flex-row">
-            <div className="order-2 flex w-5/6 md:order-1 md:w-1/4">
-              <div className="flex flex-col gap-2">
-                <h2 className="order-1 text-right text-4xl font-bold text-white">
+            <div className="order-2 flex w-full md:order-1 md:w-1/3">
+              <div className="flex flex-col gap-2 lg:gap-3 xl:gap-4">
+                <h2 className="order-1 w-3/4 self-center text-left text-4xl font-bold text-white md:w-full md:text-right xl:text-5xl">
                   June 22
                 </h2>
-                <h3 className="order-1 text-right text-2xl text-white">
+                <h3 className="order-1 w-3/4 self-center text-left  text-xl text-white md:w-full md:text-right xl:text-2xl">
                   THE GREEN ROOM
                 </h3>
-                <h3 className="order-1 text-right text-xl text-white">
+                <h3 className="order-1 w-3/4 self-center  text-left text-xl text-white md:w-full md:text-right xl:text-2xl">
                   Minneapolis, MN
                 </h3>
-                <p className="text-l order-1 text-right text-white">
+                <p className="text-l order-1 w-3/4  self-center pt-4 text-left text-white md:w-full md:text-right xl:text-xl">
                   &quot;Before We Dry Up&quot;, our double LP, is releasing on
                   Friday, June 23rd with the album release show on Thursday,
                   June 22nd at the Green Room in Uptown Minneapolis. Two AWESOME
@@ -66,11 +66,11 @@ const Home: NextPage = () => {
                   We&apos;re huge fans of their work and are stoked that they
                   wanted to hop on the bill. We hope to see you all there.
                 </p>
-                <div className="order-0 flex items-center justify-center md:order-2">
+                <div className="order-0 flex items-center justify-center md:order-2 xl:mt-12">
                   <Link
                     rel="noopener noreferrer"
                     target="_blank"
-                    className="flex w-3/4 flex-col justify-center rounded-sm border-8 border-white py-4 text-center text-xl text-white hover:bg-white hover:font-bold hover:text-black"
+                    className="mb-8 flex w-3/4 flex-col justify-center rounded-sm border-8 border-white py-4 text-center text-xl text-white hover:bg-white hover:font-bold hover:text-black md:mb-0 md:py-2 xl:py-4"
                     href="https://www.greenroommn.com/events#/events?event_id=73908"
                   >
                     Tickets
@@ -78,7 +78,7 @@ const Home: NextPage = () => {
                 </div>
               </div>
             </div>
-            <div className="order-1 h-full w-2/3 sm:w-1/2 md:order-2 md:w-1/3 lg:w-1/4">
+            <div className="order-1 h-full w-2/3 sm:w-1/2 md:order-2 md:w-1/3">
               <Image
                 src="/releasePartyPoster.png"
                 alt="release party"

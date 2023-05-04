@@ -26,9 +26,15 @@ export const config = {
   regions: ["cle1"],
 };
 
+import { api } from "~/utils/api";
+
+/* 
+For if using getServerSideProps:
+
 import { db } from "~/db/db";
-import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
-import { shows } from "~/db/schema";
+import type { InferGetServerSidePropsType, GetServerSideProps } from "next"; 
+*/
+import type { shows } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
 type ShowType = InferModel<typeof shows, "select">;
 
@@ -60,6 +66,17 @@ const variants = {
 const Show = ({ show }: { show: ShowType }) => {
   const [isHover, setHover] = useState(false);
   const [isCopied, setCopied] = useState(false);
+  const [eventListen, setListen] = useState(false);
+  document.addEventListener(
+    "click",
+    () => {
+      if (eventListen) {
+        setHover(false);
+        setListen(false);
+      }
+    },
+    { capture: true }
+  );
   return (
     <Link
       href={show.bandsintown_link as string}
@@ -71,7 +88,7 @@ const Show = ({ show }: { show: ShowType }) => {
           <div className="font-small text-gray-100">{show.location}</div>
           <div className="font-small text-gray-100 sm:order-2">{show.name}</div>
         </div>
-        <div className="flex w-1/3 flex-col items-center justify-center gap-3 sm:flex-row sm:gap-20">
+        <div className="flex w-1/3 flex-col items-center justify-center gap-3 sm:flex-row sm:gap-8 md:gap-20">
           <Link
             href={show.maps_link as string}
             rel="noopener noreferrer"
@@ -83,8 +100,6 @@ const Show = ({ show }: { show: ShowType }) => {
           <motion.div
             onHoverStart={() => setHover(true)}
             onHoverEnd={() => setHover(false)}
-            whileTap="hover"
-            whileFocus="hover"
             className="z-20 flex flex-row justify-center gap-3 text-white sm:flex-col"
           >
             <motion.div
@@ -99,7 +114,7 @@ const Show = ({ show }: { show: ShowType }) => {
                 title={"Check out this upcoming event from Scalise!"}
                 blankTarget
               >
-                <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
+                <div className="rounde flex text-white hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 md:p-0">
                   <TwitterIcon />
                 </div>
               </TwitterShareButton>
@@ -110,7 +125,7 @@ const Show = ({ show }: { show: ShowType }) => {
                 blankTarget
               >
                 {" "}
-                <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
+                <div className="flex rounded hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 md:p-0">
                   <FacebookIcon />
                 </div>
               </FacebookShareButton>
@@ -120,7 +135,7 @@ const Show = ({ show }: { show: ShowType }) => {
                 body=""
                 blankTarget
               >
-                <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
+                <div className="flex rounded text-white hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 md:p-0">
                   <EmailIcon />
                 </div>
               </EmailShareButton>
@@ -138,7 +153,7 @@ const Show = ({ show }: { show: ShowType }) => {
                     .catch((error) => console.error(error));
                 }}
               >
-                <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
+                <div className="flex rounded text-white hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 md:p-0">
                   {!isCopied && <LinkIcon />}
                   {isCopied && (
                     <div className="animate-bounce animate-pulse text-green-400">
@@ -148,9 +163,17 @@ const Show = ({ show }: { show: ShowType }) => {
                 </div>
               </button>
             </motion.div>
-            <div className="flex flex-row justify-center gap-2">
+            <button
+              id="share"
+              className="z-30 flex flex-row justify-center gap-2 bg-transparent p-4 focus:text-blue-400"
+              onClick={(e) => {
+                e.preventDefault();
+                setHover(true);
+                setListen(true);
+              }}
+            >
               <ShareIcon />
-            </div>
+            </button>
           </motion.div>
         </div>
         <div className="flex w-full justify-center sm:w-1/3 sm:justify-end">
@@ -168,9 +191,7 @@ const Show = ({ show }: { show: ShowType }) => {
   );
 };
 
-//might switch this to static or initial props
-//TODO: ask graden if he would prefer faster loading or easier changing of shows for him
-export const getServerSideProps: GetServerSideProps = async () => {
+/* export const getServerSideProps: GetServerSideProps = async () => {
   const result = await db.select().from(shows);
 
   return {
@@ -178,81 +199,93 @@ export const getServerSideProps: GetServerSideProps = async () => {
       shows: result,
     },
   };
-};
+}; */
 
-const Shows: NextPage = (
-  props: InferGetServerSidePropsType<typeof getServerSideProps>
-) => {
-  //TODO: figure out query params for bandsintown
-  //const shows = api.shows.get.useQuery();
-  const shows = props.shows as ShowType[];
-  return (
-    <>
-      <Head>
-        <title>SHOWS-SCALISE</title>
-      </Head>
-      <main className="flex min-h-screen flex-col items-center bg-gray-800">
-        <div className="relative flex w-full justify-center bg-transparent">
-          <Image
-            src="/greenRoomPhoto.png"
-            alt="background photo"
-            fill
-            quality={75}
-            className="absolute z-0 object-cover object-[48%_48%]"
-            priority
-          />
-          <h1 className="z-10 py-32 text-center text-8xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-            SHOWS
-          </h1>
-        </div>
-        <div className="flex w-2/3 flex-col items-center justify-center">
-          {shows.length === 0 && (
-            <>
-              <p className="text-white">
-                We do not currently have any shows booked
-              </p>
-              <p className="text-white">
-                If you would like to book us for a show go to our contact page
-                or reach out on social medai
-              </p>
-            </>
-          )}
-          <div className="w-full divide-y divide-gray-500">
-            {shows.map((show, index) => (
-              <Show show={show} key={index} />
-            ))}
+const Shows: NextPage = () =>
+  /* props: InferGetServerSidePropsType<typeof getServerSideProps> */
+  {
+    //TODO: figure out query params for bandsintown
+    const [loading, setLoading] = useState(true);
+    const shows = api.shows.get.useQuery(undefined, {
+      onSuccess: () => setLoading(false),
+    }).data;
+
+    /* const shows = props.shows as ShowType[]; */
+    return (
+      <>
+        <Head>
+          <title>SHOWS-SCALISE</title>
+        </Head>
+        <main className="flex min-h-screen flex-col items-center bg-gray-800">
+          <div className="relative flex w-full justify-center bg-transparent">
+            <Image
+              src="/greenRoomPhoto.png"
+              alt="background photo"
+              fill
+              quality={75}
+              className="absolute z-0 object-cover object-[0%_48%]"
+              priority
+            />
+            <h1 className="z-10 py-32 text-center text-8xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+              SHOWS
+            </h1>
           </div>
-
-          <Link
-            className="mb-2 mr-2 inline-block w-auto rounded-lg bg-rose-800 px-5 py-3 text-sm font-medium text-white hover:bg-rose-600 focus:outline-none focus:ring-4 focus:ring-blue-300"
-            href="https://bandsintown.com/artist-subscribe/14899628?
-            affil_code=js_www.scalise.band
-            &app_id=js_www.scalise.band
-            &bg-color=%23ffffff
-            &border-color=rgba%28193%2C17%2C35%2C1%29
-            &came_from=700
-            &cta-bg-color=rgba%28255%2C255%2C255%2C1%29
-            &cta-border-color=rgba%28193%2C17%2C35%2C1%29
-            &cta-border-radius=0px
-            &cta-border-width=1px
-            &cta-text-color=rgba%28193%2C17%2C35%2C1%29
-            &font=Helvetica
-            &play-my-city=false
-            &signature=ZZ9a89bd3786a112c99a22dc7645c38bd72185dde34d03958907e235220d40f268
-            &spn=0
-            &text-color=%23424242
-            &utm_campaign=track
-            &utm_medium=web&utm_source=widget"
-          >
-            <div className="flex flex-row items-center gap-1">
-              <BandsintownIcon />
-              Follow
+          {loading && (
+            <div className="flex flex-row justify-between gap-2 py-20 text-white">
+              <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
+              <p className="flex">Loading...</p>
             </div>
-          </Link>
-        </div>
-      </main>
-    </>
-  );
-};
+          )}
+          {!loading && (
+            <div className="flex w-2/3 flex-col items-center justify-center">
+              {shows?.length === 0 && (
+                <>
+                  <p className="text-white">
+                    We do not currently have any shows booked
+                  </p>
+                  <p className="text-white">
+                    If you would like to book us for a show go to our contact
+                    page or reach out on social medai
+                  </p>
+                </>
+              )}
+              <div className="my-4 w-full divide-y divide-gray-600 border-y border-gray-600">
+                {shows?.map((show, index) => (
+                  <Show show={show} key={index} />
+                ))}
+              </div>
+
+              <Link
+                className="mb-2 mr-2 inline-block w-auto rounded-lg bg-rose-800 px-5 py-3 text-sm font-medium text-white hover:bg-rose-600 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                href="https://bandsintown.com/artist-subscribe/14899628?
+              affil_code=js_www.scalise.band
+              &app_id=js_www.scalise.band
+              &bg-color=%23ffffff
+              &border-color=rgba%28193%2C17%2C35%2C1%29
+              &came_from=700
+              &cta-bg-color=rgba%28255%2C255%2C255%2C1%29
+              &cta-border-color=rgba%28193%2C17%2C35%2C1%29
+              &cta-border-radius=0px
+              &cta-border-width=1px
+              &cta-text-color=rgba%28193%2C17%2C35%2C1%29
+              &font=Helvetica
+              &play-my-city=false
+              &signature=ZZ9a89bd3786a112c99a22dc7645c38bd72185dde34d03958907e235220d40f268
+              &spn=0
+              &text-color=%23424242
+              &utm_campaign=track
+              &utm_medium=web&utm_source=widget"
+              >
+                <div className="flex flex-row items-center gap-1">
+                  <BandsintownIcon />
+                  Follow
+                </div>
+              </Link>
+            </div>
+          )}
+        </main>
+      </>
+    );
+  };
 
 export default Shows;
