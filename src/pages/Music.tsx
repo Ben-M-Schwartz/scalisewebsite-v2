@@ -7,7 +7,7 @@ import banner from "../../public/tunnelPhoto.png";
 import transferred from "../../public/transferred.png";
 import fruitSnacks from "../../public/fruitSnacks.jpeg";
 import airbag from "../../public/airbag.jpeg";
-import album1 from "../..//fromNothingToNothing.png";
+import album1 from "../../public/fromNothingToNothing.png";
 
 /* export const config = {
   runtime: "experimental-edge",
