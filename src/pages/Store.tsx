@@ -80,12 +80,18 @@ const Store: NextPage = (
         <title>STORE-SCALISE</title>
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-black">
-        <div className="mb-8 w-full bg-rose-800">
-          <h1 className="py-4 text-center text-8xl text-white sm:py-6 md:py-8 lg:py-10">
-            STORE
-          </h1>
+        <div className="relative flex w-full items-center justify-center bg-transparent">
+          <Image
+            src="/porchPhoto.jpg"
+            alt="background photo"
+            fill
+            quality={75}
+            className="absolute z-0 object-cover object-[35%_35%]"
+            priority
+          />
+          <h1 className="z-10 py-24 text-center text-8xl text-white">STORE</h1>
         </div>
-        <div className="container flex flex-col items-center justify-center gap-4 sm:grid sm:grid-cols-2 sm:items-center sm:justify-center lg:grid-cols-3">
+        <div className="container flex flex-col items-center justify-center gap-4 pt-4 sm:grid sm:grid-cols-2 sm:items-center sm:justify-center lg:grid-cols-3">
           {products.map((product) => (
             <Card key={product.id} product={product} />
           ))}

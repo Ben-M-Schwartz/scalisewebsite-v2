@@ -15,10 +15,17 @@ const Music: NextPage = () => {
         <title>MUSIC-SCALISE</title>
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <div className="w-full bg-rose-800">
-          <h1 className="py-4 text-center text-8xl text-white sm:py-6 md:py-8 lg:py-10">
-            MUSIC
-          </h1>
+        <div className="relative flex w-full items-center justify-center bg-transparent">
+          <Image
+            src="/pastelPhoto.JPEG"
+            alt="background photo"
+            fill
+            quality={75}
+            style={{ objectFit: "cover" }}
+            className="absolute z-0"
+            priority
+          />
+          <h1 className="z-10 py-24 text-center text-8xl text-white">MUSIC</h1>
         </div>
 
         <div className="relative min-h-screen w-screen">
@@ -97,9 +104,9 @@ const Music: NextPage = () => {
             </div>
 
             <div className="z-10 flex flex-col items-center justify-center gap-3 bg-rose-800 py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
-              <div className="w-1/2 text-center md:order-1">
+              <div className="md:order-0 w-1/2 text-center">
                 <div className="flex flex-col items-center justify-center gap-3">
-                  <h1 className="z-1 tex-center text-4xl font-bold text-white">
+                  <h1 className="text-center text-4xl font-bold text-white">
                     FROM NOTHING TO NOTHING
                   </h1>
                   <Link

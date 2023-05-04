@@ -1,5 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import Image from "next/image";
 //import Link from "next/link";
 //import { signIn, signOut, useSession } from "next-auth/react";
 
@@ -15,10 +16,16 @@ const Videos: NextPage = () => {
         <title>VIDEOS-SCALISE</title>
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-black">
-        <div className="w-full bg-rose-800">
-          <h1 className="py-4 text-center text-8xl font-bold text-white sm:py-6 md:py-8 lg:py-10">
-            Videos
-          </h1>
+        <div className="relative flex w-full justify-center bg-transparent">
+          <Image
+            src="/barnPhoto.jpg"
+            alt="background photo"
+            fill
+            quality={75}
+            className="absolute z-0 object-cover object-[15%_15%]"
+            priority
+          />
+          <h1 className="z-10 py-32 text-center text-8xl text-white">Videos</h1>
         </div>
         <div>
           <h1 className="py-10 text-8xl text-white">Live</h1>
