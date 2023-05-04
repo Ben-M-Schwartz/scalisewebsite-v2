@@ -13,10 +13,10 @@ import { CartContext, type CartContextType } from "~/pages/_app";
 
 import { motion } from "framer-motion";
 
-export const config = {
+/* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
-};
+}; */
 
 import {
   setCookie,
