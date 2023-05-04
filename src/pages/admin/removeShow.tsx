@@ -37,7 +37,6 @@ const Shows: NextPage = () => {
     </main>;
   }
 
-  //TODO: figure out query params for bandsintown
   const shows = api.shows.get.useQuery();
   const remove = api.shows.remove.useMutation();
   return (

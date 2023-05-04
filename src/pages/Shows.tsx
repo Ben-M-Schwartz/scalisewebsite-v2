@@ -63,8 +63,6 @@ const variants = {
   },
 };
 
-//TODO: Add show posters
-
 const Show = ({ show }: { show: ShowType }) => {
   const [isHover, setHover] = useState(false);
   const [isCopied, setCopied] = useState(false);
