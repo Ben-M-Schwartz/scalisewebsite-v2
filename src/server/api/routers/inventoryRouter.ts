@@ -8,7 +8,7 @@ import {
   in_checkout_amounts,
 } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
-import { and, eq, or } from "drizzle-orm/expressions";
+import { and, eq, or, gte } from "drizzle-orm/expressions";
 import { sql } from "drizzle-orm/sql";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
@@ -53,7 +53,10 @@ export const getProductPage = async (name: string) => {
 
 export const inventoryRouter = createTRPCRouter({
   list: publicProcedure.query(async () => {
-    return await db.select().from(product_details);
+    return await db
+      .select()
+      .from(product_details)
+      .orderBy(product_details.store_order);
   }),
 
   listInventory: publicProcedure.query(() => {
@@ -86,11 +89,17 @@ export const inventoryRouter = createTRPCRouter({
         quantities: z.string(),
         imageName: z.string(),
         is_taxed: z.number(),
+        store_order: z.number(),
       })
     )
     .mutation(async ({ input }) => {
       type NewProduct = InferModel<typeof product_details, "insert">;
       type NewProdcutQuantity = InferModel<typeof product_quantity, "insert">;
+
+      await db
+        .update(product_details)
+        .set({ store_order: sql`${product_details.store_order} + 1` })
+        .where(gte(product_details.store_order, input.store_order));
 
       const newProduct: NewProduct = {
         name: input.name,
@@ -98,6 +107,7 @@ export const inventoryRouter = createTRPCRouter({
         weight: input.weight,
         image: input.imageName,
         is_taxed: input.is_taxed,
+        store_order: input.store_order,
       };
       const result = await db.insert(product_details).values(newProduct);
       const productId = result.insertId;
@@ -148,6 +158,13 @@ export const inventoryRouter = createTRPCRouter({
   remove: publicProcedure
     .input(z.object({ product_id: z.number() }))
     .mutation(async ({ input }) => {
+      const result = await db
+        .select({ store_order: product_details.store_order })
+        .from(product_details)
+        .where(eq(product_details.id, input.product_id));
+
+      const order = result[0]?.store_order as number;
+
       await db.transaction(async (tx) => {
         await tx
           .delete(product_details)
@@ -155,6 +172,10 @@ export const inventoryRouter = createTRPCRouter({
         await tx
           .delete(product_quantity)
           .where(eq(product_quantity.product_id, input.product_id));
+        await tx
+          .update(product_details)
+          .set({ store_order: sql`${product_details.store_order} - 1` })
+          .where(gte(product_details.store_order, order));
       });
     }),
 });

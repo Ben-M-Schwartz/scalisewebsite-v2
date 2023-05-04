@@ -274,6 +274,13 @@
       "when": 1683169852817,
       "tag": "0038_lazy_daimon_hellstrom",
       "breakpoints": false
+    },
+    {
+      "idx": 39,
+      "version": "5",
+      "when": 1683224857986,
+      "tag": "0039_bouncy_terrax",
+      "breakpoints": false
     }
   ]
 }

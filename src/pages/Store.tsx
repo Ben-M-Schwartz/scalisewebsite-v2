@@ -63,7 +63,10 @@ import { db } from "~/db/db";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
 
 export const getStaticProps: GetStaticProps = async () => {
-  const result = await db.select().from(product_details);
+  const result = await db
+    .select()
+    .from(product_details)
+    .orderBy(product_details.store_order);
   return {
     props: {
       products: result,

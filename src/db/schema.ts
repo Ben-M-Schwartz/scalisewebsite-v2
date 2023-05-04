@@ -23,6 +23,7 @@ export const product_details = mysqlTable(
     image: varchar("image", { length: 255 }),
     weight: float("weight"),
     is_taxed: int("is_taxed"),
+    store_order: int("store_order"),
   },
   (product_details) => ({
     idIndex: index("productDetails_id_index").on(product_details.id),

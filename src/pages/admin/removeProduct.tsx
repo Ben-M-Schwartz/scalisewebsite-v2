@@ -19,22 +19,18 @@ import { api } from "~/utils/api";
 
 import { useForm } from "react-hook-form";
 
-import { useRouter } from "next/router";
-
 type removeForm = {
   product_id: string;
 };
 
 function Card({ product }: { product: Product }) {
   const remove = api.inventory.remove.useMutation();
-  const router = useRouter();
   const { register, handleSubmit } = useForm<removeForm>();
 
   const handleRemove = (formData: removeForm) => {
     try {
       remove.mutate({ product_id: parseInt(formData.product_id) });
       window.alert("success");
-      router.reload();
     } catch (error) {
       console.error(error);
     }

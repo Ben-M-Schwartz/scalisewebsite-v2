@@ -21,6 +21,7 @@ type NewProductForm = {
   quantities: string;
   imageName: string;
   is_taxed: string;
+  store_order: string;
 };
 
 const NewProduct: NextPage = () => {
@@ -61,6 +62,7 @@ const NewProduct: NextPage = () => {
         quantities: formData.quantities,
         imageName: formData.imageName,
         is_taxed: parseInt(formData.is_taxed),
+        store_order: parseInt(formData.store_order),
       })
       .then(() => window.alert("Success"));
   };
@@ -186,6 +188,21 @@ const NewProduct: NextPage = () => {
                 id="is_taxed"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                 {...register("is_taxed", { required: true })}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="store_order"
+                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+              >
+                What location in the order of the store display? (Defaults to
+                the first spot index 1)
+              </label>
+              <input
+                id="store_order"
+                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                {...register("store_order", { required: true })}
               />
             </div>
 
