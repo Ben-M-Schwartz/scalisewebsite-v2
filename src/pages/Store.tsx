@@ -23,6 +23,7 @@ function Card({ product, index }: { product: Product; index: number }) {
       className="borderx max-w-sm"
       initial="hidden"
       whileInView="visible"
+      viewport={{ once: true }}
       variants={{
         hidden: { opacity: 0, y: -20 },
         visible: {
