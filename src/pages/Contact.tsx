@@ -55,7 +55,7 @@ const Contact: NextPage = () => {
       <Head>
         <title>CONTACT-SCALISE</title>
       </Head>
-      <main className="justify-cente flex flex-col items-center">
+      <main className="flex flex-col items-center justify-center">
         <div className="flex flex-col items-center justify-center gap-10 pb-32 pt-16 md:flex-row">
           <div className="flex w-full flex-col items-center justify-center gap-2 md:w-1/2">
             <h1 className="text-center text-7xl md:text-left">Contact Us</h1>
@@ -66,8 +66,8 @@ const Contact: NextPage = () => {
                 className="text-red-700 hover:text-blue-700 hover:underline"
               >
                 graden@scalise.band
-              </a>
-              , the form to the right, or through any socials below.
+              </a>{" "}
+              or through any socials below.
             </p>
             <div className="flex h-full w-full flex-col items-center justify-center">
               <Image
@@ -143,7 +143,7 @@ const Contact: NextPage = () => {
             </div>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex flex-col justify-center gap-2">
+            <div className="max-w-screen flex flex-col justify-center gap-2">
               <div className="flex flex-row items-center justify-center gap-5">
                 <div className="flex flex-col">
                   <label htmlFor="first-name">First name</label>
