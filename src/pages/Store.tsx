@@ -43,7 +43,7 @@ function Card({ product, index }: { product: Product; index: number }) {
             alt="image"
             height={360}
             width={423}
-            priority={index <= 3}
+            priority={index <= 2}
             loading="lazy"
           />
         </div>
