@@ -79,9 +79,13 @@ const Shows: NextPage = (
       <Head>
         <title>SHOWS-SCALISE</title>
       </Head>
-      <main className="flex min-h-screen  flex-col items-center justify-center bg-gray-800">
-        <div className="flex flex-col items-center gap-2">
-          <p className="text-2xl text-white">Shows</p>
+      <main className="flex min-h-screen flex-col items-center bg-gray-800">
+        <div className="w-full bg-rose-800">
+          <h1 className="py-4 text-center text-8xl text-white sm:py-6 md:py-8 lg:py-10">
+            SHOWS
+          </h1>
+        </div>
+        <div className="flex w-2/3 flex-col items-center justify-center">
           {shows.length === 0 && (
             <>
               <p className="text-white">
@@ -93,103 +97,101 @@ const Shows: NextPage = (
               </p>
             </>
           )}
-          <div className="py-5">
+          <div className="w-full divide-y divide-gray-500">
             {shows.map((show, index) => (
               <Link
                 href={show.bandsintown_link as string}
                 key={index}
-                className="z-0 flex w-screen flex-col items-center gap-2 hover:bg-gray-600"
+                className="z-0 flex w-full flex-col items-center gap-2 hover:bg-gray-600"
               >
-                <div className="divide-y">
-                  <div className="flex flex-col justify-center gap-2 py-6 text-center sm:flex-row sm:justify-between sm:gap-24 sm:text-left md:gap-36 md:py-4 lg:gap-48">
-                    <div>
-                      <div className="font-bold text-gray-100">{show.date}</div>
-                      <div className="font-small text-gray-100">
-                        {show.location}
-                      </div>
-                      <div className="font-small text-gray-100 sm:order-2">
-                        {show.name}
-                      </div>
+                <div className="flex w-full flex-col items-center justify-center gap-2 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
+                  <div className="w-1/3">
+                    <div className="font-bold text-gray-100">{show.date}</div>
+                    <div className="font-small text-gray-100">
+                      {show.location}
                     </div>
+                    <div className="font-small text-gray-100 sm:order-2">
+                      {show.name}
+                    </div>
+                  </div>
+                  <motion.div
+                    onHoverStart={() => setHover(true)}
+                    onHoverEnd={() => setHover(false)}
+                    whileTap="hover"
+                    whileFocus="hover"
+                    className="flex w-1/3 flex-row justify-center gap-3 text-white sm:flex-col"
+                  >
                     <motion.div
-                      onHoverStart={() => setHover(true)}
-                      onHoverEnd={() => setHover(false)}
-                      whileTap="hover"
-                      whileFocus="hover"
-                      className="flex flex-row justify-center gap-3 text-white sm:flex-col"
+                      initial="hidden"
+                      animate={isHover ? "shown" : "hidden"}
+                      whileHover="shown"
+                      variants={variants}
+                      className="absolute left-1/2 flex flex-row gap-1 bg-gray-800 px-2 py-2 md:gap-3 lg:gap-4"
                     >
-                      <motion.div
-                        initial="hidden"
-                        animate={isHover ? "shown" : "hidden"}
-                        whileHover="shown"
-                        variants={variants}
-                        className="absolute left-1/2 flex flex-row gap-1 bg-gray-800 px-2 py-2 md:gap-3 lg:gap-4"
+                      <TwitterShareButton
+                        url={show.bandsintown_link as string}
+                        title={"Check out this upcoming event from Scalise!"}
+                        blankTarget
                       >
-                        <TwitterShareButton
-                          url={show.bandsintown_link as string}
-                          title={"Check out this upcoming event from Scalise!"}
-                          blankTarget
-                        >
-                          <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
-                            <TwitterIcon />
-                          </div>
-                        </TwitterShareButton>
-                        <FacebookShareButton
-                          url={show.bandsintown_link as string}
-                          quote={"Check out this upcoming event from Scalise!"}
-                          hashtag={"#music"}
-                          blankTarget
-                        >
-                          {" "}
-                          <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
-                            <FacebookIcon />
-                          </div>
-                        </FacebookShareButton>
-                        <EmailShareButton
-                          url={show.bandsintown_link as string}
-                          subject={
-                            "Check out this upcoming event from Scalise!"
-                          }
-                          body=""
-                          blankTarget
-                        >
-                          <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
-                            <EmailIcon />
-                          </div>
-                        </EmailShareButton>
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            navigator.clipboard
-                              .writeText(show.bandsintown_link as string)
-                              .then(() => {
-                                setCopied(true);
-                                setTimeout(() => {
-                                  setCopied(false);
-                                }, 500);
-                              })
-                              .catch((error) => console.error(error));
-                          }}
-                        >
-                          <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
-                            {!isCopied && <LinkIcon />}
-                            {isCopied && (
-                              <div className="animate-bounce animate-pulse text-green-400">
-                                <CheckIcon />
-                              </div>
-                            )}
-                          </div>
-                        </button>
-                      </motion.div>
-                      <div className="flex flex-row justify-center gap-2">
-                        <p>Share:</p>
-                        <ShareIcon />
-                      </div>
+                        <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
+                          <TwitterIcon />
+                        </div>
+                      </TwitterShareButton>
+                      <FacebookShareButton
+                        url={show.bandsintown_link as string}
+                        quote={"Check out this upcoming event from Scalise!"}
+                        hashtag={"#music"}
+                        blankTarget
+                      >
+                        {" "}
+                        <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
+                          <FacebookIcon />
+                        </div>
+                      </FacebookShareButton>
+                      <EmailShareButton
+                        url={show.bandsintown_link as string}
+                        subject={"Check out this upcoming event from Scalise!"}
+                        body=""
+                        blankTarget
+                      >
+                        <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
+                          <EmailIcon />
+                        </div>
+                      </EmailShareButton>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigator.clipboard
+                            .writeText(show.bandsintown_link as string)
+                            .then(() => {
+                              setCopied(true);
+                              setTimeout(() => {
+                                setCopied(false);
+                              }, 500);
+                            })
+                            .catch((error) => console.error(error));
+                        }}
+                      >
+                        <div className="flex rounded text-gray-900 hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:bg-transparent dark:hover:text-blue-500 md:p-0">
+                          {!isCopied && <LinkIcon />}
+                          {isCopied && (
+                            <div className="animate-bounce animate-pulse text-green-400">
+                              <CheckIcon />
+                            </div>
+                          )}
+                        </div>
+                      </button>
                     </motion.div>
+                    <div className="flex flex-row justify-center gap-2">
+                      <p>Share:</p>
+                      <ShareIcon />
+                    </div>
+                  </motion.div>
+                  <div className="flex w-full justify-center sm:w-1/3 sm:justify-end">
                     <Link
                       rel="noopener noreferrer"
                       target="_blank"
-                      className="flex flex-col justify-center rounded-sm border bg-rose-800 px-10 py-3 text-white hover:border-rose-900 hover:bg-rose-700 sm:py-0"
+                      className="w-1/2 rounded-sm border bg-rose-800 py-2 text-center text-white hover:border-rose-700 hover:bg-white hover:text-rose-700"
                       href={show.ticket_link as string}
                     >
                       Tickets

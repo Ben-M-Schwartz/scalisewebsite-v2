@@ -30,6 +30,7 @@ export const showRouter = createTRPCRouter({
       const newShow: NewShow = {
         date: input.date,
         time: input.time,
+        name: input.name,
         location: input.location,
         bandsintown_link: input.bandsintown_link,
         ticket_link: input.ticket_link,
