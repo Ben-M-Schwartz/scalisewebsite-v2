@@ -17,12 +17,12 @@ const Music: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
         <div className="relative flex w-full items-center justify-center bg-transparent">
           <Image
-            src="/pastelPhoto.JPEG"
+            src="/tunnelPhoto2.JPEG"
             alt="background photo"
             fill
             quality={75}
             style={{ objectFit: "cover" }}
-            className="absolute z-0"
+            className="absolute z-0 object-[15%_15%]"
             priority
           />
           <h1 className="z-10 py-24 text-center text-8xl text-white">MUSIC</h1>
