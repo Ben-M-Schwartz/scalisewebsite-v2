@@ -161,6 +161,7 @@ export const shows = mysqlTable(
     time: varchar("time", { length: 255 }),
     location: varchar("location", { length: 255 }),
     name: varchar("name", { length: 255 }),
+    maps_link: varchar("maps_link", { length: 255 }),
     bandsintown_link: varchar("bandsintown_link", { length: 255 }),
     ticket_link: varchar("ticket_link", { length: 255 }),
   },

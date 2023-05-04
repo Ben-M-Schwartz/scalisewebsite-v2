@@ -267,6 +267,13 @@
       "when": 1682736918216,
       "tag": "0037_wooden_loners",
       "breakpoints": false
+    },
+    {
+      "idx": 38,
+      "version": "5",
+      "when": 1683169852817,
+      "tag": "0038_lazy_daimon_hellstrom",
+      "breakpoints": false
     }
   ]
 }

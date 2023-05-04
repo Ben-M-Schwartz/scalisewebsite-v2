@@ -21,6 +21,7 @@ export const showRouter = createTRPCRouter({
         time: z.string(),
         location: z.string(),
         name: z.string(),
+        maps_link: z.string(),
         bandsintown_link: z.string(),
         ticket_link: z.string(),
       })
@@ -31,6 +32,7 @@ export const showRouter = createTRPCRouter({
         date: input.date,
         time: input.time,
         name: input.name,
+        maps_link: input.maps_link,
         location: input.location,
         bandsintown_link: input.bandsintown_link,
         ticket_link: input.ticket_link,
