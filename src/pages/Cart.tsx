@@ -229,7 +229,7 @@ const Cart: NextPage = () => {
       </Head>
       <main className="flex flex-col items-center bg-gray-900 pb-20">
         {loading && (
-          <div className="m-auto flex flex-row justify-between gap-2 text-white">
+          <div className="flex flex-row justify-between gap-2 text-white">
             <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
             <p className="flex">Loading...</p>
           </div>

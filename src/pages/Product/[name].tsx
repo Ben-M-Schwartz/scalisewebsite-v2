@@ -63,23 +63,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const Product: NextPage = (
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
-  const router = useRouter();
-  /*   const product = api.inventory.get.useQuery(
-    { id: router.query.id as string },
-    { enabled: !!router.query.id }
-  ); */
-  /*   const productData = product.data as {
-    name: string;
-    price: number;
-    weight: number;
-    id: number;
-    image: string | null;
-    product_quantity: {
-      size: string;
-      quantity_in_stock: number;
-      quantity_in_checkouts: number;
-    };
-  }[]; */
   const productData = props.product as {
     name: string;
     price: number;
@@ -125,6 +108,7 @@ const Product: NextPage = (
     XXXXL: 8,
   };
 
+  //TODO: Figure out why adding to cart sometimes causes internal server error and take into account items in current cart when adding
   const onSubmitCart = (formData: addToCartForm) => {
     setProcessing(true);
     const mutateOptions = {
@@ -187,7 +171,7 @@ const Product: NextPage = (
   const notifyWhenInStock = (formData: notifyForm) => {
     notify
       .mutateAsync({
-        product_id: router.query.id as string,
+        product_id: productData[0]?.id.toString() as string,
         name: productData[0]?.name as string,
         size: pickedSize,
         email: formData.email,
