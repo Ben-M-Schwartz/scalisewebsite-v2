@@ -62,7 +62,7 @@ const NewProduct: NextPage = () => {
         quantities: formData.quantities,
         imageName: formData.imageName,
         is_taxed: parseInt(formData.is_taxed),
-        store_order: parseInt(formData.store_order),
+        store_order: parseInt(formData.store_order) || 1,
       })
       .then(() => window.alert("Success"));
   };
