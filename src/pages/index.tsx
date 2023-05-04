@@ -101,7 +101,7 @@ const Home: NextPage = () => {
         <div className="relative min-h-screen w-screen">
           <div className="flex flex-col gap-20 pb-20">
             <video
-              src="/TellMeYouNeedMe.mp4"
+              src="/TellMeYouNeedMe.mov"
               playsInline
               autoPlay
               loop
