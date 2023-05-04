@@ -205,12 +205,10 @@ const Product: NextPage = (
       </main>
     );
 
-  const Title = `${productData[0].name} - Scalise`;
-
   return (
     <>
       <Head>
-        <title>{Title}</title>
+        <title>SCALISE - PRODUCTS</title>
       </Head>
       <main className="min-h-screen bg-black">
         <div className="flex flex-col items-center justify-center pb-20 md:flex-row md:gap-10 md:pb-0 xl:px-28">
