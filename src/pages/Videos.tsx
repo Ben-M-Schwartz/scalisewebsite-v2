@@ -40,6 +40,7 @@ const Videos: NextPage = () => {
               title="Scalise - She&#39;s Gonna Kill You [Live @ 7th St Entry]"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
               style={{ aspectRatio: "16/9" }}
             ></iframe>
           </div>
@@ -50,6 +51,7 @@ const Videos: NextPage = () => {
               title="Scalise - Perfect Occasions [Home Session]"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
               style={{ aspectRatio: "16/9" }}
             ></iframe>
           </div>
@@ -60,6 +62,7 @@ const Videos: NextPage = () => {
               title="Scalise - Fool&#39;s Coal [Live @ 7th St Entry]"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
               style={{ aspectRatio: "16/9" }}
             ></iframe>
           </div>
@@ -70,6 +73,7 @@ const Videos: NextPage = () => {
               title="Scalise - Dollar Short [Live @ OMNI Brewing]"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
               style={{ aspectRatio: "16/9" }}
             ></iframe>
           </div>
@@ -83,6 +87,7 @@ const Videos: NextPage = () => {
               title="The Band Plays a Wedding and Terrible Golf- Vlog 8"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
               style={{ aspectRatio: "16/9" }}
             ></iframe>
           </div>
@@ -93,6 +98,7 @@ const Videos: NextPage = () => {
               title="We Give an Album 2 Update!!! - Vlog 7"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
               style={{ aspectRatio: "16/9" }}
             ></iframe>
           </div>
@@ -103,6 +109,7 @@ const Videos: NextPage = () => {
               title="The Band Plays a HUGE Show - Vlog 6"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
               style={{ aspectRatio: "16/9" }}
             ></iframe>
           </div>
@@ -113,6 +120,7 @@ const Videos: NextPage = () => {
               title="The Band&#39;s Equipment Gets SOAKED - Vlog 5"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
               style={{ aspectRatio: "16/9" }}
             ></iframe>
           </div>
@@ -123,6 +131,7 @@ const Videos: NextPage = () => {
               title="The Band Split Up... But Got Back Together - Vlog 4"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
               style={{ aspectRatio: "16/9" }}
             ></iframe>
           </div>
@@ -133,6 +142,7 @@ const Videos: NextPage = () => {
               title="The Band Finally Plays Music and Looks Cool - Vlog 3"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
               style={{ aspectRatio: "16/9" }}
             ></iframe>
           </div>
@@ -143,6 +153,7 @@ const Videos: NextPage = () => {
               title="We Try Releasing GOOD Music??? - Vlog 2"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
               style={{ aspectRatio: "16/9" }}
             ></iframe>
           </div>
@@ -153,6 +164,7 @@ const Videos: NextPage = () => {
               title="What We Really Do in Our Band - Vlog 1"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
               style={{ aspectRatio: "16/9" }}
             ></iframe>
           </div>
