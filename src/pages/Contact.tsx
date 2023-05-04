@@ -58,8 +58,10 @@ const Contact: NextPage = () => {
       <main className="flex flex-col items-center justify-center">
         <div className="flex flex-col items-center justify-center gap-10 pb-32 pt-16 md:flex-row">
           <div className="flex w-full flex-col items-center justify-center gap-2 md:w-1/2">
-            <h1 className="text-center text-7xl md:text-left">Contact Us</h1>
-            <p className="w-2/3 text-center md:w-4/5 md:text-left">
+            <h1 className="order-1 text-center text-7xl md:text-left">
+              Contact Us
+            </h1>
+            <p className="order-1 w-2/3 text-center md:w-4/5 md:text-left">
               You can also reach out to us at{" "}
               <a
                 href="mailto:graden@scalise.band"
@@ -69,7 +71,7 @@ const Contact: NextPage = () => {
               </a>{" "}
               or through any socials below.
             </p>
-            <div className="flex h-full w-full flex-col items-center justify-center">
+            <div className="order-0 flex h-full w-full flex-col items-center justify-center sm:order-1">
               <Image
                 src="/contactPagePhoto.jpg"
                 alt="scalise photo"
@@ -77,7 +79,7 @@ const Contact: NextPage = () => {
                 height={431}
               />
             </div>
-            <div className="mt-4 flex justify-center gap-2 bg-white">
+            <div className="order-1 mt-4 flex justify-center gap-2 bg-white">
               <Link
                 href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
                 className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
@@ -142,67 +144,69 @@ const Contact: NextPage = () => {
               </Link>
             </div>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="max-w-screen flex flex-col justify-center gap-2">
-              <div className="flex flex-row items-center justify-center gap-5">
-                <div className="flex flex-col">
-                  <label htmlFor="first-name">First name</label>
-                  <input
-                    id="first-name"
-                    {...register("firstName", { required: true })}
-                    className="rounded-md border border-gray-400 bg-gray-100 p-2"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label htmlFor="last-name">Last name</label>
-                  <input
-                    id="last-name"
-                    {...register("lastName", { required: true })}
-                    className="rounded-md border border-gray-400 bg-gray-100 p-2"
-                  />
-                </div>
-              </div>
-              <h2>Email</h2>
-              <input
-                id="email"
-                {...register("email", { required: true })}
-                className="rounded-md border border-gray-400 bg-gray-100 p-2"
-              />
-              <h2>Subject</h2>
-              <input
-                id="subject"
-                {...register("subject", { required: true })}
-                className="rounded-md border border-gray-400 bg-gray-100 p-2"
-              />
-              <h2>Message</h2>
-              <textarea
-                id="message"
-                {...register("message", { required: true })}
-                className="rounded-md border border-gray-400 bg-gray-100 p-2"
-                rows={4}
-              />
-              {!processing && (
-                <button
-                  type="submit"
-                  className="mt-4 w-1/2 rounded-sm border-4 border-rose-800 py-4 hover:bg-rose-800 hover:text-white"
-                >
-                  Submit
-                </button>
-              )}
-              {processing && (
-                <button
-                  type="button"
-                  className="mt-4 w-1/2 rounded-sm border-4 border-rose-800 bg-rose-800 py-4 text-white"
-                  disabled
-                >
-                  <div className="flex flex-row justify-center">
-                    <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
-                    <p className="flex">Processing...</p>
+          <div className="flex w-full flex-col items-center justify-center border md:w-1/2">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="flex flex-col justify-center gap-2 px-4 py-8 sm:px-0">
+                <div className="flex flex-row justify-center gap-5">
+                  <div className="flex flex-col">
+                    <label htmlFor="first-name">First name</label>
+                    <input
+                      id="first-name"
+                      {...register("firstName", { required: true })}
+                      className="w-full rounded-md border border-gray-400 bg-gray-100 p-2"
+                    />
                   </div>
-                </button>
-              )}
-            </div>
-          </form>
+                  <div className="flex flex-col">
+                    <label htmlFor="last-name">Last name</label>
+                    <input
+                      id="last-name"
+                      {...register("lastName", { required: true })}
+                      className="w-full rounded-md border border-gray-400 bg-gray-100 p-2"
+                    />
+                  </div>
+                </div>
+                <h2>Email</h2>
+                <input
+                  id="email"
+                  {...register("email", { required: true })}
+                  className="rounded-md border border-gray-400 bg-gray-100 p-2"
+                />
+                <h2>Subject</h2>
+                <input
+                  id="subject"
+                  {...register("subject", { required: true })}
+                  className="rounded-md border border-gray-400 bg-gray-100 p-2"
+                />
+                <h2>Message</h2>
+                <textarea
+                  id="message"
+                  {...register("message", { required: true })}
+                  className="rounded-md border border-gray-400 bg-gray-100 p-2"
+                  rows={4}
+                />
+                {!processing && (
+                  <button
+                    type="submit"
+                    className="mt-4 w-1/2 rounded-sm border-4 border-rose-800 py-4 hover:bg-rose-800 hover:text-white"
+                  >
+                    Submit
+                  </button>
+                )}
+                {processing && (
+                  <button
+                    type="button"
+                    className="mt-4 w-1/2 rounded-sm border-4 border-rose-800 bg-rose-800 py-4 text-white"
+                    disabled
+                  >
+                    <div className="flex flex-row justify-center">
+                      <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
+                      <p className="flex">Processing...</p>
+                    </div>
+                  </button>
+                )}
+              </div>
+            </form>
+          </div>
         </div>
       </main>
     </>

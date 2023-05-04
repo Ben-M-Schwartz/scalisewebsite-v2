@@ -131,7 +131,7 @@ const removeProduct: NextPage = () => {
         <h1 className="mt-12 pl-4 text-4xl text-white">
           Which product would you like to remove from the website?
         </h1>
-        <div className="container grid grid-cols-3 items-center justify-center gap-4">
+        <div className="container flex flex-col items-center justify-center gap-4 sm:grid sm:grid-cols-2 sm:items-center sm:justify-center lg:grid-cols-3">
           {products?.data?.map((product) => (
             <Card key={product.id} product={product} />
           ))}
