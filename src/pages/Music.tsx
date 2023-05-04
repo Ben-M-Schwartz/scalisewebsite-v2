@@ -63,6 +63,7 @@ const Music: NextPage = () => {
                   height={504}
                 />
               </div>
+              <p className="text-white">Placeholder audio element for now:</p>
               <audio controls className="appearance-none">
                 {/*                 <source src="transferred.ogg" type="audio/ogg" />
                 <source src="transferred.mp3" type="audio/mpeg" /> */}
