@@ -20,7 +20,7 @@ type NewProductForm = {
   sizes: string;
   quantities: string;
   imageName: string;
-  is_taxed: number;
+  is_taxed: string;
 };
 
 const NewProduct: NextPage = () => {
@@ -60,7 +60,7 @@ const NewProduct: NextPage = () => {
         weight: parseFloat(formData.weight),
         quantities: formData.quantities,
         imageName: formData.imageName,
-        is_taxed: formData.is_taxed,
+        is_taxed: parseInt(formData.is_taxed),
       })
       .then(() => window.alert("Success"));
   };
