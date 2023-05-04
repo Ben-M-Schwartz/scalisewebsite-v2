@@ -37,29 +37,37 @@ const Music: NextPage = () => {
 
         <div className="relative min-h-screen w-screen">
           <div className="flex flex-col">
-            <div className="flex flex-col items-center justify-center gap-3 bg-black py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-0">
-              <div className="w-1/2 text-center md:order-1">
-                <div className="flex flex-col items-center justify-center gap-3">
-                  <h1 className="text-center text-4xl font-bold text-white">
-                    TRANSFERRED TO HOUSTON
-                  </h1>
-                  <Link
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="flex w-full flex-col justify-center rounded-sm border-4 border-white py-2 text-center text-xl text-white hover:bg-white hover:font-bold hover:text-black md:w-1/2"
-                    href="https://distrokid.com/hyperfollow/scalise/transferred-to-houston"
-                  >
-                    Listen Here
-                  </Link>
+            <div className="flex flex-col items-center gap-10 bg-black py-24">
+              <div className="flex flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-0">
+                <div className="w-1/2 text-center md:order-1">
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <h1 className="text-center text-4xl font-bold text-white">
+                      TRANSFERRED TO HOUSTON
+                    </h1>
+                    <Link
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="flex w-full flex-col justify-center rounded-sm border-4 border-white py-2 text-center text-xl text-white hover:bg-white hover:font-bold hover:text-black md:w-1/2"
+                      href="https://distrokid.com/hyperfollow/scalise/transferred-to-houston"
+                    >
+                      Listen Here
+                    </Link>
+                  </div>
                 </div>
+                <Image
+                  src={transferred}
+                  alt="Transferred To Houston Image"
+                  loading="lazy"
+                  width={504}
+                  height={504}
+                />
               </div>
-              <Image
-                src={transferred}
-                alt="Transferred To Houston Image"
-                loading="lazy"
-                width={504}
-                height={504}
-              />
+              <audio controls className="appearance-none">
+                {/*                 <source src="transferred.ogg" type="audio/ogg" />
+                <source src="transferred.mp3" type="audio/mpeg" /> */}
+                {/* Your browser does not support the audio element. */}
+                Audio element placeholder
+              </audio>
             </div>
 
             <div className="z-10 flex flex-col items-center justify-center gap-3 bg-white py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
