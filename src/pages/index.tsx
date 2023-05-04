@@ -3,6 +3,15 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
+//importing images for static generation on build to speed up load times
+import background from "../../public/Red_Felt.png";
+import partyPoster from "../../public/releasePartyPoster.png";
+import transferred from "../../public/transferred.png";
+import restOfTheWeek from "../../public/restOfTheWeek.png";
+import fruitSnacks from "../../public/fruitSnacks.jpeg";
+import tmynmImage from "../../public/tellMeYouNeedMe.jpeg";
+import airbag from "../../public/airbag.jpeg";
+
 /* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
@@ -35,7 +44,7 @@ const Home: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
         <div className="relative min-h-screen w-screen pb-20 pt-12">
           <Image
-            src="/Red_Felt.png"
+            src={background}
             alt="Red Felt"
             fill
             quality={1}
@@ -80,7 +89,7 @@ const Home: NextPage = () => {
             </div>
             <div className="order-1 h-full w-2/3 sm:w-1/2 md:order-2 md:w-1/3">
               <Image
-                src="/releasePartyPoster.png"
+                src={partyPoster}
                 alt="release party"
                 width={386}
                 height={579}
@@ -117,7 +126,7 @@ const Home: NextPage = () => {
               </div>
               <div className="h-1/2 w-1/2 lg:h-2/3 lg:w-2/3">
                 <Image
-                  src="/transferred.png"
+                  src={transferred}
                   alt="Transferred To Houston Image"
                   width={504}
                   height={504}
@@ -143,7 +152,7 @@ const Home: NextPage = () => {
               </div>
               <div className="h-1/2 w-1/2 lg:h-2/3 lg:w-2/3">
                 <Image
-                  src="/restOfTheWeek.png"
+                  src={restOfTheWeek}
                   alt="Rest Of The Week Image"
                   width={504}
                   height={504}
@@ -169,7 +178,7 @@ const Home: NextPage = () => {
               </div>
               <div className="h-1/2 w-1/2 lg:h-2/3 lg:w-2/3">
                 <Image
-                  src="/fruitSnacks.jpeg"
+                  src={fruitSnacks}
                   alt="Fruit Snacks Image"
                   width={504}
                   height={504}
@@ -195,7 +204,7 @@ const Home: NextPage = () => {
               </div>
               <div className="h-1/2 w-1/2 lg:h-2/3 lg:w-2/3">
                 <Image
-                  src="/tellMeYouNeedMe.jpeg"
+                  src={tmynmImage}
                   alt="Tell Me You Need Me Image"
                   width={504}
                   height={504}
@@ -221,7 +230,7 @@ const Home: NextPage = () => {
               </div>
               <div className="h-1/2 w-1/2 lg:h-2/3 lg:w-2/3">
                 <Image
-                  src="/airbag.jpeg"
+                  src={airbag}
                   alt="Airbag Image"
                   width={504}
                   height={504}

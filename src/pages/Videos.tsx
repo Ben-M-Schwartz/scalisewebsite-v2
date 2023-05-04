@@ -1,8 +1,8 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-//import Link from "next/link";
-//import { signIn, signOut, useSession } from "next-auth/react";
+
+import banner from "../../public/barnPhoto.jpg";
 
 /* export const config = {
   runtime: "experimental-edge",
@@ -18,7 +18,7 @@ const Videos: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-black">
         <div className="relative flex w-full justify-center bg-transparent">
           <Image
-            src="/barnPhoto.jpg"
+            src={banner}
             alt="background photo"
             fill
             quality={75}

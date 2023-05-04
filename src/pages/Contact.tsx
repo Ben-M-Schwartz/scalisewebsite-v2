@@ -21,6 +21,8 @@ import { useState } from "react";
   regions: ["cle1"],
 }; */
 
+import image from "../../public/contactPagePhoto.jpg";
+
 type FormData = {
   firstName: string;
   lastName: string;
@@ -72,12 +74,7 @@ const Contact: NextPage = () => {
               or through any socials below.
             </p>
             <div className="order-0 flex h-full w-full flex-col items-center justify-center sm:order-1">
-              <Image
-                src="/contactPagePhoto.jpg"
-                alt="scalise photo"
-                width={544}
-                height={431}
-              />
+              <Image src={image} alt="scalise photo" width={544} height={431} />
             </div>
             <div className="order-1 mt-4 flex justify-center gap-2 bg-white">
               <Link

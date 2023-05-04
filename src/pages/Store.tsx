@@ -6,6 +6,8 @@ import { product_details } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
 type Product = InferModel<typeof product_details, "select">;
 
+import banner from "../../public/porchPhoto.jpg";
+
 /* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
@@ -82,7 +84,7 @@ const Store: NextPage = (
       <main className="flex min-h-screen flex-col items-center justify-center bg-black">
         <div className="relative flex w-full items-center justify-center bg-transparent">
           <Image
-            src="/porchPhoto.jpg"
+            src={banner}
             alt="background photo"
             fill
             quality={75}

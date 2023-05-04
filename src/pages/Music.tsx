@@ -3,6 +3,11 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 
+import banner from "../../public/tunnelPhoto.png";
+import transferred from "../../public/transferred.png";
+import fruitSnacks from "../../public/fruitSnacks.jpeg";
+import airbag from "../../public/airbag.jpeg";
+
 /* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
@@ -17,7 +22,7 @@ const Music: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
         <div className="relative flex w-full items-center justify-center bg-transparent">
           <Image
-            src="/tunnelPhoto2.JPEG"
+            src={banner}
             alt="background photo"
             fill
             quality={75}
@@ -49,7 +54,7 @@ const Music: NextPage = () => {
                 </div>
               </div>
               <Image
-                src="/transferred.png"
+                src={transferred}
                 alt="Transferred To Houston Image"
                 width={504}
                 height={504}
@@ -73,7 +78,7 @@ const Music: NextPage = () => {
                 </div>
               </div>
               <Image
-                src="/airbag.jpeg"
+                src={airbag}
                 alt="Airbag Image"
                 width={504}
                 height={504}
@@ -98,7 +103,7 @@ const Music: NextPage = () => {
                 </div>
               </div>
               <Image
-                src="/fruitSnacks.jpeg"
+                src={fruitSnacks}
                 alt="Fruit Snacks Image"
                 width={504}
                 height={504}

@@ -28,6 +28,8 @@ export const config = {
 
 import { api } from "~/utils/api";
 
+import banner from "../../public/greenRoomPhoto.png";
+
 /* 
 For if using getServerSideProps:
 
@@ -219,7 +221,7 @@ const Shows: NextPage = () =>
         <main className="flex min-h-screen flex-col items-center bg-gray-800">
           <div className="relative flex w-full justify-center bg-transparent">
             <Image
-              src="/greenRoomPhoto.png"
+              src={banner}
               alt="background photo"
               fill
               quality={75}
