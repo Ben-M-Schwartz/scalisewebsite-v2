@@ -8,10 +8,10 @@ import { type InferModel } from "drizzle-orm";
 import { SignIn } from "@clerk/clerk-react";
 import { useAuth } from "@clerk/nextjs";
 
-export const config = {
+/* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
-};
+}; */
 
 type Product = InferModel<typeof product_details, "select">;
 

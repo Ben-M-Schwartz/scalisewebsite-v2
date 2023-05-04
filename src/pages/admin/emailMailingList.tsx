@@ -10,10 +10,10 @@ import { useState } from "react";
 
 import { api } from "~/utils/api";
 
-export const config = {
+/* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
-};
+}; */
 
 type emailForm = {
   testRecipient: string;

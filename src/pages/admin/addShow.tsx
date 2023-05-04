@@ -8,10 +8,10 @@ import { useForm } from "react-hook-form";
 import { SignIn } from "@clerk/clerk-react";
 import { useAuth } from "@clerk/nextjs";
 
-export const config = {
+/* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
-};
+}; */
 
 type AddShowForm = {
   date: string;

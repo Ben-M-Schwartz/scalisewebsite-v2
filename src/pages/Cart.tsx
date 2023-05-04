@@ -12,6 +12,7 @@ import { getCookie, hasCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { Item } from "~/components/cartItem";
+
 export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],

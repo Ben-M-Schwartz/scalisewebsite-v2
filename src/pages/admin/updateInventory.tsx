@@ -13,10 +13,10 @@ import { useRouter } from "next/router";
 import { SignIn } from "@clerk/clerk-react";
 import { useAuth } from "@clerk/nextjs";
 
-export const config = {
+/* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
-};
+}; */
 
 type sizesArray = {
   size: string;
