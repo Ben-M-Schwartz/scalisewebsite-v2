@@ -123,7 +123,7 @@ export const inventoryRouter = createTRPCRouter({
         product_id: z.number(),
         size: z.string(),
         quantity: z.number(),
-        operation: z.string(),
+        operation: z.enum(["+", "-", "set"]),
       })
     )
     .mutation(async ({ input }) => {
@@ -133,7 +133,9 @@ export const inventoryRouter = createTRPCRouter({
           quantity:
             input.operation === "+"
               ? sql`${product_quantity.quantity} + ${input.quantity}`
-              : sql`${product_quantity.quantity} - ${input.quantity}`,
+              : input.operation === "-"
+              ? sql`${product_quantity.quantity} - ${input.quantity}`
+              : input.quantity,
         })
         .where(
           and(

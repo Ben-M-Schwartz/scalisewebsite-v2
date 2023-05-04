@@ -11,6 +11,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { CarretDown } from "~/components/icons";
 import { CartContext, type CartContextType } from "~/pages/_app";
 
+import { motion } from "framer-motion";
+
 export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
@@ -223,17 +225,33 @@ const Product: NextPage = (
               <p className="text-white">&gt;</p>
               <p className="text-xl text-white">{productData[0].name}</p>
             </div>
-            <Image
-              className="full object-cover shadow-lg"
-              src={`/${productData[0].image as string}`}
-              alt="image"
-              height={719}
-              width={540}
-            />
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0, y: -20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    y: { stiffness: 1000, duration: 0.5 },
+                    opacity: { duration: 0.5 },
+                  },
+                },
+              }}
+            >
+              <Image
+                className="full object-cover shadow-lg"
+                src={`/${productData[0].image as string}`}
+                alt="image"
+                height={719}
+                width={540}
+              />
+            </motion.div>
           </div>
           <div className="w-2/3 md:w-1/3">
             <div className="container flex flex-col gap-4 pb-16">
-              <h1 className="mt-12 text-4xl text-white md:mt-8 md:text-8xl">
+              <h1 className="mt-12 text-4xl text-white md:mt-8 md:text-5xl lg:text-6xl">
                 {productData[0].name}
               </h1>
               <p className="text-xl text-white">
@@ -250,11 +268,11 @@ const Product: NextPage = (
                   <div>
                     <label
                       htmlFor="size"
-                      className="block text-sm font-medium text-white"
+                      className="block pb-2 text-sm font-medium text-white"
                     >
                       Size
                     </label>
-                    <div className="flex w-1/2 flex-row items-center">
+                    <div className="relative flex w-1/2 items-center">
                       <select
                         id="size"
                         {...cartRegister("size", { required: true })}
@@ -296,8 +314,10 @@ const Product: NextPage = (
                             </option>
                           ))}
                       </select>
-                      <div className="absolute h-5 w-5 translate-x-44">
-                        <CarretDown />
+                      <div className="absolute flex h-full w-full flex-row items-center justify-end object-contain">
+                        <div className="absolute z-10 mr-4 h-5 w-5 md:max-lg:mr-2">
+                          <CarretDown />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -307,7 +327,7 @@ const Product: NextPage = (
                     <div>
                       <label
                         htmlFor="quantitiy"
-                        className="block text-sm font-medium text-white"
+                        className="block pb-2 text-sm font-medium text-white"
                       >
                         Quantity
                       </label>

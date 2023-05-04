@@ -6,6 +6,8 @@ import { product_details } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
 type Product = InferModel<typeof product_details, "select">;
 
+import { motion } from "framer-motion";
+
 import banner from "../../public/porchPhoto.jpg";
 
 /* export const config = {
@@ -17,7 +19,22 @@ import banner from "../../public/porchPhoto.jpg";
 
 function Card({ product }: { product: Product }) {
   return (
-    <div className="borderx max-w-sm">
+    <motion.div
+      className="borderx max-w-sm"
+      initial="hidden"
+      whileInView="visible"
+      variants={{
+        hidden: { opacity: 0, y: -20 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            y: { stiffness: 1000, duration: 0.5 },
+            opacity: { duration: 0.5 },
+          },
+        },
+      }}
+    >
       <Link href={`/Product/${(product.name as string).replace(/\s+/g, "-")}`}>
         <div className="relative h-full w-full">
           <Image
@@ -38,7 +55,7 @@ function Card({ product }: { product: Product }) {
           </h5>
         </div>
       </Link>
-    </div>
+    </motion.div>
   );
 }
 import { db } from "~/db/db";

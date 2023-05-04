@@ -24,6 +24,8 @@ type sizesArray = {
   currentQuantity: number;
 }[];
 
+type ValidOperations = "+" | "-" | "set";
+
 function Card({
   product,
   productInventory,
@@ -47,7 +49,7 @@ function Card({
           product_id: product.id,
           quantity: sizeInfo.updateQuantity,
           size: sizeInfo.size,
-          operation: operation,
+          operation: operation as ValidOperations,
         })
       );
       if (sizeInfo.currentQuantity === 0) {
@@ -63,7 +65,6 @@ function Card({
     Promise.all(updatePromises)
       .then(() => {
         window.alert("success");
-        router.reload();
       })
       .catch((error) => console.error(error));
   };
@@ -90,6 +91,9 @@ function Card({
             </option>
             <option key="-" value="-">
               Remove
+            </option>
+            <option key="set" value="set">
+              Set
             </option>
           </select>
           {productInventory.map((p) => (

@@ -56,6 +56,7 @@ const Music: NextPage = () => {
               <Image
                 src={transferred}
                 alt="Transferred To Houston Image"
+                loading="lazy"
                 width={504}
                 height={504}
               />
@@ -83,6 +84,7 @@ const Music: NextPage = () => {
                 width={504}
                 height={504}
                 className="order-1"
+                loading="lazy"
               />
             </div>
 
@@ -107,6 +109,7 @@ const Music: NextPage = () => {
                 alt="Fruit Snacks Image"
                 width={504}
                 height={504}
+                loading="lazy"
               />
             </div>
 
@@ -139,6 +142,7 @@ const Music: NextPage = () => {
                 alt="From Nothing To Nothing Album Cover"
                 width={504}
                 height={504}
+                loading="lazy"
               />
             </div>
           </div>
