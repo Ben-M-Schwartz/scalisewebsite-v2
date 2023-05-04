@@ -17,7 +17,7 @@ import banner from "../../public/porchPhoto.jpg";
 
 //import { api } from "~/utils/api";
 
-function Card({ product }: { product: Product }) {
+function Card({ product, index }: { product: Product; index: number }) {
   return (
     <motion.div
       className="borderx max-w-sm"
@@ -43,6 +43,7 @@ function Card({ product }: { product: Product }) {
             alt="image"
             height={360}
             width={423}
+            priority={index <= 3}
           />
         </div>
         <div className="p-5">
@@ -113,8 +114,8 @@ const Store: NextPage = (
           </h1>
         </div>
         <div className="container flex flex-col items-center justify-center gap-4 pt-16 sm:grid sm:grid-cols-2 sm:items-center sm:justify-center lg:grid-cols-3">
-          {products.map((product) => (
-            <Card key={product.id} product={product} />
+          {products.map((product, index) => (
+            <Card key={product.id} product={product} index={index} />
           ))}
         </div>
       </main>
