@@ -44,7 +44,6 @@ function Card({ product, index }: { product: Product; index: number }) {
             height={360}
             width={423}
             priority={index <= 2}
-            loading="lazy"
           />
         </div>
         <div className="p-5">
