@@ -13,10 +13,10 @@ import { CartContext, type CartContextType } from "~/pages/_app";
 
 import { motion } from "framer-motion";
 
-export const config = {
+/* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
-};
+}; */
 
 import {
   setCookie,
@@ -59,6 +59,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   };
 }; */
+
+import { type GetStaticPaths } from "next";
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return {
+    paths: [{ params: { name: "Unisex-Astronaut-Tee" } }],
+    fallback: true,
+  };
+};
 
 const Product: NextPage = () =>
   //props: InferGetServerSidePropsType<typeof getServerSideProps>
