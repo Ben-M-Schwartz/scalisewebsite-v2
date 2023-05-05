@@ -83,31 +83,23 @@ const Show = ({ show }: { show: ShowType }) => {
       className="z-0 flex w-full flex-col items-center gap-2 hover:bg-gray-600"
     >
       <div className="flex w-full flex-col items-center justify-center gap-2 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
-        <div className="w-full sm:w-1/3">
+        <div className="w-full sm:w-1/2 xl:w-2/3">
           <div className="font-bold text-gray-100">{show.date}</div>
           <div className="font-small text-gray-100">{show.location}</div>
           <div className="font-small text-gray-100 sm:order-2">{show.name}</div>
         </div>
-        <div className="flex w-1/3 flex-col items-center justify-center gap-3 sm:flex-row sm:gap-8 md:gap-20">
-          <Link
-            href={show.maps_link as string}
-            rel="noopener noreferrer"
-            target="_blank"
-            className="z-10 text-blue-400 underline hover:text-blue-700"
-          >
-            Get Directions
-          </Link>
+        <div className="flex w-1/4 flex-col items-center justify-center gap-3 sm:flex-row sm:gap-8 md:gap-20 xl:w-1/6">
           <motion.div
             onHoverStart={() => setHover(true)}
             onHoverEnd={() => setHover(false)}
-            className="z-20 flex flex-row justify-center gap-3 text-white sm:flex-col"
+            className="z-30 flex flex-row justify-center gap-3 object-contain text-white sm:translate-x-1 sm:flex-col"
           >
             <motion.div
               initial="hidden"
               animate={isHover ? "shown" : "hidden"}
               whileHover="shown"
               variants={variants}
-              className="absolute left-1/2 flex flex-row gap-1 bg-gray-800 px-2 py-2 md:gap-3 lg:gap-4"
+              className="absolute left-1/2 z-40 flex flex-row gap-1 bg-gray-800 px-2 py-2 md:gap-3 lg:gap-4"
             >
               <TwitterShareButton
                 url={show.bandsintown_link as string}
@@ -148,7 +140,7 @@ const Show = ({ show }: { show: ShowType }) => {
                       setCopied(true);
                       setTimeout(() => {
                         setCopied(false);
-                      }, 500);
+                      }, 1000);
                     })
                     .catch((error) => console.error(error));
                 }}
@@ -165,7 +157,7 @@ const Show = ({ show }: { show: ShowType }) => {
             </motion.div>
             <button
               id="share"
-              className="z-30 flex flex-row justify-center gap-2 bg-transparent p-4 focus:text-blue-400"
+              className="z-10 flex flex-row justify-center gap-2 bg-transparent px-10 py-4 focus:text-blue-400"
               onClick={(e) => {
                 e.preventDefault();
                 setHover(true);
@@ -176,11 +168,19 @@ const Show = ({ show }: { show: ShowType }) => {
             </button>
           </motion.div>
         </div>
-        <div className="flex w-full justify-center sm:w-1/3 sm:justify-end">
+        <div className="flex w-full flex-col items-center justify-center gap-2 sm:w-1/4 sm:items-end sm:justify-end xl:w-1/6">
+          <Link
+            href={show.maps_link as string}
+            rel="noopener noreferrer"
+            target="_blank"
+            className="w-1/2 rounded-sm border border-rose-800 bg-white py-2 text-center text-rose-800 hover:border-white hover:bg-rose-800 hover:text-white active:bg-rose-600 sm:w-full"
+          >
+            Directions
+          </Link>
           <Link
             rel="noopener noreferrer"
             target="_blank"
-            className="w-1/2 rounded-sm border bg-rose-800 py-2 text-center text-white hover:border-rose-700 hover:bg-white hover:text-rose-700"
+            className="w-1/2 rounded-sm border bg-rose-800 py-2 text-center text-white hover:border-rose-800 hover:bg-white hover:text-rose-800 active:bg-gray-300 sm:w-full"
             href={show.ticket_link as string}
           >
             Tickets
