@@ -60,7 +60,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 }; */
 
-import { getProductPage } from "~/server/api/routers/inventoryRouter";
+import {
+  getProductPage,
+  getProductRoutes,
+} from "~/server/api/routers/inventoryRouter";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -71,15 +74,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       product: result,
     },
-    revalidate: 1,
+    revalidate: 10,
   };
 };
 
 import { type GetStaticPaths } from "next";
 
-export const getStaticPaths: GetStaticPaths = () => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const productPaths = await getProductRoutes();
   return {
-    paths: [{ params: { name: "Unisex-Astronaut-Tee" } }],
+    paths: productPaths,
     fallback: true,
   };
 };

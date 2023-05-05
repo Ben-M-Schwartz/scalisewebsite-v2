@@ -12,6 +12,7 @@ import { and, eq, or, gte } from "drizzle-orm/expressions";
 import { sql } from "drizzle-orm/sql";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import { p } from "@vercel/edge-config/dist/types-4093548b";
 
 export const config = {
   runtime: "edge",
@@ -49,6 +50,20 @@ export const getProductPage = async (name: string) => {
     )
     .where(eq(product_details.name, name));
   return result;
+};
+
+export const getProductRoutes = async () => {
+  const queryResult = await db
+    .select({ name: product_details.name })
+    .from(product_details);
+  const productRoutes = queryResult.map((p) => {
+    return {
+      params: {
+        name: (p.name as string).replace(/\s+/g, "-"),
+      },
+    };
+  });
+  return productRoutes;
 };
 
 export const inventoryRouter = createTRPCRouter({
