@@ -19,22 +19,26 @@ type CartItem = {
 
 export function Item({
   item,
+  disableUpdates,
   onAdd,
   onRemove,
   onTextUpdate,
+  onDelete,
 }: {
   item: CartItem;
+  disableUpdates: boolean;
   onAdd: () => void;
   onRemove: () => void;
   onTextUpdate: (changeAmount: number, op: "+" | "-") => void;
+  onDelete: () => void;
 }) {
   const [quantity, setQuantity] = useState<number | string>(
     item.quantity as number
   );
   const [prevQuantity, setPrevQuantity] = useState(item.quantity as number);
-  const [addDisabled, setAddDisabled] = useState(false);
-  const [removeDisabled, setRemoveDisabled] = useState(false);
-  const [isReadOnly, setReadOnly] = useState(false);
+  //const [addDisabled, setAddDisabled] = useState(false);
+  //const [removeDisabled, setRemoveDisabled] = useState(false);
+  //const [isReadOnly, setReadOnly] = useState(false);
 
   return (
     <>
@@ -61,10 +65,10 @@ export function Item({
             setQuantity((quantity as number) - 1);
             setPrevQuantity((quantity as number) - 1);
             onRemove();
-            setRemoveDisabled(true);
-            setTimeout(() => setRemoveDisabled(false), 1000);
+            //setRemoveDisabled(true);
+            //setTimeout(() => setRemoveDisabled(false), 1000);
           }}
-          disabled={(quantity as number) <= 1 || removeDisabled}
+          disabled={(quantity as number) <= 1 || disableUpdates}
           type="submit"
           className="rounded-l-lg bg-gray-700 px-1 py-1 hover:bg-blue-500 active:bg-gray-900 disabled:bg-gray-400"
         >
@@ -97,8 +101,8 @@ export function Item({
                 onTextUpdate(prevQuantity - (quantity as number), "-");
               }
               setPrevQuantity(quantity as number);
-              setReadOnly(true);
-              setTimeout(() => setReadOnly(false), 1000);
+              //setReadOnly(true);
+              //setTimeout(() => setReadOnly(false), 1000);
             }
           }}
           type="number"
@@ -110,21 +114,21 @@ export function Item({
             (item.quantity_in_checkouts ? item.quantity_in_checkouts : 0)
           }
           min={1}
-          readOnly={isReadOnly}
+          readOnly={disableUpdates} //isReadOnly
         />
         <button
           onClick={() => {
             setQuantity((quantity as number) + 1);
             setPrevQuantity((quantity as number) + 1);
             onAdd();
-            setAddDisabled(true);
-            setTimeout(() => setAddDisabled(false), 1000);
+            //setAddDisabled(true);
+            //setTimeout(() => setAddDisabled(false), 1000);
           }}
           disabled={
             (quantity as number) >=
               item.quantity_in_stock! -
                 (item.quantity_in_checkouts ? item.quantity_in_checkouts : 0) ||
-            addDisabled
+            disableUpdates
           }
           type="submit"
           className="rounded-r-lg bg-gray-700 px-1 py-1 hover:bg-blue-500 active:bg-gray-900 disabled:bg-gray-400"
@@ -132,11 +136,20 @@ export function Item({
           +
         </button>
       </div>
-      <div className="text-right text-gray-100">
-        <div>
-          Total: ${item.price! * (quantity as number)}
-          {item.price! % 1 === 0 ? ".00" : ""}
+      <div className="flex flex-col items-end gap-2 sm:flex-row sm:items-center sm:gap-3">
+        <div className="text-right text-gray-100">
+          <div>
+            Total: ${item.price! * (quantity as number)}
+            {item.price! % 1 === 0 ? ".00" : ""}
+          </div>
         </div>
+        <button
+          onClick={() => onDelete()}
+          disabled={disableUpdates}
+          className="font-medium text-gray-500 hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Delete
+        </button>
       </div>
     </>
   );

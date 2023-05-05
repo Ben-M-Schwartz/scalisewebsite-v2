@@ -43,7 +43,7 @@ const Cart: NextPage = () => {
   const [loading, setLoading] = useState(true);
   const [cartItems, setCartItems] = useState<Cart[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [disableCheckout, setDisableCheckout] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   const router = useRouter();
 
@@ -83,7 +83,7 @@ const Cart: NextPage = () => {
     price: number,
     weight: number
   ) => {
-    setDisableCheckout(true);
+    setDisable(true);
     addToCart
       .mutateAsync({
         cart_id: cart_id,
@@ -96,7 +96,7 @@ const Cart: NextPage = () => {
       })
       .then(() => {
         updateAmount(quantity);
-        setDisableCheckout(false);
+        setDisable(false);
       })
       .catch((error) => console.error(error));
   };
@@ -110,7 +110,7 @@ const Cart: NextPage = () => {
     weight: number,
     fullRemove: boolean
   ) => {
-    setDisableCheckout(true);
+    setDisable(true);
     if (cartItems.length <= 1 && fullRemove === true) {
       handleClearCart();
     } else {
@@ -129,7 +129,7 @@ const Cart: NextPage = () => {
           if (fullRemove) {
             window.alert("Removed From Cart");
           }
-          setDisableCheckout(false);
+          setDisable(false);
         })
         .catch((error) => console.error(error));
     }
@@ -277,6 +277,7 @@ const Cart: NextPage = () => {
                       <Item
                         key={`item_${index}`}
                         item={item.cart_item as CartItem}
+                        disableUpdates={disable}
                         onAdd={() => {
                           handleTotalUpdate(
                             totalPrice + item.cart_item!.price!
@@ -335,11 +336,7 @@ const Cart: NextPage = () => {
                             );
                           }
                         }}
-                      />
-
-                      <form
-                        onSubmit={(e) => {
-                          e.preventDefault();
+                        onDelete={() => {
                           handleRemoveFromCart(
                             item.cart_item!.product_id as number,
                             item.cart_item!.size as string,
@@ -349,14 +346,7 @@ const Cart: NextPage = () => {
                             true
                           );
                         }}
-                      >
-                        <button
-                          type="submit"
-                          className="font-medium text-gray-500 hover:text-blue-700 hover:underline active:text-gray-500"
-                        >
-                          Delete
-                        </button>
-                      </form>
+                      />
                     </div>
                   </>
                 ))}
@@ -373,7 +363,7 @@ const Cart: NextPage = () => {
               <button
                 className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-white bg-rose-700 py-4 text-white hover:border-rose-700 hover:bg-white hover:text-rose-700 active:bg-rose-400 sm:w-1/3"
                 onClick={handleCheckout}
-                disabled={disableCheckout}
+                disabled={disable}
               >
                 Checkout
               </button>
