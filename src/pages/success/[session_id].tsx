@@ -58,7 +58,7 @@ const SuccessPage: NextPage = () => {
         )}
         <Link
           href="/"
-          className="text-xl font-bold hover:text-blue-700 hover:underline active:text-gray-500"
+          className="text-xl font-bold text-blue-500 underline hover:text-blue-700 active:text-gray-500"
         >
           Back to Home
         </Link>

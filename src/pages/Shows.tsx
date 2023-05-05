@@ -173,7 +173,7 @@ const Show = ({ show }: { show: ShowType }) => {
             href={show.maps_link as string}
             rel="noopener noreferrer"
             target="_blank"
-            className="w-1/2 rounded-sm border border-rose-800 bg-white py-2 text-center text-rose-800 hover:border-white hover:bg-rose-800 hover:text-white active:bg-rose-600 sm:w-full"
+            className="w-1/2 rounded-sm border bg-rose-800 py-2 text-center text-white hover:border-rose-800 hover:bg-white hover:text-rose-800 active:bg-gray-300 sm:w-full"
           >
             Directions
           </Link>
