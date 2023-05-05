@@ -40,7 +40,7 @@ const Videos: NextPage = () => {
               title="Scalise - She&#39;s Gonna Kill You [Live @ 7th St Entry]"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
-              loading="eager"
+              loading="lazy"
               style={{ aspectRatio: "16/9" }}
             ></iframe>
           </div>
@@ -51,7 +51,7 @@ const Videos: NextPage = () => {
               title="Scalise - Perfect Occasions [Home Session]"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
-              loading="eager"
+              loading="lazy"
               style={{ aspectRatio: "16/9" }}
             ></iframe>
           </div>
