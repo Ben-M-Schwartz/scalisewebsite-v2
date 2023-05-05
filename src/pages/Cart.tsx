@@ -253,7 +253,7 @@ const Cart: NextPage = () => {
         )}
         {!loading && emptyCart && (
           <>
-            <div className="flex flex-col items-center justify-center gap-2 pb-20 pt-32">
+            <div className="flex min-h-screen flex-col items-center justify-center gap-2">
               <h1 className="text-2xl font-bold text-white">
                 Your cart is empty
               </h1>
