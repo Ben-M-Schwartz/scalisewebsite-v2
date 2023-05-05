@@ -53,7 +53,7 @@ const SuccessPage: NextPage = () => {
           <>
             <h1 className="pt-10 text-center">Payment Successful!</h1>
             <p className="text-center">Thank you for your purchase.</p>
-            <p className="text-center">Check your email for order details</p>
+            <p className="text-center">Check your email for order details.</p>
           </>
         )}
         <Link
