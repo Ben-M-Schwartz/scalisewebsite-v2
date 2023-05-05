@@ -108,7 +108,8 @@ const Product: NextPage = (
     XXXXL: 8,
   };
 
-  //TODO: Figure out why adding to cart sometimes causes internal server error and take into account items in current cart when adding
+  //TODO: Take into account items in current cart when adding, notify user when they try to add to cart without picking a size
+  //TODO: Try quantity as a dropdown
   const onSubmitCart = (formData: addToCartForm) => {
     setProcessing(true);
     const mutateOptions = {

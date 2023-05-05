@@ -12,6 +12,7 @@ import { getCookie, hasCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { Item } from "~/components/cartItem";
+import { motion, AnimatePresence } from "framer-motion";
 
 export const config = {
   runtime: "experimental-edge",
@@ -44,6 +45,8 @@ const Cart: NextPage = () => {
   const [cartItems, setCartItems] = useState<Cart[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [disable, setDisable] = useState(false);
+  const [processing, setProcessing] = useState(false);
+  const [updated, setUpdated] = useState(false);
 
   const router = useRouter();
 
@@ -83,6 +86,7 @@ const Cart: NextPage = () => {
     price: number,
     weight: number
   ) => {
+    setProcessing(true);
     setDisable(true);
     addToCart
       .mutateAsync({
@@ -95,6 +99,9 @@ const Cart: NextPage = () => {
         weight: weight,
       })
       .then(() => {
+        setProcessing(false);
+        setUpdated(true);
+        setTimeout(() => setUpdated(false), 1000);
         updateAmount(quantity);
         setDisable(false);
       })
@@ -110,6 +117,7 @@ const Cart: NextPage = () => {
     weight: number,
     fullRemove: boolean
   ) => {
+    setProcessing(true);
     setDisable(true);
     if (cartItems.length <= 1 && fullRemove === true) {
       handleClearCart();
@@ -125,6 +133,9 @@ const Cart: NextPage = () => {
           fullRemove: fullRemove,
         })
         .then(() => {
+          setProcessing(false);
+          setUpdated(true);
+          setTimeout(() => setUpdated(false), 1000);
           updateAmount(-quantity);
           if (fullRemove) {
             window.alert("Removed From Cart");
@@ -265,6 +276,27 @@ const Cart: NextPage = () => {
               >
                 Clear Cart
               </button>
+              <div
+                className={`flex flex-row justify-center gap-2 px-2 ${
+                  processing ? "block" : "hidden"
+                }`}
+              >
+                <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-white"></span>
+                <p className="flex text-white">Processing...</p>
+              </div>
+              <AnimatePresence>
+                {updated && (
+                  <motion.p
+                    className="px-6 text-white"
+                    initial={{ opacity: 1 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1 }}
+                  >
+                    Updated
+                  </motion.p>
+                )}
+              </AnimatePresence>
             </div>
             <div className="flex w-full flex-col justify-between border-b border-b-white px-4 sm:w-2/3 sm:px-0">
               <div className="divide-y divide-gray-600">
