@@ -33,12 +33,12 @@ const SuccessPage: NextPage = () => {
       <Head>
         <title>Confirmation</title>
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800 text-white">
         {session_id && (
           <>
-            <h1>Payment Successful!</h1>
-            <p>Thank you for your purchase.</p>
-            <p>Check your email for order details</p>
+            <h1 className="text-center">Payment Successful!</h1>
+            <p className="text-center">Thank you for your purchase.</p>
+            <p className="text-center">Check your email for order details</p>
           </>
         )}
         <Link

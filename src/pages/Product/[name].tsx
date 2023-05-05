@@ -77,9 +77,10 @@ const Product: NextPage = (
   }[];
   const [loadSizes, setLoadSizes] = useState(true);
   const [soldOut, setSoldOut] = useState(false);
-  const [addToCartDisabled, setAddToCartDisabled] = useState(true);
+  const [addToCartDisabled, setAddToCartDisabled] = useState(false);
   const [maxQuantity, setMaxQuantity] = useState(0);
   const [pickedSize, setPickedSize] = useState("");
+  //const [pickedQuantity, setPickedQuantity] = useState(1);
   const [processing, setProcessing] = useState(false);
   const [buttonText, setButtonText] = useState("Add to Cart");
 
@@ -108,8 +109,7 @@ const Product: NextPage = (
     XXXXL: 8,
   };
 
-  //TODO: Take into account items in current cart when adding, notify user when they try to add to cart without picking a size
-  //TODO: Try quantity as a dropdown
+  //TODO: Take into account items in current cart when adding
   const onSubmitCart = (formData: addToCartForm) => {
     setProcessing(true);
     const mutateOptions = {
@@ -160,8 +160,6 @@ const Product: NextPage = (
     if (parseInt(maxQuantity as string) === 0) {
       setSoldOut(true);
       setAddToCartDisabled(true);
-    } else if (event.target.value === "") {
-      setAddToCartDisabled(true);
     } else {
       setSoldOut(false);
       setAddToCartDisabled(false);
@@ -182,7 +180,7 @@ const Product: NextPage = (
 
   if (!productData || !productData[0])
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-black">
         <div className="flex flex-row justify-between gap-2 text-white">
           <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
           <p className="flex">Loading...</p>
@@ -314,15 +312,42 @@ const Product: NextPage = (
                       >
                         Quantity
                       </label>
-                      <input
-                        id="quantities"
+                      <div className="relative flex w-1/2 items-center sm:w-1/4">
+                        <select
+                          id="quantity"
+                          {...cartRegister("quantity", { required: true })}
+                          //onChange={handleQuantityChange}
+                          onClick={() => {
+                            if (pickedSize === "") {
+                              window.alert("select a size first");
+                            }
+                          }}
+                          className="z-10 h-12 w-full appearance-none border bg-transparent pl-4 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                          defaultValue="1"
+                        >
+                          {[...(Array(maxQuantity) as number[])]
+                            .map((_, i) => i + 1)
+                            .map((i: number) => (
+                              <option key={i} value={i}>
+                                {i}
+                              </option>
+                            ))}
+                        </select>
+                        <div className="absolute flex h-full w-full flex-row items-center justify-end object-contain">
+                          <div className="absolute z-10 mr-4 h-5 w-5 md:max-lg:mr-2">
+                            <CarretDown />
+                          </div>
+                        </div>
+                      </div>
+                      {/*                       <input
+                        id="quantity"
                         className="block w-1/2 rounded-lg border bg-black px-6 py-2 text-center text-sm text-white [appearance:textfield] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black sm:w-1/4 md:max-lg:px-4"
                         {...cartRegister("quantity", { required: true })}
                         type="number"
                         defaultValue={1}
                         max={maxQuantity}
                         min={1}
-                      />
+                      /> */}
                     </div>
 
                     {!processing && (
@@ -333,6 +358,12 @@ const Product: NextPage = (
                         className={`mb-2 mr-2 inline-block w-1/2 rounded-lg border py-5 text-sm font-medium text-white hover:bg-white hover:text-black ${
                           addToCartDisabled ? "cursor-not-allowed" : ""
                         }`}
+                        onClick={(e) => {
+                          if (pickedSize === "") {
+                            e.preventDefault();
+                            alert("Please pick a size");
+                          }
+                        }}
                       >
                         {buttonText}
                       </button>
