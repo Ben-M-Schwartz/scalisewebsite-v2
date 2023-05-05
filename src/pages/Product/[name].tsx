@@ -315,7 +315,7 @@ const Product: NextPage = (
                       </label>
                       <input
                         id="quantities"
-                        className="block w-1/4 rounded-lg border bg-black px-6 py-2 text-center text-sm text-white [appearance:textfield] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:max-lg:px-4"
+                        className="block w-1/2 rounded-lg border bg-black px-6 py-2 text-center text-sm text-white [appearance:textfield] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black sm:w-1/4 md:max-lg:px-4"
                         {...cartRegister("quantity", { required: true })}
                         type="number"
                         defaultValue={1}
