@@ -260,10 +260,12 @@ const Product: NextPage = (
               <p className="text-white">&gt;</p>
               <p className="text-xl text-white">{productData[0].name}</p>
             </div>
-            <div className="flex">
+            <div className="flex flex-col md:flex-row">
               <div
                 className={
-                  images.length > 1 ? "flex w-1/4 flex-col lg:w-1/6" : "hidden"
+                  images!.length > 1
+                    ? "flex w-1/3 flex-row max-md:order-1 md:flex-col lg:w-1/6"
+                    : "hidden"
                 }
               >
                 {images?.map((image, index) => (
@@ -299,7 +301,7 @@ const Product: NextPage = (
                 }}
               >
                 <Image
-                  className="full object-cover shadow-lg"
+                  className="full flex object-cover shadow-lg"
                   src={`/${images![imageIndex]?.trim() as string}`}
                   alt="image"
                   height={719}
