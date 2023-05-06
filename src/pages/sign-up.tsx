@@ -17,9 +17,14 @@ const Home: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
         <div className="flex flex-col items-center gap-2">
           <p className="text-2xl text-white">
-            Sorry we are not allowing sign ups at this time
+            Sorry we are not allowing sign ups
           </p>
-          <Link href="/">Home</Link>
+          <Link
+            href="/"
+            className="text-blue-400 underline hover:text-blue-700 active:text-gray-400"
+          >
+            Home
+          </Link>
         </div>
       </main>
     </>

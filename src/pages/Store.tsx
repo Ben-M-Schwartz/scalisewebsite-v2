@@ -4,9 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { product_details } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
+import { useState } from "react";
 type Product = InferModel<typeof product_details, "select">;
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import banner from "../../public/porchPhoto.jpg";
 
@@ -18,6 +19,8 @@ import banner from "../../public/porchPhoto.jpg";
 //import { api } from "~/utils/api";
 
 function Card({ product, index }: { product: Product; index: number }) {
+  const images = (product.image as string).split(",");
+  const [isHover, setHover] = useState(false);
   return (
     <motion.div
       className="borderx max-w-sm"
@@ -37,16 +40,43 @@ function Card({ product, index }: { product: Product; index: number }) {
       }}
     >
       <Link href={`/Product/${(product.name as string).replace(/\s+/g, "-")}`}>
-        <div className="relative h-full w-full">
-          <Image
-            className=""
-            src={`/${product.image as string}`}
-            alt="image"
-            height={360}
-            width={423}
-            priority={index <= 2}
-          />
-        </div>
+        <motion.div
+          className="relative h-full w-full"
+          onHoverStart={() => setHover(true)}
+          onHoverEnd={() => setHover(false)}
+        >
+          <div className="">
+            <Image
+              className=""
+              src={`/${images[0] as string}`}
+              alt="image"
+              height={360}
+              width={423}
+              priority={index <= 2}
+            />
+          </div>
+          {images[1] !== undefined && (
+            <AnimatePresence>
+              {isHover && (
+                <motion.div
+                  className="absolute left-0 top-0"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1 }}
+                >
+                  <Image
+                    className=""
+                    src={`/${images[1].trim()}`}
+                    alt="image"
+                    height={360}
+                    width={423}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          )}
+        </motion.div>
         <div className="p-5">
           <h4 className="mb-2 text-2xl font-bold tracking-tight text-white">
             {product.name}

@@ -6,16 +6,6 @@
 
 /** @type {import("next").NextConfig} */
 const config = {
-  async redirects() {
-    return [
-      {
-        source: "/admin",
-        destination: "/admin/home",
-        permanent: true,
-      },
-    ];
-  },
-
   reactStrictMode: true,
   /*   experimental: {
     appDir: true,

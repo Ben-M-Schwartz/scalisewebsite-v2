@@ -133,6 +133,7 @@ const Product: NextPage = (
   const [pickedSize, setPickedSize] = useState("");
   //const [pickedQuantity, setPickedQuantity] = useState(1);
   const [processing, setProcessing] = useState(false);
+  const [imageIndex, setImage] = useState(0);
   const [buttonText, setButtonText] = useState("Add to Cart");
 
   const { updateAmount } = useContext<CartContextType>(CartContext);
@@ -239,6 +240,8 @@ const Product: NextPage = (
       </main>
     );
 
+  const images = productData[0].image?.split(",");
+
   return (
     <>
       <Head>
@@ -257,29 +260,53 @@ const Product: NextPage = (
               <p className="text-white">&gt;</p>
               <p className="text-xl text-white">{productData[0].name}</p>
             </div>
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { opacity: 0, y: -20 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    y: { stiffness: 1000, duration: 0.5 },
-                    opacity: { duration: 0.5 },
+            <div className="flex">
+              <div
+                className={
+                  images.length > 1 ? "flex w-1/4 flex-col lg:w-1/6" : "hidden"
+                }
+              >
+                {images?.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setImage(index);
+                    }}
+                  >
+                    <Image
+                      className="full object-cover shadow-lg"
+                      src={`/${image.trim()}`}
+                      alt="image"
+                      height={719}
+                      width={540}
+                    />
+                  </button>
+                ))}
+              </div>
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0, y: -20 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      y: { stiffness: 1000, duration: 0.5 },
+                      opacity: { duration: 0.5 },
+                    },
                   },
-                },
-              }}
-            >
-              <Image
-                className="full object-cover shadow-lg"
-                src={`/${productData[0].image as string}`}
-                alt="image"
-                height={719}
-                width={540}
-              />
-            </motion.div>
+                }}
+              >
+                <Image
+                  className="full object-cover shadow-lg"
+                  src={`/${images![imageIndex]?.trim() as string}`}
+                  alt="image"
+                  height={719}
+                  width={540}
+                />
+              </motion.div>
+            </div>
           </div>
           <div className="w-2/3 md:w-1/3">
             <div className="container flex flex-col gap-4 pb-16">

@@ -11,7 +11,6 @@ import { useAuth } from "@clerk/nextjs";
 
 const Home: NextPage = () => {
   const { isLoaded, userId } = useAuth();
-  const { signOut } = useClerk();
   if (!isLoaded)
     return (
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
@@ -21,28 +20,39 @@ const Home: NextPage = () => {
         </div>
       </main>
     );
-  if (!userId)
+  if (!userId) {
+    document.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+    });
+    document.onkeydown = function (e) {
+      if (e.key === "F12") {
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && e.key === "i") {
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && e.key === "c") {
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && e.key === "j") {
+        return false;
+      }
+      if (e.ctrlKey && e.key === "u") {
+        return false;
+      }
+    };
     return (
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
         <h1 className="text-2xl text-white">
           This page is for band members only
         </h1>
-        <SignIn redirectUrl="/admin" />
+        <div>
+          <SignIn redirectUrl="/admin/home" />
+          <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
+        </div>
       </main>
     );
-  // if (userId && userId !== process.env.AUTHORIZED_USERS) {
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-  //       <h1 className="text-2xl text-white">
-  //         Sorry you are not authorized to visit this page
-  //       </h1>
-  //       {/*eslint-disable-next-line @typescript-eslint/no-misused-promises*/}
-  //       <button onClick={() => signOut()} className="text-white">
-  //         Sign out
-  //       </button>
-  //     </main>
-  //   );
-  // }
+  }
   return (
     <>
       <Head>

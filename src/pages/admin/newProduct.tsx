@@ -20,13 +20,12 @@ type NewProductForm = {
   sizes: string;
   quantities: string;
   imageName: string;
-  is_taxed: string;
   store_order: string;
 };
 
 const NewProduct: NextPage = () => {
   const { register, handleSubmit } = useForm<NewProductForm>();
-  const { isLoaded, userId, orgId } = useAuth();
+  const { isLoaded, userId } = useAuth();
 
   const createProduct = api.inventory.create.useMutation();
 
@@ -39,7 +38,7 @@ const NewProduct: NextPage = () => {
         weight: parseFloat(formData.weight),
         quantities: formData.quantities,
         imageName: formData.imageName,
-        is_taxed: parseInt(formData.is_taxed),
+        is_taxed: 0,
         store_order: parseInt(formData.store_order) || 1,
       })
       .then(() => window.alert("Success"));
@@ -51,21 +50,38 @@ const NewProduct: NextPage = () => {
         <div>Loading...</div>;
       </main>
     );
-  if (!userId)
+  if (!userId) {
+    document.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+    });
+    document.onkeydown = function (e) {
+      if (e.key === "F12") {
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && e.key === "i") {
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && e.key === "c") {
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && e.key === "j") {
+        return false;
+      }
+      if (e.ctrlKey && e.key === "u") {
+        return false;
+      }
+    };
     return (
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
         <h1 className="text-2xl text-white">
           This page is for band members only
         </h1>
-        <SignIn redirectUrl="/admin" />
+        <div>
+          <SignIn redirectUrl="/admin/newProduct" />
+          <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
+        </div>
       </main>
     );
-  if (orgId !== process.env.ADMIN_ORGID) {
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-      <h1 className="text-2xl text-white">
-        Sorry you are not authorized to visit this page
-      </h1>
-    </main>;
   }
 
   return (
@@ -167,9 +183,11 @@ const NewProduct: NextPage = () => {
                 htmlFor="quantities"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
-                Image Name (note: The image must be uploaded into the public
-                folder in this directory. Include the file type in the image
-                name i.e image.png)
+                Image Names (if multiple images list them in the order you wish
+                displayed on the store i.e image1.png, image2.png, image3.png)
+                (note: The image must be uploaded into the public folder in this
+                directory. Include the file type in the image name i.e
+                image.png)
               </label>
               <input
                 id="imageName"
@@ -178,7 +196,7 @@ const NewProduct: NextPage = () => {
               />
             </div>
 
-            <div>
+            {/*             <div>
               <label
                 htmlFor="is_taxed"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
@@ -190,7 +208,7 @@ const NewProduct: NextPage = () => {
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                 {...register("is_taxed", { required: true })}
               />
-            </div>
+            </div> */}
 
             <div>
               <label

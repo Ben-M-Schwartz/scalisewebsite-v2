@@ -5,6 +5,8 @@ import { type EditorRef } from "react-email-editor";
 import EmailEditor from "react-email-editor";
 import { api } from "~/utils/api";
 import { useState } from "react";
+import { SignIn } from "@clerk/clerk-react";
+import { useAuth } from "@clerk/nextjs";
 
 /* 
 import dynamic from "next/dynamic";
@@ -20,6 +22,7 @@ export default function Email() {
   const [showForm, setShowForm] = useState(false);
   const [designToLoad, setDesignToLoad] = useState("");
   const [queryEnabled, setQueryEnabled] = useState(false);
+  const { isLoaded, userId } = useAuth();
   const designNames = api.subscription.getEmailDesignNames.useQuery();
   const savedesign = api.subscription.saveEmailDesign.useMutation();
 
@@ -69,11 +72,51 @@ export default function Email() {
     // editor is ready
   }
 
+  if (!isLoaded)
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+        <div>Loading...</div>;
+      </main>
+    );
+  if (!userId) {
+    document.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+    });
+    document.onkeydown = function (e) {
+      if (e.key === "F12") {
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && e.key === "i") {
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && e.key === "c") {
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && e.key === "j") {
+        return false;
+      }
+      if (e.ctrlKey && e.key === "u") {
+        return false;
+      }
+    };
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+        <h1 className="text-2xl text-white">
+          This page is for band members only
+        </h1>
+        <div>
+          <SignIn redirectUrl="/admin/emailEditor" />
+          <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <>
       <div className="flex flex-row gap-4">
         <Link
-          href="/admin/emailMailingList"
+          href="/api/admin/emailMailingList"
           className="text-xl font-bold text-gray-800 hover:text-blue-700 hover:underline active:text-gray-500"
         >
           Email Mailing List

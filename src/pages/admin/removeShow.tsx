@@ -13,7 +13,7 @@ import { useAuth } from "@clerk/nextjs";
 
 const Shows: NextPage = () => {
   const router = useRouter();
-  const { isLoaded, userId, orgId } = useAuth();
+  const { isLoaded, userId } = useAuth();
   const shows = api.shows.get.useQuery();
   const remove = api.shows.remove.useMutation();
 
@@ -29,16 +29,12 @@ const Shows: NextPage = () => {
         <h1 className="text-2xl text-white">
           This page is for band members only
         </h1>
-        <SignIn redirectUrl="/admin" />
+        <div>
+          <SignIn redirectUrl="/admin/removeShow" />
+          <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
+        </div>
       </main>
     );
-  if (orgId !== process.env.ADMIN_ORGID) {
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-      <h1 className="text-2xl text-white">
-        Sorry you are not authorized to visit this page
-      </h1>
-    </main>;
-  }
 
   return (
     <>

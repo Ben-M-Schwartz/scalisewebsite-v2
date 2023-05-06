@@ -151,7 +151,7 @@ function Card({
 
 const updateInventory: NextPage = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { isLoaded, userId, orgId } = useAuth();
+  const { isLoaded, userId } = useAuth();
   const products = api.inventory.list.useQuery();
   const inventory = api.inventory.listInventory.useQuery();
 
@@ -167,16 +167,12 @@ const updateInventory: NextPage = () => {
         <h1 className="text-2xl text-white">
           This page is for band members only
         </h1>
-        <SignIn redirectUrl="/admin" />
+        <div>
+          <SignIn redirectUrl="/admin/updateInventory" />
+          <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
+        </div>
       </main>
     );
-  if (orgId !== process.env.ADMIN_ORGID) {
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-      <h1 className="text-2xl text-white">
-        Sorry you are not authorized to visit this page
-      </h1>
-    </main>;
-  }
 
   interface indexSignature {
     [key: string]: number;
