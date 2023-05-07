@@ -14,6 +14,8 @@ import { and, eq } from "drizzle-orm/expressions";
 import { stripe } from "~/utils/stripe";
 import { sql } from "drizzle-orm/sql";
 
+//TODO: Automatically send email with mp3 for digital download purchase
+
 export const config = {
   /* runtime: "edge", */
   api: {

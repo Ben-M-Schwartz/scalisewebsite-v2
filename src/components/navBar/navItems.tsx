@@ -51,7 +51,7 @@ export function HomeLink() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
-          <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
+          <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white md:text-4xl">
             Scalise
           </span>
         </motion.div>

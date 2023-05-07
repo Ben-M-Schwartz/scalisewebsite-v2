@@ -82,15 +82,14 @@ export const checkoutRouter = createTRPCRouter({
 
       //convert cart_items to stripe line items
       const lineItems = items.map((item) => {
+        const images = item.image.split(",");
         return {
           price_data: {
             currency: "usd",
             unit_amount: item.price * 100,
             product_data: {
               name: item.item_name as string,
-              images: [
-                `${domainURL as string}/public/${item.image as string}.png`,
-              ],
+              images: [`${domainURL as string}/public/${images[0] as string}`],
               description:
                 item.size === "" ? "CD" : `Size: ${item.size as string}`,
               metadata: {
@@ -112,6 +111,7 @@ export const checkoutRouter = createTRPCRouter({
         success_url: `${domainURL as string}/success/{CHECKOUT_SESSION_ID}`,
         cancel_url: `${domainURL as string}/canceled/{CHECKOUT_SESSION_ID}`,
         billing_address_collection: "required",
+        allow_promotion_codes: true,
         shipping_options: [
           {
             shipping_rate_data: {

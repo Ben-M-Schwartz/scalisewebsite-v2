@@ -47,6 +47,7 @@ const Cart: NextPage = () => {
   const [disable, setDisable] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [updated, setUpdated] = useState(false);
+  const [processingCheckout, setProcessingCheckout] = useState(false);
 
   const router = useRouter();
 
@@ -160,6 +161,7 @@ const Cart: NextPage = () => {
   const createCheckoutSession = api.checkout.checkOut.useMutation();
   const createOrder = api.checkout.createOrder.useMutation();
   const handleCheckout = async () => {
+    setProcessingCheckout(true);
     const cart_items = cartItems.map((item) => {
       return {
         product_id: item.cart_item?.product_id as number,
@@ -175,6 +177,7 @@ const Cart: NextPage = () => {
     await createCheckoutSession
       .mutateAsync({ cartItems: cart_items })
       .then(async (result) => {
+        setProcessingCheckout(false);
         if (result[0] === "Not Enough Inventory") {
           let errorMessage = "Sorry! Unfortunately our inventory has changed\n";
           const overflows = result[1] as unknown as {
@@ -217,7 +220,9 @@ const Cart: NextPage = () => {
               window.alert(errorMessage);
               router.reload();
             })
-            .catch((error) => console.log(error));
+            .catch(() =>
+              window.alert("An error occured please try again later")
+            );
         } else {
           createOrder
             .mutateAsync({
@@ -227,12 +232,16 @@ const Cart: NextPage = () => {
             .then(() => {
               router
                 .push(result[0] as string)
-                .catch((error) => console.error(error));
+                .catch(() =>
+                  window.alert("An error occured please try again later")
+                );
             })
-            .catch((error) => console.error(error));
+            .catch(() =>
+              window.alert("An error occured please try again later")
+            );
         }
       })
-      .catch((error) => console.error(error));
+      .catch(() => window.alert("An error occured please try again later"));
   };
 
   const handleTotalUpdate = useCallback((newTotal: number) => {
@@ -410,13 +419,26 @@ const Cart: NextPage = () => {
                   {totalPrice % 1 === 0 ? ".00" : ""}
                 </p>
               </div>
-              <button
-                className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-white bg-rose-700 py-4 text-white hover:border-rose-700 hover:bg-white hover:text-rose-700 active:bg-rose-400 sm:w-1/3"
-                onClick={handleCheckout}
-                disabled={disable}
-              >
-                Checkout
-              </button>
+              {!processingCheckout && (
+                <button
+                  className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-white bg-rose-700 py-4 text-white hover:border-rose-700 hover:bg-white hover:text-rose-700 active:bg-rose-400 sm:w-1/3"
+                  onClick={handleCheckout}
+                  disabled={disable}
+                >
+                  Checkout
+                </button>
+              )}
+              {processingCheckout && (
+                <button
+                  className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-white bg-rose-700 py-4 text-white sm:w-1/3"
+                  disabled
+                >
+                  <div className="flex flex-row justify-center gap-2 px-2 text-white">
+                    <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
+                    <p className="flex">Processing...</p>
+                  </div>
+                </button>
+              )}
             </div>
           </>
         )}
