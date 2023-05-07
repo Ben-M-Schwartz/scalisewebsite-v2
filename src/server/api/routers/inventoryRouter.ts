@@ -24,6 +24,7 @@ export const getProductPage = async (name: string) => {
       id: product_details.id,
       price: product_details.price,
       sale_price: product_details.sale_price,
+      description: product_details.description,
       weight: product_details.weight,
       name: product_details.name,
       image: product_details.image,
@@ -99,6 +100,7 @@ export const inventoryRouter = createTRPCRouter({
       z.object({
         name: z.string(),
         price: z.number(),
+        description: z.string(),
         weight: z.number(),
         sizes: z.string(),
         quantities: z.string(),
@@ -119,6 +121,7 @@ export const inventoryRouter = createTRPCRouter({
       const newProduct: NewProduct = {
         name: input.name,
         price: input.price,
+        description: input.description,
         weight: input.weight,
         image: input.imageName,
         is_taxed: input.is_taxed,

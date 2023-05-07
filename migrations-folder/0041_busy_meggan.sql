@@ -1,0 +1,1 @@
+ALTER TABLE `product_details` ADD `description` varchar(1000);

@@ -96,6 +96,7 @@ const Product: NextPage = (
     name: string;
     price: number;
     sale_price: number | null;
+    description: string;
     weight: number;
     id: number;
     image: string | null;
@@ -187,7 +188,7 @@ const Product: NextPage = (
     const mutateOptions = {
       size: formData.size,
       quantity: parseInt(formData.quantity) || 1,
-      price: productData[0]!.price,
+      price: productData[0]!.sale_price || productData[0]!.price,
       product_id: productData[0]!.id,
       weight: productData[0]!.weight,
       name: productData[0]!.name,
@@ -271,19 +272,21 @@ const Product: NextPage = (
           href="/images/favicon-16x16.png"
         />
       </Head>
-      <main className="min-h-screen bg-black">
-        <div className="flex flex-col items-center justify-center pb-20 md:flex-row md:gap-10 md:pb-0 xl:px-28">
+      <main className="mx-auto min-h-screen bg-black">
+        <div className="hidden justify-center md:flex">
+          <div className="flex w-full flex-row items-center justify-start gap-4 py-2 md:w-11/12 md:py-4 md:pl-8 lg:py-6 lg:pl-10 xl:w-3/4 xl:py-8 xl:pl-4 ">
+            <Link
+              className="text-xl text-white hover:text-blue-400 hover:underline active:text-blue-700 active:underline"
+              href="/Store"
+            >
+              STORE
+            </Link>
+            <p className="text-white">&gt;</p>
+            <p className="text-xl text-white">{productData[0].name}</p>
+          </div>
+        </div>
+        <div className="flex flex-col items-center justify-center pb-20 pt-8 md:flex-row md:items-start md:gap-10 md:pt-0 xl:px-28">
           <div className="relative flex h-full w-2/3 flex-col md:w-1/2">
-            <div className="flex flex-row items-center gap-4 py-10">
-              <Link
-                className="text-xl text-white hover:text-blue-400 hover:underline active:text-blue-700 active:underline"
-                href="/Store"
-              >
-                STORE
-              </Link>
-              <p className="text-white">&gt;</p>
-              <p className="text-xl text-white">{productData[0].name}</p>
-            </div>
             <div className="flex flex-col md:flex-row">
               <div
                 className={
@@ -420,6 +423,9 @@ const Product: NextPage = (
                       </div>
                     </div>
                   </div>
+                )}
+                {productData[0].description !== "" && (
+                  <p>{productData[0].description}</p>
                 )}
                 {!soldOut && (
                   <>

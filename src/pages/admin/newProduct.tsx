@@ -21,6 +21,7 @@ type NewProductForm = {
   quantities: string;
   imageName: string;
   store_order: string;
+  description: string | null;
 };
 
 const NewProduct: NextPage = () => {
@@ -35,6 +36,7 @@ const NewProduct: NextPage = () => {
         name: formData.name,
         sizes: formData.sizes || "",
         price: parseFloat(formData.price),
+        description: formData.description || "",
         weight: parseFloat(formData.weight),
         quantities: formData.quantities,
         imageName: formData.imageName,
@@ -155,6 +157,21 @@ const NewProduct: NextPage = () => {
 
             <div>
               <label
+                htmlFor="desc"
+                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Description (optional)
+              </label>
+              <textarea
+                id="desc"
+                maxLength={999}
+                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                {...register("description", { required: false })}
+              />
+            </div>
+
+            <div>
+              <label
                 htmlFor="weight"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
@@ -175,7 +192,7 @@ const NewProduct: NextPage = () => {
                 htmlFor="sizes"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
-                Sizes
+                Sizes (listed as -&gt; S, M, L)
               </label>
               <input
                 id="weight"

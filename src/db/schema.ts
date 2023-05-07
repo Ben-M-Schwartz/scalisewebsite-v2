@@ -20,6 +20,7 @@ export const product_details = mysqlTable(
     id: serial("id").primaryKey().notNull(),
     name: varchar("name", { length: 255 }),
     price: double("price", { precision: 10, scale: 2 }),
+    description: varchar("description", { length: 1000 }),
     image: varchar("image", { length: 255 }),
     weight: float("weight"),
     is_taxed: int("is_taxed"),
