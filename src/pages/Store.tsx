@@ -48,7 +48,7 @@ function Card({ product, index }: { product: Product; index: number }) {
           <div className="">
             <Image
               className=""
-              src={`/${images[0] as string}`}
+              src={`/${(images[0] as string).trim()}`}
               alt="image"
               height={360}
               width={423}

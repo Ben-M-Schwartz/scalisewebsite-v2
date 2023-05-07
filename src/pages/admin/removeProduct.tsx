@@ -36,12 +36,14 @@ function Card({ product }: { product: Product }) {
     }
   };
 
+  const images = (product.image as string).split(",");
+
   return (
     <div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-700">
       <div className="relative h-full w-full">
         <Image
           className=""
-          src={`/${product.image as string}`}
+          src={`/${images[0] as string}`}
           alt="image"
           height={360}
           width={423}
@@ -88,6 +90,7 @@ function Card({ product }: { product: Product }) {
 const removeProduct: NextPage = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isLoaded, userId } = useAuth();
+  const products = api.inventory.list.useQuery();
   if (!isLoaded)
     return (
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
@@ -127,8 +130,6 @@ const removeProduct: NextPage = () => {
       </main>
     );
   }
-
-  const products = api.inventory.list.useQuery();
   return (
     <>
       <Head>

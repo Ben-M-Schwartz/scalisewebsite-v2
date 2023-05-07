@@ -70,12 +70,14 @@ function Card({
       .catch((error) => console.error(error));
   };
 
+  const images = (product.image as string).split(",");
+
   return (
     <div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-700">
       <div className="relative h-full w-full">
         <Image
           className=""
-          src={`/${product.image as string}`}
+          src={`/${images[0] as string}`}
           alt="image"
           height={360}
           width={423}

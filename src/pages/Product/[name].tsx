@@ -167,10 +167,15 @@ const Product: NextPage = (
     if (productData && productData[0]) {
       if (productData[0].product_quantity.size === "") {
         setLoadSizes(false);
-        setMaxQuantity(
-          productData[0].product_quantity.quantity_in_stock +
-            productData[0].product_quantity.quantity_in_checkouts
-        );
+        if (productData[0].product_quantity.quantity_in_stock === -1) {
+          setMaxQuantity(-1);
+          setAddToCartDisabled(false);
+        } else {
+          setMaxQuantity(
+            productData[0].product_quantity.quantity_in_stock +
+              productData[0].product_quantity.quantity_in_checkouts
+          );
+        }
         setAddToCartDisabled(false);
       }
     }
@@ -403,41 +408,42 @@ const Product: NextPage = (
                 )}
                 {!soldOut && (
                   <>
-                    <div>
-                      <label
-                        htmlFor="quantitiy"
-                        className="block pb-2 text-sm font-medium text-white"
-                      >
-                        Quantity
-                      </label>
-                      <div className="relative flex w-1/2 items-center sm:w-1/4">
-                        <select
-                          id="quantity"
-                          defaultValue="1"
-                          {...cartRegister("quantity")}
-                          //onChange={handleQuantityChange}
-                          onClick={() => {
-                            if (pickedSize === "") {
-                              window.alert("select a size first");
-                            }
-                          }}
-                          className="z-10 h-12 w-full appearance-none border bg-transparent pl-4 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                    {maxQuantity !== -1 && (
+                      <div>
+                        <label
+                          htmlFor="quantitiy"
+                          className="block pb-2 text-sm font-medium text-white"
                         >
-                          {[...(Array(maxQuantity) as number[])]
-                            .map((_, i) => i + 1)
-                            .map((i: number) => (
-                              <option key={i} value={i}>
-                                {i}
-                              </option>
-                            ))}
-                        </select>
-                        <div className="absolute flex h-full w-full flex-row items-center justify-end object-contain">
-                          <div className="absolute z-0 mr-4 h-5 w-5 md:max-lg:mr-2">
-                            <CarretDown />
+                          Quantity
+                        </label>
+                        <div className="relative flex w-1/2 items-center sm:w-1/4">
+                          <select
+                            id="quantity"
+                            defaultValue="1"
+                            {...cartRegister("quantity")}
+                            //onChange={handleQuantityChange}
+                            onClick={() => {
+                              if (pickedSize === "") {
+                                window.alert("select a size first");
+                              }
+                            }}
+                            className="z-10 h-12 w-full appearance-none border bg-transparent pl-4 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                          >
+                            {[...(Array(Math.min(maxQuantity, 20)) as number[])]
+                              .map((_, i) => i + 1)
+                              .map((i: number) => (
+                                <option key={i} value={i}>
+                                  {i}
+                                </option>
+                              ))}
+                          </select>
+                          <div className="absolute flex h-full w-full flex-row items-center justify-end object-contain">
+                            <div className="absolute z-0 mr-4 h-5 w-5 md:max-lg:mr-2">
+                              <CarretDown />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      {/*                       <input
+                        {/*                       <input
                         id="quantity"
                         className="block w-1/2 rounded-lg border bg-black px-6 py-2 text-center text-sm text-white [appearance:textfield] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black sm:w-1/4 md:max-lg:px-4"
                         {...cartRegister("quantity", { required: true })}
@@ -446,8 +452,8 @@ const Product: NextPage = (
                         max={maxQuantity}
                         min={1}
                       /> */}
-                    </div>
-
+                      </div>
+                    )}
                     {!processing && (
                       <button
                         type="submit"
