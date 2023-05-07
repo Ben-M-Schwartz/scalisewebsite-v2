@@ -88,6 +88,24 @@ const NewProduct: NextPage = () => {
     <>
       <Head>
         <title>Create A New Product</title>
+        <link rel="shortcut icon" href="/images/scaliseIcon.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/images/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/images/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/images/favicon-16x16.png"
+        />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
         <Link
@@ -107,7 +125,9 @@ const NewProduct: NextPage = () => {
                 htmlFor="name"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
-                Item Name
+                Item Name (note: include a &lsquo;-&rsquo; in the name will
+                cause an error in the store. If we want to be able to add those
+                it will require refactoring a bit of logic)
               </label>
               <input
                 id="name"

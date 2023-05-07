@@ -40,13 +40,14 @@ export function Item({
   //const [removeDisabled, setRemoveDisabled] = useState(false);
   //const [isReadOnly, setReadOnly] = useState(false);
 
+  const images = (item.image as string).split(",");
   return (
     <>
       <div className="flex w-2/3 flex-row items-center justify-start gap-4">
         <div className="relative flex h-32 w-32 items-center justify-center">
           <Image
             className="full object-cover"
-            src={`/${item.image as string}`}
+            src={`/${images[0] as string}`}
             alt="image"
             fill
           />

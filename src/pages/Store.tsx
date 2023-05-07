@@ -59,7 +59,7 @@ function Card({ product, index }: { product: Product; index: number }) {
             <AnimatePresence>
               {isHover && (
                 <motion.div
-                  className="absolute left-0 top-0"
+                  className="absolute left-0 top-0 max-md:hidden"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -132,6 +132,24 @@ const Store: NextPage = (
     <>
       <Head>
         <title>STORE-SCALISE</title>
+        <link rel="shortcut icon" href="/images/scaliseIcon.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/images/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/images/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/images/favicon-16x16.png"
+        />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-black">
         <div className="relative flex w-full items-center justify-center bg-transparent">

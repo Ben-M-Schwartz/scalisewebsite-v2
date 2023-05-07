@@ -28,6 +28,24 @@ const Product: NextPage = () => {
     <>
       <Head>
         <title>Unsubscribe</title>
+        <link rel="shortcut icon" href="/images/scaliseIcon.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/images/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/images/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/images/favicon-16x16.png"
+        />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
         {!isUnsubscribed && (
@@ -37,7 +55,7 @@ const Product: NextPage = () => {
             </h1>
             <button
               onClick={handleUnsubscribe}
-              className="mb-2 mr-2 rounded-lg bg-blue-700 px-5 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="ocus:shadow-outline text-xsl w-full rounded-sm border-2 border-white bg-rose-700 py-4 text-center text-white hover:border-rose-700 hover:bg-white hover:text-rose-700 active:bg-rose-400"
             >
               Yes
             </button>

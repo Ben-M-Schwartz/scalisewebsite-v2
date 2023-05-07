@@ -139,6 +139,8 @@ const Product: NextPage = (
   const { updateAmount } = useContext<CartContextType>(CartContext);
 
   const addToCart = api.cart.addToCart.useMutation();
+  const notify = api.subscription.notificationSignUp.useMutation();
+
   const { register: cartRegister, handleSubmit: cartSubmit } =
     useForm<addToCartForm>();
   const { register: notifyRegister, handleSubmit: notifySubmit } =
@@ -161,12 +163,24 @@ const Product: NextPage = (
     XXXXL: 8,
   };
 
+  useEffect(() => {
+    if (productData && productData[0]) {
+      if (productData[0].product_quantity.size === "") {
+        setLoadSizes(false);
+        setMaxQuantity(
+          productData[0].product_quantity.quantity_in_stock +
+            productData[0].product_quantity.quantity_in_checkouts
+        );
+        setAddToCartDisabled(false);
+      }
+    }
+  }, [productData]);
   //TODO: Take into account items in current cart when adding
   const onSubmitCart = (formData: addToCartForm) => {
     setProcessing(true);
     const mutateOptions = {
       size: formData.size,
-      quantity: parseInt(formData.quantity),
+      quantity: parseInt(formData.quantity) || 1,
       price: productData[0]!.price,
       product_id: productData[0]!.id,
       weight: productData[0]!.weight,
@@ -188,21 +202,8 @@ const Product: NextPage = (
         setButtonText("Added to Cart!");
         setProcessing(false);
       })
-      .catch(() => window.alert("error"));
+      .catch(() => window.alert("error please try again later"));
   };
-
-  useEffect(() => {
-    if (productData && productData[0]) {
-      if (productData[0].product_quantity.size === "") {
-        setLoadSizes(false);
-        setMaxQuantity(
-          productData[0].product_quantity.quantity_in_stock +
-            productData[0].product_quantity.quantity_in_checkouts
-        );
-        setAddToCartDisabled(false);
-      }
-    }
-  }, [productData]);
 
   const handleSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPickedSize(event.target.value);
@@ -218,7 +219,6 @@ const Product: NextPage = (
     }
   };
 
-  const notify = api.subscription.notificationSignUp.useMutation();
   const notifyWhenInStock = (formData: notifyForm) => {
     notify
       .mutateAsync({
@@ -246,6 +246,24 @@ const Product: NextPage = (
     <>
       <Head>
         <title>SCALISE - PRODUCTS</title>
+        <link rel="shortcut icon" href="/images/scaliseIcon.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/images/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/images/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/images/favicon-16x16.png"
+        />
       </Head>
       <main className="min-h-screen bg-black">
         <div className="flex flex-col items-center justify-center pb-20 md:flex-row md:gap-10 md:pb-0 xl:px-28">
@@ -395,7 +413,8 @@ const Product: NextPage = (
                       <div className="relative flex w-1/2 items-center sm:w-1/4">
                         <select
                           id="quantity"
-                          {...cartRegister("quantity", { required: true })}
+                          defaultValue="1"
+                          {...cartRegister("quantity")}
                           //onChange={handleQuantityChange}
                           onClick={() => {
                             if (pickedSize === "") {
@@ -403,7 +422,6 @@ const Product: NextPage = (
                             }
                           }}
                           className="z-10 h-12 w-full appearance-none border bg-transparent pl-4 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
-                          defaultValue="1"
                         >
                           {[...(Array(maxQuantity) as number[])]
                             .map((_, i) => i + 1)
@@ -414,7 +432,7 @@ const Product: NextPage = (
                             ))}
                         </select>
                         <div className="absolute flex h-full w-full flex-row items-center justify-end object-contain">
-                          <div className="absolute z-10 mr-4 h-5 w-5 md:max-lg:mr-2">
+                          <div className="absolute z-0 mr-4 h-5 w-5 md:max-lg:mr-2">
                             <CarretDown />
                           </div>
                         </div>
