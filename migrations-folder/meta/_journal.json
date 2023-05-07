@@ -281,6 +281,13 @@
       "when": 1683224857986,
       "tag": "0039_bouncy_terrax",
       "breakpoints": false
+    },
+    {
+      "idx": 40,
+      "version": "5",
+      "when": 1683488865018,
+      "tag": "0040_fancy_miracleman",
+      "breakpoints": false
     }
   ]
 }

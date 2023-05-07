@@ -95,6 +95,7 @@ const Product: NextPage = (
   const productData = props.product as {
     name: string;
     price: number;
+    sale_price: number | null;
     weight: number;
     id: number;
     image: string | null;
@@ -338,10 +339,24 @@ const Product: NextPage = (
               <h1 className="mt-12 text-4xl text-white md:mt-8 md:text-5xl lg:text-6xl">
                 {productData[0].name}
               </h1>
-              <p className="text-xl text-white">
-                $ {productData[0].price}
-                {productData[0].price % 1 === 0 ? ".00" : ""}
-              </p>
+              <div className="flex flex-row">
+                <p
+                  className={`mb-2 pr-2 text-xl tracking-tight text-white ${
+                    productData[0].sale_price === null ? "hidden" : "block"
+                  }`}
+                >
+                  ${productData[0].sale_price}
+                  {productData[0].sale_price! % 1 === 0 ? ".00" : ""}
+                </p>
+                <p
+                  className={`mb-2 text-xl tracking-tight text-white ${
+                    productData[0].sale_price !== null ? "line-through" : ""
+                  }`}
+                >
+                  ${productData[0].price}
+                  {productData[0].price % 1 === 0 ? ".00" : ""}
+                </p>
+              </div>
             </div>
             <div className="container flex flex-col gap-12">
               <form

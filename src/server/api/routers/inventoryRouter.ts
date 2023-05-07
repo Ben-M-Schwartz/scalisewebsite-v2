@@ -12,7 +12,6 @@ import { and, eq, or, gte } from "drizzle-orm/expressions";
 import { sql } from "drizzle-orm/sql";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import { p } from "@vercel/edge-config/dist/types-4093548b";
 
 export const config = {
   runtime: "edge",
@@ -24,6 +23,7 @@ export const getProductPage = async (name: string) => {
     .select({
       id: product_details.id,
       price: product_details.price,
+      sale_price: product_details.sale_price,
       weight: product_details.weight,
       name: product_details.name,
       image: product_details.image,
@@ -192,5 +192,23 @@ export const inventoryRouter = createTRPCRouter({
           .set({ store_order: sql`${product_details.store_order} - 1` })
           .where(gte(product_details.store_order, order));
       });
+    }),
+
+  addSale: publicProcedure
+    .input(z.object({ product_id: z.number(), sale_price: z.number() }))
+    .mutation(async ({ input }) => {
+      await db
+        .update(product_details)
+        .set({ sale_price: input.sale_price })
+        .where(eq(product_details.id, input.product_id));
+    }),
+
+  removeSale: publicProcedure
+    .input(z.object({ product_id: z.number() }))
+    .mutation(async ({ input }) => {
+      await db
+        .update(product_details)
+        .set({ sale_price: null })
+        .where(eq(product_details.id, input.product_id));
     }),
 });

@@ -78,13 +78,36 @@ function Card({ product, index }: { product: Product; index: number }) {
           )}
         </motion.div>
         <div className="p-5">
-          <h4 className="mb-2 text-xl font-bold tracking-tight text-white">
-            {product.name}
-          </h4>
-          <h5 className="mb-2 text-lg tracking-tight text-white">
-            ${product.price}
-            {product.price! % 1 === 0 ? ".00" : ""}
-          </h5>
+          <div className="flex flex-row justify-between">
+            <h4 className="mb-2 text-xl font-bold tracking-tight text-white">
+              {product.name}
+            </h4>
+            <h4
+              className={`text-red-600 ${
+                product.sale_price === null ? "hidden" : "block"
+              }`}
+            >
+              Sale
+            </h4>
+          </div>
+          <div className="flex flex-row">
+            <h5
+              className={`mb-2 pr-2 text-lg tracking-tight text-white ${
+                product.sale_price === null ? "hidden" : "block"
+              }`}
+            >
+              ${product.sale_price}
+              {product.sale_price! % 1 === 0 ? ".00" : ""}
+            </h5>
+            <h5
+              className={`mb-2 text-lg tracking-tight text-white ${
+                product.sale_price !== null ? "line-through" : ""
+              }`}
+            >
+              ${product.price}
+              {product.price! % 1 === 0 ? ".00" : ""}
+            </h5>
+          </div>
         </div>
       </Link>
     </motion.div>

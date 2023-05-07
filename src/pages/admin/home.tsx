@@ -91,6 +91,12 @@ const Home: NextPage = () => {
           Remove Product
         </Link>
         <Link
+          href="/admin/manageSales"
+          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Manage Sales
+        </Link>
+        <Link
           href="/admin/updateInventory"
           className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
         >
