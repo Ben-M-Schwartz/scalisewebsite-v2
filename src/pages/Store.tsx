@@ -59,7 +59,7 @@ function Card({ product, index }: { product: Product; index: number }) {
             <AnimatePresence>
               {isHover && (
                 <motion.div
-                  className="absolute left-0 top-0 max-md:hidden"
+                  className="absolute left-0 top-0 hidden sm:block"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
