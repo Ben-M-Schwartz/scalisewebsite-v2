@@ -78,10 +78,10 @@ function Card({ product, index }: { product: Product; index: number }) {
           )}
         </motion.div>
         <div className="p-5">
-          <h4 className="mb-2 text-2xl font-bold tracking-tight text-white">
+          <h4 className="mb-2 text-xl font-bold tracking-tight text-white">
             {product.name}
           </h4>
-          <h5 className="mb-2 text-xl tracking-tight text-white">
+          <h5 className="mb-2 text-lg tracking-tight text-white">
             ${product.price}
             {product.price! % 1 === 0 ? ".00" : ""}
           </h5>
@@ -165,7 +165,7 @@ const Store: NextPage = (
             STORE
           </h1>
         </div>
-        <div className="container flex flex-col items-center justify-center gap-4 pt-16 sm:grid sm:grid-cols-2 sm:items-center sm:justify-center lg:grid-cols-3">
+        <div className="container flex flex-col items-center justify-center gap-4 pt-16 sm:grid sm:grid-cols-2 sm:items-start sm:justify-center lg:grid-cols-3">
           {products.map((product, index) => (
             <Card key={product.id} product={product} index={index} />
           ))}
