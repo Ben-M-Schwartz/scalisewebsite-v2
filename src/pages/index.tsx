@@ -4,13 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 //importing images for static generation on build to speed up load times
-import background from "../../public/Red_Felt.webp";
-import partyPoster from "../../public/releasePartyPoster.webp";
-import transferred from "../../public/transferred.webp";
-import restOfTheWeek from "../../public/restOfTheWeek.webp";
-import fruitSnacks from "../../public/fruitSnacks.webp";
-import tmynmImage from "../../public/tellMeYouNeedMe.webp";
-import airbag from "../../public/airbag.webp";
+import background from "../../public/Red_Felt.png";
+import partyPoster from "../../public/releasePartyPoster.png";
+import transferred from "../../public/transferred.png";
+import restOfTheWeek from "../../public/restOfTheWeek.png";
+import fruitSnacks from "../../public/fruitSnacks.jpeg";
+import tmynmImage from "../../public/tellMeYouNeedMe.jpeg";
+import airbag from "../../public/airbag.jpeg";
 
 /* export const config = {
   runtime: "experimental-edge",

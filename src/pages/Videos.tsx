@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 
-import banner from "../../public/barnPhoto.webp";
+import banner from "../../public/barnPhoto.jpg";
 
 /* export const config = {
   runtime: "experimental-edge",
