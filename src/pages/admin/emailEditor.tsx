@@ -54,6 +54,7 @@ export default function Email() {
       onSuccess: (data) => {
         //eslint-disable-next-line
         //@ts-ignore
+        //eslint-disable-next-line
         emailEditorRef.current?.loadDesign(data[0]!.json);
         setShowForm(false);
         setQueryEnabled(false);

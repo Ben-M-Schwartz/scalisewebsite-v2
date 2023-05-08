@@ -4,13 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 //importing images for static generation on build to speed up load times
-import background from "../../public/Red_Felt.png";
-import partyPoster from "../../public/releasePartyPoster.png";
-import transferred from "../../public/transferred.png";
-import restOfTheWeek from "../../public/restOfTheWeek.png";
-import fruitSnacks from "../../public/fruitSnacks.jpeg";
-import tmynmImage from "../../public/tellMeYouNeedMe.jpeg";
-import airbag from "../../public/airbag.jpeg";
+import background from "../../public/Red_Felt.webp";
+import partyPoster from "../../public/releasePartyPoster.webp";
+import transferred from "../../public/transferred.webp";
+import restOfTheWeek from "../../public/restOfTheWeek.webp";
+import fruitSnacks from "../../public/fruitSnacks.webp";
+import tmynmImage from "../../public/tellMeYouNeedMe.webp";
+import airbag from "../../public/airbag.webp";
 
 /* export const config = {
   runtime: "experimental-edge",
@@ -101,13 +101,16 @@ const Home: NextPage = () => {
         <div className="relative min-h-screen w-screen">
           <div className="flex flex-col gap-20 pb-20">
             <video
-              src="/TellMeYouNeedMe.mov"
               playsInline
               autoPlay
               loop
               muted
               className="absolute z-0 h-full object-cover"
-            />
+            >
+              <source src="/TellMeYouNeedMe.webm"></source>
+              <source src="/TellMeYouNeedMe.mp4"></source>
+              <source src="/TellMeYouNeedMe.mov"></source>
+            </video>
             <div className="z-10 flex flex-col items-center justify-center gap-3 pt-20 sm:px-10 md:flex-row md:items-center md:justify-center md:gap-10">
               <div className="md:order-0 w-1/2 text-center md:h-1/2 md:w-1/2 lg:h-2/3 lg:w-2/3">
                 <div className="flex flex-col items-center justify-center gap-3">

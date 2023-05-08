@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { type NextPage } from "next";
 import Head from "next/head";
@@ -71,7 +67,7 @@ const Cart: NextPage = () => {
         if (data.length === 0 || !data) {
           setEmptyCart(true);
         } else {
-          setTotalPrice(data[0]!.total_price as number);
+          setTotalPrice(data[0]?.total_price as number);
           setCartItems(data as Cart[]);
         }
         setLoading(false);
@@ -339,69 +335,70 @@ const Cart: NextPage = () => {
                         disableUpdates={disable}
                         onAdd={() => {
                           handleTotalUpdate(
-                            totalPrice + item.cart_item!.price!
+                            totalPrice + (item.cart_item?.price as number)
                           );
                           //window.alert("Updated Quantity");
                           handleAddToCart(
-                            item.cart_item!.item_name!,
-                            item.cart_item!.size as string,
+                            item.cart_item?.item_name as string,
+                            item.cart_item?.size as string,
                             1,
-                            item.cart_item!.product_id as number,
-                            item.cart_item!.price as number,
-                            item.cart_item!.weight as number
+                            item.cart_item?.product_id as number,
+                            item.cart_item?.price as number,
+                            item.cart_item?.weight as number
                           );
                         }}
                         onRemove={() => {
                           handleTotalUpdate(
-                            totalPrice - item.cart_item!.price!
+                            totalPrice - (item.cart_item?.price as number)
                           );
                           //window.alert("Updated Quantity");
                           handleRemoveFromCart(
-                            item.cart_item!.product_id!,
-                            item.cart_item!.size as string,
+                            item.cart_item?.product_id as number,
+                            item.cart_item?.size as string,
                             1,
-                            item.cart_item!.price as number,
-                            item.cart_item!.weight as number,
+                            item.cart_item?.price as number,
+                            item.cart_item?.weight as number,
                             false
                           );
                         }}
                         onTextUpdate={(changeAmount: number, op: "+" | "-") => {
                           if (op === "+") {
                             handleTotalUpdate(
-                              totalPrice + item.cart_item!.price! * changeAmount
+                              totalPrice +
+                                (item.cart_item?.price as number) * changeAmount
                             );
                             //window.alert("Updated Quantity");
                             handleAddToCart(
-                              item.cart_item!.item_name as string,
-                              item.cart_item!.size as string,
+                              item.cart_item?.item_name as string,
+                              item.cart_item?.size as string,
                               changeAmount,
-                              item.cart_item!.product_id as number,
-                              item.cart_item!.price as number,
-                              item.cart_item!.weight as number
+                              item.cart_item?.product_id as number,
+                              item.cart_item?.price as number,
+                              item.cart_item?.weight as number
                             );
                           } else {
                             handleTotalUpdate(
                               totalPrice -
-                                (item.cart_item!.price as number) * changeAmount
+                                (item.cart_item?.price as number) * changeAmount
                             );
                             //window.alert("Updated Quantity");
                             handleRemoveFromCart(
-                              item.cart_item!.product_id as number,
-                              item.cart_item!.size as string,
+                              item.cart_item?.product_id as number,
+                              item.cart_item?.size as string,
                               changeAmount,
-                              item.cart_item!.price as number,
-                              item.cart_item!.weight as number,
+                              item.cart_item?.price as number,
+                              item.cart_item?.weight as number,
                               false
                             );
                           }
                         }}
                         onDelete={() => {
                           handleRemoveFromCart(
-                            item.cart_item!.product_id as number,
-                            item.cart_item!.size as string,
-                            item.cart_item!.quantity as number,
-                            item.cart_item!.price as number,
-                            item.cart_item!.weight as number,
+                            item.cart_item?.product_id as number,
+                            item.cart_item?.size as string,
+                            item.cart_item?.quantity as number,
+                            item.cart_item?.price as number,
+                            item.cart_item?.weight as number,
                             true
                           );
                         }}

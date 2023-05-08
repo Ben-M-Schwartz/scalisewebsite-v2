@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -234,7 +233,8 @@ const updateInventory: NextPage = () => {
                   ?.filter((p) => p.product_id === product.id)
                   .sort((a, b) => {
                     return (
-                      allOptions[a.size!.trim()]! - allOptions[b.size!.trim()]!
+                      (allOptions[(a.size as string).trim()] as number) -
+                      (allOptions[(b.size as string).trim()] as number)
                     );
                   }) as Inventory[]
               }

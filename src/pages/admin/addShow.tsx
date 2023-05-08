@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { type NextPage } from "next";
 import Head from "next/head";
@@ -30,7 +29,10 @@ const AddShow: NextPage = () => {
   const createShow = api.shows.create.useMutation();
 
   const onSubmit = (formData: AddShowForm) => {
-    createShow.mutateAsync({ ...formData }).then(() => window.alert("Success"));
+    createShow
+      .mutateAsync({ ...formData })
+      .then(() => window.alert("Success"))
+      .catch((error) => console.error(error));
   };
 
   if (!isLoaded)

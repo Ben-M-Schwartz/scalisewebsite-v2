@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Image from "next/image";
-import excited from "../../../public/excited.png";
+import excited from "../../../public/excited.webp";
 
 import { getCookie } from "cookies-next";
 import { api } from "~/utils/api";
@@ -22,6 +22,7 @@ const SuccessPage: NextPage = () => {
   const cart_id = getCookie("cart_id")?.toString() || "not found";
   const clearCart = api.cart.clearCart.useMutation();
 
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     if (session_id) {
       clearCart

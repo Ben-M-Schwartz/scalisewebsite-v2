@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/*eslint-disable @typescript-eslint/no-unsafe-member-access */
+/*eslint-disable @typescript-eslint/no-explicit-any */
 
 import type { NextApiRequest, NextApiResponse } from "next";
 import rawBody from "raw-body";
@@ -37,10 +35,10 @@ export default async function handler(
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      process.env.STRIPE_WEBHOOK_SECRET as string
     );
   } catch (error: any) {
-    return res.status(400).send(`Webhook Error: ${error.message}`);
+    return res.status(400).send(`Webhook Error: ${error.message as string}`);
   }
 
   const session = event.data.object as Stripe.Checkout.Session;

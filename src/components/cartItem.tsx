@@ -81,7 +81,7 @@ export function Item({
               e.target.value !== ""
                 ? Math.min(
                     Math.max(parseInt(e.target.value), 1),
-                    item.quantity_in_stock! -
+                    (item.quantity_in_stock as number) -
                       (item.quantity_in_checkouts
                         ? item.quantity_in_checkouts
                         : 0)
@@ -111,7 +111,7 @@ export function Item({
           className="block w-[50px] rounded-none border border-gray-300 bg-gray-50 px-1 py-1 text-sm text-gray-900 [appearance:textfield] focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           value={quantity}
           max={
-            item.quantity_in_stock! -
+            (item.quantity_in_stock as number) -
             (item.quantity_in_checkouts ? item.quantity_in_checkouts : 0)
           }
           min={1}
@@ -127,7 +127,7 @@ export function Item({
           }}
           disabled={
             (quantity as number) >=
-              item.quantity_in_stock! -
+              (item.quantity_in_stock as number) -
                 (item.quantity_in_checkouts ? item.quantity_in_checkouts : 0) ||
             disableUpdates
           }
@@ -140,8 +140,8 @@ export function Item({
       <div className="flex flex-col items-end gap-2 sm:flex-row sm:items-center sm:gap-3">
         <div className="text-right text-gray-100">
           <div>
-            Total: ${item.price! * (quantity as number)}
-            {item.price! % 1 === 0 ? ".00" : ""}
+            Total: ${(item.price as number) * (quantity as number)}
+            {(item.price as number) % 1 === 0 ? ".00" : ""}
           </div>
         </div>
         <button

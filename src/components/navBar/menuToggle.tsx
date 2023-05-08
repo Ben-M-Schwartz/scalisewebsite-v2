@@ -1,6 +1,8 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 
+//got this code from framer-motion I'm pretty sure the props will work
+//eslint-disable-next-line
 const Path = (props: any) => (
   <motion.path
     fill="transparent"

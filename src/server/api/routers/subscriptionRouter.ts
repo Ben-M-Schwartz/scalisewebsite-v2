@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion  */
 import { z } from "zod";
 import { db } from "~/db/db";
 import {
@@ -91,7 +90,7 @@ const emailMailingList = async (subject: string, html: string) => {
     //console.log(subscriber.email)
     const mailOptions: EmailOptions = {
       from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
-      to: subscriber.email!,
+      to: subscriber.email as string,
       subject: subject,
       html: html,
     };
@@ -198,7 +197,9 @@ const sendInitialNotificationEmail = async (
     } is back in stock. 
         We'll let you know as soon as it becomes available again.</p>
         <p>In the meantime, feel free to browse our selection of other items.</p>
-        <a href="${process.env.DOMAIN!}/Store" class="button">Shop Now</a>
+        <a href="${
+          process.env.DOMAIN as string
+        }/Store" class="button">Shop Now</a>
       </body>
     </html>`,
   };
@@ -248,7 +249,9 @@ const sendNotifications = async (
         size !== "" ? `Size: ${size}` : ""
       } is back in stock!</p>
             <p>Thank you so much for your support</p>
-            <a href="${process.env.DOMAIN!}/Store" class="button">Shop Now</a>
+            <a href="${
+              process.env.DOMAIN as string
+            }/Store" class="button">Shop Now</a>
         </body>
       </html>`,
     };

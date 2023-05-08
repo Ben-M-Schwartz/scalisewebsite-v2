@@ -67,6 +67,7 @@ export function CartLink() {
   hasCookie("cart_id")
     ? api.cart.getCartAmount.useQuery(
         {
+          //eslint-disable-next-line
           id: getCookie("cart_id")!.toString(),
         },
         {

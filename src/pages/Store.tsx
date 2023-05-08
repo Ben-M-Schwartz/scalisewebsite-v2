@@ -9,7 +9,7 @@ type Product = InferModel<typeof product_details, "select">;
 
 import { motion, AnimatePresence } from "framer-motion";
 
-import banner from "../../public/porchPhoto.jpg";
+import banner from "../../public/porchPhoto.webp";
 
 /* export const config = {
   runtime: "experimental-edge",
@@ -18,7 +18,7 @@ import banner from "../../public/porchPhoto.jpg";
 
 //import { api } from "~/utils/api";
 
-function Card({ product, index }: { product: Product; index: number }) {
+function Product({ product }: { product: Product }) {
   const images = (product.image as string).split(",");
   const [isHover, setHover] = useState(false);
   return (
@@ -96,7 +96,7 @@ function Card({ product, index }: { product: Product; index: number }) {
               }`}
             >
               ${product.sale_price}
-              {product.sale_price! % 1 === 0 ? ".00" : ""}
+              {(product.sale_price as number) % 1 === 0 ? ".00" : ""}
             </h5>
             <h5
               className={`mb-2 text-lg tracking-tight text-white ${
@@ -104,7 +104,7 @@ function Card({ product, index }: { product: Product; index: number }) {
               }`}
             >
               ${product.price}
-              {product.price! % 1 === 0 ? ".00" : ""}
+              {(product.price as number) % 1 === 0 ? ".00" : ""}
             </h5>
           </div>
         </div>
@@ -188,8 +188,8 @@ const Store: NextPage = (
           </h1>
         </div>
         <div className="container flex flex-col items-center justify-center gap-4 pt-16 sm:grid sm:grid-cols-2 sm:items-start sm:justify-center lg:grid-cols-3">
-          {products.map((product, index) => (
-            <Card key={product.id} product={product} index={index} />
+          {products.map((product) => (
+            <Product key={product.id} product={product} />
           ))}
         </div>
       </main>

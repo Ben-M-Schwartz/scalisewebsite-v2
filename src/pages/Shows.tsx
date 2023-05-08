@@ -28,7 +28,7 @@ export const config = {
 
 import { api } from "~/utils/api";
 
-import banner from "../../public/greenRoomPhoto.png";
+import banner from "../../public/greenRoomPhoto.webp";
 
 /* 
 For if using getServerSideProps:

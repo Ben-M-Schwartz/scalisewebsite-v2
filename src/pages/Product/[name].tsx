@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { type NextPage } from "next";
 import Head from "next/head";
@@ -10,8 +9,6 @@ import { useForm } from "react-hook-form";
 import React, { useState, useEffect, useContext } from "react";
 import { CarretDown } from "~/components/icons";
 import { CartContext, type CartContextType } from "~/pages/_app";
-
-import { motion, AnimatePresence } from "framer-motion";
 
 import { Images } from "~/components/productImages";
 
@@ -190,10 +187,12 @@ const Product: NextPage = (
     const mutateOptions = {
       size: formData.size,
       quantity: parseInt(formData.quantity) || 1,
-      price: productData[0]!.sale_price || productData[0]!.price,
-      product_id: productData[0]!.id,
-      weight: productData[0]!.weight,
-      name: productData[0]!.name,
+      price:
+        (productData[0]?.sale_price as number) ||
+        (productData[0]?.price as number),
+      product_id: productData[0]?.id as number,
+      weight: productData[0]?.weight as number,
+      name: productData[0]?.name as string,
       cart_id: "",
     };
 
@@ -202,7 +201,7 @@ const Product: NextPage = (
       mutateOptions.cart_id = new_cart_id;
       setCookie("cart_id", new_cart_id);
     } else {
-      mutateOptions.cart_id = getCookie("cart_id")!.toString();
+      mutateOptions.cart_id = getCookie("cart_id")?.toString() as string;
     }
     addToCart
       .mutateAsync(mutateOptions)
@@ -217,7 +216,7 @@ const Product: NextPage = (
   const handleSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPickedSize(event.target.value);
     const selectedOption = event.target.options[event.target.selectedIndex];
-    const maxQuantity = selectedOption!.dataset.maxQuantity;
+    const maxQuantity = selectedOption?.dataset.maxQuantity;
     setMaxQuantity(parseInt(maxQuantity as string));
     if (parseInt(maxQuantity as string) === 0) {
       setSoldOut(true);
@@ -340,16 +339,18 @@ const Product: NextPage = (
             </div>
           </div>
               */}
-          {images!.length === 1 && (
+          {images?.length === 1 && (
             <Image
               className="full flex object-cover shadow-lg"
-              src={`/${images![0]?.trim() as string}`}
+              src={`/${images[0]?.trim() as string}`}
               alt="image"
               height={719}
               width={540}
             />
           )}
-          {images!.length > 1 && <Images images={images as string[]} />}
+          {(images?.length as number) > 1 && (
+            <Images images={images as string[]} />
+          )}
           <div className="w-2/3 md:w-1/3">
             <div className="container flex flex-col gap-4 pb-16">
               <h1 className="mt-12 text-4xl text-white md:mt-8 md:text-5xl lg:text-6xl">
@@ -362,7 +363,7 @@ const Product: NextPage = (
                   }`}
                 >
                   ${productData[0].sale_price}
-                  {productData[0].sale_price! % 1 === 0 ? ".00" : ""}
+                  {(productData[0].sale_price as number) % 1 === 0 ? ".00" : ""}
                 </p>
                 <p
                   className={`mb-2 text-xl tracking-tight text-white ${
@@ -401,12 +402,12 @@ const Product: NextPage = (
                         {productData
                           .sort((a, b) => {
                             return (
-                              allOptions[
+                              (allOptions[
                                 a.product_quantity.size.trim() as sizes
-                              ]! -
-                              allOptions[
+                              ] as number) -
+                              (allOptions[
                                 b.product_quantity.size.trim() as sizes
-                              ]!
+                              ] as number)
                             );
                           })
                           .map((product) => (
@@ -524,7 +525,7 @@ const Product: NextPage = (
               {soldOut && (
                 <>
                   <h2 className="text-white">Sold Out</h2>
-                  <form onSubmit={notifySubmit(notifyWhenInStock)}>
+                  <form onSubmit={() => notifySubmit(notifyWhenInStock)}>
                     <label htmlFor="notify" className="text-white">
                       Notify when back in stock?
                     </label>

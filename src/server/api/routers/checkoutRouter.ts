@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
@@ -61,7 +59,7 @@ export const checkoutRouter = createTRPCRouter({
             );
 
           const max =
-            (stock[0]!.quantity as number) - (inCheckouts[0]?.quantity || 0);
+            (stock[0]?.quantity as number) - (inCheckouts[0]?.quantity || 0);
           return {
             item_name: item.item_name,
             product_id: item.product_id,
@@ -88,17 +86,16 @@ export const checkoutRouter = createTRPCRouter({
             currency: "usd",
             unit_amount: item.price * 100,
             product_data: {
-              name: item.item_name as string,
+              name: item.item_name,
               images: [`${domainURL as string}/public/${images[0] as string}`],
-              description:
-                item.size === "" ? "CD" : `Size: ${item.size as string}`,
+              description: item.size === "" ? "CD" : `Size: ${item.size}`,
               metadata: {
                 size: item.size,
                 product_id: item.product_id,
               },
             },
           },
-          quantity: item.quantity as number,
+          quantity: item.quantity,
           tax_rates:
             item.is_taxed === 1 ? ["txr_1N10EAHmtb6xoR6RcIowDGt8"] : undefined,
         };

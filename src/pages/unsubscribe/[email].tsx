@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { type NextPage } from "next";
 import Head from "next/head";
@@ -43,7 +42,8 @@ const NewProduct: NextPage = () => {
         is_taxed: 0,
         store_order: parseInt(formData.store_order) || 1,
       })
-      .then(() => window.alert("Success"));
+      .then(() => window.alert("Success"))
+      .catch((error) => console.error(error));
   };
 
   if (!isLoaded)

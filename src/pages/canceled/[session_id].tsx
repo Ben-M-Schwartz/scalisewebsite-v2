@@ -16,6 +16,7 @@ export default function Cancelled() {
   const { session_id } = router.query;
 
   const cancelOrder = api.checkout.cancelOrder.useMutation();
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     if (session_id) {
       cancelOrder.mutate({ id: session_id as string });
