@@ -97,10 +97,10 @@ export const Images = ({ images }: { images: string[] }) => {
                     paginate(-1);
                   }
                 }}
-                className="z-10 flex bg-transparent"
+                className=""
               >
                 <Image
-                  className="full -z-10 flex object-cover shadow-lg"
+                  className="full pointer-events-none object-cover shadow-lg"
                   //eslint-disable-next-line
                   src={`/${(images[imageIndex] as string).trim()}`}
                   alt="image"
