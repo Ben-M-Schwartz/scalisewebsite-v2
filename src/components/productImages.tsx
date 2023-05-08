@@ -7,8 +7,8 @@ import Image from "next/image";
 const variants = {
   enter: (direction: number) => {
     return {
-      x: direction > 0 ? 300 : -300,
-      opacity: 0,
+      x: direction > 0 ? 550 : -550,
+      opacity: 1,
       position: "absolute",
     };
   },
@@ -21,8 +21,8 @@ const variants = {
   exit: (direction: number) => {
     return {
       //zIndex: 0,
-      x: direction < 0 ? 300 : -300,
-      opacity: 0,
+      x: direction < 0 ? 550 : -550,
+      opacity: 1,
       position: "absolute",
     };
   },
@@ -90,9 +90,11 @@ export const Images = ({ images }: { images: string[] }) => {
                 animate="center"
                 exit="exit"
                 transition={{
+                  delay: 0.05,
                   x: {
                     type: "tween",
-                    duration: 1,
+                    duration: 0.7,
+                    ease: "easeInOut",
                     /*                     type: "spring",
                     stiffness: 100,
                     damping: 30,
@@ -112,7 +114,6 @@ export const Images = ({ images }: { images: string[] }) => {
                     paginate(-1);
                   }
                 }}
-                className=""
               />
             </AnimatePresence>
             <div
