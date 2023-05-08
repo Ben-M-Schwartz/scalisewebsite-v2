@@ -55,7 +55,7 @@ export const Images = ({ images }: { images: string[] }) => {
                 }}
               >
                 <Image
-                  className="full object-cover shadow-lg"
+                  className="full object-cover"
                   src={`/${image.trim()}`}
                   alt="image"
                   height={719}
@@ -66,10 +66,10 @@ export const Images = ({ images }: { images: string[] }) => {
           </div>
           <div className="relative h-full w-full overflow-hidden border-red-500">
             <AnimatePresence initial={false} custom={direction}>
-              <motion.img
+              <motion.div
                 key={page}
                 //eslint-disable-next-line
-                src={`/${(images[imageIndex] as string).trim()}`}
+                //src={`/${(images[imageIndex] as string).trim()}`}
                 custom={direction}
                 //eslint-disable-next-line
                 //@ts-ignore
@@ -78,7 +78,7 @@ export const Images = ({ images }: { images: string[] }) => {
                 animate="center"
                 exit="exit"
                 transition={{
-                  delay: 0.05,
+                  delay: 0.1,
                   x: {
                     type: "tween",
                     duration: 0.7,
@@ -98,7 +98,17 @@ export const Images = ({ images }: { images: string[] }) => {
                     paginate(-1);
                   }
                 }}
-              />
+                className="z-10 flex bg-transparent"
+              >
+                <Image
+                  className="full -z-10 flex object-cover"
+                  //eslint-disable-next-line
+                  src={`/${(images[imageIndex] as string).trim()}`}
+                  alt="image"
+                  height={540}
+                  width={540}
+                />
+              </motion.div>
             </AnimatePresence>
             <div
               className="next absolute right-3 top-1/2 z-10 flex h-10 w-10 cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold xl:right-10"
