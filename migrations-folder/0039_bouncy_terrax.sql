@@ -1,1 +1,0 @@
-ALTER TABLE `product_details` ADD `store_order` int;

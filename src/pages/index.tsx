@@ -109,7 +109,6 @@ const Home: NextPage = () => {
             >
               <source src="/TellMeYouNeedMe.webm"></source>
               <source src="/TellMeYouNeedMe.mp4"></source>
-              <source src="/TellMeYouNeedMe.mov"></source>
             </video>
             <div className="z-10 flex flex-col items-center justify-center gap-3 pt-20 sm:px-10 md:flex-row md:items-center md:justify-center md:gap-10">
               <div className="md:order-0 w-1/2 text-center md:h-1/2 md:w-1/2 lg:h-2/3 lg:w-2/3">

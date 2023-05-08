@@ -1,1 +1,0 @@
-ALTER TABLE `product_details` ADD `sale_price` double(10,2);
