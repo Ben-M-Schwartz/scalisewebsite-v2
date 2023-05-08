@@ -4,14 +4,16 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+//import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { useForm } from "react-hook-form";
 import React, { useState, useEffect, useContext } from "react";
 import { CarretDown } from "~/components/icons";
 import { CartContext, type CartContextType } from "~/pages/_app";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+
+import { Images } from "~/components/productImages";
 
 /* export const config = {
   runtime: "experimental-edge",
@@ -135,7 +137,7 @@ const Product: NextPage = (
   const [pickedSize, setPickedSize] = useState("");
   //const [pickedQuantity, setPickedQuantity] = useState(1);
   const [processing, setProcessing] = useState(false);
-  const [imageIndex, setImage] = useState(0);
+  //const [imageIndex, setImage] = useState(0);
   const [buttonText, setButtonText] = useState("Add to Cart");
 
   const { updateAmount } = useContext<CartContextType>(CartContext);
@@ -286,7 +288,7 @@ const Product: NextPage = (
           </div>
         </div>
         <div className="flex flex-col items-center justify-center pb-20 pt-8 md:flex-row md:items-start md:gap-10 md:pt-0 xl:px-28">
-          <div className="relative flex h-full w-2/3 flex-col md:w-1/2">
+          {/*<div className="relative flex h-full w-2/3 flex-col md:w-1/2">
             <div className="flex flex-col md:flex-row">
               <div
                 className={
@@ -327,16 +329,27 @@ const Product: NextPage = (
                   },
                 }}
               >
-                <Image
-                  className="full flex object-cover shadow-lg"
-                  src={`/${images![imageIndex]?.trim() as string}`}
-                  alt="image"
-                  height={719}
-                  width={540}
-                />
+                              <Image
+                      className="full flex object-cover shadow-lg"
+                      src={`/${images![imageIndex]?.trim() as string}`}
+                      alt="image"
+                      height={719}
+                      width={540}
+                    />
               </motion.div>
             </div>
           </div>
+              */}
+          {images!.length === 1 && (
+            <Image
+              className="full flex object-cover shadow-lg"
+              src={`/${images![0]?.trim() as string}`}
+              alt="image"
+              height={719}
+              width={540}
+            />
+          )}
+          {images!.length > 1 && <Images images={images as string[]} />}
           <div className="w-2/3 md:w-1/3">
             <div className="container flex flex-col gap-4 pb-16">
               <h1 className="mt-12 text-4xl text-white md:mt-8 md:text-5xl lg:text-6xl">
