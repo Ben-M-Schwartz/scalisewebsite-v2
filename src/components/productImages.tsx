@@ -8,12 +8,11 @@ const variants = {
   enter: (direction: number) => {
     return {
       x: direction > 0 ? 550 : -550,
-      opacity: 1,
+      opacity: 0,
       position: "absolute",
     };
   },
   center: {
-    zIndex: 1,
     x: 0,
     opacity: 1,
     position: "relative",
@@ -21,7 +20,7 @@ const variants = {
   exit: (direction: number) => {
     return {
       x: direction < 0 ? 550 : -550,
-      opacity: 1,
+      opacity: 0,
       position: "absolute",
     };
   },
@@ -101,7 +100,7 @@ export const Images = ({ images }: { images: string[] }) => {
                 className="z-10 flex bg-transparent"
               >
                 <Image
-                  className="full -z-10 flex object-cover"
+                  className="full -z-10 flex object-cover shadow-lg"
                   //eslint-disable-next-line
                   src={`/${(images[imageIndex] as string).trim()}`}
                   alt="image"
