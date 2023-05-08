@@ -77,13 +77,13 @@ export const Images = ({ images }: { images: string[] }) => {
                 animate="center"
                 exit="exit"
                 transition={{
-                  delay: 0.1,
+                  delay: 0.2,
                   x: {
                     type: "tween",
                     duration: 0.7,
                     ease: "easeInOut",
                   },
-                  opacity: { duration: 0.7 },
+                  opacity: { duration: 1 },
                 }}
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
