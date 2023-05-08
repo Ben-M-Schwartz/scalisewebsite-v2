@@ -44,7 +44,7 @@ const Music: NextPage = () => {
             src={banner}
             alt="background photo"
             fill
-            quality={75}
+            quality={100}
             style={{ objectFit: "cover" }}
             className="absolute z-0 object-[0%_15%]"
             priority
