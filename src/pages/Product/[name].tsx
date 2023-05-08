@@ -181,7 +181,6 @@ const Product: NextPage = (
       }
     }
   }, [productData]);
-  //TODO: Take into account items in current cart when adding
   const onSubmitCart = (formData: addToCartForm) => {
     setProcessing(true);
     const mutateOptions = {

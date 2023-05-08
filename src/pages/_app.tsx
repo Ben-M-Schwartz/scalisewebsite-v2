@@ -29,8 +29,6 @@ export const config = {
   regions: ["cle1"],
 };
 
-//TODO: Test out different email senders
-
 const MyApp: AppType = ({ Component, pageProps }) => {
   const [cartAmount, setCartAmount] = useState(0);
   const updateAmount = (amount: number) => setCartAmount(cartAmount + amount);

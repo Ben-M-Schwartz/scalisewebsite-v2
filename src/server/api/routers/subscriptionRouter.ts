@@ -17,7 +17,6 @@ export const config = {
   runtime: "edge",
   regions: ["cle1"],
 };
-//TODO: Figure out a cryptographic library that will work on edge since crypto douesnt seem to work
 const characters =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
