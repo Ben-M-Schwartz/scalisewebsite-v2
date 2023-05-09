@@ -31,7 +31,7 @@ export function NavBar() {
 
   return (
     <nav className="sticky left-0 top-0 z-20 w-full border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-900">
-      <div className="mx-auto flex w-screen flex-wrap items-center justify-between p-4">
+      <div className="mx-auto flex flex-wrap items-center justify-between p-4">
         <HomeLink />
         <div className="flex items-center justify-center align-middle md:order-2">
           <CartLink />
