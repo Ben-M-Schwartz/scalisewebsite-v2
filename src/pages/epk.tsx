@@ -108,9 +108,9 @@ const Music: NextPage = () => {
             SCALISE
           </h1>
         </div>
-        <div className="flex items-center justify-center bg-white">
+        <div className="flex items-center justify-center bg-white pb-36 pt-24">
           <div className="w-11/12 md:w-2/3">
-            <h1 className="pb-12 pt-36 text-6xl font-extrabold">Bio</h1>
+            <h1 className="pb-12 text-6xl font-extrabold">Bio</h1>
             <p>
               “We should ask Mr. Scalise what our band name should be... and if
               it sucks we’ll just be Scalise.”
@@ -126,7 +126,7 @@ const Music: NextPage = () => {
               release of their upcoming sophomore album.
             </p>
 
-            <p className="pb-24">
+            <p className="">
               The band started when core members Graden Hill (vocals/guitar),
               Ben Schwartz (drums), and George Knier (keys) were in middle
               school. Once the group had added Rachel Scott (vocals/bass) to the
