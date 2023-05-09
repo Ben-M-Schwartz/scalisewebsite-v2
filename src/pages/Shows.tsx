@@ -13,7 +13,7 @@ import {
 } from "~/components/icons";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import {
   TwitterShareButton,
@@ -29,10 +29,6 @@ import {
 //import { api } from "~/utils/api";
 
 import banner from "../../public/greenRoomPhoto.png";
-
-/* 
-For if using getServerSideProps or getStaticProps
-*/
 
 import { db } from "~/db/db";
 //import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
@@ -69,16 +65,18 @@ const Show = ({ show }: { show: ShowType }) => {
   const [isHover, setHover] = useState(false);
   const [isCopied, setCopied] = useState(false);
   const [eventListen, setListen] = useState(false);
-  document.addEventListener(
-    "click",
-    () => {
-      if (eventListen) {
-        setHover(false);
-        setListen(false);
-      }
-    },
-    { capture: true }
-  );
+  useEffect(() => {
+    document.addEventListener(
+      "click",
+      () => {
+        if (eventListen) {
+          setHover(false);
+          setListen(false);
+        }
+      },
+      { capture: true }
+    );
+  }, [eventListen]);
   return (
     <Link
       href={show.bandsintown_link as string}

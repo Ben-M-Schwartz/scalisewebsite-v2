@@ -25,7 +25,7 @@ const MailingList: NextPage = () => {
   const { register, handleSubmit } = useForm<emailForm>();
   const { isLoaded, userId } = useAuth();
 
-  const emailtest = api.subscription.testMailerSend.useMutation();
+  //const emailtest = api.subscription.testMailerSend.useMutation();
 
   const [sendtest, setSendtest] = useState(false);
 
