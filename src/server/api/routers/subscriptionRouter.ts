@@ -13,6 +13,21 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import nodemailer from "nodemailer";
 import Handlebars from "handlebars";
 
+import { MailerSend, EmailParams, Sender, Recipient } from "mailersend";
+
+const mailerSend = new MailerSend({
+  apiKey: process.env.MAILERSEND_API_KEY as string,
+});
+const sentFrom = new Sender("noreply@scalise.band");
+const recipients = [new Recipient("benschwartz33@gmail.com")];
+const emailParams = new EmailParams()
+  .setFrom(sentFrom)
+  .setTo(recipients)
+  .setReplyTo(sentFrom)
+  .setSubject("This is a Test Subject From MailerSend!!")
+  .setHtml("<strong>This is the HTML content</strong>")
+  .setText("This is the text content");
+
 export const config = {
   runtime: "edge",
   regions: ["cle1"],
@@ -323,6 +338,10 @@ const sendContactFormEmail = async (
 };
 
 export const subscriptionRouter = createTRPCRouter({
+  testMailerSend: publicProcedure.mutation(async () => {
+    await mailerSend.email.send(emailParams);
+  }),
+
   confirm: publicProcedure
     .input(z.object({ email: z.string(), url: z.string() }))
     .mutation(async ({ input }) => {

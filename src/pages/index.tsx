@@ -41,8 +41,8 @@ const Home: NextPage = () => {
           href="/images/favicon-16x16.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <div className="relative min-h-screen w-screen pb-20 pt-12">
+      <main className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black">
+        <div className="relative min-h-screen w-full pb-20 pt-12">
           <Image
             src={background}
             alt="Red Felt"
@@ -52,10 +52,10 @@ const Home: NextPage = () => {
             className="absolute z-0 blur-sm"
             priority
           />
-          <h1 className="z-1 relative pb-6 text-center text-5xl text-white sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
+          <h1 className="relative pb-6 text-center text-5xl text-white sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
             Album Release Party
           </h1>
-          <div className="z-1 relative flex flex-col items-center justify-center gap-10 md:flex-row">
+          <div className="relative flex flex-col items-center justify-center gap-10 md:flex-row">
             <div className="order-2 flex w-full md:order-1 md:w-1/3">
               <div className="flex flex-col gap-2 lg:gap-3 xl:gap-4">
                 <h2 className="order-1 w-3/4 self-center text-left text-4xl font-bold text-white md:w-full md:text-right xl:text-5xl">
@@ -98,7 +98,7 @@ const Home: NextPage = () => {
           </div>
         </div>
 
-        <div className="relative min-h-screen w-screen">
+        <div className="relative min-h-screen w-full">
           <div className="flex flex-col gap-20 pb-20">
             <video
               playsInline
@@ -111,7 +111,7 @@ const Home: NextPage = () => {
               <source src="/TellMeYouNeedMe.mp4"></source>
             </video>
             <div className="z-10 flex flex-col items-center justify-center gap-3 pt-20 sm:px-10 md:flex-row md:items-center md:justify-center md:gap-10">
-              <div className="md:order-0 w-1/2 text-center md:h-1/2 md:w-1/2 lg:h-2/3 lg:w-2/3">
+              <div className="md:order-0 w-1/2 text-center md:h-1/2 md:w-1/2">
                 <div className="flex flex-col items-center justify-center gap-3">
                   <h1 className="text-center text-4xl font-bold text-white">
                     TRANSFERRED TO HOUSTON
@@ -126,7 +126,7 @@ const Home: NextPage = () => {
                   </Link>
                 </div>
               </div>
-              <div className="h-1/2 w-1/2 lg:h-2/3 lg:w-2/3">
+              <div className="h-1/2 w-1/2">
                 <Image
                   src={transferred}
                   alt="Transferred To Houston Image"
@@ -137,7 +137,7 @@ const Home: NextPage = () => {
             </div>
 
             <div className="z-10 flex flex-col items-center justify-center gap-3 sm:px-10 md:flex-row md:items-center md:justify-center md:gap-10">
-              <div className="w-1/2 text-center md:order-1 md:h-1/2 md:w-1/2 lg:h-2/3 lg:w-2/3">
+              <div className="w-1/2 text-center md:order-1 md:h-1/2 md:w-1/2">
                 <div className="flex flex-col items-center justify-center gap-3">
                   <h1 className="z-1 tex-center text-4xl font-bold text-white">
                     REST OF THE WEEK
@@ -152,7 +152,7 @@ const Home: NextPage = () => {
                   </Link>
                 </div>
               </div>
-              <div className="h-1/2 w-1/2 lg:h-2/3 lg:w-2/3">
+              <div className="h-1/2 w-1/2">
                 <Image
                   src={restOfTheWeek}
                   alt="Rest Of The Week Image"
@@ -163,7 +163,7 @@ const Home: NextPage = () => {
             </div>
 
             <div className="z-10 flex flex-col items-center justify-center gap-3 sm:px-10 md:flex-row md:items-center md:justify-center md:gap-10">
-              <div className="md:order-0 w-1/2 text-center md:h-1/2 md:w-1/2 lg:h-2/3 lg:w-2/3">
+              <div className="md:order-0 w-1/2 text-center md:h-1/2 md:w-1/2">
                 <div className="flex flex-col items-center justify-center gap-3">
                   <h1 className="z-1 tex-center text-4xl font-bold text-white">
                     FRUIT SNACKS
@@ -178,7 +178,7 @@ const Home: NextPage = () => {
                   </Link>
                 </div>
               </div>
-              <div className="h-1/2 w-1/2 lg:h-2/3 lg:w-2/3">
+              <div className="h-1/2 w-1/2">
                 <Image
                   src={fruitSnacks}
                   alt="Fruit Snacks Image"
@@ -189,7 +189,7 @@ const Home: NextPage = () => {
             </div>
 
             <div className="z-10 flex flex-col items-center justify-center gap-3 sm:px-10 md:flex-row md:items-center md:justify-center md:gap-10">
-              <div className="w-1/2 text-center md:order-1 md:h-1/2 md:w-1/2 lg:h-2/3 lg:w-2/3">
+              <div className="w-1/2 text-center md:order-1 md:h-1/2 md:w-1/2">
                 <div className="flex flex-col items-center justify-center gap-3">
                   <h1 className="tex-center text-4xl font-bold text-white">
                     TELL ME YOU NEED ME
@@ -204,7 +204,7 @@ const Home: NextPage = () => {
                   </Link>
                 </div>
               </div>
-              <div className="h-1/2 w-1/2 lg:h-2/3 lg:w-2/3">
+              <div className="h-1/2 w-1/2">
                 <Image
                   src={tmynmImage}
                   alt="Tell Me You Need Me Image"
@@ -215,7 +215,7 @@ const Home: NextPage = () => {
             </div>
 
             <div className="z-10 flex flex-col items-center justify-center gap-3 sm:px-10 md:flex-row md:items-center md:justify-center md:gap-10">
-              <div className="md:order-0 w-1/2 text-center md:h-1/2 md:w-1/2 lg:h-2/3 lg:w-2/3">
+              <div className="md:order-0 w-1/2 text-center md:h-1/2 md:w-1/2">
                 <div className="flex flex-col items-center justify-center gap-3">
                   <h1 className="z-1 tex-center text-4xl font-bold text-white">
                     AIRBAG
@@ -230,7 +230,7 @@ const Home: NextPage = () => {
                   </Link>
                 </div>
               </div>
-              <div className="h-1/2 w-1/2 lg:h-2/3 lg:w-2/3">
+              <div className="h-1/2 w-1/2">
                 <Image
                   src={airbag}
                   alt="Airbag Image"

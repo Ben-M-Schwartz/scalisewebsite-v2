@@ -38,7 +38,7 @@ const Music: NextPage = () => {
           href="/images/favicon-16x16.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+      <main className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gray-800">
         <div className="relative flex w-full items-center justify-center bg-transparent">
           <Image
             src={banner}
@@ -54,7 +54,7 @@ const Music: NextPage = () => {
           </h1>
         </div>
 
-        <div className="relative min-h-screen w-screen">
+        <div className="relative min-h-screen w-full">
           <div className="flex flex-col">
             <div className="flex flex-col items-center gap-10 bg-black py-24">
               <div className="flex flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
