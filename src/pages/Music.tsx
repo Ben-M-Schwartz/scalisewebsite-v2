@@ -82,7 +82,11 @@ const Music: NextPage = () => {
                 />
               </div>
               <p className="text-white">Placeholder audio element for now:</p>
-              <audio controls className="appearance-none">
+              <audio
+                controls
+                className="appearance-none"
+                //TODO: Add audio files
+              >
                 {/*                 <source src="transferred.ogg" type="audio/ogg" />
                 <source src="transferred.mp3" type="audio/mpeg" /> */}
                 {/* Your browser does not support the audio element. */}
