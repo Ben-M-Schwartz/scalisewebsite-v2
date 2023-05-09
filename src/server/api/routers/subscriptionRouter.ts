@@ -13,20 +13,17 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import nodemailer from "nodemailer";
 import Handlebars from "handlebars";
 
-import { MailerSend, EmailParams, Sender, Recipient } from "mailersend";
+import {
+  MailerSend,
+  EmailParams,
+  Sender,
+  Recipient,
+  BlockListType,
+} from "mailersend";
 
 const mailerSend = new MailerSend({
   apiKey: process.env.MAILERSEND_API_KEY as string,
 });
-const sentFrom = new Sender("noreply@scalise.band");
-const recipients = [new Recipient("benschwartz33@gmail.com")];
-const emailParams = new EmailParams()
-  .setFrom(sentFrom)
-  .setTo(recipients)
-  .setReplyTo(sentFrom)
-  .setSubject("This is a Test Subject From MailerSend!!")
-  .setHtml("<strong>This is the HTML content</strong>")
-  .setText("This is the text content");
 
 export const config = {
   runtime: "edge",
@@ -99,31 +96,29 @@ const emailMailingList = async (subject: string, html: string) => {
   // Get list of subscribers from database or file
   const subList = await db.select().from(subscribers);
 
+  const sentFrom = new Sender("noreply@scalise.band");
+  const bulkMail = [];
+
   // Send email to each subscriber using nodemailer
   for (const subscriber of subList) {
-    //console.log(subscriber.email)
-    const mailOptions: EmailOptions = {
-      from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
-      to: subscriber.email as string,
-      subject: subject,
-      html: html,
-    };
-    await sendEmail(mailOptions);
-  }
-};
+    const emailParams = new EmailParams()
+      .setFrom(sentFrom)
+      .setTo([new Recipient(subscriber.email as string)])
+      .setSubject(subject)
+      .setHtml(html);
 
-const testEmail = async (
-  subject: string,
-  html: string,
-  testRecipient: string
-) => {
-  const mailOptions: EmailOptions = {
-    from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
-    to: testRecipient,
-    subject: subject,
-    html: html,
-  };
-  await sendEmail(mailOptions);
+    bulkMail.push(emailParams);
+    //console.log(subscriber.email)
+    // const mailOptions: EmailOptions = {
+    //   from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
+    //   to: subscriber.email as string,
+    //   subject: subject,
+    //   html: html,
+    // };
+    // await sendEmail(mailOptions);
+  }
+
+  await mailerSend.email.sendBulk(bulkMail);
 };
 
 const sendConfirmationEmail = async (
@@ -132,7 +127,7 @@ const sendConfirmationEmail = async (
   token: string
 ) => {
   const mailOptions: EmailOptions = {
-    from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
+    from: "noreply@scalise.band" /* process.env.GOOGLE_EMAIL! */,
     to: email,
     subject: "Confirm your subscription to SCALISE",
     html: `<!DOCTYPE html>
@@ -278,7 +273,7 @@ const sendNotifications = async (
 
 const userAlreadySubscribed = async (email: string, url: string) => {
   const mailOptions: EmailOptions = {
-    from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
+    from: "noreply@scalise.band" /* process.env.GOOGLE_EMAIL! */,
     to: email,
     subject: "SCALISE subscription",
     html: `<!DOCTYPE html>
@@ -319,7 +314,7 @@ const sendContactFormEmail = async (
     `);
 
   const mailOptions: EmailOptions = {
-    from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
+    from: "noreply@scalise.band" /* process.env.GOOGLE_EMAIL! */,
     to: "benschwartz33@gmail.com",
     subject: "Scalise Contact Form Submission",
     html: template({
@@ -339,6 +334,14 @@ const sendContactFormEmail = async (
 
 export const subscriptionRouter = createTRPCRouter({
   testMailerSend: publicProcedure.mutation(async () => {
+    const sentFrom = new Sender("noreply@scalise.band");
+    const recipients = [new Recipient("benschwartz33@gmail.com")];
+    const emailParams = new EmailParams()
+      .setFrom(sentFrom)
+      .setTo(recipients)
+      //.setReplyTo(new Recipient("benschwartz33@gmail.com"))
+      .setSubject("This is a Test Subject From MailerSend!!")
+      .setHtml("<strong>This is the HTML content</strong>");
     await mailerSend.email.send(emailParams);
   }),
 
@@ -467,7 +470,16 @@ export const subscriptionRouter = createTRPCRouter({
     )
     .mutation(async ({ input }) => {
       if (input.testRecipient !== "") {
-        await testEmail(input.subject, input.html, input.testRecipient);
+        //await testEmail(input.subject, input.html, input.testRecipient);
+        const sentFrom = new Sender("noreply@scalise.band");
+        const recipients = [new Recipient(input.testRecipient)];
+        const emailParams = new EmailParams()
+          .setFrom(sentFrom)
+          .setTo(recipients)
+          .setReplyTo(new Recipient("benschwartz33@gmail.com"))
+          .setSubject("This is a Test Subject From MailerSend!!")
+          .setHtml("<strong>This is the HTML content</strong>");
+        await mailerSend.email.send(emailParams);
       } else {
         await emailMailingList(input.subject, input.html);
       }
@@ -477,6 +489,15 @@ export const subscriptionRouter = createTRPCRouter({
     .input(z.object({ email: z.string() }))
     .mutation(async ({ input }) => {
       await db.delete(subscribers).where(eq(subscribers.email, input.email));
+      mailerSend.email.recipient
+        .blockRecipients(
+          {
+            domain_id: "scalise.band",
+            recipients: [input.email],
+          },
+          BlockListType.UNSUBSCRIBES_LIST
+        )
+        .catch((error) => console.error(error));
     }),
 
   getEmailDesignNames: publicProcedure.query(async () => {

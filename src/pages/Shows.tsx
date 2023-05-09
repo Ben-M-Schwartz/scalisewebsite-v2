@@ -21,10 +21,10 @@ import {
   FacebookShareButton,
 } from "next-share";
 
-export const config = {
+/* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
-};
+}; */
 
 //import { api } from "~/utils/api";
 

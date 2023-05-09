@@ -25,6 +25,8 @@ const MailingList: NextPage = () => {
   const { register, handleSubmit } = useForm<emailForm>();
   const { isLoaded, userId } = useAuth();
 
+  const emailtest = api.subscription.testMailerSend.useMutation();
+
   const [sendtest, setSendtest] = useState(false);
 
   const sendEmails = api.subscription.emailList.useMutation();
@@ -127,6 +129,9 @@ const MailingList: NextPage = () => {
         >
           Admin Home
         </Link>
+        {/*         <button onClick={() => emailtest.mutate()} className="text-white">
+          Test Email
+        </button> */}
         <div className="container flex flex-col gap-12 px-4 py-16 ">
           <h1 className="text-4xl text-white">Email Mailing List</h1>
           <form
