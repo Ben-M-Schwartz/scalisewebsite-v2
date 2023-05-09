@@ -12,7 +12,7 @@ import fruitSnacks from "../../public/fruitSnacks.jpeg";
 import tmynmImage from "../../public/tellMeYouNeedMe.jpeg";
 import airbag from "../../public/airbag.jpeg";
 
-import hoodieFront from "../../public/hoodieFront.png";
+import hoodieFront from "../../public/HoodieFront.png";
 import hoodieBack from "../../public/HoodieBack.png";
 import crewFront from "../../public/CrewneckFront.png";
 import crewBack from "../../public/Crewneckback.png";
@@ -119,7 +119,7 @@ const Home: NextPage = () => {
             priority
           />
           <h1 className="relative pb-6 text-center text-5xl text-white sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
-            Album Release Party
+            ALBUM RELEASE PARTY
           </h1>
           <div className="relative flex flex-col items-center justify-center gap-10 md:flex-row">
             <div className="order-2 flex w-full md:order-1 md:w-1/3">
