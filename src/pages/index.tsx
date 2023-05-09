@@ -12,6 +12,11 @@ import fruitSnacks from "../../public/fruitSnacks.jpeg";
 import tmynmImage from "../../public/tellMeYouNeedMe.jpeg";
 import airbag from "../../public/airbag.jpeg";
 
+import hoodieFront from "../../public/hoodieFront.png";
+import hoodieBack from "../../public/HoodieBack.png";
+import crewFront from "../../public/CrewneckFront.png";
+import crewBack from "../../public/Crewneckback.png";
+
 /* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
@@ -42,6 +47,67 @@ const Home: NextPage = () => {
         />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black">
+        <div className="flex w-full items-center justify-center border-4 border-gray-400">
+          <div className="w-full xl:w-3/4">
+            <div className="z-10 flex h-32 w-full flex-row justify-around">
+              <div className="flex h-full w-1/3 flex-row items-center justify-center gap-12">
+                <div className="relative h-full w-1/2 max-md:hidden">
+                  <Image
+                    src={hoodieFront}
+                    alt="New Hoodie Front"
+                    fill
+                    quality={75}
+                    className="flex object-scale-down"
+                    priority
+                  />
+                </div>
+                <div className="relative h-full w-full sm:w-1/2">
+                  <Image
+                    src={hoodieBack}
+                    alt="New Hoodie Back"
+                    fill
+                    quality={75}
+                    className="flex object-scale-down"
+                    priority
+                  />
+                </div>
+              </div>
+              <div className="flex w-1/3 flex-col items-center justify-center gap-2 sm:w-1/4 lg:w-1/6">
+                <p className="text-lg font-bold text-white lg:text-xl xl:text-2xl">
+                  New Merch!
+                </p>
+                <Link
+                  className="w-1/2 rounded-sm border bg-rose-800 py-2 text-center text-white hover:border-rose-800 hover:bg-white hover:text-rose-800 active:bg-gray-300 sm:w-full"
+                  href="/Store"
+                >
+                  Shop Now
+                </Link>
+              </div>
+              <div className="flex h-full w-1/3 flex-row items-center justify-center gap-12">
+                <div className="relative h-full w-full sm:w-1/2">
+                  <Image
+                    src={crewFront}
+                    alt="New Crew Neck Sweatshirt Front"
+                    fill
+                    quality={75}
+                    className="flex object-scale-down"
+                    priority
+                  />
+                </div>
+                <div className="relative h-full w-1/2 max-md:hidden">
+                  <Image
+                    src={crewBack}
+                    alt="New Crew Neck Sweatshirt Back"
+                    fill
+                    quality={75}
+                    className="flex object-scale-down"
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="relative min-h-screen w-full pb-20 pt-12">
           <Image
             src={background}
