@@ -262,10 +262,10 @@ const Shows: NextPage = (
           </h1>
         </div>
         {/* {loading && ( */}
-        <div className="flex flex-row justify-between gap-2 py-20 text-white">
+        {/*         <div className="flex flex-row justify-between gap-2 py-20 text-white">
           <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
           <p className="flex">Loading...</p>
-        </div>
+        </div> */}
         {/* )} */}
         {/* {!loading && ( */}
         <div className="flex w-2/3 flex-col items-center justify-center">

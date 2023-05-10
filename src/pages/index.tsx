@@ -164,6 +164,8 @@ const Home: NextPage = () => {
           </div>
         </div>
 
+        <div className="relative h-1 w-full bg-black"></div>
+
         <div className="relative min-h-screen w-full">
           <div className="flex flex-col gap-20 pb-20">
             <video
