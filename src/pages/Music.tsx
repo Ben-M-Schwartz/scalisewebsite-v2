@@ -79,6 +79,7 @@ const Music: NextPage = () => {
                   loading="lazy"
                   width={504}
                   height={504}
+                  className="shadow-2xl shadow-red-900"
                 />
               </div>
               <p className="text-white">Placeholder audio element for now:</p>
@@ -94,55 +95,82 @@ const Music: NextPage = () => {
               </audio>
             </div>
 
-            <div className="z-10 flex flex-col items-center justify-center gap-3 bg-white py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
-              <div className="h-1/2 w-1/2 text-center md:order-1">
-                <div className="flex flex-col items-center justify-center gap-3">
-                  <h1 className="z-1 tex-center text-4xl font-bold text-rose-800">
-                    AIRBAG
-                  </h1>
-                  <Link
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="flex w-full flex-col justify-center rounded-sm border-4 border-rose-800 py-2 text-center text-xl text-rose-800 hover:bg-rose-800 hover:font-bold hover:text-white md:w-1/2"
-                    href="https://distrokid.com/hyperfollow/scalise/airbag"
-                  >
-                    Listen Here
-                  </Link>
+            <div className="flex w-screen flex-col items-center gap-10 bg-white py-24">
+              <div className="z-10 flex w-full flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
+                <div className="w-1/2 text-center md:order-1">
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <h1 className="z-1 tex-center text-4xl font-bold text-rose-800">
+                      AIRBAG
+                    </h1>
+                    <Link
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="flex w-full flex-col justify-center rounded-sm border-4 border-rose-800 py-2 text-center text-xl text-rose-800 hover:bg-rose-800 hover:font-bold hover:text-white md:w-1/2"
+                      href="https://distrokid.com/hyperfollow/scalise/airbag"
+                    >
+                      Listen Here
+                    </Link>
+                  </div>
                 </div>
+                <Image
+                  src={airbag}
+                  alt="Airbag Image"
+                  width={504}
+                  height={504}
+                  className="order-1 shadow-2xl shadow-red-950"
+                  loading="lazy"
+                />
               </div>
-              <Image
-                src={airbag}
-                alt="Airbag Image"
-                width={504}
-                height={504}
-                className="order-1"
-                loading="lazy"
-              />
+              <p className="text-black">Placeholder audio element for now:</p>
+              <audio
+                controls
+                className="appearance-none"
+                //TODO: Add audio files
+              >
+                {/*                 <source src="transferred.ogg" type="audio/ogg" />
+                <source src="transferred.mp3" type="audio/mpeg" /> */}
+                {/* Your browser does not support the audio element. */}
+                Audio element placeholder
+              </audio>
             </div>
 
-            <div className="z-10 flex flex-col items-center justify-center gap-3 bg-black py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
-              <div className="w-1/2 text-center md:order-1">
-                <div className="flex flex-col items-center justify-center gap-3">
-                  <h1 className="z-1 tex-center text-4xl font-bold text-white">
-                    FRUIT SNACKS
-                  </h1>
-                  <Link
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="flex w-full flex-col justify-center rounded-sm border-4 border-white px-2 py-2 text-center text-xl text-white hover:bg-white hover:font-bold hover:text-black md:w-1/2"
-                    href="https://distrokid.com/hyperfollow/scalise/fruit-snacks"
-                  >
-                    Listen Here
-                  </Link>
+            <div className="flex w-screen flex-col items-center gap-10 bg-black py-24">
+              <div className="z-10 flex w-full flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
+                <div className="w-1/2 text-center md:order-1">
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <h1 className="z-1 tex-center text-4xl font-bold text-white">
+                      FRUIT SNACKS
+                    </h1>
+                    <Link
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="flex w-full flex-col justify-center rounded-sm border-4 border-white px-2 py-2 text-center text-xl text-white hover:bg-white hover:font-bold hover:text-black md:w-1/2"
+                      href="https://distrokid.com/hyperfollow/scalise/fruit-snacks"
+                    >
+                      Listen Here
+                    </Link>
+                  </div>
                 </div>
+                <Image
+                  src={fruitSnacks}
+                  alt="Fruit Snacks Image"
+                  width={504}
+                  height={504}
+                  loading="lazy"
+                  className="shadow-2xl shadow-red-900"
+                />
               </div>
-              <Image
-                src={fruitSnacks}
-                alt="Fruit Snacks Image"
-                width={504}
-                height={504}
-                loading="lazy"
-              />
+              <p className="text-white">Placeholder audio element for now:</p>
+              <audio
+                controls
+                className="appearance-none"
+                //TODO: Add audio files
+              >
+                {/*                 <source src="transferred.ogg" type="audio/ogg" />
+                <source src="transferred.mp3" type="audio/mpeg" /> */}
+                {/* Your browser does not support the audio element. */}
+                Audio element placeholder
+              </audio>
             </div>
 
             <div className="z-10 flex flex-col items-center justify-center gap-3 bg-rose-800 py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
@@ -173,6 +201,7 @@ const Music: NextPage = () => {
                 width={504}
                 height={504}
                 loading="lazy"
+                className="shadow-2xl"
               />
             </div>
           </div>
