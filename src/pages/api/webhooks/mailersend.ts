@@ -17,8 +17,13 @@ export default async function handler(
     await db
       .delete(subscribers)
       //eslint-disable-next-line
-      .where(eq(subscribers.email, req.body.data.email.recipient.email));
-    return res.status(200).json({});
+      .where(eq(subscribers.email, req.body.data.email.recipient.email))
+      .then(() => {
+        return res.status(200).json({});
+      })
+      .catch(() => {
+        return res.status(400).json({ error: "An error deletign subscriber" });
+      });
   }
 
   return res.status(400).json({});
