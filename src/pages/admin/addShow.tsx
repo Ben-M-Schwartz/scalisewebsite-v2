@@ -79,7 +79,7 @@ const AddShow: NextPage = () => {
     <>
       <Head>
         <title>New Show</title>
-        <link rel="shortcut icon" href="/images/scaliseIcon.png" />
+        <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"

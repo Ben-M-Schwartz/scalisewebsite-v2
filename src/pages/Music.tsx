@@ -19,7 +19,7 @@ const Music: NextPage = () => {
     <>
       <Head>
         <title>MUSIC-SCALISE</title>
-        <link rel="shortcut icon" href="/images/scaliseIcon.png" />
+        <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"

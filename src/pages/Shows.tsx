@@ -228,7 +228,7 @@ const Shows: NextPage = (
     <>
       <Head>
         <title>SHOWS-SCALISE</title>
-        <link rel="shortcut icon" href="/images/scaliseIcon.png" />
+        <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"

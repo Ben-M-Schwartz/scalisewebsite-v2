@@ -8,7 +8,7 @@ type Product = InferModel<typeof product_details, "select">;
 type Inventory = InferModel<typeof product_quantity, "select">;
 import { api } from "~/utils/api";
 import { useState } from "react";
-import { useRouter } from "next/router";
+//import { useRouter } from "next/router";
 import { SignIn } from "@clerk/clerk-react";
 import { useAuth } from "@clerk/nextjs";
 
@@ -37,7 +37,7 @@ function Card({
   const sendNotifications = api.subscription.notify.useMutation();
   const [sizes, setSizes] = useState<sizesArray>([]);
 
-  const router = useRouter();
+  //const router = useRouter();
 
   const handleUpdate = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -194,7 +194,7 @@ const updateInventory: NextPage = () => {
     <>
       <Head>
         <title>Update</title>
-        <link rel="shortcut icon" href="/images/scaliseIcon.png" />
+        <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
