@@ -118,7 +118,7 @@ const Home: NextPage = () => {
             className="absolute z-0 blur-sm"
             priority
           />
-          <h1 className="relative pb-6 text-center text-5xl text-white sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
+          <h1 className="relative pb-6 text-center text-5xl text-white md:text-6xl lg:text-7xl xl:text-8xl">
             ALBUM RELEASE PARTY
           </h1>
           <div className="relative flex flex-col items-center justify-center gap-10 md:flex-row">
