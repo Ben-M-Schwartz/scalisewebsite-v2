@@ -335,7 +335,7 @@ export const subscriptionRouter = createTRPCRouter({
         .select()
         .from(emailDesigns)
         .where(eq(emailDesigns.name, input.name));
-      if (existingDesign) {
+      if (existingDesign && existingDesign.length > 0) {
         await db
           .update(emailDesigns)
           .set({ json: input.json })
