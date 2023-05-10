@@ -28,7 +28,8 @@ export default async function handler(
     //const requestBody = JSON.parse(body) as InferModel<typeof subscribers>;
     //eslint-disable-next-line
     await db.delete(subscribers).where(eq(subscribers.email, req.body.email));
+    return res.status(200).json({});
   }
 
-  return res.json({});
+  return res.status(400).json({});
 }
