@@ -5,21 +5,21 @@ import {
   potential_subscribers,
   stockNotifications,
   emailDesigns,
+  notifiedAlreadySubscribed,
 } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
 import { eq, and } from "drizzle-orm/expressions";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import nodemailer from "nodemailer";
-import Handlebars from "handlebars";
 
 import {
-  MailerSend,
-  EmailParams,
-  Sender,
-  Recipient,
-  BlockListType,
-} from "mailersend";
+  backInStock,
+  backInStockSignUp,
+  confirmSubscription,
+  alreadySubscribed,
+} from "../../../components/emailTemplates";
+
+import { MailerSend, EmailParams, Sender, Recipient } from "mailersend";
 
 const mailerSend = new MailerSend({
   apiKey: process.env.MAILERSEND_API_KEY as string,
@@ -42,64 +42,13 @@ function generateString(length: number) {
   return result;
 }
 
-const createTransporter = () => {
-  try {
-    const transporter = nodemailer.createTransport({
-      host: "smtp.zoho.com",
-      secure: true,
-      port: 465,
-      auth: {
-        user: process.env.ZOHO_EMAIL,
-        pass: process.env.ZOHO_PASSWORD,
-      },
-    });
-    return transporter;
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to create email transporter");
-  }
-};
-
-type EmailOptions = {
-  from: string;
-  to: string;
-  subject: string;
-  html: string;
-};
-//emailOptions - who sends what to whom
-export const sendEmail = async (emailOptions: EmailOptions) => {
-  const emailTransporter = createTransporter();
-  try {
-    await emailTransporter.sendMail(emailOptions);
-  } catch (error) {
-    console.error(error);
-    throw new Error(`Failed to send email to ${emailOptions.to}`);
-  }
-};
-
 const emailMailingList = async (subject: string, html: string) => {
-  /*   const template = Handlebars.compile(`
-        <h1>{{subject}}</h1>
-        <p>{{body}}</p>
-        <a href={{domain}}/unsubscribe/{{email}}>Unsubscribe</a>
-    `);
-
-    html in email options: template({
-        subject: subject,
-        body: body,
-        domain: process.env.DOMAIN,
-        email: subscriber.email,
-      })
-    
-    
-    */
-  // Get list of subscribers from database or file
   const subList = await db.select().from(subscribers);
 
   const sentFrom = new Sender("noreply@scalise.band");
   const bulkMail = [];
 
-  // Send email to each subscriber using nodemailer
+  // Send email to each subscriber using mailersend
   for (const subscriber of subList) {
     const emailParams = new EmailParams()
       .setFrom(sentFrom)
@@ -108,14 +57,6 @@ const emailMailingList = async (subject: string, html: string) => {
       .setHtml(html);
 
     bulkMail.push(emailParams);
-    //console.log(subscriber.email)
-    // const mailOptions: EmailOptions = {
-    //   from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
-    //   to: subscriber.email as string,
-    //   subject: subject,
-    //   html: html,
-    // };
-    // await sendEmail(mailOptions);
   }
 
   await mailerSend.email.sendBulk(bulkMail);
@@ -126,30 +67,14 @@ const sendConfirmationEmail = async (
   email: string,
   token: string
 ) => {
-  const mailOptions: EmailOptions = {
-    from: "noreply@scalise.band" /* process.env.GOOGLE_EMAIL! */,
-    to: email,
-    subject: "Confirm your subscription to SCALISE",
-    html: `<!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <title>SCALISE Subscription Confirmation</title>
-        </head>
-        <body>
-          <h1>SCALISE</h1>
-          <p>Please confirm your subscription.</p>
-          <p>Before we send you any email, we need you to confirm your subscription.</p>
-          <a href="${url}/Confirm/${token}" style="display: inline-block; background-color: #007bff; color: #fff; font-size: 16px; padding: 10px 20px; border-radius: 5px; text-decoration: none;">CONFIRM SUBSCRIPTION</a>
-          <p>If you didn’t subscribe to this list, ignore this email. We won’t subscribe you unless you tap or click the button above.</p>
-        </body>
-        </html>`,
-  };
-
-  await sendEmail(mailOptions).catch((error) => {
-    console.error(error);
-    throw new Error(`Failed to send email`);
-  });
+  const sentFrom = new Sender("noreply@scalise.band");
+  const recipients = [new Recipient(email)];
+  const emailParams = new EmailParams()
+    .setFrom(sentFrom)
+    .setTo(recipients)
+    .setSubject("SCALISE - Confirm Subscription")
+    .setHtml(confirmSubscription(url, token));
+  await mailerSend.email.send(emailParams);
 };
 
 const sendInitialNotificationEmail = async (
@@ -157,65 +82,14 @@ const sendInitialNotificationEmail = async (
   product_name: string,
   product_size: string
 ) => {
-  const emailOptions: EmailOptions = {
-    from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
-    to: email,
-    subject: "Scalise Store Notifications",
-    html: `<!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="UTF-8">
-        <title>Back in Stock Notification</title>
-        <style>
-          /* Email Styles */
-          body {
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            line-height: 1.5;
-            color: #333;
-            background-color: #f5f5f5;
-            padding: 20px;
-          }
-          h1 {
-            font-size: 24px;
-            margin-top: 0;
-          }
-          p {
-            margin-bottom: 1em;
-          }
-          .button {
-            display: inline-block;
-            background-color: #007bff;
-            color: #fff;
-            font-size: 16px;
-            text-align: center;
-            padding: 10px 20px;
-            border-radius: 4px;
-            text-decoration: none;
-          }
-          .button:hover {
-            background-color: #0062cc;
-            cursor: pointer;
-          }
-        </style>
-      </head>
-      <body>
-        <h1>Back in Stock Notification</h1>
-        <p>Thank you for signing up to be notified when ${product_name} ${
-      product_size !== "" ? `size: ${product_size}` : ""
-    } is back in stock. 
-        We'll let you know as soon as it becomes available again.</p>
-        <p>In the meantime, feel free to browse our selection of other items.</p>
-        <a href="${
-          process.env.DOMAIN as string
-        }/Store" class="button">Shop Now</a>
-      </body>
-    </html>`,
-  };
-  await sendEmail(emailOptions).catch((error) => {
-    console.error(error);
-    throw new Error(`Failed to send confirmation of notifications email`);
-  });
+  const sentFrom = new Sender("noreply@scalise.band");
+  const recipients = [new Recipient(email)];
+  const emailParams = new EmailParams()
+    .setFrom(sentFrom)
+    .setTo(recipients)
+    .setSubject("SCALISE - Back in Stock Notification")
+    .setHtml(backInStockSignUp(product_name, product_size));
+  await mailerSend.email.send(emailParams);
 };
 
 const sendNotifications = async (
@@ -224,78 +98,26 @@ const sendNotifications = async (
   size: string
 ) => {
   for (const user of users) {
-    const emailOptions: EmailOptions = {
-      from: "ben@scalise.band" /* process.env.GOOGLE_EMAIL! */,
-      to: user.email,
-      subject: "Scalise Store Notifications",
-      html: `<!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="UTF-8">
-          <title>Back in Stock Notification</title>
-          <style>
-            /* Email Styles */
-            body {
-              font-family: Arial, sans-serif;
-              font-size: 16px;
-              line-height: 1.5;
-              color: #333;
-              background-color: #f5f5f5;
-              padding: 20px;
-            }
-            h1 {
-              font-size: 24px;
-              margin-top: 0;
-            }
-            p {
-              margin-bottom: 1em;
-            }
-          </style>
-        </head>
-        <body>
-            <p>Good News!</p>
-            <p>${item_name} ${
-        size !== "" ? `Size: ${size}` : ""
-      } is back in stock!</p>
-            <p>Thank you so much for your support</p>
-            <a href="${
-              process.env.DOMAIN as string
-            }/Store" class="button">Shop Now</a>
-        </body>
-      </html>`,
-    };
-    await sendEmail(emailOptions).catch((error) => {
-      console.error(error);
-      throw new Error(`Failed to send confirmation of notifications email`);
-    });
+    const sentFrom = new Sender("noreply@scalise.band");
+    const recipients = [new Recipient(user.email)];
+    const emailParams = new EmailParams()
+      .setFrom(sentFrom)
+      .setTo(recipients)
+      .setSubject("SCALISE - Merch Item Back In Stock!")
+      .setHtml(backInStock(item_name, size));
+    await mailerSend.email.send(emailParams);
   }
 };
 
 const userAlreadySubscribed = async (email: string, url: string) => {
-  const mailOptions: EmailOptions = {
-    from: "noreply@scalise.band" /* process.env.GOOGLE_EMAIL! */,
-    to: email,
-    subject: "SCALISE subscription",
-    html: `<!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <title>SCALISE Subscription Confirmation</title>
-    </head>
-    <body>
-      <h1>SCALISE</h1>
-      <p>Accorrding to our database you are already subscribed.</p>
-      <p>If you are not recieving emails for our mailing list, check your spam folder.</p>
-      <p>Otherwise, please reach out through our contact form or email benschwartz33@gmail.com for assistance</p>
-      <a href=${url}/Contact>Contact</a>
-    </body>
-    </html>`,
-  };
-
-  await sendEmail(mailOptions).catch((error) => {
-    console.error(error);
-    throw new Error(`Failed to send email`);
-  });
+  const sentFrom = new Sender("noreply@scalise.band");
+  const recipients = [new Recipient(email)];
+  const emailParams = new EmailParams()
+    .setFrom(sentFrom)
+    .setTo(recipients)
+    .setSubject("SCALISE - Already Subscribed")
+    .setHtml(alreadySubscribed(url));
+  await mailerSend.email.send(emailParams);
 };
 
 const sendContactFormEmail = async (
@@ -305,46 +127,24 @@ const sendContactFormEmail = async (
   subject: string,
   message: string
 ) => {
-  const template = Handlebars.compile(`
-        <h1>Subject: {{subject}}</h1>
-        <h2>From: {{firstName}} {{lastName}}</h2>
-        <h3>Email: <a href="mailto:{{email}}">{{email}}</a></h3>
-        <h3>Message:</h3>
-        <p>{{body}}</p>
-    `);
+  const sentFrom = new Sender("noreply@scalise.band");
+  const recipients = [new Recipient(email)];
+  const emailParams = new EmailParams()
+    .setFrom(sentFrom)
+    .setTo(recipients)
+    .setSubject("Contact Form")
+    .setHtml(
+      `<h1>Subject: ${subject}</h1>
+      <h2>From: ${firstName} ${lastName}</h2>
+      <h3>Email: <a href="mailto:${email}">${email}</a></h3>
+      <h3>Message:</h3>
+      <p>${message}</p>`
+    );
 
-  const mailOptions: EmailOptions = {
-    from: "noreply@scalise.band" /* process.env.GOOGLE_EMAIL! */,
-    to: "benschwartz33@gmail.com",
-    subject: "Scalise Contact Form Submission",
-    html: template({
-      subject: subject,
-      body: message,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-    }),
-  };
-
-  await sendEmail(mailOptions).catch((error) => {
-    console.error(error);
-    throw new Error(`Failed to send email`);
-  });
+  await mailerSend.email.send(emailParams);
 };
 
 export const subscriptionRouter = createTRPCRouter({
-  testMailerSend: publicProcedure.mutation(async () => {
-    const sentFrom = new Sender("noreply@scalise.band");
-    const recipients = [new Recipient("benschwartz33@gmail.com")];
-    const emailParams = new EmailParams()
-      .setFrom(sentFrom)
-      .setTo(recipients)
-      //.setReplyTo(new Recipient("benschwartz33@gmail.com"))
-      .setSubject("This is a Test Subject From MailerSend!!")
-      .setHtml("<strong>This is the HTML content</strong>");
-    await mailerSend.email.send(emailParams);
-  }),
-
   confirm: publicProcedure
     .input(z.object({ email: z.string(), url: z.string() }))
     .mutation(async ({ input }) => {
@@ -353,9 +153,19 @@ export const subscriptionRouter = createTRPCRouter({
         .from(subscribers)
         .where(eq(subscribers.email, input.email));
       if (sub && sub.length > 0) {
+        const notified = await db
+          .select()
+          .from(notifiedAlreadySubscribed)
+          .where(eq(notifiedAlreadySubscribed.email, input.email));
+        if (notified && notified.length > 0) {
+          return;
+        }
         await userAlreadySubscribed(input.email, input.url).catch((error) =>
           console.error(error)
         );
+        await db
+          .insert(notifiedAlreadySubscribed)
+          .values({ email: input.email });
       }
       if (!sub || sub.length === 0) {
         const token = generateString(16);
@@ -415,6 +225,20 @@ export const subscriptionRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ input }) => {
+      const sub = await db
+        .select()
+        .from(stockNotifications)
+        .where(
+          and(
+            eq(stockNotifications.product_id, parseInt(input.product_id)),
+            eq(stockNotifications.size, input.size),
+            eq(stockNotifications.email, input.email)
+          )
+        );
+
+      if (sub && sub.length > 0) {
+        return;
+      }
       await db.insert(stockNotifications).values({
         product_id: parseInt(input.product_id),
         size: input.size,
@@ -477,8 +301,8 @@ export const subscriptionRouter = createTRPCRouter({
           .setFrom(sentFrom)
           .setTo(recipients)
           .setReplyTo(new Recipient("benschwartz33@gmail.com"))
-          .setSubject("This is a Test Subject From MailerSend!!")
-          .setHtml("<strong>This is the HTML content</strong>");
+          .setSubject(input.subject)
+          .setHtml(input.html);
         await mailerSend.email.send(emailParams);
       } else {
         await emailMailingList(input.subject, input.html);
@@ -489,15 +313,6 @@ export const subscriptionRouter = createTRPCRouter({
     .input(z.object({ email: z.string() }))
     .mutation(async ({ input }) => {
       await db.delete(subscribers).where(eq(subscribers.email, input.email));
-      mailerSend.email.recipient
-        .blockRecipients(
-          {
-            domain_id: "scalise.band",
-            recipients: [input.email],
-          },
-          BlockListType.UNSUBSCRIBES_LIST
-        )
-        .catch((error) => console.error(error));
     }),
 
   getEmailDesignNames: publicProcedure.query(async () => {
@@ -516,16 +331,28 @@ export const subscriptionRouter = createTRPCRouter({
   saveEmailDesign: publicProcedure
     .input(z.object({ name: z.string(), json: z.any() }))
     .mutation(async ({ input }) => {
-      type designInput = InferModel<typeof emailDesigns, "insert">;
-      const newDesign: designInput = {
-        name: input.name,
-        json: input.json,
-      };
+      const existingDesign = await db
+        .select()
+        .from(emailDesigns)
+        .where(eq(emailDesigns.name, input.name));
+      if (existingDesign) {
+        await db
+          .update(emailDesigns)
+          .set({ json: input.json })
+          .where(eq(emailDesigns.name, input.name))
+          .catch((error) => console.error(error));
+      } else {
+        type designInput = InferModel<typeof emailDesigns, "insert">;
+        const newDesign: designInput = {
+          name: input.name,
+          json: input.json,
+        };
 
-      await db
-        .insert(emailDesigns)
-        .values(newDesign)
-        .catch((error) => console.error(error));
+        await db
+          .insert(emailDesigns)
+          .values(newDesign)
+          .catch((error) => console.error(error));
+      }
     }),
 
   contactForm: publicProcedure

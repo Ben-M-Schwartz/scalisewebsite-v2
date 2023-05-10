@@ -7,6 +7,30 @@
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
+  async rewrites() {
+    return [
+      {
+        source: "/store",
+        destination: "/Store",
+      },
+      {
+        source: "/show",
+        destination: "/Shows",
+      },
+      {
+        source: "/videos",
+        destination: "/Videos",
+      },
+      {
+        source: "/music",
+        destination: "/Music",
+      },
+      {
+        source: "/contact",
+        destination: "/Contact",
+      },
+    ];
+  },
   /*   experimental: {
     appDir: true,
     serverComponentsExternalPackages: ["mysql2"],

@@ -129,9 +129,6 @@ const MailingList: NextPage = () => {
         >
           Admin Home
         </Link>
-        {/*         <button onClick={() => emailtest.mutate()} className="text-white">
-          Test Email
-        </button> */}
         <div className="container flex flex-col gap-12 px-4 py-16 ">
           <h1 className="text-4xl text-white">Email Mailing List</h1>
           <form

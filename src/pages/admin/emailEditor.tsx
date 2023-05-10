@@ -139,7 +139,7 @@ export default function Email() {
       </Head>
       <div className="flex flex-row gap-4">
         <Link
-          href="/api/admin/emailMailingList"
+          href="/admin/emailMailingList"
           className="text-xl font-bold text-gray-800 hover:text-blue-700 hover:underline active:text-gray-500"
         >
           Email Mailing List
@@ -197,12 +197,16 @@ export default function Email() {
                 </option>
               ))}
             </select>
-            <button onClick={() => setQueryEnabled(true)}>Load</button>
+            <button
+              onClick={() => setQueryEnabled(true)}
+              disabled={designToLoad === ""}
+            >
+              Load
+            </button>
           </div>
           <button
             onClick={exportHtml}
             className="hover:text-blue-700 active:text-blue-400"
-            disabled={designToLoad === ""}
           >
             Export HTML
           </button>

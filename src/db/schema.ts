@@ -114,10 +114,26 @@ export const potential_subscribers = mysqlTable(
   })
 );
 
-export const subscribers = mysqlTable("subscribers", {
-  id: serial("id").primaryKey().notNull(),
-  email: varchar("email", { length: 255 }),
-});
+export const subscribers = mysqlTable(
+  "subscribers",
+  {
+    id: serial("id").primaryKey().notNull(),
+    email: varchar("email", { length: 255 }),
+  },
+  (table) => ({
+    subscribedIndex: index("subscribed_index").on(table.email),
+  })
+);
+export const notifiedAlreadySubscribed = mysqlTable(
+  "notifiedAlreadySubscribed",
+  {
+    id: serial("id").primaryKey().notNull(),
+    email: varchar("email", { length: 255 }),
+  },
+  (table) => ({
+    notifiedIndex: index("notified_index").on(table.email),
+  })
+);
 
 export const stockNotifications = mysqlTable(
   "stockNotifications",
@@ -132,6 +148,7 @@ export const stockNotifications = mysqlTable(
       table.product_id,
       table.size
     ),
+    subIndex: index("subIndex").on(table.email, table.product_id, table.size),
   })
 );
 
