@@ -132,10 +132,10 @@ const Product: NextPage = (
   const [addToCartDisabled, setAddToCartDisabled] = useState(false);
   const [maxQuantity, setMaxQuantity] = useState(0);
   const [pickedSize, setPickedSize] = useState("");
-  //const [pickedQuantity, setPickedQuantity] = useState(1);
   const [processing, setProcessing] = useState(false);
-  //const [imageIndex, setImage] = useState(0);
   const [buttonText, setButtonText] = useState("Add to Cart");
+  const [notifyProcessing, setNotifyProcessing] = useState(false);
+  const [notifyButtonText, setNotifyButtonText] = useState("Notify Me!");
 
   const { updateAmount } = useContext<CartContextType>(CartContext);
 
@@ -227,12 +227,17 @@ const Product: NextPage = (
   };
 
   const notifyWhenInStock = (formData: notifyForm) => {
+    setNotifyProcessing(true);
     notify
       .mutateAsync({
         product_id: productData[0]?.id.toString() as string,
         name: productData[0]?.name as string,
         size: pickedSize,
         email: formData.email,
+      })
+      .then(() => {
+        setNotifyProcessing(false);
+        setNotifyButtonText("Confirmed!");
       })
       .catch((error) => console.log(error));
   };
@@ -524,7 +529,7 @@ const Product: NextPage = (
               {soldOut && (
                 <>
                   <h2 className="text-white">Sold Out</h2>
-                  <form onSubmit={() => notifySubmit(notifyWhenInStock)}>
+                  <form onSubmit={notifySubmit(notifyWhenInStock)}>
                     <label htmlFor="notify" className="text-white">
                       Notify when back in stock?
                     </label>
@@ -535,12 +540,26 @@ const Product: NextPage = (
                       className="mb-4 block w-auto rounded-lg border bg-black px-6 py-2 text-sm text-white [appearance:textfield] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                       {...notifyRegister("email", { required: true })}
                     />
-                    <button
-                      type="submit"
-                      className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-white hover:bg-white hover:text-black"
-                    >
-                      Notify Me!
-                    </button>
+                    {!notifyProcessing && (
+                      <button
+                        type="submit"
+                        className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-white hover:bg-white hover:text-black"
+                      >
+                        {notifyButtonText}
+                      </button>
+                    )}
+                    {notifyProcessing && (
+                      <button
+                        type="button"
+                        className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-white"
+                        disabled
+                      >
+                        <div className="flex flex-row justify-center gap-2 px-2">
+                          <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
+                          <p className="flex">Processing...</p>
+                        </div>
+                      </button>
+                    )}
                   </form>
                 </>
               )}

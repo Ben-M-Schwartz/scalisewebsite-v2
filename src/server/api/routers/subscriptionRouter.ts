@@ -75,7 +75,16 @@ const sendConfirmationEmail = async (
     .setTo(recipients)
     .setReplyTo(new Recipient(""))
     .setSubject("SCALISE - Confirm Subscription")
-    .setHtml(confirmSubscription(url, token));
+    .setHtml(confirmSubscription)
+    .setVariables([
+      {
+        email: email,
+        substitutions: [
+          { var: "url", value: url },
+          { var: "token", value: token },
+        ],
+      },
+    ]);
   await mailerSend.email.send(emailParams);
 };
 
@@ -121,7 +130,13 @@ const userAlreadySubscribed = async (email: string, url: string) => {
     .setTo(recipients)
     .setReplyTo(new Recipient(""))
     .setSubject("SCALISE - Already Subscribed")
-    .setHtml(alreadySubscribed(url));
+    .setHtml(alreadySubscribed)
+    .setVariables([
+      {
+        email: email,
+        substitutions: [{ var: "url", value: url }],
+      },
+    ]);
   await mailerSend.email.send(emailParams);
 };
 
@@ -165,13 +180,14 @@ export const subscriptionRouter = createTRPCRouter({
           .where(eq(notifiedAlreadySubscribed.email, input.email));
         if (notified && notified.length > 0) {
           return;
+        } else {
+          await userAlreadySubscribed(input.email, input.url).catch((error) =>
+            console.error(error)
+          );
+          await db
+            .insert(notifiedAlreadySubscribed)
+            .values({ email: input.email });
         }
-        await userAlreadySubscribed(input.email, input.url).catch((error) =>
-          console.error(error)
-        );
-        await db
-          .insert(notifiedAlreadySubscribed)
-          .values({ email: input.email });
       }
       if (!sub || sub.length === 0) {
         const token = generateString(16);
@@ -184,7 +200,7 @@ export const subscriptionRouter = createTRPCRouter({
             >;
             const newPotential: Potential_Subscriber = {
               email: input.email,
-              token: token,
+              token: token.trim(),
             };
             await db.insert(potential_subscribers).values(newPotential);
           })
@@ -205,6 +221,8 @@ export const subscriptionRouter = createTRPCRouter({
         .where(eq(potential_subscribers.token, input.token))
         .then(async (result) => {
           if (!result[0]) {
+            console.log(input.token);
+            console.log(result);
             throw new Error("No Such Token");
           }
           const newSubscriber: Subscriber = {
