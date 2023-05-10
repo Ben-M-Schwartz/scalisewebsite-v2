@@ -53,7 +53,8 @@ const emailMailingList = async (subject: string, html: string) => {
     const emailParams = new EmailParams()
       .setFrom(sentFrom)
       .setTo([new Recipient(subscriber.email as string)])
-      .setReplyTo(new Recipient("graden@scalise.band"))
+      //TODO: Change this to gradens email
+      .setReplyTo(new Recipient("benschwartz33@gmail.com"))
       .setSubject(subject)
       .setHtml(html);
 
@@ -116,7 +117,7 @@ const sendNotifications = async (
       .setFrom(sentFrom)
       .setTo(recipients)
       .setReplyTo(new Recipient(""))
-      .setSubject("SCALISE - Merch Item Back In Stock!")
+      .setSubject("SCALISE - Back In Stock!")
       .setHtml(backInStock(item_name, size));
     await mailerSend.email.send(emailParams);
   }
@@ -129,7 +130,7 @@ const userAlreadySubscribed = async (email: string, url: string) => {
     .setFrom(sentFrom)
     .setTo(recipients)
     .setReplyTo(new Recipient(""))
-    .setSubject("SCALISE - Already Subscribed")
+    .setSubject("SCALISE - Subscription Confirmed")
     .setHtml(alreadySubscribed)
     .setVariables([
       {
@@ -324,7 +325,8 @@ export const subscriptionRouter = createTRPCRouter({
         const emailParams = new EmailParams()
           .setFrom(sentFrom)
           .setTo(recipients)
-          .setReplyTo(new Recipient("graden@scalise.band"))
+          //TODO: Change this to gradens email
+          .setReplyTo(new Recipient("benschwartz33@gmail.com"))
           .setSubject(input.subject)
           .setHtml(input.html);
         await mailerSend.email.send(emailParams);
