@@ -55,7 +55,7 @@ function Card({ product }: { product: Product }) {
   const images = (product.image as string).split(",");
 
   return (
-    <div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-700">
+    <div className="max-w-sm rounded-lg border border-gray-700 bg-gray-700 shadow">
       <div className="relative h-full w-full">
         <Image
           className=""
@@ -66,7 +66,7 @@ function Card({ product }: { product: Product }) {
         />
       </div>
       <div className="p-5">
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">
           {product.name} - ${product.price}
         </h5>
         {product.sale_price === null && (
@@ -105,7 +105,7 @@ function Card({ product }: { product: Product }) {
         {product.sale_price !== null && (
           <button
             onClick={handleRemove}
-            className="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="inline-flex items-center rounded-lg bg-blue-600 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-800"
           >
             Remove Sale
             <svg

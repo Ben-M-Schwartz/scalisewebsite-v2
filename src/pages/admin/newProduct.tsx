@@ -125,7 +125,7 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="name"
-                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                className="mb-2 block text-sm font-medium text-white"
               >
                 Item Name (note: include a &lsquo;-&rsquo; in the name will
                 cause an error in the store. If we want to be able to add those
@@ -133,7 +133,7 @@ const NewProduct: NextPage = () => {
               </label>
               <input
                 id="name"
-                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("name", { required: true })}
               />
             </div>
@@ -141,7 +141,7 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="price"
-                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                className="mb-2 block text-sm font-medium text-white"
               >
                 Price
               </label>
@@ -150,7 +150,7 @@ const NewProduct: NextPage = () => {
                 type="number"
                 min="0"
                 step=".01"
-                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("price", { required: true })}
               />
             </div>
@@ -158,14 +158,14 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="desc"
-                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                className="mb-2 block text-sm font-medium text-white"
               >
                 Description (optional)
               </label>
               <textarea
                 id="desc"
                 maxLength={999}
-                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("description", { required: false })}
               />
             </div>
@@ -173,7 +173,7 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="weight"
-                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                className="mb-2 block text-sm font-medium text-white"
               >
                 Weight
               </label>
@@ -182,7 +182,7 @@ const NewProduct: NextPage = () => {
                 type="number"
                 step=".01"
                 min="0"
-                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("weight", { required: true })}
               />
             </div>
@@ -190,13 +190,13 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="sizes"
-                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                className="mb-2 block text-sm font-medium text-white"
               >
                 Sizes (listed as -&gt; S, M, L)
               </label>
               <input
                 id="weight"
-                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("sizes", { required: false })}
               />
             </div>
@@ -204,13 +204,13 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="quantities"
-                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                className="mb-2 block text-sm font-medium text-white"
               >
                 Quantites
               </label>
               <input
                 id="quantities"
-                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("quantities", { required: true })}
               />
             </div>
@@ -218,7 +218,7 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="quantities"
-                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                className="mb-2 block text-sm font-medium text-white"
               >
                 Image Names (if multiple images list them in the order you wish
                 displayed on the store i.e image1.png, image2.png, image3.png)
@@ -228,7 +228,7 @@ const NewProduct: NextPage = () => {
               </label>
               <input
                 id="imageName"
-                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("imageName", { required: true })}
               />
             </div>
@@ -236,13 +236,13 @@ const NewProduct: NextPage = () => {
             {/*             <div>
               <label
                 htmlFor="is_taxed"
-                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                className="mb-2 block text-sm font-medium text-white"
               >
                 Is it taxed? (1 for yes 0 for no)
               </label>
               <input
                 id="is_taxed"
-                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 :bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("is_taxed", { required: true })}
               />
             </div> */}
@@ -250,21 +250,21 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="store_order"
-                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                className="mb-2 block text-sm font-medium text-white"
               >
                 What location in the order of the store display? (Defaults to
                 the first spot index 1)
               </label>
               <input
                 id="store_order"
-                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("store_order", { required: true })}
               />
             </div>
 
             <button
               type="submit"
-              className="mb-2 mr-2 rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="mb-2 mr-2 rounded-lg px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4 bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
             >
               Create
             </button>

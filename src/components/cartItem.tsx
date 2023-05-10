@@ -108,7 +108,7 @@ export function Item({
           }}
           type="number"
           name="quantity"
-          className="block w-[50px] rounded-none border border-gray-300 bg-gray-50 px-1 py-1 text-sm text-gray-900 [appearance:textfield] focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          className="block w-[50px] rounded-none border border-gray-600 bg-gray-700 px-1 py-1 text-sm text-white placeholder-gray-400 [appearance:textfield] focus:border-blue-500 focus:ring-blue-500 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           value={quantity}
           max={
             (item.quantity_in_stock as number) -

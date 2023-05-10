@@ -51,7 +51,7 @@ export function HomeLink() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
-          <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white md:text-4xl">
+          <span className="self-center whitespace-nowrap text-2xl font-semibold text-white md:text-4xl">
             SCALISE
           </span>
         </motion.div>
@@ -83,7 +83,7 @@ export function CartLink() {
   return (
     <Link
       href="/Cart"
-      className="z-10 block rounded text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+      className="z-10 block rounded border-gray-700 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
     >
       <motion.div
         className="flex items-center justify-center align-middle"
@@ -116,7 +116,7 @@ export function PageLinks() {
             (router.pathname === "/Music"
               ? "font-bold underline underline-offset-8"
               : "") +
-            "block rounded py-2 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+            "block rounded border-gray-700 py-2 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           }
         >
           Music
@@ -133,7 +133,7 @@ export function PageLinks() {
             (router.pathname === "/Shows"
               ? "font-bold underline underline-offset-8"
               : "") +
-            "block rounded py-2 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+            "block rounded border-gray-700 py-2 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           }
         >
           Shows
@@ -150,7 +150,7 @@ export function PageLinks() {
             (router.pathname === "/Videos"
               ? "font-bold underline underline-offset-8"
               : "") +
-            "block rounded py-2 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+            "block rounded border-gray-700 py-2 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           }
         >
           Videos
@@ -167,7 +167,7 @@ export function PageLinks() {
             (router.pathname === "/Store"
               ? "font-bold underline underline-offset-8"
               : "") +
-            "block rounded py-2 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+            "block rounded border-gray-700 py-2 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           }
         >
           Store
@@ -184,7 +184,7 @@ export function PageLinks() {
             (router.pathname === "/Contact"
               ? "font-bold underline underline-offset-8"
               : "") +
-            "block rounded py-2 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+            "block rounded border-gray-700 py-2 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           }
         >
           Contact
@@ -207,7 +207,7 @@ export function SocialLinks() {
       >
         <Link
           href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
-          className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+          className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -221,7 +221,7 @@ export function SocialLinks() {
       >
         <Link
           href="https://music.apple.com/us/artist/scalise/1529031635"
-          className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+          className="block rounded border-gray-700 py-2 pl-3  pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -235,7 +235,7 @@ export function SocialLinks() {
       >
         <Link
           href="https://twitter.com/ScaliseTheBand"
-          className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+          className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -249,7 +249,7 @@ export function SocialLinks() {
       >
         <Link
           href="https://www.facebook.com/ScaliseTheBand"
-          className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+          className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -263,7 +263,7 @@ export function SocialLinks() {
       >
         <Link
           href="https://www.instagram.com/ScaliseTheBand/"
-          className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+          className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -277,7 +277,7 @@ export function SocialLinks() {
       >
         <Link
           href="https://www.tiktok.com/@scaliseband"
-          className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+          className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -291,7 +291,7 @@ export function SocialLinks() {
       >
         <Link
           href="https://www.youtube.com/channel/UCWBsxAAhmKP1nRHWQQ5N0Qg"
-          className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+          className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           rel="noopener noreferrer"
           target="_blank"
         >
