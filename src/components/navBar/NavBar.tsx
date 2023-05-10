@@ -33,7 +33,7 @@ export function NavBar() {
     <nav className="sticky left-0 top-0 z-20 w-full border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-900">
       <div className="mx-auto flex flex-wrap items-center justify-between p-4">
         <div className="flex flex-row items-center justify-center align-middle">
-          <div className="sm:pl-4 lg:pl-6">
+          <div className="z-10 sm:pl-4 lg:pl-6">
             <HomeLink />
           </div>
           <div
@@ -45,7 +45,7 @@ export function NavBar() {
         </div>
         <div className="flex flex-row align-middle md:order-2">
           <div className="flex flex-row items-center justify-center">
-            <div className="order-1 scale-150 pl-6 pr-4 md:pl-8 md:pr-4 lg:pl-16 lg:pr-6 xl:pl-20 xl:pr-12">
+            <div className="z-10 order-1 scale-150 pl-6 pr-4 md:pl-8 md:pr-4 lg:pl-16 lg:pr-6 xl:pl-20 xl:pr-12">
               <CartLink />
             </div>
             <div className="hidden w-full md:flex md:w-auto" id="social_links">
@@ -58,7 +58,7 @@ export function NavBar() {
             className="flex align-middle md:hidden"
           >
             <div
-              className={`${isHidden ? "hidden" : "block"} w-ful z-0 h-full`}
+              className={`${isHidden ? "hidden" : "block"} z-0 h-full w-full`}
             >
               <MenuBackground />
             </div>
