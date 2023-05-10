@@ -52,7 +52,7 @@ export function HomeLink() {
           whileTap={{ scale: 0.95 }}
         >
           <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white md:text-4xl">
-            Scalise
+            SCALISE
           </span>
         </motion.div>
       </Link>
@@ -92,7 +92,7 @@ export function CartLink() {
         whileTap={{ scale: 0.95 }}
       >
         <CartIcon />
-        <p className="pr-4 text-white">{cartAmount || 0}</p>
+        <p className="text-white">{cartAmount || 0}</p>
       </motion.div>
     </Link>
   );
@@ -103,7 +103,7 @@ export function PageLinks() {
   return (
     <motion.ul
       variants={list_variants}
-      className="absolute left-0 top-24 flex w-full flex-col justify-center gap-5 overflow-hidden rounded-lg text-center font-medium md:relative md:left-0 md:top-0 md:mt-0 md:flex-row md:border-0 md:p-4"
+      className="absolute left-0 top-24 flex w-full flex-col justify-center overflow-hidden rounded-lg text-center font-medium md:relative md:left-0 md:top-0 md:mt-0 md:flex-row md:gap-2 md:border-0 md:p-4 lg:gap-5"
     >
       <motion.li
         variants={item_variants}
@@ -198,7 +198,7 @@ export function SocialLinks() {
   return (
     <motion.ul
       variants={list_variants}
-      className="absolute top-96 flex w-full justify-center md:relative md:right-0 md:top-0 md:flex-row md:space-x-4 md:border-0"
+      className="absolute top-96 flex w-full justify-center md:relative md:right-0 md:top-0 md:flex-row md:space-x-2 md:border-0 lg:space-x-4 xl:space-x-6"
     >
       <motion.li
         variants={item_variants}

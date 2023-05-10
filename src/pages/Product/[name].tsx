@@ -195,6 +195,12 @@ const Product: NextPage = (
       cart_id: "",
     };
 
+    if (!navigator.cookieEnabled) {
+      window.alert("Please enable cookies to continue");
+      setProcessing(false);
+      return;
+    }
+
     if (!hasCookie("cart_id")) {
       const new_cart_id = generateString(16);
       mutateOptions.cart_id = new_cart_id;
