@@ -9,7 +9,7 @@ type Product = InferModel<typeof product_details, "select">;
 
 import { motion, AnimatePresence } from "framer-motion";
 
-import banner from "../../public/porchPhoto.jpg";
+import banner from "../../public/porchPhoto.webp";
 
 /* export const config = {
   runtime: "experimental-edge",

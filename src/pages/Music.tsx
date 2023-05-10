@@ -3,11 +3,11 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 
-import banner from "../../public/tunnelPhoto.png";
-import transferred from "../../public/transferred.png";
-import fruitSnacks from "../../public/fruitSnacks.jpeg";
-import airbag from "../../public/airbag.jpeg";
-import album1 from "../../public/fromNothingToNothing.png";
+import banner from "../../public/tunnelPhoto.webp";
+import transferred from "../../public/transferred.webp";
+import fruitSnacks from "../../public/fruitSnacks.webp";
+import airbag from "../../public/airbag.webp";
+import album1 from "../../public/fromNothingToNothing.webp";
 
 /* export const config = {
   runtime: "experimental-edge",

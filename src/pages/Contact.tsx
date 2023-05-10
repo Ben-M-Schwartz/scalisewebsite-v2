@@ -21,7 +21,7 @@ import { useState } from "react";
   regions: ["cle1"],
 }; */
 
-import image from "../../public/contactPagePhoto.jpg";
+import image from "../../public/contactPagePhoto.webp";
 
 type FormData = {
   firstName: string;

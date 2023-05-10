@@ -28,7 +28,7 @@ import {
 
 //import { api } from "~/utils/api";
 
-import banner from "../../public/greenRoomPhoto.png";
+import banner from "../../public/greenRoomPhoto.webp";
 
 import { db } from "~/db/db";
 //import type { InferGetServerSidePropsType, GetServerSideProps } from "next";

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Image from "next/image";
-import excited from "../../../public/excited.png";
+import excited from "../../../public/excited.webp";
 
 import { getCookie } from "cookies-next";
 import { api } from "~/utils/api";

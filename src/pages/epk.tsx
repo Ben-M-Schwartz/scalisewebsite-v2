@@ -3,26 +3,26 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
-import fruitSnacks from "../../public/fruitSnacks.jpeg";
-import airbag from "../../public/airbag.jpeg";
-import transferred from "../../public/transferred.png";
+import fruitSnacks from "../../public/fruitSnacks.webp";
+import airbag from "../../public/airbag.webp";
+import transferred from "../../public/transferred.webp";
 
-import banner from "../../public/tunnelEPKPhoto.png";
+import banner from "../../public/tunnelEPKPhoto.webp";
 
-import image1 from "../../public/bandPhoto3.jpg";
-import image2 from "../../public/porchPhoto.jpg";
-import image3 from "../../public/tunnelWalking.jpg";
-import image4 from "../../public/astroLogoTransparent.png";
-import image5 from "../../public/bandPhoto2.jpg";
-import image6 from "../../public/tunnelPhoto2.jpg";
-import image7 from "../../public/barnPhoto.jpg";
-import image8 from "../../public/7th-st-live13.jpg";
-import image9 from "../../public/tunnelEPKPhoto.png";
-import image10 from "../../public/couchPhoto.jpg";
-import image11 from "../../public/bandPhoto4.jpg";
-import image12 from "../../public/bandPhoto1.jpg";
+import image1 from "../../public/bandPhoto3.webp";
+import image2 from "../../public/porchPhoto.webp";
+import image3 from "../../public/tunnelWalking.webp";
+import image4 from "../../public/astroLogoTransparent.webp";
+import image5 from "../../public/bandPhoto2.webp";
+import image6 from "../../public/tunnelPhoto2.webp";
+import image7 from "../../public/barnPhoto.webp";
+import image8 from "../../public/7th-st-live13.webp";
+import image9 from "../../public/tunnelEPKPhoto.webp";
+import image10 from "../../public/couchPhoto.webp";
+import image11 from "../../public/bandPhoto4.webp";
+import image12 from "../../public/bandPhoto1.webp";
 
-import stagePlot from "../../public/stageplot.png";
+import stagePlot from "../../public/stageplot.webp";
 
 import { useForm } from "react-hook-form";
 import { api } from "~/utils/api";
