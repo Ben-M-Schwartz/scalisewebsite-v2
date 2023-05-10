@@ -30,6 +30,11 @@ CREATE TABLE `in_checkout_amounts` (
 	`quantity` int
 );
 
+CREATE TABLE `notifiedAlreadySubscribed` (
+	`id` serial AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	`email` varchar(255)
+);
+
 CREATE TABLE `orders` (
 	`id` serial AUTO_INCREMENT PRIMARY KEY NOT NULL,
 	`item` varchar(255),
@@ -102,9 +107,12 @@ CREATE INDEX `product_id_size_cart_id_index` ON `cart_items` (`product_id`,`size
 CREATE INDEX `cart_id_index` ON `carts` (`id`);
 CREATE INDEX `designIndex` ON `emailDesigns` (`name`);
 CREATE INDEX `id_size_index_checkouts` ON `in_checkout_amounts` (`product_id`,`size`);
+CREATE INDEX `notified_index` ON `notifiedAlreadySubscribed` (`email`);
 CREATE INDEX `subscriber_index` ON `potential_subscribers` (`token`);
 CREATE INDEX `productDetails_id_index` ON `product_details` (`id`);
 CREATE INDEX `product_name_index` ON `product_details` (`name`);
 CREATE INDEX `id_size_index_inventory` ON `product_quantity` (`product_id`,`size`);
 CREATE INDEX `showIndex` ON `shows` (`id`);
 CREATE INDEX `notificationIndex` ON `stockNotifications` (`product_id`,`size`);
+CREATE INDEX `subIndex` ON `stockNotifications` (`email`,`product_id`,`size`);
+CREATE INDEX `subscribed_index` ON `subscribers` (`email`);

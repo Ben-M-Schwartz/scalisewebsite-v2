@@ -201,4 +201,5 @@ export const emailDesigns = mysqlTable(
     designIndex: index("designIndex").on(table.name),
   })
 );
+
 //npx drizzle-kit generate:mysql --out migrations-folder --schema src/db/schema.ts

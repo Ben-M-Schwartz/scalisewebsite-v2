@@ -64,7 +64,7 @@ function Card({
     Promise.all(updatePromises)
       .then(() => {
         window.alert("success");
-        router.reload();
+        //router.reload();
       })
       .catch((error) => console.error(error));
   };
