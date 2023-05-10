@@ -53,6 +53,7 @@ const emailMailingList = async (subject: string, html: string) => {
     const emailParams = new EmailParams()
       .setFrom(sentFrom)
       .setTo([new Recipient(subscriber.email as string)])
+      .setReplyTo(new Recipient("graden@scalise.band"))
       .setSubject(subject)
       .setHtml(html);
 
@@ -72,6 +73,7 @@ const sendConfirmationEmail = async (
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
     .setTo(recipients)
+    .setReplyTo(new Recipient(""))
     .setSubject("SCALISE - Confirm Subscription")
     .setHtml(confirmSubscription(url, token));
   await mailerSend.email.send(emailParams);
@@ -87,6 +89,7 @@ const sendInitialNotificationEmail = async (
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
     .setTo(recipients)
+    .setReplyTo(new Recipient(""))
     .setSubject("SCALISE - Back in Stock Notification")
     .setHtml(backInStockSignUp(product_name, product_size));
   await mailerSend.email.send(emailParams);
@@ -103,6 +106,7 @@ const sendNotifications = async (
     const emailParams = new EmailParams()
       .setFrom(sentFrom)
       .setTo(recipients)
+      .setReplyTo(new Recipient(""))
       .setSubject("SCALISE - Merch Item Back In Stock!")
       .setHtml(backInStock(item_name, size));
     await mailerSend.email.send(emailParams);
@@ -115,6 +119,7 @@ const userAlreadySubscribed = async (email: string, url: string) => {
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
     .setTo(recipients)
+    .setReplyTo(new Recipient(""))
     .setSubject("SCALISE - Already Subscribed")
     .setHtml(alreadySubscribed(url));
   await mailerSend.email.send(emailParams);
@@ -300,7 +305,7 @@ export const subscriptionRouter = createTRPCRouter({
         const emailParams = new EmailParams()
           .setFrom(sentFrom)
           .setTo(recipients)
-          .setReplyTo(new Recipient("benschwartz33@gmail.com"))
+          .setReplyTo(new Recipient("graden@scalise.band"))
           .setSubject(input.subject)
           .setHtml(input.html);
         await mailerSend.email.send(emailParams);
