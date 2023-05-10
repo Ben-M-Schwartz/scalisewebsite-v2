@@ -141,7 +141,7 @@ const Home: NextPage = () => {
                   We&apos;re huge fans of their work and are stoked that they
                   wanted to hop on the bill. We hope to see you all there.
                 </p>
-                <div className="order-0 flex items-center justify-center md:order-2 xl:mt-12">
+                <div className="order-0 flex items-center justify-end md:order-2 xl:mt-12">
                   <Link
                     rel="noopener noreferrer"
                     target="_blank"
