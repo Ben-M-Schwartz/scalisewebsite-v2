@@ -13,6 +13,8 @@ import SubscribeForm from "~/components/SubscribeForm";
 
 import { useState, createContext } from "react";
 
+export { reportWebVitals } from "next-axiom";
+
 export type CartContextType = {
   cartAmount: number;
   updateAmount: (amount: number) => void;
