@@ -45,7 +45,7 @@ function generateString(length: number) {
 const emailMailingList = async (subject: string, html: string) => {
   const subList = await db.select().from(subscribers);
 
-  const sentFrom = new Sender("noreply@scalise.band");
+  const sentFrom = new Sender("noreply@scalise.band", "Scalise");
   const bulkMail = [];
 
   // Send email to each subscriber using mailersend
@@ -68,7 +68,7 @@ const sendConfirmationEmail = async (
   email: string,
   token: string
 ) => {
-  const sentFrom = new Sender("noreply@scalise.band");
+  const sentFrom = new Sender("noreply@scalise.band", "Scalise");
   const recipients = [new Recipient(email)];
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
@@ -84,7 +84,7 @@ const sendInitialNotificationEmail = async (
   product_name: string,
   product_size: string
 ) => {
-  const sentFrom = new Sender("noreply@scalise.band");
+  const sentFrom = new Sender("noreply@scalise.band", "Scalise");
   const recipients = [new Recipient(email)];
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
@@ -101,7 +101,7 @@ const sendNotifications = async (
   size: string
 ) => {
   for (const user of users) {
-    const sentFrom = new Sender("noreply@scalise.band");
+    const sentFrom = new Sender("noreply@scalise.band", "Scalise");
     const recipients = [new Recipient(user.email)];
     const emailParams = new EmailParams()
       .setFrom(sentFrom)
@@ -114,7 +114,7 @@ const sendNotifications = async (
 };
 
 const userAlreadySubscribed = async (email: string, url: string) => {
-  const sentFrom = new Sender("noreply@scalise.band");
+  const sentFrom = new Sender("noreply@scalise.band", "Scalise");
   const recipients = [new Recipient(email)];
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
@@ -132,8 +132,9 @@ const sendContactFormEmail = async (
   subject: string,
   message: string
 ) => {
-  const sentFrom = new Sender("noreply@scalise.band");
-  const recipients = [new Recipient(email)];
+  const sentFrom = new Sender("noreply@scalise.band", "Contact Form");
+  //TODO: change this to gradens email
+  const recipients = [new Recipient("benschwartz33@gmail.com")];
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
     .setTo(recipients)
@@ -300,7 +301,7 @@ export const subscriptionRouter = createTRPCRouter({
     .mutation(async ({ input }) => {
       if (input.testRecipient !== "") {
         //await testEmail(input.subject, input.html, input.testRecipient);
-        const sentFrom = new Sender("noreply@scalise.band");
+        const sentFrom = new Sender("noreply@scalise.band", "Scalise");
         const recipients = [new Recipient(input.testRecipient)];
         const emailParams = new EmailParams()
           .setFrom(sentFrom)
