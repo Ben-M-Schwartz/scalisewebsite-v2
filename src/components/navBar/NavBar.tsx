@@ -30,7 +30,7 @@ export function NavBar() {
   }, [router.asPath]);
 
   return (
-    <nav className="max-w-screen sticky left-0 top-0 z-20 w-full overflow-hidden border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-900">
+    <nav className="sticky left-0 top-0 z-20 w-full border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-900">
       <div className="mx-auto flex flex-wrap items-center justify-between p-4">
         <div className="flex flex-row items-center justify-center align-middle">
           <div className="z-10 sm:pl-4 lg:pl-6">
