@@ -24,6 +24,8 @@ import image12 from "../../public/bandPhoto1.webp";
 
 import stagePlot from "../../public/stageplot.webp";
 
+import { AudioPlayer } from "~/components/audioPlayer";
+
 import { useForm } from "react-hook-form";
 import { api } from "~/utils/api";
 import { useState } from "react";
@@ -152,12 +154,11 @@ const Music: NextPage = () => {
                   <p className="text-white">
                     Listen to the single off the upcoming album now.
                   </p>
-                  <audio controls className="appearance-none">
-                    {/*                 <source src="transferred.ogg" type="audio/ogg" />
-                <source src="transferred.mp3" type="audio/mpeg" /> */}
-                    {/* Your browser does not support the audio element. */}
-                    Audio element placeholder
-                  </audio>
+                  <AudioPlayer
+                    player_id="transferred"
+                    source="/transferred.mp3"
+                    title="Transferred To Houston"
+                  />
                 </div>
               </div>
               <Image
@@ -179,12 +180,11 @@ const Music: NextPage = () => {
                 <p className="text-rose-700">
                   Listen to the single off the upcoming album now.
                 </p>
-                <audio controls className="appearance-none">
-                  {/*                 <source src="transferred.ogg" type="audio/ogg" />
-                <source src="transferred.mp3" type="audio/mpeg" /> */}
-                  {/* Your browser does not support the audio element. */}
-                  Audio element placeholder
-                </audio>
+                <AudioPlayer
+                  player_id="airbag"
+                  source="/airbag.mp3"
+                  title="Airbag"
+                />
               </div>
             </div>
             <Image
@@ -206,16 +206,11 @@ const Music: NextPage = () => {
                 <p className="text-white">
                   Listen to the single off the upcoming album now.
                 </p>
-                <audio
-                  controls
-                  className="appearance-none"
-                  //TODO: Add audio files
-                >
-                  {/*                 <source src="transferred.ogg" type="audio/ogg" />
-                <source src="transferred.mp3" type="audio/mpeg" /> */}
-                  {/* Your browser does not support the audio element. */}
-                  Audio element placeholder
-                </audio>
+                <AudioPlayer
+                  player_id="fruitSnacks"
+                  source="/fruitSnacks.mp3"
+                  title="Fruit Snacks"
+                />
               </div>
             </div>
             <Image

@@ -9,6 +9,8 @@ import fruitSnacks from "../../public/fruitSnacks.webp";
 import airbag from "../../public/airbag.webp";
 import album1 from "../../public/fromNothingToNothing.webp";
 
+import { AudioPlayer } from "~/components/audioPlayer";
+
 /* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
@@ -58,7 +60,7 @@ const Music: NextPage = () => {
           <div className="flex flex-col">
             <div className="flex flex-col items-center gap-10 bg-black py-24">
               <div className="flex flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
-                <div className="w-1/2 text-center md:order-1">
+                <div className="w-1/2 text-center md:order-1 md:w-1/2">
                   <div className="flex flex-col items-center justify-center gap-3">
                     <h1 className="text-center text-4xl font-bold text-white">
                       TRANSFERRED TO HOUSTON
@@ -73,31 +75,27 @@ const Music: NextPage = () => {
                     </Link>
                   </div>
                 </div>
-                <Image
-                  src={transferred}
-                  alt="Transferred To Houston Image"
-                  loading="lazy"
-                  width={504}
-                  height={504}
-                  className="shadow-2xl shadow-red-900"
-                />
+                <div className="w-full md:w-1/2">
+                  <Image
+                    src={transferred}
+                    alt="Transferred To Houston Image"
+                    loading="lazy"
+                    width={504}
+                    height={504}
+                    className="shadow-2xl shadow-red-900"
+                  />
+                </div>
               </div>
-              <p className="text-white">Placeholder audio element for now:</p>
-              <audio
-                controls
-                className="appearance-none"
-                //TODO: Add audio files
-              >
-                {/*                 <source src="transferred.ogg" type="audio/ogg" />
-                <source src="transferred.mp3" type="audio/mpeg" /> */}
-                {/* Your browser does not support the audio element. */}
-                Audio element placeholder
-              </audio>
+              <AudioPlayer
+                player_id="transferredDemo"
+                source="/transferredDemo.mp3"
+                title="Transferred To Houston"
+              />
             </div>
 
-            <div className="flex w-screen flex-col items-center gap-10 bg-white py-24">
-              <div className="z-10 flex w-full flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
-                <div className="w-1/2 text-center md:order-1">
+            <div className="flex w-full flex-col items-center gap-10 bg-white py-24">
+              <div className="z-10 flex w-full flex-col items-center justify-center gap-3 md:flex-row md:gap-16">
+                <div className="w-1/2 text-center md:order-1 md:w-1/3">
                   <div className="flex flex-col items-center justify-center gap-3">
                     <h1 className="z-1 tex-center text-4xl font-bold text-rose-800">
                       AIRBAG
@@ -112,31 +110,27 @@ const Music: NextPage = () => {
                     </Link>
                   </div>
                 </div>
-                <Image
-                  src={airbag}
-                  alt="Airbag Image"
-                  width={504}
-                  height={504}
-                  className="order-1 shadow-2xl shadow-red-950"
-                  loading="lazy"
-                />
+                <div className="order-1 flex w-full items-center justify-center md:w-1/2">
+                  <Image
+                    src={airbag}
+                    alt="Airbag Image"
+                    width={504}
+                    height={504}
+                    className="shadow-2xl shadow-red-950"
+                    loading="lazy"
+                  />
+                </div>
               </div>
-              <p className="text-black">Placeholder audio element for now:</p>
-              <audio
-                controls
-                className="appearance-none"
-                //TODO: Add audio files
-              >
-                {/*                 <source src="transferred.ogg" type="audio/ogg" />
-                <source src="transferred.mp3" type="audio/mpeg" /> */}
-                {/* Your browser does not support the audio element. */}
-                Audio element placeholder
-              </audio>
+              <AudioPlayer
+                player_id="airbagDemo"
+                source="/airbagDemo.mp3"
+                title="Airbag"
+              />
             </div>
 
             <div className="flex w-screen flex-col items-center gap-10 bg-black py-24">
-              <div className="z-10 flex w-full flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
-                <div className="w-1/2 text-center md:order-1">
+              <div className="z-10 flex w-full flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:gap-0">
+                <div className="w-1/2 text-center md:order-1 md:w-1/2">
                   <div className="flex flex-col items-center justify-center gap-3">
                     <h1 className="z-1 tex-center text-4xl font-bold text-white">
                       FRUIT SNACKS
@@ -151,26 +145,22 @@ const Music: NextPage = () => {
                     </Link>
                   </div>
                 </div>
-                <Image
-                  src={fruitSnacks}
-                  alt="Fruit Snacks Image"
-                  width={504}
-                  height={504}
-                  loading="lazy"
-                  className="shadow-2xl shadow-red-900"
-                />
+                <div className="flex w-full items-center justify-center md:w-1/2">
+                  <Image
+                    src={fruitSnacks}
+                    alt="Fruit Snacks Image"
+                    width={504}
+                    height={504}
+                    loading="lazy"
+                    className="shadow-2xl shadow-red-900"
+                  />
+                </div>
               </div>
-              <p className="text-white">Placeholder audio element for now:</p>
-              <audio
-                controls
-                className="appearance-none"
-                //TODO: Add audio files
-              >
-                {/*                 <source src="transferred.ogg" type="audio/ogg" />
-                <source src="transferred.mp3" type="audio/mpeg" /> */}
-                {/* Your browser does not support the audio element. */}
-                Audio element placeholder
-              </audio>
+              <AudioPlayer
+                player_id="fruitSnacksDemo"
+                source="/fruitSnacksDemo.mp3"
+                title="Fruit Snacks"
+              />
             </div>
 
             <div className="z-10 flex flex-col items-center justify-center gap-3 bg-rose-800 py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">

@@ -288,24 +288,22 @@ const Shows: NextPage = (
 
           <Link
             className="mb-2 mr-2 inline-block w-auto rounded-lg bg-rose-800 px-5 py-3 text-sm font-medium text-white hover:bg-rose-600 focus:outline-none focus:ring-4 focus:ring-blue-300"
-            href="https://bandsintown.com/artist-subscribe/14899628?
-              affil_code=js_www.scalise.band
-              &app_id=js_www.scalise.band
-              &bg-color=%23ffffff
-              &border-color=rgba%28193%2C17%2C35%2C1%29
-              &came_from=700
-              &cta-bg-color=rgba%28255%2C255%2C255%2C1%29
-              &cta-border-color=rgba%28193%2C17%2C35%2C1%29
-              &cta-border-radius=0px
-              &cta-border-width=1px
-              &cta-text-color=rgba%28193%2C17%2C35%2C1%29
-              &font=Helvetica
-              &play-my-city=false
-              &signature=ZZ9a89bd3786a112c99a22dc7645c38bd72185dde34d03958907e235220d40f268
-              &spn=0
-              &text-color=%23424242
-              &utm_campaign=track
-              &utm_medium=web&utm_source=widget"
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://bandsintown.com/artist-subscribe/14899628
+            ?affil_code=js_www.scalise.band
+            &app_id=js_www.scalise.band
+            &bg-color=%23ffffff
+            &border-color=rgba%28193%2C17%2C35%2C1%29
+            &came_from=700
+            &cta-bg-color=rgba%28255%2C255%2C255%2C1%29
+            &cta-border-color=rgba%28193%2C17%2C35%2C1%29
+            &cta-border-radius=0px&cta-border-width=1px&cta-text-color=rgba%28193%2C17%2C35%2C1%29
+            &font=Helvetica&play-my-city=false
+            &signature=ZZ9a89bd3786a112c99a22dc7645c38bd72185dde34d03958907e235220d40f268
+            &spn=0
+            &text-color=%23424242&utm_campaign=track
+            &utm_medium=web&utm_source=widget"
           >
             <div className="flex flex-row items-center gap-1">
               <BandsintownIcon />

@@ -1,9 +1,11 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { useEffect, useState } from "react";
+import excited from "../../../public/excited.webp";
 //import { type NextRequest } from "next/server";
 
 /* export const config = {
@@ -66,30 +68,43 @@ const Confirm: NextPage = () => {
         />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <div className="flex flex-col items-center gap-2">
-          {invalidLink && loading && (
-            <div className="flex flex-row justify-between gap-2 text-white">
-              <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
-              <p className="flex">Loading...</p>
+        {invalidLink && loading && (
+          <div className="flex flex-row justify-between gap-2 text-white">
+            <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
+            <p className="flex">Loading...</p>
+          </div>
+        )}
+        {invalidLink && !loading && (
+          <>
+            <p className="text-white">
+              This confirmation link is no longer valid
+            </p>
+            <Link
+              href="/"
+              className="text-center text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+            >
+              Home
+            </Link>
+          </>
+        )}
+        {!invalidLink && loading && <p className="text-white">Loading...</p>}
+        {!invalidLink && !loading && (
+          <>
+            <div className="absolute left-0 top-16 flex w-full justify-center bg-transparent md:top-20">
+              <Image
+                src={excited}
+                alt="background photo"
+                fill
+                quality={75}
+                className="absolute z-0 object-cover object-[0%_15%]"
+                priority
+              />
+              <h1 className="z-10 py-24 text-center text-5xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] sm:text-6xl md:text-8xl">
+                CONFIRMED
+              </h1>
             </div>
-          )}
-          {invalidLink && !loading && (
-            <>
-              <p className="text-white">
-                This confirmation link is no longer valid
-              </p>
-              <Link
-                href="/"
-                className="text-center text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
-              >
-                Home
-              </Link>
-            </>
-          )}
-          {!invalidLink && loading && <p className="text-white">Loading...</p>}
-          {!invalidLink && !loading && (
-            <>
-              <p className="text-2xl text-white">
+            <div className="flex flex-col items-center justify-center gap-2">
+              <p className="w-5/6 text-center text-2xl text-white md:w-full">
                 You Are Now Subscribed! You will start receiving emails from
                 SCALISE
               </p>
@@ -99,9 +114,9 @@ const Confirm: NextPage = () => {
               >
                 Home
               </Link>
-            </>
-          )}
-        </div>
+            </div>
+          </>
+        )}
       </main>
     </>
   );
