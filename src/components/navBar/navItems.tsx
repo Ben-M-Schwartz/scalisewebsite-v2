@@ -61,7 +61,7 @@ export function HomeLink() {
 }
 
 export function CartLink() {
-  const [enabled, setEnabled] = useState(hasCookie("cart_id"));
+  const [enabled, setEnabled] = useState(true);
   const { cartAmount, updateAmount } = useContext<CartContextType>(CartContext);
 
   hasCookie("cart_id")
@@ -78,7 +78,15 @@ export function CartLink() {
           enabled: enabled,
         }
       )
-    : 0;
+    : api.cart.getCartAmount.useQuery(
+        {
+          //eslint-disable-next-line
+          id: "none",
+        },
+        {
+          enabled: false,
+        }
+      );
 
   return (
     <Link
