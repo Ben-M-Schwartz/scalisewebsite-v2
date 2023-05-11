@@ -64,7 +64,7 @@ const SuccessPage: NextPage = () => {
             className="absolute z-0 object-cover object-[0%_15%]"
             priority
           />
-          <h1 className="z-10 py-24 text-center text-8xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+          <h1 className="z-10 py-24 text-center text-5xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] sm:text-6xl md:text-8xl">
             SUCCESS
           </h1>
         </div>
