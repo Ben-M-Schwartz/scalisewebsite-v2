@@ -87,7 +87,8 @@ export const checkoutRouter = createTRPCRouter({
             unit_amount: item.price * 100,
             product_data: {
               name: item.item_name,
-              images: [`${domainURL as string}/public/${images[0] as string}`],
+              //TODO: Figure out why stripe can't show images
+              images: [`${domainURL as string}/${images[0] as string}`],
               description: item.size === "" ? "CD" : `Size: ${item.size}`,
               metadata: {
                 size: item.size,
