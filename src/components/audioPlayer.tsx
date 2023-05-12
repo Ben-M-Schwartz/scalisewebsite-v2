@@ -5,10 +5,12 @@ export function AudioPlayer({
   player_id,
   source,
   title,
+  demo,
 }: {
   source: string;
   title: string;
   player_id: string;
+  demo: boolean;
 }) {
   const [_document, set_document] = useState<Document | null>(null);
 
@@ -18,6 +20,8 @@ export function AudioPlayer({
 
   const [playing, setPlaying] = useState(false);
   const [duration, setDuration] = useState("0:00");
+  const [seek, setSeek] = useState(0);
+  const [max, setMax] = useState(100);
   const [currentTime, setCurrentTime] = useState("0:00");
 
   const calcTime = (secs: number) => {
@@ -45,44 +49,122 @@ export function AudioPlayer({
     }
   };
 
+  let rAF: number | null = null;
+
+  const whilePlaying = () => {
+    if (_document !== null && player !== null) {
+      const seekSlider = _document.getElementById(
+        "seek-slider"
+      ) as HTMLInputElement;
+      seekSlider.value = Math.floor(player.currentTime).toString();
+      rAF = requestAnimationFrame(whilePlaying);
+    }
+  };
+
   useEffect(() => {
     if (player !== null) {
       if (player.readyState > 0) {
         setDuration(calcTime(player.duration));
+        setMax(Math.floor(player.duration));
+        if (demo) player.volume = 0;
+        player.addEventListener("timeupdate", () => {
+          setCurrentTime(calcTime(Math.floor(player.currentTime)));
+          setSeek(Math.floor(player.currentTime));
+          if (demo)
+            player.volume =
+              1 -
+              Math.max(
+                0,
+                (2 - (player.duration - player.currentTime)) / 2,
+                1 - player.currentTime
+              );
+        });
       } else {
         player.addEventListener("loadedmetadata", () => {
           setDuration(calcTime(player.duration));
+          setMax(Math.floor(player.duration));
+          if (demo) player.volume = 0;
+          player.addEventListener("timeupdate", () => {
+            setCurrentTime(calcTime(Math.floor(player.currentTime)));
+            setSeek(Math.floor(player.currentTime));
+            if (demo)
+              player.volume =
+                1 -
+                Math.max(
+                  0,
+                  (2 - (player.duration - player.currentTime)) / 2,
+                  1 - player.currentTime
+                );
+          });
         });
       }
     }
+    //eslint-disable-next-line
   }, [player]);
 
   return (
     <>
-      <div className="container flex h-16 w-2/3 flex-row items-center bg-stone-900">
+      <div className="container relative flex h-16 w-2/3 flex-row items-center bg-stone-900">
         <audio id={player_id} src={source} preload="metadata"></audio>
         <div className="flex h-full w-20 items-center justify-center border-r border-stone-600">
           <button
-            onClick={play}
+            onClick={() => {
+              play();
+              requestAnimationFrame(whilePlaying);
+            }}
             className={`text-white ${playing ? "hidden" : "block"}`}
           >
             <PlayIcon />
           </button>
           <button
-            onClick={pause}
+            onClick={() => {
+              pause();
+              cancelAnimationFrame(rAF as number);
+            }}
             className={`text-white ${playing ? "block" : "hidden"}`}
           >
             <PauseIcon />
           </button>
         </div>
-        <div className="pl-4">
-          <p className="text-white">{title}</p>
-          <p className="text-sm text-stone-400">Scalise</p>
-        </div>
-        <div className="flex h-full items-start justify-start pl-6 text-sm">
-          <span className="pt-2 text-stone-400">
-            {currentTime} / {duration}
-          </span>
+        <div className="container relative flex h-full w-full items-center">
+          <div className="z-20 pl-4">
+            <p className="text-white">{title}</p>
+            <p className="text-sm text-stone-400">Scalise</p>
+          </div>
+          <div className="z-20 flex h-full items-start justify-start pl-6 text-sm">
+            <span className="pt-2 text-stone-400">
+              {currentTime} / {duration} | {Math.floor((seek / max) * 100)}
+            </span>
+          </div>
+          <div
+            className={`from absolute left-0 z-10 h-full w-[${Math.floor(
+              (seek / max) * 100
+            )}%] bg-stone-700 text-white`}
+          />
+          <input
+            type="range"
+            id="seek-slider"
+            className="absolute left-0 z-30 h-full w-full cursor-pointer appearance-none bg-transparent" //[&::-webkit-slider-thumb]:invisible"
+            max={max}
+            value={seek}
+            onInput={() => {
+              if (player !== null) {
+                if (!player.paused) {
+                  cancelAnimationFrame(rAF as number);
+                }
+              }
+            }}
+            onChange={(e) => {
+              setSeek(parseInt(e.target.value));
+              setCurrentTime(calcTime(parseInt(e.target.value)));
+              if (player !== null) {
+                player.currentTime = parseInt(e.target.value);
+                if (!player.paused) {
+                  requestAnimationFrame(whilePlaying);
+                }
+              }
+            }}
+          />
         </div>
       </div>
     </>

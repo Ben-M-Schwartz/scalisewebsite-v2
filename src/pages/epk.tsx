@@ -95,7 +95,7 @@ const Music: NextPage = () => {
           sizes="16x16"
           href="/images/favicon-16x16.png"
         />
-                <link
+        <link
           rel="apple-touch-icon"
           sizes="120x120"
           href="/images/apple-touch-icon.png"
@@ -170,6 +170,7 @@ const Music: NextPage = () => {
                     Listen to the single off the upcoming album now.
                   </p>
                   <AudioPlayer
+                    demo={false}
                     player_id="transferred"
                     source="/transferred.mp3"
                     title="Transferred To Houston"
@@ -196,6 +197,7 @@ const Music: NextPage = () => {
                   Listen to the single off the upcoming album now.
                 </p>
                 <AudioPlayer
+                  demo={false}
                   player_id="airbag"
                   source="/airbag.mp3"
                   title="Airbag"
@@ -222,6 +224,7 @@ const Music: NextPage = () => {
                   Listen to the single off the upcoming album now.
                 </p>
                 <AudioPlayer
+                  demo={false}
                   player_id="fruitSnacks"
                   source="/fruitSnacks.mp3"
                   title="Fruit Snacks"
