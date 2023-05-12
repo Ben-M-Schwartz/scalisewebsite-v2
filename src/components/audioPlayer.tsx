@@ -138,7 +138,7 @@ export function AudioPlayer({
           </div>
           <div
             style={{ width: `${Math.ceil((seek / max) * 100)}%` }}
-            className={`from absolute left-0 z-10 h-full border-r border-stone-500 bg-stone-700 text-white`}
+            className={`absolute left-0 z-10 h-full border-r border-stone-500 bg-stone-700 text-white`}
           />
           <input
             type="range"
