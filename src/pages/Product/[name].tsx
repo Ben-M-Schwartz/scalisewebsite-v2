@@ -282,6 +282,21 @@ const Product: NextPage = (
           sizes="16x16"
           href="/images/favicon-16x16.png"
         />
+                <link
+          rel="apple-touch-icon"
+          sizes="120x120"
+          href="/images/apple-touch-icon.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="167x167"
+          href="/images/apple-touch-icon.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="152x152"
+          href="/images/apple-touch-icon.png"
+        />
       </Head>
       <main className="mx-auto min-h-screen bg-black">
         <div className="hidden justify-center md:flex">
