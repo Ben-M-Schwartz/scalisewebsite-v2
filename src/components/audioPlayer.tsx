@@ -133,18 +133,18 @@ export function AudioPlayer({
           </div>
           <div className="z-20 flex h-full items-start justify-start pl-6 text-sm">
             <span className="pt-2 text-stone-400">
-              {currentTime} / {duration} | {Math.floor((seek / max) * 100)}
+              {currentTime} / {duration}
             </span>
           </div>
           <div
-            className={`from absolute left-0 z-10 h-full w-[${Math.floor(
+            className={`from absolute left-0 z-10 h-full w-[${Math.ceil(
               (seek / max) * 100
             )}%] bg-stone-700 text-white`}
           />
           <input
             type="range"
             id="seek-slider"
-            className="absolute left-0 z-30 h-full w-full cursor-pointer appearance-none bg-transparent" //[&::-webkit-slider-thumb]:invisible"
+            className="absolute left-0 z-30 h-full w-full cursor-pointer appearance-none bg-transparent [&::-webkit-slider-thumb]:invisible"
             max={max}
             value={seek}
             onInput={() => {
