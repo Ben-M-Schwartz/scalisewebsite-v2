@@ -6,7 +6,7 @@ import { withAxiom } from "next-axiom";
 !process.env.SKIP_ENV_VALIDATION && (await import("./src/env.mjs"));
 
 /** @type {import("next").NextConfig} */
-module.exports = withAxiom({
+const config = withAxiom({
   reactStrictMode: true,
   async rewrites() {
     return [
@@ -48,4 +48,4 @@ module.exports = withAxiom({
   },
 });
 
-//export default config;
+export default config;
