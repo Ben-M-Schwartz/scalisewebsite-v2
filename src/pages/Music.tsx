@@ -102,7 +102,7 @@ const Music: NextPage = () => {
                 </div>
               </div>
               <AudioPlayer
-                demo={true}
+                //demo={true}
                 player_id="transferredDemo"
                 source="/Transferred to Houston Clip.mp3"
                 title="Transferred To Houston"
@@ -138,7 +138,7 @@ const Music: NextPage = () => {
                 </div>
               </div>
               <AudioPlayer
-                demo={true}
+                //demo={true}
                 player_id="airbagDemo"
                 source="/Airbag Clip.mp3"
                 title="Airbag"
@@ -174,7 +174,7 @@ const Music: NextPage = () => {
                 </div>
               </div>
               <AudioPlayer
-                demo={true}
+                //demo={true}
                 player_id="fruitSnacksDemo"
                 source="/Fruit Snacks Clip.mp3"
                 title="Fruit Snacks"

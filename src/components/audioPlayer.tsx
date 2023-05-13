@@ -5,12 +5,12 @@ export function AudioPlayer({
   player_id,
   source,
   title,
-  demo,
-}: {
+}: //demo,
+{
   source: string;
   title: string;
   player_id: string;
-  demo: boolean;
+  //demo: boolean;
 }) {
   const [_document, set_document] = useState<Document | null>(null);
 
