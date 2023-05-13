@@ -88,13 +88,15 @@ export function AudioPlayer({
             setCurrentTime(calcTime(Math.floor(player.currentTime)));
             setSeek(Math.floor(player.currentTime));
             if (demo)
-              player.volume =
+              player.volume = Math.max(
                 1 -
-                Math.max(
-                  0,
-                  (2 - (player.duration - player.currentTime)) / 2,
-                  1 - player.currentTime
-                );
+                  Math.max(
+                    0,
+                    (2 - (player.duration - player.currentTime)) / 2,
+                    1 - player.currentTime
+                  ),
+                0
+              );
           });
         });
       }
