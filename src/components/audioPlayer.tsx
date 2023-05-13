@@ -66,28 +66,30 @@ export function AudioPlayer({
       if (player.readyState > 0) {
         setDuration(calcTime(player.duration));
         setMax(Math.floor(player.duration));
-        if (demo) player.volume = 0;
+        //if (demo) player.volume = 0;
         player.addEventListener("timeupdate", () => {
           setCurrentTime(calcTime(Math.floor(player.currentTime)));
           setSeek(Math.floor(player.currentTime));
-          if (demo)
-            player.volume =
+          /*           if (demo)
+            player.volume = Math.max(
               1 -
-              Math.max(
-                0,
-                (2 - (player.duration - player.currentTime)) / 2,
-                1 - player.currentTime
-              );
+                Math.max(
+                  0,
+                  (2 - (player.duration - player.currentTime)) / 2,
+                  1 - player.currentTime
+                ),
+              0
+            ); */
         });
       } else {
         player.addEventListener("loadedmetadata", () => {
           setDuration(calcTime(player.duration));
           setMax(Math.floor(player.duration));
-          if (demo) player.volume = 0;
+          //if (demo) player.volume = 0;
           player.addEventListener("timeupdate", () => {
             setCurrentTime(calcTime(Math.floor(player.currentTime)));
             setSeek(Math.floor(player.currentTime));
-            if (demo)
+            /*             if (demo)
               player.volume = Math.max(
                 1 -
                   Math.max(
@@ -96,7 +98,7 @@ export function AudioPlayer({
                     1 - player.currentTime
                   ),
                 0
-              );
+              ); */
           });
         });
       }
@@ -131,7 +133,7 @@ export function AudioPlayer({
         <div className="container relative flex h-full w-full items-center">
           <div className="z-20 pl-4">
             <p className="text-white">{title}</p>
-            <p className="text-sm text-stone-400">Scalise</p>
+            <p className="text-left text-sm text-stone-400">Scalise</p>
           </div>
           <div className="z-20 flex h-full items-start justify-start pl-6 text-sm">
             <span className="pt-2 text-stone-400">
