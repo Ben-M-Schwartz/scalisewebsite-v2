@@ -64,11 +64,11 @@ export function CartLink() {
   const [enabled, setEnabled] = useState(true);
   const { cartAmount, updateAmount } = useContext<CartContextType>(CartContext);
 
-  hasCookie("scalisetheband_cart_id")
+  hasCookie("cart_id")
     ? api.cart.getCartAmount.useQuery(
         {
           //eslint-disable-next-line
-          id: getCookie("scalisetheband_cart_id")!.toString(),
+          id: getCookie("cart_id")!.toString(),
         },
         {
           onSuccess: (data) => {

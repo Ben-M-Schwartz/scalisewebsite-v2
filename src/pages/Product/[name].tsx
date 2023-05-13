@@ -204,11 +204,9 @@ const Product: NextPage = (
     if (!hasCookie("cart_id")) {
       const new_cart_id = generateString(16);
       mutateOptions.cart_id = new_cart_id;
-      setCookie("scalisetheband_cart_id", new_cart_id);
+      setCookie("cart_id", new_cart_id);
     } else {
-      mutateOptions.cart_id = getCookie(
-        "scalisetheband_cart_id"
-      )?.toString() as string;
+      mutateOptions.cart_id = getCookie("cart_id")?.toString() as string;
     }
     addToCart
       .mutateAsync(mutateOptions)
