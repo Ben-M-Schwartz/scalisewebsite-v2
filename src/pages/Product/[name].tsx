@@ -204,9 +204,11 @@ const Product: NextPage = (
     if (!hasCookie("cart_id")) {
       const new_cart_id = generateString(16);
       mutateOptions.cart_id = new_cart_id;
-      setCookie("cart_id", new_cart_id);
+      setCookie("scalisetheband_cart_id", new_cart_id);
     } else {
-      mutateOptions.cart_id = getCookie("cart_id")?.toString() as string;
+      mutateOptions.cart_id = getCookie(
+        "scalisetheband_cart_id"
+      )?.toString() as string;
     }
     addToCart
       .mutateAsync(mutateOptions)
@@ -219,6 +221,7 @@ const Product: NextPage = (
   };
 
   const handleSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setButtonText("Add to Cart");
     setPickedSize(event.target.value);
     const selectedOption = event.target.options[event.target.selectedIndex];
     const maxQuantity = selectedOption?.dataset.maxQuantity;
@@ -282,7 +285,7 @@ const Product: NextPage = (
           sizes="16x16"
           href="/images/favicon-16x16.png"
         />
-                <link
+        <link
           rel="apple-touch-icon"
           sizes="120x120"
           href="/images/apple-touch-icon.png"
@@ -487,6 +490,7 @@ const Product: NextPage = (
                                 window.alert("select a size first");
                               }
                             }}
+                            onChange={() => setButtonText("Add to Cart")}
                             className="z-10 h-12 w-full appearance-none border bg-transparent pl-4 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                           >
                             {[...(Array(Math.min(maxQuantity, 20)) as number[])]
