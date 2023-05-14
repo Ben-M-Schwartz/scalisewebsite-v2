@@ -27,7 +27,7 @@ const config = withAxiom({
   async headers() {
     return [
       {
-        source: "/(.*)",
+        source: "/:path*",
         headers: createSecureHeaders({
           contentSecurityPolicy: {
             directives: {
