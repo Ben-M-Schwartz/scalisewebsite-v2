@@ -37,19 +37,19 @@ const config = withAxiom({
               baseUri: "self",
               formAction: "self",
               //eslint-disable-next-line
-              // @ts-ignore
+              //@ts-ignore
               frameAncestors: true,
             },
-            frameGuard: "deny",
-            noopen: "noopen",
-            nosniff: "nosniff",
-            xssProtection: "sanitize",
-            forceHTTPSRedirect: [
-              true,
-              { maxAge: 60 * 60 * 24 * 360, includeSubDomains: true },
-            ],
-            referrerPolicy: "same-origin",
           },
+          frameGuard: "deny",
+          noopen: "noopen",
+          nosniff: "nosniff",
+          xssProtection: "sanitize",
+          forceHTTPSRedirect: [
+            true,
+            { maxAge: 60 * 60 * 24 * 360, includeSubDomains: true },
+          ],
+          referrerPolicy: "same-origin",
         }),
       },
     ];
