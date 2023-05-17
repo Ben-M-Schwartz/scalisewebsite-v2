@@ -13,7 +13,7 @@ import SubscribeForm from "~/components/SubscribeForm";
 
 import { useState, createContext } from "react";
 
-export { reportWebVitals } from "next-axiom";
+//export { reportWebVitals } from 'next-axiom';
 
 export type CartContextType = {
   cartAmount: number;
@@ -30,6 +30,8 @@ export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
 };
+
+//TODO: Add robots.txt, clinetaccesspolicy.xml, contribute.json, crossdomain.xml
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   const [cartAmount, setCartAmount] = useState(0);
