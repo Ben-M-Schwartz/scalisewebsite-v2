@@ -210,8 +210,8 @@ export function SocialLinks() {
     >
       <motion.li
         variants={item_variants}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.3 }}
+        whileTap={{ scale: 1.1 }}
       >
         <Link
           href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
@@ -224,8 +224,8 @@ export function SocialLinks() {
       </motion.li>
       <motion.li
         variants={item_variants}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.3 }}
+        whileTap={{ scale: 1.1 }}
       >
         <Link
           href="https://music.apple.com/us/artist/scalise/1529031635"
@@ -238,8 +238,8 @@ export function SocialLinks() {
       </motion.li>
       <motion.li
         variants={item_variants}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.3 }}
+        whileTap={{ scale: 1.1 }}
       >
         <Link
           href="https://twitter.com/ScaliseTheBand"
@@ -252,8 +252,8 @@ export function SocialLinks() {
       </motion.li>
       <motion.li
         variants={item_variants}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.3 }}
+        whileTap={{ scale: 1.1 }}
       >
         <Link
           href="https://www.facebook.com/ScaliseTheBand"
@@ -266,8 +266,8 @@ export function SocialLinks() {
       </motion.li>
       <motion.li
         variants={item_variants}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.3 }}
+        whileTap={{ scale: 1.1 }}
       >
         <Link
           href="https://www.instagram.com/ScaliseTheBand/"
@@ -280,8 +280,8 @@ export function SocialLinks() {
       </motion.li>
       <motion.li
         variants={item_variants}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.3 }}
+        whileTap={{ scale: 1.1 }}
       >
         <Link
           href="https://www.tiktok.com/@scaliseband"
@@ -294,8 +294,8 @@ export function SocialLinks() {
       </motion.li>
       <motion.li
         variants={item_variants}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.3 }}
+        whileTap={{ scale: 1.1 }}
       >
         <Link
           href="https://www.youtube.com/channel/UCWBsxAAhmKP1nRHWQQ5N0Qg"

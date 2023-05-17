@@ -132,6 +132,7 @@ const Home: NextPage = () => {
             src={background}
             alt="Red Felt"
             fill
+            sizes="1497 827"
             quality={75}
             //style={{ objectFit: "cover" }}
             className="absolute z-0 object-cover blur-sm"

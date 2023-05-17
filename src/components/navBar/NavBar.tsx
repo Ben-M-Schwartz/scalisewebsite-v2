@@ -45,7 +45,7 @@ export function NavBar() {
         </div>
         <div className="flex flex-row align-middle md:order-2">
           <div className="flex flex-row items-center justify-center">
-            <div className="z-10 order-1 scale-150 pl-6 pr-4 md:pl-8 md:pr-4 lg:pl-16 lg:pr-6 xl:pl-20 xl:pr-12">
+            <div className="pml-6 z-10 order-1 mr-4 scale-150 border-2 md:ml-8 md:mr-4 lg:ml-16 lg:mr-6 xl:ml-20 xl:mr-12">
               <CartLink />
             </div>
             <div className="hidden w-full md:flex md:w-auto" id="social_links">
