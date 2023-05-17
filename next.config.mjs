@@ -34,9 +34,7 @@ const config = {
               defaultSrc: [
                 "'self'",
                 "https://clerk.com",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/dev_browser",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4/dist/clerk.browser.js",
+                "https://ruling-grubworm-38.clerk.accounts.dev/*",
               ],
               styleSrc: ["'self'", "'unsafe-inline'"],
               imgSrc: [
@@ -71,6 +69,9 @@ const config = {
               connectSrc: [
                 "https://scalisewebsite-v2.vercel.app/*",
                 "'self'",
+                "https://ruling-grubworm-38.clerk.accounts.dev/v1/dev_browser",
+                "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4/dist/clerk.browser.js:*",
+                "https://ruling-grubworm-38.clerk.accounts.dev/v1/*",
                 "https://ruling-grubworm-38.clerk.accounts.dev/v1/*",
                 "https://ruling-grubworm-38.clerk.accounts.dev/v1/client",
                 "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/*",
