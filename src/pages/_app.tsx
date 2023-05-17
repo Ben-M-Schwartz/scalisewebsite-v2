@@ -2,7 +2,7 @@ import type { AppType } from "next/app";
 import Head from "next/head";
 /* import type { Session } from "next-auth"; */
 /* import { SessionProvider } from "next-auth/react"; */
-import { Analytics } from "@vercel/analytics/react";
+//import { Analytics } from "@vercel/analytics/react";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -32,7 +32,7 @@ export const config = {
   regions: ["cle1"],
 };
 
-//TODO: Add robots.txt, clinetaccesspolicy.xml, contribute.json, crossdomain.xml
+//TODO: Update robots.txt
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   const [cartAmount, setCartAmount] = useState(0);
@@ -116,7 +116,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         </AnimatePresence>
       </CartContext.Provider>
       <SubscribeForm />
-      <Analytics />
+      {/* 
+      Ran out of the free tier on vercel
+      <Analytics /> */}
     </ClerkProvider>
   );
 };

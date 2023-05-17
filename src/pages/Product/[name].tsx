@@ -378,7 +378,7 @@ const Product: NextPage = (
             <Images images={images as string[]} />
           )}
           <div className="w-2/3 md:w-1/3">
-            <div className="container flex flex-col gap-4 pb-16">
+            <div className="container flex flex-col gap-4 pb-4">
               <h1 className="mt-12 text-4xl text-white md:mt-8 md:text-5xl lg:text-6xl">
                 {productData[0].name}
               </h1>
@@ -401,6 +401,9 @@ const Product: NextPage = (
                 </p>
               </div>
             </div>
+            <p className="my-8 text-xl text-white">
+              {productData[0].description}
+            </p>
             <div className="container flex flex-col gap-12">
               <form
                 className="flex flex-col gap-4"

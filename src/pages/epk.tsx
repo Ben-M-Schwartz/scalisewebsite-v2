@@ -255,7 +255,7 @@ const Music: NextPage = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 loading="lazy"
-                style={{ aspectRatio: "16/9" }}
+                className='aspect-video'
               ></iframe>
             </div>
             <div>
@@ -266,7 +266,7 @@ const Music: NextPage = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 loading="lazy"
-                style={{ aspectRatio: "16/9" }}
+                className='aspect-video'
               ></iframe>
             </div>
             <div>
@@ -277,7 +277,7 @@ const Music: NextPage = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 loading="lazy"
-                style={{ aspectRatio: "16/9" }}
+                className='aspect-video'
               ></iframe>
             </div>
             <div>
@@ -288,7 +288,7 @@ const Music: NextPage = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 loading="lazy"
-                style={{ aspectRatio: "16/9" }}
+                className='aspect-video'
               ></iframe>
             </div>
           </div>

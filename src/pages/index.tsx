@@ -71,6 +71,7 @@ const Home: NextPage = () => {
                     src={hoodieFront}
                     alt="New Hoodie Front"
                     fill
+                    sizes="162 128"
                     quality={75}
                     className="flex object-scale-down"
                     priority
@@ -81,6 +82,7 @@ const Home: NextPage = () => {
                     src={hoodieBack}
                     alt="New Hoodie Back"
                     fill
+                    sizes="162 128"
                     quality={75}
                     className="flex object-scale-down"
                     priority
@@ -104,6 +106,7 @@ const Home: NextPage = () => {
                     src={crewFront}
                     alt="New Crew Neck Sweatshirt Front"
                     fill
+                    sizes="162 128"
                     quality={75}
                     className="flex object-scale-down"
                     priority
@@ -114,6 +117,7 @@ const Home: NextPage = () => {
                     src={crewBack}
                     alt="New Crew Neck Sweatshirt Back"
                     fill
+                    sizes="162 128"
                     quality={75}
                     className="flex object-scale-down"
                     priority
@@ -129,8 +133,8 @@ const Home: NextPage = () => {
             alt="Red Felt"
             fill
             quality={75}
-            style={{ objectFit: "cover" }}
-            className="absolute z-0 blur-sm"
+            //style={{ objectFit: "cover" }}
+            className="absolute z-0 object-cover blur-sm"
             priority
           />
           <h1 className="relative pb-6 text-center text-5xl text-white md:text-6xl lg:text-7xl xl:text-8xl">

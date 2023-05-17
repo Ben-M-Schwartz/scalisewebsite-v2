@@ -43,8 +43,8 @@ const config = {
                 "https://www.gravatar.com/avatar",
                 "https://www.gravatar.com/*",
               ],
-              baseUri: "self",
-              formAction: "self",
+              baseUri: "'self'",
+              formAction: "'self'",
               frameSrc: [
                 "https://editor.unlayer.com/1.5.6/editor.html",
                 "https://ruling-grubworm-38.clerk.accounts.dev/v1/dev_browser/init",
