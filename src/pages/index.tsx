@@ -27,6 +27,7 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>SCALISE</title>
+        <meta description = ""
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"

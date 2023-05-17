@@ -1,4 +1,5 @@
 import type { AppType } from "next/app";
+import Head from "next/head";
 /* import type { Session } from "next-auth"; */
 /* import { SessionProvider } from "next-auth/react"; */
 import { Analytics } from "@vercel/analytics/react";
@@ -40,6 +41,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   const router = useRouter();
   return (
     <ClerkProvider {...pageProps}>
+      <Head>
+        <meta name="description" content="Band Webpage for Scalise The Band" />
+      </Head>
       <CartContext.Provider
         value={{ cartAmount: cartAmount, updateAmount: updateAmount }}
       >
