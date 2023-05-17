@@ -35,6 +35,7 @@ const config = {
                 "'self'",
                 "https://clerk.com",
                 "https://ruling-grubworm-38.clerk.accounts.dev/*",
+                "https://ruling-grubworm-38.clerk.accounts.dev/v1/dev_browser",
               ],
               styleSrc: ["'self'", "'unsafe-inline'"],
               imgSrc: [
@@ -45,6 +46,8 @@ const config = {
               baseUri: "self",
               formAction: "self",
               frameSrc: [
+                "https://editor.unlayer.com/1.5.6/editor.html",
+                "https://ruling-grubworm-38.clerk.accounts.dev/v1/dev_browser/init",
                 "https://www.youtube.com/embed/I5gtiSsExDA",
                 "https://www.youtube.com/embed/8dCrG2TTlF4",
                 "https://www.youtube.com/embed/Do7MAZ_EMUI",
@@ -60,6 +63,7 @@ const config = {
               ],
               scriptSrc: [
                 "'self'",
+                "https://editor.unlayer.com/embed.js",
                 "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4/dist/clerk.browser.js",
                 "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4.40.1/dist/vendors_f3b780_4.40.1.js",
                 "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4.40.1/dist/ui-common_f3b780_4.40.1.js",
