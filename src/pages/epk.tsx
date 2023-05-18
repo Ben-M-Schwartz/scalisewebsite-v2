@@ -520,7 +520,7 @@ const Music: NextPage = () => {
               </Link>
             </div>
           </div>
-          <div className="flex w-11/12 flex-col items-center justify-center border border-gray-500 text-black md:w-1/2">
+          <div className="flex w-11/12 flex-col items-center justify-center border border-gray-500 md:w-1/2">
             {/* eslint-disable-next-line */}
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col justify-center gap-2 px-4 py-8 sm:px-0">
@@ -530,7 +530,7 @@ const Music: NextPage = () => {
                     <input
                       id="first-name"
                       {...register("firstName", { required: true })}
-                      className="w-full rounded-md border border-gray-400 bg-gray-100 p-2"
+                      className="w-full rounded-md border border-gray-400 bg-gray-100 p-2 text-black"
                     />
                   </div>
                   <div className="flex flex-col">
@@ -538,7 +538,7 @@ const Music: NextPage = () => {
                     <input
                       id="last-name"
                       {...register("lastName", { required: true })}
-                      className="w-full rounded-md border border-gray-400 bg-gray-100 p-2"
+                      className="w-full rounded-md border border-gray-400 bg-gray-100 p-2 text-black"
                     />
                   </div>
                 </div>
@@ -546,19 +546,19 @@ const Music: NextPage = () => {
                 <input
                   id="email"
                   {...register("email", { required: true })}
-                  className="rounded-md border border-gray-400 bg-gray-100 p-2"
+                  className="rounded-md border border-gray-400 bg-gray-100 p-2 text-black"
                 />
                 <h2>Subject</h2>
                 <input
                   id="subject"
                   {...register("subject", { required: true })}
-                  className="rounded-md border border-gray-400 bg-gray-100 p-2"
+                  className="rounded-md border border-gray-400 bg-gray-100 p-2 text-black"
                 />
                 <h2>Message</h2>
                 <textarea
                   id="message"
                   {...register("message", { required: true })}
-                  className="rounded-md border border-gray-400 bg-gray-100 p-2"
+                  className="rounded-md border border-gray-400 bg-gray-100 p-2 text-black"
                   rows={4}
                 />
                 {!processing && (
@@ -572,10 +572,10 @@ const Music: NextPage = () => {
                 {processing && (
                   <button
                     type="button"
-                    className="mt-4 w-1/2 rounded-sm border-4 border-white py-4 hover:bg-white hover:text-red-950"
+                    className="mt-4 w-1/2 rounded-sm border-4 border-white bg-white py-4 text-red-950"
                     disabled
                   >
-                    <div className="flex flex-row justify-center">
+                    <div className="flex flex-row justify-center gap-2">
                       <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
                       <p className="flex">Processing...</p>
                     </div>

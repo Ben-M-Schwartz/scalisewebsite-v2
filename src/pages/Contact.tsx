@@ -74,7 +74,7 @@ const Contact: NextPage = () => {
           sizes="16x16"
           href="/images/favicon-16x16.png"
         />
-                <link
+        <link
           rel="apple-touch-icon"
           sizes="120x120"
           href="/images/apple-touch-icon.png"
@@ -228,7 +228,7 @@ const Contact: NextPage = () => {
                     className="mt-4 w-1/2 rounded-sm border-4 border-rose-800 bg-rose-800 py-4 text-white"
                     disabled
                   >
-                    <div className="flex flex-row justify-center">
+                    <div className="flex flex-row justify-center gap-2">
                       <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
                       <p className="flex">Processing...</p>
                     </div>

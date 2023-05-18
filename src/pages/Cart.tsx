@@ -15,6 +15,8 @@ export const config = {
   regions: ["cle1"],
 };
 
+//TODO: Client side error when trying ot checkout somethign out of stock
+
 type CartItem = {
   product_id: number | null;
   price: number | null;
@@ -49,7 +51,7 @@ const Cart: NextPage = () => {
 
   const cart_id = getCookie("cart_id")?.toString() || "not found";
 
-  const { updateAmount } = useContext<CartContextType>(CartContext);
+  const { cartAmount, updateAmount } = useContext<CartContextType>(CartContext);
 
   useEffect(() => {
     if (!hasCookie("cart_id")) {
@@ -145,11 +147,14 @@ const Cart: NextPage = () => {
 
   const clearCart = api.cart.clearCart.useMutation();
   const handleClearCart = () => {
+    setProcessing(true);
     clearCart
       .mutateAsync({ cart_id: cart_id })
       .then(() => {
+        setProcessing(false);
         setEmptyCart(true);
-        router.reload();
+        updateAmount(-cartAmount);
+        //router.reload();
       })
       .catch((error) => console.error(error));
   };
@@ -175,6 +180,7 @@ const Cart: NextPage = () => {
       .then(async (result) => {
         setProcessingCheckout(false);
         if (result[0] === "Not Enough Inventory") {
+          let totalLength: number = cartItems.length;
           let errorMessage = "Sorry! Unfortunately our inventory has changed\n";
           const overflows = result[1] as unknown as {
             item_name: string;
@@ -193,6 +199,7 @@ const Cart: NextPage = () => {
                 obj.size ? `Size: ${obj.size}` : ""
               } 
             is no longer available. See the store page to be notified when it is back in stock\n`;
+              totalLength -= 1;
             } else {
               errorMessage += `We now only have ${obj.max} left in stock for ${
                 obj.item_name
@@ -210,15 +217,20 @@ const Cart: NextPage = () => {
               })
             );
           }
-
-          await Promise.all(promises)
-            .then(() => {
-              window.alert(errorMessage);
-              router.reload();
-            })
-            .catch(() =>
-              window.alert("An error occured please try again later")
-            );
+          if (totalLength <= 0) {
+            window.alert(errorMessage);
+            handleClearCart();
+          } else {
+            await Promise.all(promises)
+              .then(() => {
+                window.alert(errorMessage);
+                handleClearCart();
+                router.reload();
+              })
+              .catch(() =>
+                window.alert("An error occured please try again later")
+              );
+          }
         } else {
           createOrder
             .mutateAsync({
@@ -266,7 +278,7 @@ const Cart: NextPage = () => {
           sizes="16x16"
           href="/images/favicon-16x16.png"
         />
-                <link
+        <link
           rel="apple-touch-icon"
           sizes="120x120"
           href="/images/apple-touch-icon.png"
