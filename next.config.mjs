@@ -46,7 +46,7 @@ const config = {
               baseUri: "'self'",
               formAction: "'self'",
               frameSrc: [
-                "https://editor.unlayer.com/1.5.6/editor.html",
+                "https://editor.unlayer.com/1.5.8/editor.html",
                 "https://ruling-grubworm-38.clerk.accounts.dev/v1/dev_browser/init",
                 "https://www.youtube.com/embed/I5gtiSsExDA",
                 "https://www.youtube.com/embed/8dCrG2TTlF4",
