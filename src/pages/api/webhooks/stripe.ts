@@ -12,6 +12,8 @@ import { and, eq } from "drizzle-orm/expressions";
 import { stripe } from "~/utils/stripe";
 import { sql } from "drizzle-orm/sql";
 
+import { api } from "~/utils/api";
+
 //TODO: Automatically send email with mp3 for digital download purchase
 
 export const config = {
@@ -72,6 +74,13 @@ export default async function handler(
         payment_status: session.payment_status,
       });
       if (session.payment_status === "paid") {
+        if (item.description === "From Nothing To Nothing Digital Download") {
+          //TODO: test this
+          const sendDownload = api.email.sendDigitalDownload.useMutation();
+          sendDownload
+            .mutateAsync({ email: session.customer_details?.email as string })
+            .catch((error) => console.error(error));
+        }
         await db
           .update(product_quantity)
           .set({
@@ -99,6 +108,7 @@ export default async function handler(
 
   if (event.type === "checkout.session.async_payment_failed") {
     //TODO: test following two functions
+    //TODO: Send email to user saying thier payment failed?
     await db
       .delete(orders)
       .where(eq(orders.stripe_checkout_session_id, session.id));

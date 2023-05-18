@@ -1435,3 +1435,5 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 
 </html>
 `;
+
+export const digitalDownload = ``;
