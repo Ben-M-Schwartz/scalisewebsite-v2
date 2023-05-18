@@ -82,7 +82,7 @@ export const backInStock = (item_name: string, size: string) => {
     text-decoration: none !important;
   }
   
-  table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: underline; }
+  table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: underline; } @media (max-width: 480px) { #u_content_html_1 .v-container-padding-padding { padding: 0px !important; } }
       </style>
     
     
@@ -109,10 +109,10 @@ export const backInStock = (item_name: string, size: string) => {
     <div style="height: 100%;width: 100% !important;">
     <!--[if (!mso)&(!IE)]><!--><div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"><!--<![endif]-->
     
-  <table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+  <table id="u_content_html_1" style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
     <tbody>
       <tr>
-        <td style="overflow-wrap:break-word;word-break:break-word;padding:30px 0px;font-family:arial,helvetica,sans-serif;" align="left">
+        <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:30px 0px;font-family:arial,helvetica,sans-serif;" align="left">
           
     <div>
       <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -443,7 +443,7 @@ export const backInStockSignUp = (
     text-decoration: none !important;
   }
   
-  table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: underline; }
+  table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: underline; } @media (max-width: 480px) { #u_content_html_2 .v-container-padding-padding { padding: 0px !important; } }
       </style>
     
     
@@ -470,10 +470,10 @@ export const backInStockSignUp = (
     <div style="height: 100%;width: 100% !important;">
     <!--[if (!mso)&(!IE)]><!--><div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"><!--<![endif]-->
     
-  <table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+  <table id="u_content_html_2" style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
     <tbody>
       <tr>
-        <td style="overflow-wrap:break-word;word-break:break-word;padding:30px 0px;font-family:arial,helvetica,sans-serif;" align="left">
+        <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:30px 0px;font-family:arial,helvetica,sans-serif;" align="left">
           
     <div>
       <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -621,7 +621,7 @@ export const backInStockSignUp = (
             
       <div style="font-size: 14px; line-height: 140%; text-align: left; word-wrap: break-word;">
         <p style="line-height: 140%;">Thank you for signing up to be notified when</p>
-    <is style="line-height: 140%;"><strong>${product_name} ${
+    <p style="line-height: 140%;"><strong>${product_name} ${
     product_size !== "" ? `size: ${product_size}` : ""
   }</strong> is back in stock. </p>
     <p style="line-height: 140%;"> </p>
@@ -801,7 +801,7 @@ a[x-apple-data-detectors='true'] {
   text-decoration: none !important;
 }
 
-table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: underline; }
+table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: underline; } @media (max-width: 480px) { #u_content_html_3 .v-container-padding-padding { padding: 0px !important; } }
     </style>
   
   
@@ -828,10 +828,10 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <div style="height: 100%;width: 100% !important;">
   <!--[if (!mso)&(!IE)]><!--><div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"><!--<![endif]-->
   
-<table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+<table id="u_content_html_3" style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>
     <tr>
-      <td style="overflow-wrap:break-word;word-break:break-word;padding:30px 0px;font-family:arial,helvetica,sans-serif;" align="left">
+      <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:30px 0px;font-family:arial,helvetica,sans-serif;" align="left">
         
   <div>
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -1165,7 +1165,7 @@ a[x-apple-data-detectors='true'] {
   text-decoration: none !important;
 }
 
-table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: underline; }
+table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: underline; } @media (max-width: 480px) { #u_content_html_4 .v-container-padding-padding { padding: 0px !important; } }
     </style>
   
   
@@ -1192,10 +1192,10 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <div style="height: 100%;width: 100% !important;">
   <!--[if (!mso)&(!IE)]><!--><div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"><!--<![endif]-->
   
-<table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+<table id="u_content_html_4" style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>
     <tr>
-      <td style="overflow-wrap:break-word;word-break:break-word;padding:30px 0px;font-family:arial,helvetica,sans-serif;" align="left">
+      <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:30px 0px;font-family:arial,helvetica,sans-serif;" align="left">
         
   <div>
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
