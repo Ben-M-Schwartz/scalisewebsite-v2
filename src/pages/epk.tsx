@@ -255,7 +255,7 @@ const Music: NextPage = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 loading="lazy"
-                className='aspect-video'
+                className="aspect-video"
               ></iframe>
             </div>
             <div>
@@ -266,7 +266,7 @@ const Music: NextPage = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 loading="lazy"
-                className='aspect-video'
+                className="aspect-video"
               ></iframe>
             </div>
             <div>
@@ -277,7 +277,7 @@ const Music: NextPage = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 loading="lazy"
-                className='aspect-video'
+                className="aspect-video"
               ></iframe>
             </div>
             <div>
@@ -288,7 +288,7 @@ const Music: NextPage = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 loading="lazy"
-                className='aspect-video'
+                className="aspect-video"
               ></iframe>
             </div>
           </div>
@@ -520,7 +520,7 @@ const Music: NextPage = () => {
               </Link>
             </div>
           </div>
-          <div className="flex w-11/12 flex-col items-center justify-center border border-gray-500 md:w-1/2">
+          <div className="flex w-11/12 flex-col items-center justify-center border border-gray-500 text-black md:w-1/2">
             {/* eslint-disable-next-line */}
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col justify-center gap-2 px-4 py-8 sm:px-0">
