@@ -14,7 +14,7 @@ import excited from "../../../public/excited.webp";
 }; */
 
 const useSubscribe = () => {
-  const subscribe = api.subscription.subscribe.useMutation();
+  const subscribe = api.email.subscribe.useMutation();
   return async (token: string) => subscribe.mutateAsync({ token });
 };
 

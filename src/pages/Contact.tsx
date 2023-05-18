@@ -34,7 +34,7 @@ type FormData = {
 const Contact: NextPage = () => {
   const { register, handleSubmit, reset } = useForm<FormData>();
   const [processing, setProcessing] = useState(false);
-  const contactSubmit = api.subscription.contactForm.useMutation();
+  const contactSubmit = api.email.contactForm.useMutation();
 
   const onSubmit = async (formData: FormData) => {
     setProcessing(true);

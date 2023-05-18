@@ -24,7 +24,7 @@ type subscriptionForm = {
 };
 
 const Subscribe: NextPage = () => {
-  const confirm = api.subscription.confirm.useMutation();
+  const confirm = api.email.confirm.useMutation();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const { register, handleSubmit } = useForm<subscriptionForm>();

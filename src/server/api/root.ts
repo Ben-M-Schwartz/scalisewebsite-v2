@@ -1,6 +1,6 @@
 import { createTRPCRouter } from "~/server/api/trpc";
 import { cartRouter } from "~/server/api/routers/cartRouter";
-import { subscriptionRouter } from "~/server/api/routers/subscriptionRouter";
+import { emailRouter } from "~/server/api/routers/emailRouter";
 import { inventoryRouter } from "~/server/api/routers/inventoryRouter";
 import { checkoutRouter } from "~/server/api/routers/checkoutRouter";
 import { showRouter } from "~/server/api/routers/showRouter";
@@ -12,7 +12,7 @@ import { showRouter } from "~/server/api/routers/showRouter";
  */
 export const appRouter = createTRPCRouter({
   cart: cartRouter,
-  subscription: subscriptionRouter,
+  email: emailRouter,
   inventory: inventoryRouter,
   checkout: checkoutRouter,
   shows: showRouter,

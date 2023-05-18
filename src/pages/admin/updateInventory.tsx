@@ -34,7 +34,7 @@ function Card({
 }) {
   const [operation, setOperation] = useState("+");
   const update = api.inventory.update.useMutation();
-  const sendNotifications = api.subscription.notify.useMutation();
+  const sendNotifications = api.email.notify.useMutation();
   const [sizes, setSizes] = useState<sizesArray>([]);
 
   //const router = useRouter();

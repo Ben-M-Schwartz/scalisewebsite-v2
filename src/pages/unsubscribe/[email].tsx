@@ -15,7 +15,7 @@ const Product: NextPage = () => {
 
   const router = useRouter();
   const email = router.query.email as string;
-  const unsubscribe = api.subscription.unsubscribe.useMutation();
+  const unsubscribe = api.email.unsubscribe.useMutation();
 
   const handleUnsubscribe = () => {
     unsubscribe.mutate({ email: email });

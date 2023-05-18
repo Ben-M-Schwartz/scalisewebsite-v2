@@ -140,7 +140,7 @@ const Product: NextPage = (
   const { updateAmount } = useContext<CartContextType>(CartContext);
 
   const addToCart = api.cart.addToCart.useMutation();
-  const notify = api.subscription.notificationSignUp.useMutation();
+  const notify = api.email.notificationSignUp.useMutation();
 
   const { register: cartRegister, handleSubmit: cartSubmit } =
     useForm<addToCartForm>();

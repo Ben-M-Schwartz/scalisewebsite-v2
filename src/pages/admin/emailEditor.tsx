@@ -24,8 +24,8 @@ export default function Email() {
   const [designToLoad, setDesignToLoad] = useState("");
   const [queryEnabled, setQueryEnabled] = useState(false);
   const { isLoaded, userId } = useAuth();
-  const designNames = api.subscription.getEmailDesignNames.useQuery();
-  const savedesign = api.subscription.saveEmailDesign.useMutation();
+  const designNames = api.email.getEmailDesignNames.useQuery();
+  const savedesign = api.email.saveEmailDesign.useMutation();
 
   const saveDesign = () => {
     emailEditorRef.current?.saveDesign((design) => {
@@ -46,7 +46,7 @@ export default function Email() {
     });
   };
 
-  api.subscription.getEmailDesign.useQuery(
+  api.email.getEmailDesign.useQuery(
     {
       name: designToLoad,
     },

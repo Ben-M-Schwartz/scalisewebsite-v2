@@ -166,7 +166,7 @@ const sendContactFormEmail = async (
   await mailerSend.email.send(emailParams);
 };
 
-export const subscriptionRouter = createTRPCRouter({
+export const emailRouter = createTRPCRouter({
   confirm: publicProcedure
     .input(z.object({ email: z.string(), url: z.string() }))
     .mutation(async ({ input }) => {

@@ -29,7 +29,7 @@ const MailingList: NextPage = () => {
 
   const [sendtest, setSendtest] = useState(false);
 
-  const sendEmails = api.subscription.emailList.useMutation();
+  const sendEmails = api.email.emailList.useMutation();
   const onSubmit = (formData: emailForm) => {
     if (!sendtest) {
       const answer = window.confirm(
