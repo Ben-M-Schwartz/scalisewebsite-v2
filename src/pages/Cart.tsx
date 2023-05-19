@@ -15,8 +15,6 @@ export const config = {
   regions: ["cle1"],
 };
 
-//TODO: Client side error when trying ot checkout somethign out of stock
-
 type CartItem = {
   product_id: number | null;
   price: number | null;

@@ -9,6 +9,7 @@ import transferred from "../../public/transferred.webp";
 
 import banner from "../../public/tunnelEPKPhoto.webp";
 
+//TODO: Add png or jpeg files for all of these that people can click the image to download for promos
 import image1 from "../../public/bandPhoto3.webp";
 import image2 from "../../public/porchPhoto.webp";
 import image3 from "../../public/tunnelWalking.webp";
@@ -309,6 +310,7 @@ const Music: NextPage = () => {
             -TrackXTrack “The Top Ten Best Albums of 2020”
           </Link>
         </div>
+        {/*TODO: When you click on an image it downloads the higher res photo */}
         <div className="w-full bg-black">
           <h1 className="w-full py-20 text-center text-5xl font-bold text-white">
             PRESS PHOTOS

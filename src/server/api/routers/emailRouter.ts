@@ -404,9 +404,12 @@ export const emailRouter = createTRPCRouter({
         .setHtml(digitalDownload)
         .setAttachments([
           new Attachment(
-            fs.readFileSync("../../../../public/04 - Airbag.mp3", {
-              encoding: "base64",
-            }),
+            fs.readFileSync(
+              "../../../../public/From Nothing To Nothing MP3s.zip",
+              {
+                encoding: "base64",
+              }
+            ),
             "file.mp3",
             "attachment"
           ),
