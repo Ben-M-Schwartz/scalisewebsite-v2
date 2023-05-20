@@ -42,7 +42,7 @@ export function Item({
 
   const images = (item.image as string).split(",");
   return (
-    <>
+    <main>
       <div className="flex w-2/3 flex-row items-center justify-start gap-4">
         <div className="relative flex h-32 w-32 items-center justify-center">
           <Image
@@ -152,6 +152,6 @@ export function Item({
           Delete
         </button>
       </div>
-    </>
+    </main>
   );
 }

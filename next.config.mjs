@@ -24,89 +24,89 @@ const config = {
 
   reactStrictMode: true,
 
-  async headers() {
-    return [
-      {
-        source: "/:path*",
-        headers: createSecureHeaders({
-          contentSecurityPolicy: {
-            directives: {
-              defaultSrc: [
-                "'self'",
-                "https://clerk.com",
-                "https://ruling-grubworm-38.clerk.accounts.dev/*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/dev_browser",
-              ],
-              styleSrc: ["'self'", "'unsafe-inline'"],
-              imgSrc: [
-                "'self'",
-                "https://www.gravatar.com/avatar",
-                "https://www.gravatar.com/*",
-              ],
-              baseUri: "'self'",
-              formAction: "'self'",
-              frameSrc: [
-                "https://editor.unlayer.com/1.5.8/editor.html",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/dev_browser/init",
-                "https://www.youtube.com/embed/I5gtiSsExDA",
-                "https://www.youtube.com/embed/8dCrG2TTlF4",
-                "https://www.youtube.com/embed/Do7MAZ_EMUI",
-                "https://www.youtube.com/embed/GVAwb-u9Xkk",
-                "https://www.youtube.com/embed/jXnpekrt3y0",
-                "https://www.youtube.com/embed/gHX7W-cWr2U",
-                "https://www.youtube.com/embed/zVqXWE4Y6c4",
-                "https://www.youtube.com/embed/kCOOUUlcss8",
-                "https://www.youtube.com/embed/1NB1fkEZxRk",
-                "https://www.youtube.com/embed/4MYu-auxBuM",
-                "https://www.youtube.com/embed/6B3uocHyZu4",
-                "https://www.youtube.com/embed/BL1OxvKVllk",
-              ],
-              scriptSrc: [
-                "'self'",
-                "https://editor.unlayer.com/embed.js",
-                "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4/dist/clerk.browser.js",
-                "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4.40.1/dist/vendors_f3b780_4.40.1.js",
-                "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4.40.1/dist/ui-common_f3b780_4.40.1.js",
-                "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4.40.1/dist/signin_f3b780_4.40.1.js",
-              ],
-              workerSrc: "blob: https://scalisewebsite-v2.vercel.app/*",
-              connectSrc: [
-                "https://scalisewebsite-v2.vercel.app/*",
-                "'self'",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/dev_browser",
-                "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4/dist/clerk.browser.js:*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sign_ins",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/environment",
-                "https://ruling-grubworm-38.clerk.accounts.dev/*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sign_ins/sia_2PtlzGWUDJloICYL3qJ9QaDeOA2/attempt_first_factor",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sign_ins/sia_2PtlzGWUDJloICYL3qJ9QaDeOA2/*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sessions/sess_2PtpRBDNYnWSYIn9OBJMMTWRazk/touch",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sessions/sess_2PtpRBDNYnWSYIn9OBJMMTWRazk/*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sessions/sess_2PtpRBDNYnWSYIn9OBJMMTWRazk/tokens",
-                "https://vitals.vercel-insights.com/v1/vitals",
-              ],
-              //eslint-disable-next-line
-              //@ts-ignore
-              frameAncestors: true,
-            },
-          },
-          frameGuard: "deny",
-          noopen: "noopen",
-          nosniff: "nosniff",
-          xssProtection: "sanitize",
-          forceHTTPSRedirect: [
-            true,
-            { maxAge: 60 * 60 * 24 * 360, includeSubDomains: true },
-          ],
-          referrerPolicy: "same-origin",
-        }),
-      },
-    ];
-  },
+  // async headers() {
+  //   return [
+  //     {
+  //       source: "/:path*",
+  //       headers: createSecureHeaders({
+  //         contentSecurityPolicy: {
+  //           directives: {
+  //             defaultSrc: [
+  //               "'self'",
+  //               "https://clerk.com",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/*",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/v1/dev_browser",
+  //             ],
+  //             styleSrc: ["'self'", "'unsafe-inline'"],
+  //             imgSrc: [
+  //               "'self'",
+  //               "https://www.gravatar.com/avatar",
+  //               "https://www.gravatar.com/*",
+  //             ],
+  //             baseUri: "'self'",
+  //             formAction: "'self'",
+  //             frameSrc: [
+  //               "https://editor.unlayer.com/1.5.8/editor.html",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/v1/dev_browser/init",
+  //               "https://www.youtube.com/embed/I5gtiSsExDA",
+  //               "https://www.youtube.com/embed/8dCrG2TTlF4",
+  //               "https://www.youtube.com/embed/Do7MAZ_EMUI",
+  //               "https://www.youtube.com/embed/GVAwb-u9Xkk",
+  //               "https://www.youtube.com/embed/jXnpekrt3y0",
+  //               "https://www.youtube.com/embed/gHX7W-cWr2U",
+  //               "https://www.youtube.com/embed/zVqXWE4Y6c4",
+  //               "https://www.youtube.com/embed/kCOOUUlcss8",
+  //               "https://www.youtube.com/embed/1NB1fkEZxRk",
+  //               "https://www.youtube.com/embed/4MYu-auxBuM",
+  //               "https://www.youtube.com/embed/6B3uocHyZu4",
+  //               "https://www.youtube.com/embed/BL1OxvKVllk",
+  //             ],
+  //             scriptSrc: [
+  //               "'self'",
+  //               "https://editor.unlayer.com/embed.js",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4/dist/clerk.browser.js",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4.40.1/dist/vendors_f3b780_4.40.1.js",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4.40.1/dist/ui-common_f3b780_4.40.1.js",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4.40.1/dist/signin_f3b780_4.40.1.js",
+  //             ],
+  //             workerSrc: "blob: https://scalisewebsite-v2.vercel.app/*",
+  //             connectSrc: [
+  //               "https://scalisewebsite-v2.vercel.app/*",
+  //               "'self'",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/v1/dev_browser",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4/dist/clerk.browser.js:*",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/v1/*",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/v1/*",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/v1/client",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/*",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sign_ins",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/v1/environment",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/*",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sign_ins/sia_2PtlzGWUDJloICYL3qJ9QaDeOA2/attempt_first_factor",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sign_ins/sia_2PtlzGWUDJloICYL3qJ9QaDeOA2/*",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sessions/sess_2PtpRBDNYnWSYIn9OBJMMTWRazk/touch",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sessions/sess_2PtpRBDNYnWSYIn9OBJMMTWRazk/*",
+  //               "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sessions/sess_2PtpRBDNYnWSYIn9OBJMMTWRazk/tokens",
+  //               "https://vitals.vercel-insights.com/v1/vitals",
+  //             ],
+  //             //eslint-disable-next-line
+  //             //@ts-ignore
+  //             frameAncestors: true,
+  //           },
+  //         },
+  //         frameGuard: "deny",
+  //         noopen: "noopen",
+  //         nosniff: "nosniff",
+  //         xssProtection: "sanitize",
+  //         forceHTTPSRedirect: [
+  //           true,
+  //           { maxAge: 60 * 60 * 24 * 360, includeSubDomains: true },
+  //         ],
+  //         referrerPolicy: "same-origin",
+  //       }),
+  //     },
+  //   ];
+  // },
 
   async rewrites() {
     return [

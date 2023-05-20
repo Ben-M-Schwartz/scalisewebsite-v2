@@ -592,7 +592,7 @@ export const backInStockSignUp = (
           <td style="overflow-wrap:break-word;word-break:break-word;padding:30px 20px 20px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <div style="font-size: 14px; line-height: 140%; text-align: left; word-wrap: break-word;">
-        <p style="line-height: 140%;"><span style="background-color: #fbeeb8; line-height: 19.6px;">SCALISE</span></p>
+        <p style="line-height: 140%;"><span style="line-height: 19.6px;">SCALISE</span></p>
       </div>
     
           </td>

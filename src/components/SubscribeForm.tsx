@@ -37,97 +37,102 @@ const Subscribe: NextPage = () => {
     }
   };
   return (
-    <div className="flex flex-col items-center justify-center bg-white py-6">
-      {isSubmitted ? (
-        <h1>Thank you for subscribing!</h1>
-      ) : (
-        <>
-          <h1 className="text-center text-4xl font-bold">Subscribe</h1>
-          <p className="mb-4 text-center">
-            Sign up with your email address to receive news and updates.
-          </p>
-          <form className="flex items-center" onSubmit={handleSubmit(onSubmit)}>
-            <input
-              className="rounded-l-lg bg-gray-200 px-4 py-2 leading-tight focus:border-gray-500 focus:bg-white focus:outline-none"
-              type="email"
-              placeholder="Enter your email address"
-              {...register("email", { required: true })}
-            />
-            <button
-              className="focus:shadow-outline border border-rose-700 px-4 py-2 font-bold text-rose-700 hover:bg-rose-700 hover:text-white active:bg-rose-400"
-              type="submit"
+    <main>
+      <div className="flex flex-col items-center justify-center bg-white py-6">
+        {isSubmitted ? (
+          <h1>Thank you for subscribing!</h1>
+        ) : (
+          <>
+            <h1 className="text-center text-4xl font-bold">Subscribe</h1>
+            <p className="mb-4 text-center">
+              Sign up with your email address to receive news and updates.
+            </p>
+            <form
+              className="flex items-center"
+              onSubmit={handleSubmit(onSubmit)}
             >
-              SIGN UP
-            </button>
-          </form>
-        </>
-      )}
-      <div className="mt-4 flex justify-center gap-2 bg-white">
-        <Link
-          href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
-          className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <SpotifyIcon />
-        </Link>
+              <input
+                className="rounded-l-lg bg-gray-200 px-4 py-2 leading-tight focus:border-gray-500 focus:bg-white focus:outline-none"
+                type="email"
+                placeholder="Enter your email address"
+                {...register("email", { required: true })}
+              />
+              <button
+                className="focus:shadow-outline border border-rose-700 px-4 py-2 font-bold text-rose-700 hover:bg-rose-700 hover:text-white active:bg-rose-400"
+                type="submit"
+              >
+                SIGN UP
+              </button>
+            </form>
+          </>
+        )}
+        <div className="mt-4 flex justify-center gap-2 bg-white">
+          <Link
+            href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
+            className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <SpotifyIcon />
+          </Link>
 
-        <Link
-          href="https://music.apple.com/us/artist/scalise/1529031635"
-          className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <AppleMusicIcon />
-        </Link>
+          <Link
+            href="https://music.apple.com/us/artist/scalise/1529031635"
+            className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <AppleMusicIcon />
+          </Link>
 
-        <Link
-          href="https://twitter.com/ScaliseTheBand"
-          className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <TwitterIcon />
-        </Link>
+          <Link
+            href="https://twitter.com/ScaliseTheBand"
+            className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <TwitterIcon />
+          </Link>
 
-        <Link
-          href="https://www.facebook.com/ScaliseTheBand"
-          className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <FacebookIcon />
-        </Link>
+          <Link
+            href="https://www.facebook.com/ScaliseTheBand"
+            className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <FacebookIcon />
+          </Link>
 
-        <Link
-          href="https://www.tiktok.com/@scaliseband"
-          className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <InstagramIcon />
-        </Link>
+          <Link
+            href="https://www.tiktok.com/@scaliseband"
+            className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <InstagramIcon />
+          </Link>
 
-        <Link
-          href="https://www.tiktok.com/@scaliseband"
-          className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <TikTokIcon />
-        </Link>
+          <Link
+            href="https://www.tiktok.com/@scaliseband"
+            className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <TikTokIcon />
+          </Link>
 
-        <Link
-          href="https://www.youtube.com/channel/UCWBsxAAhmKP1nRHWQQ5N0Qg"
-          className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <YoutubeIcon />
-        </Link>
+          <Link
+            href="https://www.youtube.com/channel/UCWBsxAAhmKP1nRHWQQ5N0Qg"
+            className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <YoutubeIcon />
+          </Link>
+        </div>
+        <p className="mt-4 text-center">© Scalise 2023</p>
       </div>
-      <p className="mt-4 text-center">© Scalise 2023</p>
-    </div>
+    </main>
   );
 };
 

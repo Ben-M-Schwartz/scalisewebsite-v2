@@ -65,7 +65,8 @@ const Home: NextPage = () => {
         <div className="flex w-full items-center justify-center border-4 border-gray-400">
           <div className="w-full xl:w-3/4">
             <div className="z-10 flex h-32 w-full flex-row justify-around">
-              <div className="flex h-full w-1/3 flex-row items-center justify-center gap-12 motion-safe:animate-[pulse_6s_ease-in-out_infinite]">
+              <div className="flex h-full w-1/3 flex-row items-center justify-center gap-12">
+                {/*motion-safe:animate-[pulse_6s_ease-in-out_infinite]*/}
                 <div className="relative h-full w-1/2 max-md:hidden">
                   <Image
                     src={hoodieFront}
@@ -100,7 +101,8 @@ const Home: NextPage = () => {
                   Shop Now
                 </Link>
               </div>
-              <div className="flex h-full w-1/3 flex-row items-center justify-center gap-12 motion-safe:animate-[pulse_6s_ease-in-out_infinite]">
+              <div className="flex h-full w-1/3 flex-row items-center justify-center gap-12">
+                {/*motion-safe:animate-[pulse_6s_ease-in-out_infinite]*/}
                 <div className="relative h-full w-full sm:w-1/2">
                   <Image
                     src={crewFront}

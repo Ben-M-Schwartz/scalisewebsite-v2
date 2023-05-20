@@ -12,6 +12,8 @@ import { CartContext, type CartContextType } from "~/pages/_app";
 
 import { Images } from "~/components/productImages";
 
+import { motion } from "framer-motion";
+
 /* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
@@ -313,70 +315,31 @@ const Product: NextPage = (
           </div>
         </div>
         <div className="flex flex-col items-center justify-center pb-20 pt-8 md:flex-row md:items-start md:gap-10 md:pt-0 xl:px-28">
-          {/*<div className="relative flex h-full w-2/3 flex-col md:w-1/2">
-            <div className="flex flex-col md:flex-row">
-              <div
-                className={
-                  images!.length > 1
-                    ? "flex w-1/3 flex-row max-md:order-1 md:flex-col lg:w-1/6"
-                    : "hidden"
-                }
-              >
-                {images?.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setImage(index);
-                    }}
-                  >
-                    <Image
-                      className="full object-cover shadow-lg"
-                      src={`/${image.trim()}`}
-                      alt="image"
-                      height={719}
-                      width={540}
-                    />
-                  </button>
-                ))}
-              </div>
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  hidden: { opacity: 0, y: -20 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      y: { stiffness: 1000, duration: 0.5 },
-                      opacity: { duration: 0.5 },
-                    },
-                  },
-                }}
-              >
-                              <Image
-                      className="full flex object-cover shadow-lg"
-                      src={`/${images![imageIndex]?.trim() as string}`}
-                      alt="image"
-                      height={719}
-                      width={540}
-                    />
-              </motion.div>
-            </div>
-          </div>
-              */}
           {images?.length === 1 && (
-            <Image
-              className="full flex object-cover shadow-lg"
-              src={`/${images[0]?.trim() as string}`}
-              alt="image"
-              height={719}
-              width={540}
-            />
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: {
+                  y: { stiffness: 1000, duration: 0.5 },
+                  opacity: { duration: 0.5 },
+                },
+              }}
+            >
+              <Image
+                className="full flex border-white object-cover shadow-lg"
+                src={`/${images[0]?.trim() as string}`}
+                alt="image"
+                height={719}
+                width={540}
+              />
+            </motion.div>
           )}
           {(images?.length as number) > 1 && (
             <Images images={images as string[]} />
           )}
+
           <div className="w-2/3 md:w-1/3">
             <div className="container flex flex-col gap-4 pb-4">
               <h1 className="mt-12 text-4xl text-white md:mt-8 md:text-5xl lg:text-6xl">
