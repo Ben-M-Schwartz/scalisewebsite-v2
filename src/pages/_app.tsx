@@ -116,9 +116,6 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         </AnimatePresence>
       </CartContext.Provider>
       <SubscribeForm />
-      {/* 
-      Ran out of the free tier on vercel
-      <Analytics /> */}
     </ClerkProvider>
   );
 };

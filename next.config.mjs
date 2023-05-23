@@ -31,12 +31,7 @@ const config = {
         headers: createSecureHeaders({
           contentSecurityPolicy: {
             directives: {
-              defaultSrc: [
-                "'self'",
-                "https://clerk.com",
-                "https://ruling-grubworm-38.clerk.accounts.dev/*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/dev_browser",
-              ],
+              defaultSrc: ["'self'"],
               styleSrc: ["'self'", "'unsafe-inline'"],
               imgSrc: [
                 "'self'",
@@ -47,7 +42,7 @@ const config = {
               formAction: "'self'",
               frameSrc: [
                 "https://editor.unlayer.com/1.5.8/editor.html",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/dev_browser/init",
+                "https://clerk.scalise.band/v1/dev_browser/init",
                 "https://www.youtube.com/embed/I5gtiSsExDA",
                 "https://www.youtube.com/embed/8dCrG2TTlF4",
                 "https://www.youtube.com/embed/Do7MAZ_EMUI",
@@ -64,29 +59,20 @@ const config = {
               scriptSrc: [
                 "'self'",
                 "https://editor.unlayer.com/embed.js",
-                "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4/dist/clerk.browser.js",
-                "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4.40.1/dist/vendors_f3b780_4.40.1.js",
-                "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4.40.1/dist/ui-common_f3b780_4.40.1.js",
-                "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4.40.1/dist/signin_f3b780_4.40.1.js",
+                "https://clerk.scalise.band/npm/@clerk/clerk-js@4/dist/clerk.browser.js",
+                "https://clerk.scalise.band/npm/@clerk/clerk-js@4.40.1/dist/vendors_f3b780_4.40.1.js",
+                "https://clerk.scalise.band/npm/@clerk/clerk-js@4.40.1/dist/ui-common_f3b780_4.40.1.js",
+                "https://clerk.scalise.band/npm/@clerk/clerk-js@4.40.1/dist/signin_f3b780_4.40.1.js",
               ],
-              workerSrc: "blob: https://scalisewebsite-v2.vercel.app/*",
+              workerSrc: "blob: https://scalisewebsite-v2.vercel.app/",
               connectSrc: [
-                "https://scalisewebsite-v2.vercel.app/*",
                 "'self'",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/dev_browser",
-                "https://ruling-grubworm-38.clerk.accounts.dev/npm/@clerk/clerk-js@4/dist/clerk.browser.js:*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sign_ins",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/environment",
-                "https://ruling-grubworm-38.clerk.accounts.dev/*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sign_ins/sia_2PtlzGWUDJloICYL3qJ9QaDeOA2/attempt_first_factor",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sign_ins/sia_2PtlzGWUDJloICYL3qJ9QaDeOA2/*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sessions/sess_2PtpRBDNYnWSYIn9OBJMMTWRazk/touch",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sessions/sess_2PtpRBDNYnWSYIn9OBJMMTWRazk/*",
-                "https://ruling-grubworm-38.clerk.accounts.dev/v1/client/sessions/sess_2PtpRBDNYnWSYIn9OBJMMTWRazk/tokens",
+                "https://clerk.scalise.band/v1/environment",
+                "https://clerk.scalise.band/v1/client",
+                "https://clerk.scalise.band/v1/client/sign_ins",
+                "https://clerk.scalise.band/v1/client/sign_ins/sia_2PtlzGWUDJloICYL3qJ9QaDeOA2/attempt_first_factor",
+                "https://clerk.scalise.band/v1/client/sessions/sess_2PtpRBDNYnWSYIn9OBJMMTWRazk/touch",
+                "https://clerk.scalise.band/v1/client/sessions/sess_2PtpRBDNYnWSYIn9OBJMMTWRazk/tokens",
                 "https://vitals.vercel-insights.com/v1/vitals",
               ],
               //eslint-disable-next-line
