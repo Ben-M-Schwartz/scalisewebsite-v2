@@ -316,113 +316,126 @@ const Music: NextPage = () => {
             PRESS PHOTOS
           </h1>
           <div className="flex flex-row flex-wrap">
-            <Image
-              src={image1}
-              alt="Press Image"
-              width={473}
-              height={316}
-              loading="lazy"
-              className="flex-auto object-cover"
-            />
-
-            <Image
-              src={image2}
-              alt="Press Image"
-              width={474}
-              height={316}
-              loading="lazy"
-              className="flex-auto object-cover"
-            />
-
-            <Image
-              src={image3}
-              alt="Press Image"
-              width={550}
-              height={316}
-              loading="lazy"
-              className="flex-auto object-cover"
-            />
-
-            <Image
-              src={image4}
-              alt="Press Image"
-              width={326}
-              height={390}
-              loading="lazy"
-              className="flex-auto object-cover"
-            />
-
-            <Image
-              src={image5}
-              alt="Press Image"
-              width={584}
-              height={390}
-              loading="lazy"
-              className="flex-auto object-cover"
-            />
-
-            <Image
-              src={image6}
-              alt="Press Image"
-              width={585}
-              height={390}
-              loading="lazy"
-              className="flex-auto object-cover"
-            />
-
-            <Image
-              src={image7}
-              alt="Press Image"
-              width={518}
-              height={345}
-              loading="lazy"
-              className="flex-auto object-cover"
-            />
-
-            <Image
-              src={image8}
-              alt="Press Image"
-              width={460}
-              height={345}
-              loading="lazy"
-              className="flex-auto object-cover"
-            />
-
-            <Image
-              src={image9}
-              alt="Press Image"
-              width={518}
-              height={345}
-              loading="lazy"
-              className="flex-auto object-cover"
-            />
-
-            <Image
-              src={image10}
-              alt="Press Image"
-              width={499}
-              height={333}
-              loading="lazy"
-              className="flex-auto object-cover"
-            />
-
-            <Image
-              src={image11}
-              alt="Press Image"
-              width={499}
-              height={333}
-              loading="lazy"
-              className="flex-auto object-cover"
-            />
-
-            <Image
-              src={image12}
-              alt="Press Image"
-              width={499}
-              height={333}
-              loading="lazy"
-              className="flex-auto object-cover"
-            />
+            <Link href="/bandPhoto3.jpg">
+              <Image
+                src={image1}
+                alt="Press Image"
+                width={473}
+                height={316}
+                loading="lazy"
+                className="flex-auto object-cover"
+              />
+            </Link>
+            <Link href="/porchPhoto.jpg">
+              <Image
+                src={image2}
+                alt="Press Image"
+                width={474}
+                height={316}
+                loading="lazy"
+                className="flex-auto object-cover"
+              />
+            </Link>
+            <Link href="/tunnelWalking.jpg">
+              <Image
+                src={image3}
+                alt="Press Image"
+                width={550}
+                height={316}
+                loading="lazy"
+                className="flex-auto object-cover"
+              />
+            </Link>
+            <Link href="/astroLogoTransparent.jpg">
+              <Image
+                src={image4}
+                alt="Press Image"
+                width={326}
+                height={390}
+                loading="lazy"
+                className="flex-auto object-cover"
+              />
+            </Link>
+            <Link href="/bandPhoto2.jpg">
+              <Image
+                src={image5}
+                alt="Press Image"
+                width={584}
+                height={390}
+                loading="lazy"
+                className="flex-auto object-cover"
+              />
+            </Link>
+            <Link href="/tunnelPhoto2.jpg">
+              <Image
+                src={image6}
+                alt="Press Image"
+                width={585}
+                height={390}
+                loading="lazy"
+                className="flex-auto object-cover"
+              />
+            </Link>
+            <Link href="/barnPhoto.jpg">
+              <Image
+                src={image7}
+                alt="Press Image"
+                width={518}
+                height={345}
+                loading="lazy"
+                className="flex-auto object-cover"
+              />
+            </Link>
+            <Link href="/7th-st-live13.jpg">
+              <Image
+                src={image8}
+                alt="Press Image"
+                width={460}
+                height={345}
+                loading="lazy"
+                className="flex-auto object-cover"
+              />
+            </Link>
+            <Link href="/tunnelEPKPhoto.jpg">
+              <Image
+                src={image9}
+                alt="Press Image"
+                width={518}
+                height={345}
+                loading="lazy"
+                className="flex-auto object-cover"
+              />
+            </Link>
+            <Link href="/couchPhoto.jpg">
+              <Image
+                src={image10}
+                alt="Press Image"
+                width={499}
+                height={333}
+                loading="lazy"
+                className="flex-auto object-cover"
+              />
+            </Link>
+            <Link href="/bandPhoto4.jpg">
+              <Image
+                src={image11}
+                alt="Press Image"
+                width={499}
+                height={333}
+                loading="lazy"
+                className="flex-auto object-cover"
+              />
+            </Link>
+            <Link href="/bandPhoto1.jpg">
+              <Image
+                src={image12}
+                alt="Press Image"
+                width={499}
+                height={333}
+                loading="lazy"
+                className="flex-auto object-cover"
+              />
+            </Link>
           </div>
         </div>
 
