@@ -345,24 +345,35 @@ const Product: NextPage = (
               <h1 className="mt-12 text-4xl text-white md:mt-8 md:text-5xl lg:text-6xl">
                 {productData[0].name}
               </h1>
-              <div className="flex flex-row">
-                <p
-                  className={`mb-2 pr-2 text-xl tracking-tight text-white ${
-                    productData[0].sale_price === null ? "hidden" : "block"
-                  }`}
-                >
-                  ${productData[0].sale_price}
-                  {(productData[0].sale_price as number) % 1 === 0 ? ".00" : ""}
-                </p>
-                <p
-                  className={`mb-2 text-xl tracking-tight text-white ${
-                    productData[0].sale_price !== null ? "line-through" : ""
-                  }`}
-                >
-                  ${productData[0].price}
-                  {productData[0].price % 1 === 0 ? ".00" : ""}
-                </p>
-              </div>
+              {productData[0].name ===
+                "From Nothing To Nothing Digital Download" && (
+                <h5 className="mb-2 pr-2 text-lg tracking-tight text-white">
+                  FREE!
+                </h5>
+              )}
+              {productData[0].name !==
+                "From Nothing To Nothing Digital Download" && (
+                <div className="flex flex-row">
+                  <p
+                    className={`mb-2 pr-2 text-xl tracking-tight text-white ${
+                      productData[0].sale_price === null ? "hidden" : "block"
+                    }`}
+                  >
+                    ${productData[0].sale_price}
+                    {(productData[0].sale_price as number) % 1 === 0
+                      ? ".00"
+                      : ""}
+                  </p>
+                  <p
+                    className={`mb-2 text-xl tracking-tight text-white ${
+                      productData[0].sale_price !== null ? "line-through" : ""
+                    }`}
+                  >
+                    ${productData[0].price}
+                    {productData[0].price % 1 === 0 ? ".00" : ""}
+                  </p>
+                </div>
+              )}
             </div>
             <p className="my-8 text-xl text-white">
               {productData[0].description}
@@ -433,87 +444,104 @@ const Product: NextPage = (
                 {productData[0].description !== "" && (
                   <p>{productData[0].description}</p>
                 )}
-                {!soldOut && (
-                  <>
-                    {maxQuantity !== -1 && (
-                      <div>
-                        <label
-                          htmlFor="quantitiy"
-                          className="block pb-2 text-sm font-medium text-white"
-                        >
-                          Quantity
-                        </label>
-                        <div className="relative flex w-1/2 items-center sm:w-1/4">
-                          <select
-                            id="quantity"
-                            defaultValue="1"
-                            {...cartRegister("quantity")}
-                            //onChange={handleQuantityChange}
-                            onClick={() => {
-                              if (pickedSize === "") {
-                                window.alert("select a size first");
-                              }
-                            }}
-                            onChange={() => setButtonText("Add to Cart")}
-                            className="z-10 h-12 w-full appearance-none border bg-transparent pl-4 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                {productData[0].name ===
+                  "From Nothing To Nothing Digital Download" && (
+                  <Link
+                    href="https://drive.google.com/file/d/1wtm3NGxEYZNAJKuiHrc6BPGojMYsEip6/view"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="mb-2 mr-2 inline-block w-1/2 rounded-lg border py-5 text-center text-sm font-medium text-white hover:bg-white hover:text-black"
+                  >
+                    Click here for download
+                  </Link>
+                )}
+                {!soldOut &&
+                  productData[0].name !==
+                    "From Nothing To Nothing Digital Download" && (
+                    <>
+                      {maxQuantity !== -1 && (
+                        <div>
+                          <label
+                            htmlFor="quantitiy"
+                            className="block pb-2 text-sm font-medium text-white"
                           >
-                            {[...(Array(Math.min(maxQuantity, 20)) as number[])]
-                              .map((_, i) => i + 1)
-                              .map((i: number) => (
-                                <option key={i} value={i}>
-                                  {i}
-                                </option>
-                              ))}
-                          </select>
-                          <div className="absolute flex h-full w-full flex-row items-center justify-end object-contain">
-                            <div className="absolute z-0 mr-4 h-5 w-5 md:max-lg:mr-2">
-                              <CarretDown />
+                            Quantity
+                          </label>
+                          <div className="relative flex w-1/2 items-center sm:w-1/4">
+                            <select
+                              id="quantity"
+                              defaultValue="1"
+                              {...cartRegister("quantity")}
+                              //onChange={handleQuantityChange}
+                              onClick={() => {
+                                if (pickedSize === "") {
+                                  window.alert("select a size first");
+                                }
+                              }}
+                              onChange={() => setButtonText("Add to Cart")}
+                              className="z-10 h-12 w-full appearance-none border bg-transparent pl-4 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                            >
+                              {[
+                                ...(Array(
+                                  Math.min(maxQuantity, 20)
+                                ) as number[]),
+                              ]
+                                .map((_, i) => i + 1)
+                                .map((i: number) => (
+                                  <option key={i} value={i}>
+                                    {i}
+                                  </option>
+                                ))}
+                            </select>
+                            <div className="absolute flex h-full w-full flex-row items-center justify-end object-contain">
+                              <div className="absolute z-0 mr-4 h-5 w-5 md:max-lg:mr-2">
+                                <CarretDown />
+                              </div>
                             </div>
                           </div>
+                          {/*                       <input
+                    id="quantity"
+                    className="block w-1/2 rounded-lg border bg-black px-6 py-2 text-center text-sm text-white [appearance:textfield] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black sm:w-1/4 md:max-lg:px-4"
+                    {...cartRegister("quantity", { required: true })}
+                    type="number"
+                    defaultValue={1}
+                    max={maxQuantity}
+                    min={1}
+                  /> */}
                         </div>
-                        {/*                       <input
-                        id="quantity"
-                        className="block w-1/2 rounded-lg border bg-black px-6 py-2 text-center text-sm text-white [appearance:textfield] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black sm:w-1/4 md:max-lg:px-4"
-                        {...cartRegister("quantity", { required: true })}
-                        type="number"
-                        defaultValue={1}
-                        max={maxQuantity}
-                        min={1}
-                      /> */}
-                      </div>
-                    )}
-                    {!processing && (
-                      <button
-                        type="submit"
-                        id="submitButton"
-                        disabled={addToCartDisabled}
-                        className={`mb-2 mr-2 inline-block w-1/2 rounded-lg border py-5 text-sm font-medium text-white hover:bg-white hover:text-black ${
-                          addToCartDisabled ? "cursor-not-allowed" : ""
-                        }`}
-                        onClick={(e) => {
-                          if (pickedSize === "") {
-                            e.preventDefault();
-                            alert("Please pick a size");
-                          }
-                        }}
-                      >
-                        {buttonText}
-                      </button>
-                    )}
-                    {processing && (
-                      <button
-                        type="button"
-                        className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-white"
-                        disabled
-                      >
-                        <div className="flex flex-row justify-center gap-2 px-2">
-                          <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
-                          <p className="flex">Processing...</p>
-                        </div>
-                      </button>
-                    )}
-                  </>
-                )}
+                      )}
+                      {!processing && (
+                        <button
+                          type="submit"
+                          id="submitButton"
+                          disabled={addToCartDisabled}
+                          className={`mb-2 mr-2 inline-block w-1/2 rounded-lg border py-5 text-sm font-medium text-white hover:bg-white hover:text-black ${
+                            addToCartDisabled ? "cursor-not-allowed" : ""
+                          }`}
+                          onClick={(e) => {
+                            if (pickedSize === "") {
+                              e.preventDefault();
+                              alert("Please pick a size");
+                            }
+                          }}
+                        >
+                          {buttonText}
+                        </button>
+                      )}
+                      {processing && (
+                        <button
+                          type="button"
+                          className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-white"
+                          disabled
+                        >
+                          <div className="flex flex-row justify-center gap-2 px-2">
+                            <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
+                            <p className="flex">Processing...</p>
+                          </div>
+                        </button>
+                      )}
+                    </>
+                  )}
               </form>
               {soldOut && (
                 <>
