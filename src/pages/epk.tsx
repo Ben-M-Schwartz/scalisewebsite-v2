@@ -312,9 +312,12 @@ const Music: NextPage = () => {
         </div>
         {/*TODO: When you click on an image it downloads the higher res photo */}
         <div className="w-full bg-black">
-          <h1 className="w-full py-20 text-center text-5xl font-bold text-white">
+          <h1 className="w-full pb-5 pt-20 text-center text-5xl font-bold text-white">
             PRESS PHOTOS
           </h1>
+          <h2 className="w-full pb-20 text-center text-3xl text-white">
+            Click for download
+          </h2>
           <div className="flex flex-row flex-wrap">
             <Link href="/bandPhoto3.jpg">
               <Image
