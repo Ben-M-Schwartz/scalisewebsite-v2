@@ -1,8 +1,8 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { SignIn } from "@clerk/clerk-react";
-import { useAuth } from "@clerk/nextjs";
+//import { SignIn } from "@clerk/clerk-react";
+//import { useAuth } from "@clerk/nextjs";
 
 /* export const config = {
   runtime: "experimental-edge",
@@ -10,49 +10,49 @@ import { useAuth } from "@clerk/nextjs";
 }; */
 
 const Home: NextPage = () => {
-  const { isLoaded, userId } = useAuth();
-  if (!isLoaded)
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <div className="flex flex-row justify-between gap-2 text-white">
-          <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
-          <p className="flex">Loading...</p>
-        </div>
-      </main>
-    );
-  if (!userId) {
-    document.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
-    });
-    document.onkeydown = function (e) {
-      if (e.key === "F12") {
-        return false;
-      }
-      if (e.ctrlKey && e.shiftKey && e.key === "i") {
-        return false;
-      }
-      if (e.ctrlKey && e.shiftKey && e.key === "c") {
-        return false;
-      }
-      if (e.ctrlKey && e.shiftKey && e.key === "j") {
-        return false;
-      }
-      if (e.ctrlKey && e.key === "u") {
-        return false;
-      }
-    };
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <h1 className="text-2xl text-white">
-          This page is for band members only
-        </h1>
-        <div>
-          <SignIn redirectUrl="/admin/home" />
-          <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
-        </div>
-      </main>
-    );
-  }
+  // const { isLoaded, userId } = useAuth();
+  // if (!isLoaded)
+  //   return (
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+  //       <div className="flex flex-row justify-between gap-2 text-white">
+  //         <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
+  //         <p className="flex">Loading...</p>
+  //       </div>
+  //     </main>
+  //   );
+  // if (!userId) {
+  //   document.addEventListener("contextmenu", (e) => {
+  //     e.preventDefault();
+  //   });
+  //   document.onkeydown = function (e) {
+  //     if (e.key === "F12") {
+  //       return false;
+  //     }
+  //     if (e.ctrlKey && e.shiftKey && e.key === "i") {
+  //       return false;
+  //     }
+  //     if (e.ctrlKey && e.shiftKey && e.key === "c") {
+  //       return false;
+  //     }
+  //     if (e.ctrlKey && e.shiftKey && e.key === "j") {
+  //       return false;
+  //     }
+  //     if (e.ctrlKey && e.key === "u") {
+  //       return false;
+  //     }
+  //   };
+  //   return (
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+  //       <h1 className="text-2xl text-white">
+  //         This page is for band members only
+  //       </h1>
+  //       <div>
+  //         <SignIn redirectUrl="/admin/home" />
+  //         <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
+  //       </div>
+  //     </main>
+  //   );
+  // }
   return (
     <>
       <Head>

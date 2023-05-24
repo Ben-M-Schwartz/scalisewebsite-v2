@@ -4,8 +4,8 @@ import Head from "next/head";
 import Link from "next/link";
 import { api } from "~/utils/api";
 import { useForm } from "react-hook-form";
-import { SignIn } from "@clerk/clerk-react";
-import { useAuth } from "@clerk/nextjs";
+//import { SignIn } from "@clerk/clerk-react";
+//import { useAuth } from "@clerk/nextjs";
 
 /* export const config = {
   runtime: "experimental-edge",
@@ -25,7 +25,7 @@ type NewProductForm = {
 
 const NewProduct: NextPage = () => {
   const { register, handleSubmit } = useForm<NewProductForm>();
-  const { isLoaded, userId } = useAuth();
+  //const { isLoaded, userId } = useAuth();
 
   const createProduct = api.inventory.create.useMutation();
 
@@ -46,45 +46,45 @@ const NewProduct: NextPage = () => {
       .catch((error) => console.error(error));
   };
 
-  if (!isLoaded)
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <div>Loading...</div>;
-      </main>
-    );
-  if (!userId) {
-    document.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
-    });
-    document.onkeydown = function (e) {
-      if (e.key === "F12") {
-        return false;
-      }
-      if (e.ctrlKey && e.shiftKey && e.key === "i") {
-        return false;
-      }
-      if (e.ctrlKey && e.shiftKey && e.key === "c") {
-        return false;
-      }
-      if (e.ctrlKey && e.shiftKey && e.key === "j") {
-        return false;
-      }
-      if (e.ctrlKey && e.key === "u") {
-        return false;
-      }
-    };
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <h1 className="text-2xl text-white">
-          This page is for band members only
-        </h1>
-        <div>
-          <SignIn redirectUrl="/admin/newProduct" />
-          <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
-        </div>
-      </main>
-    );
-  }
+  // if (!isLoaded)
+  //   return (
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+  //       <div>Loading...</div>;
+  //     </main>
+  //   );
+  // if (!userId) {
+  //   document.addEventListener("contextmenu", (e) => {
+  //     e.preventDefault();
+  //   });
+  //   document.onkeydown = function (e) {
+  //     if (e.key === "F12") {
+  //       return false;
+  //     }
+  //     if (e.ctrlKey && e.shiftKey && e.key === "i") {
+  //       return false;
+  //     }
+  //     if (e.ctrlKey && e.shiftKey && e.key === "c") {
+  //       return false;
+  //     }
+  //     if (e.ctrlKey && e.shiftKey && e.key === "j") {
+  //       return false;
+  //     }
+  //     if (e.ctrlKey && e.key === "u") {
+  //       return false;
+  //     }
+  //   };
+  //   return (
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+  //       <h1 className="text-2xl text-white">
+  //         This page is for band members only
+  //       </h1>
+  //       <div>
+  //         <SignIn redirectUrl="/admin/newProduct" />
+  //         <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
+  //       </div>
+  //     </main>
+  //   );
+  // }
 
   return (
     <>
@@ -108,7 +108,7 @@ const NewProduct: NextPage = () => {
           sizes="16x16"
           href="/images/favicon-16x16.png"
         />
-                <link
+        <link
           rel="apple-touch-icon"
           sizes="120x120"
           href="/images/apple-touch-icon.png"
@@ -148,7 +148,7 @@ const NewProduct: NextPage = () => {
               </label>
               <input
                 id="name"
-                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("name", { required: true })}
               />
             </div>
@@ -165,7 +165,7 @@ const NewProduct: NextPage = () => {
                 type="number"
                 min="0"
                 step=".01"
-                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("price", { required: true })}
               />
             </div>
@@ -180,7 +180,7 @@ const NewProduct: NextPage = () => {
               <textarea
                 id="desc"
                 maxLength={999}
-                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("description", { required: false })}
               />
             </div>
@@ -197,7 +197,7 @@ const NewProduct: NextPage = () => {
                 type="number"
                 step=".01"
                 min="0"
-                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("weight", { required: true })}
               />
             </div>
@@ -211,7 +211,7 @@ const NewProduct: NextPage = () => {
               </label>
               <input
                 id="weight"
-                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("sizes", { required: false })}
               />
             </div>
@@ -225,7 +225,7 @@ const NewProduct: NextPage = () => {
               </label>
               <input
                 id="quantities"
-                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("quantities", { required: true })}
               />
             </div>
@@ -243,7 +243,7 @@ const NewProduct: NextPage = () => {
               </label>
               <input
                 id="imageName"
-                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("imageName", { required: true })}
               />
             </div>
@@ -272,14 +272,14 @@ const NewProduct: NextPage = () => {
               </label>
               <input
                 id="store_order"
-                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("store_order", { required: true })}
               />
             </div>
 
             <button
               type="submit"
-              className="mb-2 mr-2 rounded-lg px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4 bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
+              className="mb-2 mr-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-800"
             >
               Create
             </button>

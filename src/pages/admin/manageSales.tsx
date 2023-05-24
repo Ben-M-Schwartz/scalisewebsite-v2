@@ -5,8 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import type { product_details } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
-import { SignIn } from "@clerk/clerk-react";
-import { useAuth } from "@clerk/nextjs";
+//import { SignIn } from "@clerk/clerk-react";
+//import { useAuth } from "@clerk/nextjs";
 
 /* export const config = {
   runtime: "experimental-edge",
@@ -130,47 +130,47 @@ function Card({ product }: { product: Product }) {
 
 const removeProduct: NextPage = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { isLoaded, userId } = useAuth();
+  //const { isLoaded, userId } = useAuth();
   const products = api.inventory.list.useQuery();
-  if (!isLoaded)
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <div className="text-white">Loading...</div>;
-      </main>
-    );
-  if (!userId) {
-    document.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
-    });
-    document.onkeydown = function (e) {
-      if (e.key === "F12") {
-        return false;
-      }
-      if (e.ctrlKey && e.shiftKey && e.key === "i") {
-        return false;
-      }
-      if (e.ctrlKey && e.shiftKey && e.key === "c") {
-        return false;
-      }
-      if (e.ctrlKey && e.shiftKey && e.key === "j") {
-        return false;
-      }
-      if (e.ctrlKey && e.key === "u") {
-        return false;
-      }
-    };
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <h1 className="text-2xl text-white">
-          This page is for band members only
-        </h1>
-        <div>
-          <SignIn redirectUrl="/admin/removeProduct" />
-          <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
-        </div>
-      </main>
-    );
-  }
+  // if (!isLoaded)
+  //   return (
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+  //       <div className="text-white">Loading...</div>;
+  //     </main>
+  //   );
+  // if (!userId) {
+  //   document.addEventListener("contextmenu", (e) => {
+  //     e.preventDefault();
+  //   });
+  //   document.onkeydown = function (e) {
+  //     if (e.key === "F12") {
+  //       return false;
+  //     }
+  //     if (e.ctrlKey && e.shiftKey && e.key === "i") {
+  //       return false;
+  //     }
+  //     if (e.ctrlKey && e.shiftKey && e.key === "c") {
+  //       return false;
+  //     }
+  //     if (e.ctrlKey && e.shiftKey && e.key === "j") {
+  //       return false;
+  //     }
+  //     if (e.ctrlKey && e.key === "u") {
+  //       return false;
+  //     }
+  //   };
+  //   return (
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+  //       <h1 className="text-2xl text-white">
+  //         This page is for band members only
+  //       </h1>
+  //       <div>
+  //         <SignIn redirectUrl="/admin/removeProduct" />
+  //         <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
+  //       </div>
+  //     </main>
+  //   );
+  // }
   return (
     <>
       <Head>

@@ -9,8 +9,8 @@ type Inventory = InferModel<typeof product_quantity, "select">;
 import { api } from "~/utils/api";
 import { useState } from "react";
 //import { useRouter } from "next/router";
-import { SignIn } from "@clerk/clerk-react";
-import { useAuth } from "@clerk/nextjs";
+//import { SignIn } from "@clerk/clerk-react";
+//import { useAuth } from "@clerk/nextjs";
 
 /* export const config = {
   runtime: "experimental-edge",
@@ -152,28 +152,28 @@ function Card({
 
 const updateInventory: NextPage = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { isLoaded, userId } = useAuth();
+  //const { isLoaded, userId } = useAuth();
   const products = api.inventory.list.useQuery();
   const inventory = api.inventory.listInventory.useQuery();
 
-  if (!isLoaded)
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <div>Loading...</div>;
-      </main>
-    );
-  if (!userId)
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <h1 className="text-2xl text-white">
-          This page is for band members only
-        </h1>
-        <div>
-          <SignIn redirectUrl="/admin/updateInventory" />
-          <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
-        </div>
-      </main>
-    );
+  // if (!isLoaded)
+  //   return (
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+  //       <div>Loading...</div>;
+  //     </main>
+  //   );
+  // if (!userId)
+  //   return (
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+  //       <h1 className="text-2xl text-white">
+  //         This page is for band members only
+  //       </h1>
+  //       <div>
+  //         <SignIn redirectUrl="/admin/updateInventory" />
+  //         <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
+  //       </div>
+  //     </main>
+  //   );
 
   interface indexSignature {
     [key: string]: number;
