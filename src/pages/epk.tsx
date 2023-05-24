@@ -312,10 +312,10 @@ const Music: NextPage = () => {
         </div>
         {/*TODO: When you click on an image it downloads the higher res photo */}
         <div className="w-full bg-black">
-          <h1 className="w-full pb-5 pt-20 text-center text-5xl font-bold text-white">
+          <h1 className="w-full pb-5 pt-10 text-center text-5xl font-bold text-white">
             PRESS PHOTOS
           </h1>
-          <h2 className="w-full pb-20 text-center text-3xl text-white">
+          <h2 className="w-full pb-10 text-center text-3xl text-white">
             Click for download
           </h2>
           <div className="flex flex-row flex-wrap">
@@ -349,7 +349,7 @@ const Music: NextPage = () => {
                 className="flex-auto object-cover"
               />
             </Link>
-            <Link href="/astroLogoTransparent.jpg">
+            <Link href="/astroLogoTransparent.png">
               <Image
                 src={image4}
                 alt="Press Image"
@@ -455,12 +455,14 @@ const Music: NextPage = () => {
               </button>
             </div>
             <div className="container relative h-96 w-full md:w-3/4">
-              <Image
-                src={stagePlot}
-                alt="Stage Plot Image"
-                fill
-                className="object-contain"
-              />
+              <Link href="/stageplot.png">
+                <Image
+                  src={stagePlot}
+                  alt="Stage Plot Image"
+                  fill
+                  className="object-contain"
+                />
+              </Link>
             </div>
           </div>
         </div>
