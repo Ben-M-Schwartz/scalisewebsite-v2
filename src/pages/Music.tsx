@@ -197,7 +197,7 @@ const Music: NextPage = () => {
                   </Link>
                   <Link
                     className="flex w-full flex-col justify-center rounded-sm border-4 border-white px-2 py-2 text-center text-xl text-white hover:bg-white hover:text-rose-800 md:w-1/2"
-                    href="/Store"
+                    href="/Product/From-Nothing-To-Nothing-CD"
                   >
                     Purchase
                   </Link>

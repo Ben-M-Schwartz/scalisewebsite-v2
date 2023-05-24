@@ -347,7 +347,7 @@ const Product: NextPage = (
               </h1>
               {productData[0].name ===
                 "From Nothing To Nothing Digital Download" && (
-                <h5 className="mb-2 pr-2 text-lg tracking-tight text-white">
+                <h5 className="mb-2 pr-2 text-2xl tracking-tight text-white">
                   FREE!
                 </h5>
               )}
