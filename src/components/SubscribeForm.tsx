@@ -67,25 +67,25 @@ const Subscribe: NextPage = () => {
           </>
         )}
         <div className="mt-4 flex justify-center gap-2 bg-white">
-          <label htmlFor="spotify-link" className="invisible absolute">
+          <label htmlFor="spotify-link-2" className="invisible absolute">
             Scalise Spotify Link
           </label>
-          <label htmlFor="applemusic-link" className="invisible absolute">
+          <label htmlFor="applemusic-link-2" className="invisible absolute">
             Scalise Apple Music Link
           </label>
-          <label htmlFor="twitter-link" className="invisible absolute">
+          <label htmlFor="twitter-link-2" className="invisible absolute">
             Scalise Twitter Link
           </label>
-          <label htmlFor="facebook-link" className="invisible absolute">
+          <label htmlFor="facebook-link-2" className="invisible absolute">
             Scalise Facebook Link
           </label>
-          <label htmlFor="instagram-link" className="invisible absolute">
+          <label htmlFor="instagram-link-2" className="invisible absolute">
             Scalise Instagram Link
           </label>
-          <label htmlFor="tiktok-link" className="invisible absolute">
+          <label htmlFor="tiktok-link-2" className="invisible absolute">
             Scalise TikTok Link
           </label>
-          <label htmlFor="youtube-link" className="invisible absolute">
+          <label htmlFor="youtube-link-2" className="invisible absolute">
             Scalise Youtube Link
           </label>
           <Link
@@ -93,7 +93,7 @@ const Subscribe: NextPage = () => {
             className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
             rel="noopener noreferrer"
             target="_blank"
-            id="spotify-link"
+            id="spotify-link-2"
           >
             <SpotifyIcon />
           </Link>
@@ -103,7 +103,7 @@ const Subscribe: NextPage = () => {
             className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
             rel="noopener noreferrer"
             target="_blank"
-            id="applemusic-link"
+            id="applemusic-link-2"
           >
             <AppleMusicIcon />
           </Link>
@@ -113,7 +113,7 @@ const Subscribe: NextPage = () => {
             className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
             rel="noopener noreferrer"
             target="_blank"
-            id="twitter-link"
+            id="twitter-link-2"
           >
             <TwitterIcon />
           </Link>
@@ -123,7 +123,7 @@ const Subscribe: NextPage = () => {
             className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
             rel="noopener noreferrer"
             target="_blank"
-            id="facebook-link"
+            id="facebook-link-2"
           >
             <FacebookIcon />
           </Link>
@@ -133,7 +133,7 @@ const Subscribe: NextPage = () => {
             className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
             rel="noopener noreferrer"
             target="_blank"
-            id="instagram-link"
+            id="instagram-link-2"
           >
             <InstagramIcon />
           </Link>
@@ -143,7 +143,7 @@ const Subscribe: NextPage = () => {
             className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
             rel="noopener noreferrer"
             target="_blank"
-            id="tiktok-link"
+            id="tiktok-link-2"
           >
             <TikTokIcon />
           </Link>
@@ -153,7 +153,7 @@ const Subscribe: NextPage = () => {
             className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
             rel="noopener noreferrer"
             target="_blank"
-            id="youtube-link"
+            id="youtube-link-2"
           >
             <YoutubeIcon />
           </Link>
