@@ -10,8 +10,6 @@ import {
 import { type InferModel } from "drizzle-orm";
 import { eq, and } from "drizzle-orm/expressions";
 
-import fs from "fs";
-
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 import {
@@ -19,16 +17,9 @@ import {
   backInStockSignUp,
   confirmSubscription,
   alreadySubscribed,
-  digitalDownload,
 } from "../../../components/emailTemplates";
 
-import {
-  MailerSend,
-  EmailParams,
-  Sender,
-  Recipient,
-  Attachment,
-} from "mailersend";
+import { MailerSend, EmailParams, Sender, Recipient } from "mailersend";
 
 const mailerSend = new MailerSend({
   apiKey: process.env.MAILERSEND_API_KEY as string,
@@ -388,33 +379,6 @@ export const emailRouter = createTRPCRouter({
           .values(newDesign)
           .catch((error) => console.error(error));
       }
-    }),
-
-  sendDigitalDownload: publicProcedure
-    .input(z.object({ email: z.string() }))
-    .mutation(async ({ input }) => {
-      const sentFrom = new Sender("noreply@scalise.band", "Scalise");
-      const recipients = [new Recipient(input.email)];
-      const emailParams = new EmailParams()
-        .setFrom(sentFrom)
-        .setTo(recipients)
-        //TODO: Change this to gradens email
-        .setReplyTo(new Recipient("benschwartz33@gmail.com"))
-        .setSubject("SCALISE - Digital Download")
-        .setHtml(digitalDownload)
-        .setAttachments([
-          new Attachment(
-            fs.readFileSync(
-              "../../../../public/From Nothing To Nothing MP3s.zip",
-              {
-                encoding: "base64",
-              }
-            ),
-            "file.mp3",
-            "attachment"
-          ),
-        ]);
-      await mailerSend.email.send(emailParams);
     }),
 
   contactForm: publicProcedure

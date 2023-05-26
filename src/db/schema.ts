@@ -5,6 +5,7 @@ import {
   varchar,
   index,
   serial,
+  timestamp,
   float,
   json,
 } from "drizzle-orm/mysql-core";
@@ -57,6 +58,7 @@ export const in_checkout_amounts = mysqlTable(
     stripe_checkout_id: varchar("stripe_checkout_id", { length: 255 }),
     size: varchar("size", { length: 255 }),
     quantity: int("quantity"),
+    created_at: timestamp("created_at").notNull().defaultNow(),
   },
   (amounts) => ({
     id_size_index_checkouts: index("id_size_index_checkouts").on(
@@ -73,6 +75,8 @@ export const carts = mysqlTable(
     cart_id: varchar("id", { length: 32 }).primaryKey().notNull(),
     total_price: double("total_price", { precision: 10, scale: 2 }),
     total_weight: float("total_weight"),
+    created_at: timestamp("created_at").notNull().defaultNow(),
+    updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
   },
   (table) => ({
     idIndex: index("cart_id_index").on(table.cart_id),
@@ -108,6 +112,7 @@ export const potential_subscribers = mysqlTable(
     id: serial("id").primaryKey().notNull(),
     email: varchar("email", { length: 255 }),
     token: varchar("token", { length: 255 }),
+    created_at: timestamp("created_at").notNull().defaultNow(),
   },
   (table) => ({
     subscriberIndex: index("subscriber_index").on(table.token),
@@ -202,4 +207,8 @@ export const emailDesigns = mysqlTable(
   })
 );
 
+/*
+!DRIZZLE HAS AN ERROR FOR TIMESTAMPS NEED TO CHANGE (now()) to NOW() and manually add ON UPDATE NOW() to
+!updated_at column in migrations
+*/
 //npx drizzle-kit generate:mysql --out migrations-folder --schema src/db/schema.ts

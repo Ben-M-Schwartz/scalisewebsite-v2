@@ -100,7 +100,7 @@ export const checkoutRouter = createTRPCRouter({
             item.is_taxed === 1 ? ["txr_1N10EAHmtb6xoR6RcIowDGt8"] : undefined,
         };
       });
-      //TODO: calculate shipping based on weight
+      //TODO: calculate shipping based on weight, need Graden to tell his preferences for this
       const session = await stripe.checkout.sessions.create({
         //payment_method_types: ['card'],
         line_items: lineItems,

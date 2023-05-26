@@ -61,7 +61,7 @@ export function HomeLink() {
 }
 
 export function CartLink() {
-  const [enabled, setEnabled] = useState(true);
+  const [enabled, setEnabled] = useState(hasCookie("cart_id"));
   const { cartAmount, updateAmount } = useContext<CartContextType>(CartContext);
 
   hasCookie("cart_id")

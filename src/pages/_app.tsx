@@ -32,15 +32,14 @@ export const config = {
   regions: ["cle1"],
 };
 
-//TODO: Update robots.txt
-
 const MyApp: AppType = ({ Component, pageProps }) => {
   const [cartAmount, setCartAmount] = useState(0);
   const updateAmount = (amount: number) => setCartAmount(cartAmount + amount);
 
   const router = useRouter();
   return (
-    <ClerkProvider {...pageProps}>
+    <>
+      {/* <ClerkProvider {...pageProps}> */}
       <Head>
         <meta name="description" content="Band Webpage for Scalise The Band" />
         <link rel="shortcut icon" href="/images/favicon.ico" />
@@ -116,7 +115,8 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         </AnimatePresence>
       </CartContext.Provider>
       <SubscribeForm />
-    </ClerkProvider>
+      {/* </ClerkProvider> */}
+    </>
   );
 };
 

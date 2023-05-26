@@ -335,7 +335,9 @@ const Cart: NextPage = () => {
               <AnimatePresence>
                 {updated && (
                   <motion.p
-                    className="px-6 text-white"
+                    className={`px-6 text-white ${
+                      processing ? "absolute" : "relative"
+                    }`}
                     initial={{ opacity: 1 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}

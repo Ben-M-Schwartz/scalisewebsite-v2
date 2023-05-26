@@ -74,13 +74,6 @@ export default async function handler(
         payment_status: session.payment_status,
       });
       if (session.payment_status === "paid") {
-        if (item.description === "From Nothing To Nothing Digital Download") {
-          //TODO: test this
-          const sendDownload = api.email.sendDigitalDownload.useMutation();
-          sendDownload
-            .mutateAsync({ email: session.customer_details?.email as string })
-            .catch((error) => console.error(error));
-        }
         await db
           .update(product_quantity)
           .set({

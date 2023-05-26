@@ -13,7 +13,9 @@ CREATE TABLE `cart_items` (
 CREATE TABLE `carts` (
 	`id` varchar(32) PRIMARY KEY NOT NULL,
 	`total_price` double(10,2),
-	`total_weight` float
+	`total_weight` float,
+	`created_at` timestamp DEFAULT NOW() NOT NULL,
+	`updated_at` timestamp DEFAULT NOW() NOT NULL ON UPDATE NOW()
 );
 
 CREATE TABLE `emailDesigns` (
@@ -27,7 +29,8 @@ CREATE TABLE `in_checkout_amounts` (
 	`product_id` int,
 	`stripe_checkout_id` varchar(255),
 	`size` varchar(255),
-	`quantity` int
+	`quantity` int,
+	`created_at` timestamp DEFAULT NOW() NOT NULL
 );
 
 CREATE TABLE `notifiedAlreadySubscribed` (
@@ -57,7 +60,8 @@ CREATE TABLE `orders` (
 CREATE TABLE `potential_subscribers` (
 	`id` serial AUTO_INCREMENT PRIMARY KEY NOT NULL,
 	`email` varchar(255),
-	`token` varchar(255)
+	`token` varchar(255),
+	`created_at` timestamp DEFAULT NOW() NOT NULL
 );
 
 CREATE TABLE `product_details` (
