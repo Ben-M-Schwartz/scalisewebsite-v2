@@ -5,7 +5,7 @@ import Head from "next/head";
 //import { Analytics } from "@vercel/analytics/react";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
+//import { ClerkProvider } from "@clerk/nextjs";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 

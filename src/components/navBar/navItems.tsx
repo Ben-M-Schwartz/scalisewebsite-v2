@@ -213,11 +213,15 @@ export function SocialLinks() {
         whileHover={{ scale: 1.3 }}
         whileTap={{ scale: 1.1 }}
       >
+        <label htmlFor="spotify-link" className="invisible absolute">
+          Scalise Spotify Link
+        </label>
         <Link
           href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
           className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           rel="noopener noreferrer"
           target="_blank"
+          id="spotify-link"
         >
           <SpotifyIcon />
         </Link>
@@ -227,11 +231,15 @@ export function SocialLinks() {
         whileHover={{ scale: 1.3 }}
         whileTap={{ scale: 1.1 }}
       >
+        <label htmlFor="applemusic-link" className="invisible absolute">
+          Scalise Apple Music Link
+        </label>
         <Link
           href="https://music.apple.com/us/artist/scalise/1529031635"
           className="block rounded border-gray-700 py-2 pl-3  pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           rel="noopener noreferrer"
           target="_blank"
+          id="applemusic-link"
         >
           <AppleMusicIcon />
         </Link>
@@ -241,11 +249,15 @@ export function SocialLinks() {
         whileHover={{ scale: 1.3 }}
         whileTap={{ scale: 1.1 }}
       >
+        <label htmlFor="twitter-link" className="invisible absolute">
+          Scalise Twitter Link
+        </label>
         <Link
           href="https://twitter.com/ScaliseTheBand"
           className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           rel="noopener noreferrer"
           target="_blank"
+          id="twitter-link"
         >
           <TwitterIcon />
         </Link>
@@ -255,11 +267,15 @@ export function SocialLinks() {
         whileHover={{ scale: 1.3 }}
         whileTap={{ scale: 1.1 }}
       >
+        <label htmlFor="facebook-link" className="invisible absolute">
+          Scalise Facebook Link
+        </label>
         <Link
           href="https://www.facebook.com/ScaliseTheBand"
           className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           rel="noopener noreferrer"
           target="_blank"
+          id="facebook-link"
         >
           <FacebookIcon />
         </Link>
@@ -269,11 +285,15 @@ export function SocialLinks() {
         whileHover={{ scale: 1.3 }}
         whileTap={{ scale: 1.1 }}
       >
+        <label htmlFor="instagram-link" className="invisible absolute">
+          Scalise Instagram Link
+        </label>
         <Link
           href="https://www.instagram.com/ScaliseTheBand/"
           className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           rel="noopener noreferrer"
           target="_blank"
+          id="instagram-link"
         >
           <InstagramIcon />
         </Link>
@@ -283,11 +303,15 @@ export function SocialLinks() {
         whileHover={{ scale: 1.3 }}
         whileTap={{ scale: 1.1 }}
       >
+        <label htmlFor="tiktok-link" className="invisible absolute">
+          Scalise TikTok Link
+        </label>
         <Link
           href="https://www.tiktok.com/@scaliseband"
           className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           rel="noopener noreferrer"
           target="_blank"
+          id="tiktok-link"
         >
           <TikTokIcon />
         </Link>
@@ -297,11 +321,15 @@ export function SocialLinks() {
         whileHover={{ scale: 1.3 }}
         whileTap={{ scale: 1.1 }}
       >
+        <label htmlFor="youtube-link" className="invisible absolute">
+          Scalise Youtube Link
+        </label>
         <Link
           href="https://www.youtube.com/channel/UCWBsxAAhmKP1nRHWQQ5N0Qg"
           className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
           rel="noopener noreferrer"
           target="_blank"
+          id="youtube-link"
         >
           <YoutubeIcon />
         </Link>

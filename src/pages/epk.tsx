@@ -474,65 +474,87 @@ const Music: NextPage = () => {
               Fill out this form or reach out to us at graden@scalise.band
             </p>
             <div className="order-1 mt-4 flex justify-center gap-4">
+              <label htmlFor="spotify-link" className="invisible absolute">
+                Scalise Spotify Link
+              </label>
               <Link
                 href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
-                className="block rounded py-2 pl-3 pr-4 text-white hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
+                id="spotify-link"
               >
                 <SpotifyIcon />
               </Link>
-
+              <label htmlFor="applemusic-link" className="invisible absolute">
+                Scalise Apple Music Link
+              </label>
               <Link
                 href="https://music.apple.com/us/artist/scalise/1529031635"
-                className="block rounded py-2 pl-3 pr-4 text-white hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+                className="block rounded border-gray-700 py-2 pl-3  pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
+                id="applemusic-link"
               >
                 <AppleMusicIcon />
               </Link>
-
+              <label htmlFor="twitter-link" className="invisible absolute">
+                Scalise Twitter Link
+              </label>
               <Link
                 href="https://twitter.com/ScaliseTheBand"
-                className="block rounded py-2 pl-3 pr-4 text-white hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
+                id="twitter-link"
               >
                 <TwitterIcon />
               </Link>
-
+              <label htmlFor="facebook-link" className="invisible absolute">
+                Scalise Facebook Link
+              </label>
               <Link
                 href="https://www.facebook.com/ScaliseTheBand"
-                className="block rounded py-2 pl-3 pr-4 text-white hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
+                id="facebook-link"
               >
                 <FacebookIcon />
               </Link>
-
+              <label htmlFor="instagram-link" className="invisible absolute">
+                Scalise Instagram Link
+              </label>
               <Link
-                href="https://www.tiktok.com/@scaliseband"
-                className="block rounded py-2 pl-3 pr-4 text-white hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+                href="https://www.instagram.com/ScaliseTheBand/"
+                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
+                id="instagram-link"
               >
                 <InstagramIcon />
               </Link>
-
+              <label htmlFor="tiktok-link" className="invisible absolute">
+                Scalise TikTok Link
+              </label>
               <Link
                 href="https://www.tiktok.com/@scaliseband"
-                className="block rounded py-2 pl-3 pr-4 text-white hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
+                id="tiktok-link"
               >
                 <TikTokIcon />
               </Link>
-
+              <label htmlFor="youtube-link" className="invisible absolute">
+                Scalise Youtube Link
+              </label>
               <Link
                 href="https://www.youtube.com/channel/UCWBsxAAhmKP1nRHWQQ5N0Qg"
-                className="block rounded py-2 pl-3 pr-4 text-white hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
+                id="youtube-link"
               >
                 <YoutubeIcon />
               </Link>

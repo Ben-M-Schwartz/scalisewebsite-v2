@@ -110,11 +110,33 @@ const Contact: NextPage = () => {
               <Image src={image} alt="scalise photo" width={544} height={431} />
             </div>
             <div className="order-1 mt-4 flex justify-center gap-2 bg-white">
+              <label htmlFor="spotify-link" className="invisible absolute">
+                Scalise Spotify Link
+              </label>
+              <label htmlFor="applemusic-link" className="invisible absolute">
+                Scalise Apple Music Link
+              </label>
+              <label htmlFor="twitter-link" className="invisible absolute">
+                Scalise Twitter Link
+              </label>
+              <label htmlFor="facebook-link" className="invisible absolute">
+                Scalise Facebook Link
+              </label>
+              <label htmlFor="instagram-link" className="invisible absolute">
+                Scalise Instagram Link
+              </label>
+              <label htmlFor="tiktok-link" className="invisible absolute">
+                Scalise TikTok Link
+              </label>
+              <label htmlFor="youtube-link" className="invisible absolute">
+                Scalise Youtube Link
+              </label>
               <Link
                 href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
                 className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
                 rel="noopener noreferrer"
                 target="_blank"
+                id="spotify-link"
               >
                 <SpotifyIcon />
               </Link>
@@ -124,6 +146,7 @@ const Contact: NextPage = () => {
                 className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
                 rel="noopener noreferrer"
                 target="_blank"
+                id="applemusic-link"
               >
                 <AppleMusicIcon />
               </Link>
@@ -133,6 +156,7 @@ const Contact: NextPage = () => {
                 className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
                 rel="noopener noreferrer"
                 target="_blank"
+                id="twitter-link"
               >
                 <TwitterIcon />
               </Link>
@@ -142,6 +166,7 @@ const Contact: NextPage = () => {
                 className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
                 rel="noopener noreferrer"
                 target="_blank"
+                id="facebook-link"
               >
                 <FacebookIcon />
               </Link>
@@ -151,6 +176,7 @@ const Contact: NextPage = () => {
                 className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
                 rel="noopener noreferrer"
                 target="_blank"
+                id="instagram-link"
               >
                 <InstagramIcon />
               </Link>
@@ -160,6 +186,7 @@ const Contact: NextPage = () => {
                 className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
                 rel="noopener noreferrer"
                 target="_blank"
+                id="tiktok-link"
               >
                 <TikTokIcon />
               </Link>
@@ -169,6 +196,7 @@ const Contact: NextPage = () => {
                 className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
                 rel="noopener noreferrer"
                 target="_blank"
+                id="youtube-link"
               >
                 <YoutubeIcon />
               </Link>
