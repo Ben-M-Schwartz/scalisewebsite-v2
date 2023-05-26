@@ -314,127 +314,127 @@ const Music: NextPage = () => {
             PRESS PHOTOS
           </h1>
           <h2 className="w-full pb-10 text-center text-3xl text-white">
-            Click for download
+            Click image for high res download
           </h2>
           <div className="flex flex-row flex-wrap">
-            <Link href="/bandPhoto3.jpg">
+            <Link href="/bandPhoto3.jpg" className="flex-auto">
               <Image
                 src={image1}
                 alt="Press Image"
-                width={473}
-                height={316}
+                width={378}
+                height={253}
                 loading="lazy"
-                className="flex-auto object-cover"
+                className="h-full w-full"
               />
             </Link>
-            <Link href="/porchPhoto.jpg">
+            <Link href="/porchPhoto.jpg" className="flex-auto">
               <Image
                 src={image2}
                 alt="Press Image"
-                width={474}
-                height={316}
+                width={379}
+                height={253}
                 loading="lazy"
-                className="flex-auto object-cover"
+                className="h-full w-full"
               />
             </Link>
-            <Link href="/tunnelWalking.jpg">
+            <Link href="/tunnelWalking.jpg" className="flex-auto">
               <Image
                 src={image3}
                 alt="Press Image"
-                width={550}
-                height={316}
+                width={440}
+                height={253}
                 loading="lazy"
-                className="flex-auto object-cover"
+                className="h-full w-full"
               />
             </Link>
-            <Link href="/astroLogoTransparent.png">
+            <Link href="/astroLogoTransparent.png" className="flex-auto">
               <Image
                 src={image4}
                 alt="Press Image"
-                width={326}
-                height={390}
+                width={261}
+                height={312}
                 loading="lazy"
-                className="flex-auto object-cover"
+                className="h-full w-full"
               />
             </Link>
-            <Link href="/bandPhoto2.jpg">
+            <Link href="/bandPhoto2.jpg" className="flex-auto">
               <Image
                 src={image5}
                 alt="Press Image"
-                width={584}
-                height={390}
+                width={467}
+                height={312}
                 loading="lazy"
-                className="flex-auto object-cover"
+                className="h-full w-full"
               />
             </Link>
-            <Link href="/tunnelPhoto2.jpg">
+            <Link href="/tunnelPhoto2.jpg" className="flex-auto">
               <Image
                 src={image6}
                 alt="Press Image"
-                width={585}
-                height={390}
+                width={468}
+                height={312}
                 loading="lazy"
-                className="flex-auto object-cover"
+                className="h-full w-full"
               />
             </Link>
-            <Link href="/barnPhoto.jpg">
+            <Link href="/barnPhoto.jpg" className="flex-auto">
               <Image
                 src={image7}
                 alt="Press Image"
-                width={518}
-                height={345}
+                width={414}
+                height={276}
                 loading="lazy"
-                className="flex-auto object-cover"
+                className="h-full w-full"
               />
             </Link>
-            <Link href="/7th-st-live13.jpg">
+            <Link href="/7th-st-live13.jpg" className="flex-auto">
               <Image
                 src={image8}
                 alt="Press Image"
-                width={460}
-                height={345}
+                width={368}
+                height={276}
                 loading="lazy"
-                className="flex-auto object-cover"
+                className="h-full w-full"
               />
             </Link>
-            <Link href="/tunnelEPKPhoto.jpg">
+            <Link href="/tunnelEPKPhoto.jpg" className="flex-auto">
               <Image
                 src={image9}
                 alt="Press Image"
-                width={518}
-                height={345}
+                width={414}
+                height={276}
                 loading="lazy"
-                className="flex-auto object-cover"
+                className="h-full w-full"
               />
             </Link>
-            <Link href="/couchPhoto.jpg">
+            <Link href="/couchPhoto.jpg" className="flex-auto">
               <Image
                 src={image10}
                 alt="Press Image"
-                width={499}
-                height={333}
+                width={399}
+                height={266}
                 loading="lazy"
-                className="flex-auto object-cover"
+                className="h-full w-full"
               />
             </Link>
-            <Link href="/bandPhoto4.jpg">
+            <Link href="/bandPhoto4.jpg" className="flex-auto">
               <Image
                 src={image11}
                 alt="Press Image"
-                width={499}
-                height={333}
+                width={399}
+                height={266}
                 loading="lazy"
-                className="flex-auto object-cover"
+                className="h-full w-full"
               />
             </Link>
-            <Link href="/bandPhoto1.jpg">
+            <Link href="/bandPhoto1.jpg" className="flex-auto">
               <Image
                 src={image12}
                 alt="Press Image"
-                width={499}
-                height={333}
+                width={399}
+                height={266}
                 loading="lazy"
-                className="flex-auto object-cover"
+                className="h-full w-full"
               />
             </Link>
           </div>
