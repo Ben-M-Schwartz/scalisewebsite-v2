@@ -62,7 +62,7 @@ const Home: NextPage = () => {
         />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black">
-        <div className="flex w-full items-center justify-center border-4 border-gray-400">
+        <div className="flex w-full items-center justify-center">
           <div className="w-full xl:w-3/4">
             <div className="z-10 flex h-32 w-full flex-row justify-around">
               <div className="flex h-full w-1/3 flex-row items-center justify-center gap-12">
@@ -92,7 +92,7 @@ const Home: NextPage = () => {
               </div>
               <div className="flex w-1/3 flex-col items-center justify-center gap-2 sm:w-1/4 lg:w-1/6">
                 <p className="text-lg font-bold text-white lg:text-xl xl:text-2xl">
-                  New Merch!
+                  NEW MERCH
                 </p>
                 <Link
                   className="w-1/2 rounded-sm border bg-rose-800 py-2 text-center text-white hover:border-rose-800 hover:bg-white hover:text-rose-800 active:bg-gray-300 sm:w-full"
@@ -140,14 +140,14 @@ const Home: NextPage = () => {
             className="absolute z-0 object-cover blur-sm"
             priority
           />
-          <h1 className="relative pb-6 text-center text-5xl text-white md:text-6xl lg:text-7xl xl:text-8xl">
+          <h1 className="relative pb-6 text-center text-5xl font-semibold text-white md:text-6xl lg:text-7xl xl:text-8xl">
             ALBUM RELEASE PARTY
           </h1>
           <div className="relative flex flex-col items-center justify-center gap-10 md:flex-row">
             <div className="order-2 flex w-full md:order-1 md:w-1/3">
               <div className="flex flex-col gap-2 lg:gap-3 xl:gap-4">
                 <h2 className="order-1 w-3/4 self-center text-left text-4xl font-bold text-white md:w-full md:text-right xl:text-5xl">
-                  June 22
+                  JUNE 22
                 </h2>
                 <h3 className="order-1 w-3/4 self-center text-left  text-xl text-white md:w-full md:text-right xl:text-2xl">
                   THE GREEN ROOM

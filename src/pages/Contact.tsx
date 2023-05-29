@@ -96,7 +96,7 @@ const Contact: NextPage = () => {
             <h1 className="order-1 text-center text-7xl md:text-left">
               Contact Us
             </h1>
-            <p className="order-1 w-2/3 text-center md:w-4/5 md:text-left">
+            <p className="order-1 w-2/3 text-center md:w-4/5">
               You can also reach out to us at{" "}
               <a
                 href="mailto:graden@scalise.band"

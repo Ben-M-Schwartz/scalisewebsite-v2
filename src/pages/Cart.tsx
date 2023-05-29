@@ -222,7 +222,6 @@ const Cart: NextPage = () => {
             await Promise.all(promises)
               .then(() => {
                 window.alert(errorMessage);
-                handleClearCart();
                 router.reload();
               })
               .catch(() =>

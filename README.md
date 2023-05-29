@@ -1,19 +1,27 @@
 #Scalise
+
 # ScaliseTheBandWebsite
+
 Webpage for the band Scalise
 
-This is the second version of my code for this website
+This is the second version of my code for this website, the first used express and mongoDB
 
-I decided to move away from express and mongoDB in favor of nextJS and mySQL using planetscale.
+Tools used:
 
+- NextJS, React, Typescript
+- TailwindCSS
+- TRPC
+- Planetscalse database, MySQL, Drizzle ORM
+- Stripe API
+- MailerSend API
 
 Goals for the website given by the band:
 
 - Easily accessible for them to edit
 - Store implemented
-  + add weight of all the items to charge shipping
-  + Manage credit card payments securely.
-  + have an option for people to pay with paypal, apple pay, google pay?	
+  - add weight of all the items to charge shipping
+  - Manage credit card payments securely.
+  - have an option for people to pay with paypal, apple pay, google pay?
 - Keep track of mailing list and previously sent emails
 - Send out email campaigns and stylise the emails
 - Have media players and be linked to bandsintown page

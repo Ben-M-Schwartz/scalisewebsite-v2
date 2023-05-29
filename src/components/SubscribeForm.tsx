@@ -43,7 +43,7 @@ const Subscribe: NextPage = () => {
           <h1>Thank you for subscribing!</h1>
         ) : (
           <>
-            <h1 className="text-center text-4xl font-bold">Subscribe</h1>
+            <h1 className="py-4 text-center text-4xl font-bold">SUBSCRIBE</h1>
             <p className="mb-4 text-center">
               Sign up with your email address to receive news and updates.
             </p>
@@ -52,7 +52,7 @@ const Subscribe: NextPage = () => {
               onSubmit={handleSubmit(onSubmit)}
             >
               <input
-                className="rounded-l-lg bg-gray-200 px-4 py-2 leading-tight focus:border-gray-500 focus:bg-white focus:outline-none"
+                className="rounded-sm bg-gray-200 px-4 py-2 leading-tight focus:border-gray-500 focus:bg-white focus:outline-none"
                 type="email"
                 placeholder="Enter your email address"
                 {...register("email", { required: true })}

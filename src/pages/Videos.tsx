@@ -32,7 +32,7 @@ const Videos: NextPage = () => {
           sizes="16x16"
           href="/images/favicon-16x16.png"
         />
-                <link
+        <link
           rel="apple-touch-icon"
           sizes="120x120"
           href="/images/apple-touch-icon.png"
@@ -63,7 +63,7 @@ const Videos: NextPage = () => {
           </h1>
         </div>
         <div>
-          <h1 className="py-10 text-8xl text-white">Live</h1>
+          <h1 className="py-10 text-8xl text-white">LIVE</h1>
         </div>
         <div className="grid w-full grid-cols-1 gap-4 px-10 md:grid-cols-2">
           <div>
@@ -74,7 +74,7 @@ const Videos: NextPage = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               loading="lazy"
-              className='aspect-video'
+              className="aspect-video"
             ></iframe>
           </div>
           <div>
@@ -85,7 +85,7 @@ const Videos: NextPage = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               loading="lazy"
-              className='aspect-video'
+              className="aspect-video"
             ></iframe>
           </div>
           <div>
@@ -96,7 +96,7 @@ const Videos: NextPage = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               loading="lazy"
-              className='aspect-video'
+              className="aspect-video"
             ></iframe>
           </div>
           <div>
@@ -107,11 +107,11 @@ const Videos: NextPage = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               loading="lazy"
-              className='aspect-video'
+              className="aspect-video"
             ></iframe>
           </div>
         </div>
-        <h1 className="py-10 text-8xl text-white">Vlogs</h1>
+        <h1 className="py-10 text-8xl text-white">VLOGS</h1>
         <div className="grid w-full grid-cols-1 gap-4 px-10 pb-10 md:grid-cols-2">
           <div>
             <iframe
@@ -121,7 +121,7 @@ const Videos: NextPage = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               loading="lazy"
-              className='aspect-video'
+              className="aspect-video"
             ></iframe>
           </div>
           <div>
@@ -132,7 +132,7 @@ const Videos: NextPage = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               loading="lazy"
-              className='aspect-video'
+              className="aspect-video"
             ></iframe>
           </div>
           <div>
@@ -143,7 +143,7 @@ const Videos: NextPage = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               loading="lazy"
-              className='aspect-video'
+              className="aspect-video"
             ></iframe>
           </div>
           <div>
@@ -154,7 +154,7 @@ const Videos: NextPage = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               loading="lazy"
-              className='aspect-video'
+              className="aspect-video"
             ></iframe>
           </div>
           <div>
@@ -165,7 +165,7 @@ const Videos: NextPage = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               loading="lazy"
-              className='aspect-video'
+              className="aspect-video"
             ></iframe>
           </div>
           <div>
@@ -176,7 +176,7 @@ const Videos: NextPage = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               loading="lazy"
-              className='aspect-video'
+              className="aspect-video"
             ></iframe>
           </div>
           <div>
@@ -187,7 +187,7 @@ const Videos: NextPage = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               loading="lazy"
-              className='aspect-video'
+              className="aspect-video"
             ></iframe>
           </div>
           <div>
@@ -198,7 +198,7 @@ const Videos: NextPage = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               loading="lazy"
-              className='aspect-video'
+              className="aspect-video"
             ></iframe>
           </div>
         </div>
