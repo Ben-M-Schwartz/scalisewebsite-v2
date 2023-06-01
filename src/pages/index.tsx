@@ -165,7 +165,7 @@ const Home: NextPage = () => {
               fill
               quality={75}
               //style={{ objectFit: "cover" }}
-              className="object- absolute z-0 h-full object-cover object-[0%_15%]"
+              className="absolute z-0 h-full object-cover brightness-75"
             />
             <div className="z-10 flex flex-col items-center justify-center gap-3 pt-20 sm:px-10 md:flex-row md:items-center md:justify-center md:gap-10">
               <div className="w-1/2 text-center md:order-1 md:h-1/2 md:w-1/2">
@@ -183,7 +183,7 @@ const Home: NextPage = () => {
                   </Link>
                 </div>
               </div>
-              <div className="h-1/2 w-1/2">
+              <div className="flex h-1/2 w-1/2 flex-col items-center">
                 <Image
                   src={sgky}
                   alt="Rest Of The Week Image"
@@ -209,7 +209,7 @@ const Home: NextPage = () => {
                   </Link>
                 </div>
               </div>
-              <div className="h-1/2 w-1/2">
+              <div className="flex h-1/2 w-1/2 flex-col items-center">
                 <Image
                   src={transferred}
                   alt="Transferred To Houston Image"
@@ -235,7 +235,7 @@ const Home: NextPage = () => {
                   </Link>
                 </div>
               </div>
-              <div className="h-1/2 w-1/2">
+              <div className="flex h-1/2 w-1/2 flex-col items-center">
                 <Image
                   src={restOfTheWeek}
                   alt="Rest Of The Week Image"
@@ -261,7 +261,7 @@ const Home: NextPage = () => {
                   </Link>
                 </div>
               </div>
-              <div className="h-1/2 w-1/2">
+              <div className="flex flex h-1/2 w-1/2 flex-col items-center">
                 <Image
                   src={fruitSnacks}
                   alt="Fruit Snacks Image"
@@ -287,7 +287,7 @@ const Home: NextPage = () => {
                   </Link>
                 </div>
               </div>
-              <div className="h-1/2 w-1/2">
+              <div className="flex h-1/2 w-1/2 flex-col items-center">
                 <Image
                   src={tmynmImage}
                   alt="Tell Me You Need Me Image"
@@ -313,7 +313,7 @@ const Home: NextPage = () => {
                   </Link>
                 </div>
               </div>
-              <div className="h-1/2 w-1/2">
+              <div className="flex h-1/2 w-1/2 flex-col items-center">
                 <Image
                   src={airbag}
                   alt="Airbag Image"

@@ -99,7 +99,7 @@ const Music: NextPage = () => {
                     </Link>
                   </div>
                 </div>
-                <div className="order-1 w-full md:w-1/2">
+                <div className="order-1 flex w-full flex-col items-center md:w-1/2">
                   <Image
                     src={sgky}
                     alt="She's Gonna Kill You Cover"
@@ -141,7 +141,7 @@ const Music: NextPage = () => {
                     </Link>
                   </div>
                 </div>
-                <div className="w-full md:w-1/2">
+                <div className="flex w-full flex-col items-center md:w-1/2">
                   <Image
                     src={transferred}
                     alt="Transferred To Houston Image"
@@ -183,7 +183,7 @@ const Music: NextPage = () => {
                     </Link>
                   </div>
                 </div>
-                <div className="order-1 flex w-full items-center justify-center md:w-1/2">
+                <div className="order-1 flex w-full flex-col items-center justify-center md:w-1/2">
                   <Image
                     src={airbag}
                     alt="Airbag Image"
@@ -225,7 +225,7 @@ const Music: NextPage = () => {
                     </Link>
                   </div>
                 </div>
-                <div className="flex w-full items-center justify-center md:w-1/2">
+                <div className="flex w-full flex-col items-center justify-center md:w-1/2">
                   <Image
                     src={fruitSnacks}
                     alt="Fruit Snacks Image"
