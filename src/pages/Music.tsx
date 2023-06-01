@@ -3,10 +3,15 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 
-import banner from "../../public/tunnelPhoto.webp";
+import banner from "../../public/1.png";
+import title from "../../public/Music (Handwritten).png";
+import white_paper from "../../public/White Crumple Background Lighter.png";
+import black_paper from "../../public/Black Crumple Background Darker.png";
+import red_background from "../../public/Red Background.png";
 import transferred from "../../public/transferred.webp";
 import fruitSnacks from "../../public/fruitSnacks.webp";
 import airbag from "../../public/airbag.webp";
+import sgky from "../../public/SGKY Cover.png";
 import album1 from "../../public/fromNothingToNothing.webp";
 
 import { AudioPlayer } from "~/components/audioPlayer";
@@ -63,27 +68,73 @@ const Music: NextPage = () => {
             fill
             quality={100}
             //style={{ objectFit: "cover" }}
-            className="absolute z-0 object-cover object-[0%_15%]"
+            className="absolute z-0 object-cover"
             priority
           />
-          <h1 className="z-10 py-24 text-center text-8xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-            MUSIC
-          </h1>
+          <Image
+            src={title}
+            alt="MUSIC"
+            className="z-10 p-10"
+            height={210}
+            width={281}
+          />
         </div>
 
         <div className="relative min-h-screen w-full">
           <div className="flex flex-col">
-            <div className="flex flex-col items-center gap-10 bg-black py-24">
-              <div className="flex flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
+            <div className="relative flex flex-col items-center gap-10 bg-stone-100 py-24">
+              <div className="z-10 flex flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
                 <div className="w-1/2 text-center md:order-1 md:w-1/2">
                   <div className="flex flex-col items-center justify-center gap-3">
-                    <h1 className="text-center text-4xl font-bold text-white">
+                    <h1 className="text-center text-4xl font-bold text-red-800">
+                      SHE&apos;S GONNA KILL YOU
+                    </h1>
+                    <Link
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="flex w-full flex-col justify-center rounded-sm border-4 border-red-800 py-2 text-center text-xl text-red-800 hover:bg-red-800 hover:text-stone-100 md:w-1/2"
+                      href="https://distrokid.com/hyperfollow/scalise/shes-gonna-kill-you"
+                    >
+                      Listen Here
+                    </Link>
+                  </div>
+                </div>
+                <div className="order-1 w-full md:w-1/2">
+                  <Image
+                    src={sgky}
+                    alt="She's Gonna Kill You Cover"
+                    loading="lazy"
+                    width={504}
+                    height={504}
+                    className="shadow-2xl shadow-red-900"
+                  />
+                </div>
+              </div>
+              <AudioPlayer
+                //demo={true}
+                player_id="sgkyDemo"
+                source="/She_s Gonna Kill You Clip.mp3"
+                title="She's Gonna Kill You"
+              />
+              <Image
+                src={white_paper}
+                alt="background"
+                className="absolute z-0"
+                fill
+              />
+            </div>
+
+            <div className="relative flex flex-col items-center gap-10 bg-stone-950 py-24">
+              <div className="z-10 flex flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
+                <div className="w-1/2 text-center md:order-1 md:w-1/2">
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <h1 className="text-center text-4xl font-bold text-stone-100">
                       TRANSFERRED TO HOUSTON
                     </h1>
                     <Link
                       rel="noopener noreferrer"
                       target="_blank"
-                      className="flex w-full flex-col justify-center rounded-sm border-4 border-white py-2 text-center text-xl text-white hover:bg-white hover:font-bold hover:text-black md:w-1/2"
+                      className="flex w-full flex-col justify-center rounded-sm border-4 border-stone-100 py-2 text-center text-xl text-stone-100 hover:bg-stone-100 hover:font-bold hover:text-stone-950 md:w-1/2"
                       href="https://distrokid.com/hyperfollow/scalise/transferred-to-houston"
                     >
                       Listen Here
@@ -107,19 +158,25 @@ const Music: NextPage = () => {
                 source="/Transferred to Houston Clip.mp3"
                 title="Transferred To Houston"
               />
+              <Image
+                src={black_paper}
+                alt="background"
+                className="absolute z-0"
+                fill
+              />
             </div>
 
-            <div className="flex w-full flex-col items-center gap-10 bg-white py-24">
+            <div className="relative flex w-full flex-col items-center gap-10 bg-stone-100 py-24">
               <div className="z-10 flex w-full flex-col items-center justify-center gap-3 md:flex-row md:gap-16">
                 <div className="w-1/2 text-center md:order-1 md:w-1/3">
                   <div className="flex flex-col items-center justify-center gap-3">
-                    <h1 className="z-1 tex-center text-4xl font-bold text-rose-800">
+                    <h1 className="z-1 tex-center text-4xl font-bold text-red-800">
                       AIRBAG
                     </h1>
                     <Link
                       rel="noopener noreferrer"
                       target="_blank"
-                      className="flex w-full flex-col justify-center rounded-sm border-4 border-rose-800 py-2 text-center text-xl text-rose-800 hover:bg-rose-800 hover:font-bold hover:text-white md:w-1/2"
+                      className="flex w-full flex-col justify-center rounded-sm border-4 border-red-800 py-2 text-center text-xl text-red-800 hover:bg-red-800 hover:font-bold hover:text-stone-100 md:w-1/2"
                       href="https://distrokid.com/hyperfollow/scalise/airbag"
                     >
                       Listen Here
@@ -143,19 +200,25 @@ const Music: NextPage = () => {
                 source="/Airbag Clip.mp3"
                 title="Airbag"
               />
+              <Image
+                src={white_paper}
+                alt="background"
+                className="absolute z-0"
+                fill
+              />
             </div>
 
-            <div className="flex w-screen flex-col items-center gap-10 bg-black py-24">
+            <div className="relative flex w-screen flex-col items-center gap-10 bg-stone-950 py-24">
               <div className="z-10 flex w-full flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:gap-0">
                 <div className="w-1/2 text-center md:order-1 md:w-1/2">
                   <div className="flex flex-col items-center justify-center gap-3">
-                    <h1 className="z-1 tex-center text-4xl font-bold text-white">
+                    <h1 className="z-1 tex-center text-4xl font-bold text-stone-100">
                       FRUIT SNACKS
                     </h1>
                     <Link
                       rel="noopener noreferrer"
                       target="_blank"
-                      className="flex w-full flex-col justify-center rounded-sm border-4 border-white px-2 py-2 text-center text-xl text-white hover:bg-white hover:font-bold hover:text-black md:w-1/2"
+                      className="flex w-full flex-col justify-center rounded-sm border-4 border-stone-100 px-2 py-2 text-center text-xl text-stone-100 hover:bg-stone-100 hover:font-bold hover:text-stone-950 md:w-1/2"
                       href="https://distrokid.com/hyperfollow/scalise/fruit-snacks"
                     >
                       Listen Here
@@ -179,37 +242,51 @@ const Music: NextPage = () => {
                 source="/Fruit Snacks Clip.mp3"
                 title="Fruit Snacks"
               />
+              <Image
+                src={black_paper}
+                alt="background"
+                className="absolute z-0"
+                fill
+              />
             </div>
 
-            <div className="z-10 flex flex-col items-center justify-center gap-3 bg-rose-800 py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
-              <div className="md:order-0 w-1/2 text-center">
-                <div className="flex flex-col items-center justify-center gap-3">
-                  <h1 className="text-center text-4xl font-bold text-white">
-                    FROM NOTHING TO NOTHING
-                  </h1>
-                  <Link
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="flex w-full flex-col justify-center rounded-sm border-4 border-white px-2 py-2 text-center text-xl text-white hover:bg-white hover:text-rose-800 md:w-1/2"
-                    href="https://distrokid.com/hyperfollow/scalise/from-nothing-to-nothing"
-                  >
-                    Listen
-                  </Link>
-                  <Link
-                    className="flex w-full flex-col justify-center rounded-sm border-4 border-white px-2 py-2 text-center text-xl text-white hover:bg-white hover:text-rose-800 md:w-1/2"
-                    href="/Product/From-Nothing-To-Nothing-CD"
-                  >
-                    Purchase
-                  </Link>
+            <div className="relative flex w-screen bg-red-800">
+              <div className="z-10 flex w-full flex-col items-center justify-center gap-3 py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
+                <div className="md:order-0 w-1/2 text-center">
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <h1 className="text-center text-4xl font-bold text-stone-100">
+                      FROM NOTHING TO NOTHING
+                    </h1>
+                    <Link
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="flex w-full flex-col justify-center rounded-sm border-4 border-stone-100 px-2 py-2 text-center text-xl text-stone-100 hover:bg-stone-100 hover:text-red-800 md:w-1/2"
+                      href="https://distrokid.com/hyperfollow/scalise/from-nothing-to-nothing"
+                    >
+                      Listen
+                    </Link>
+                    <Link
+                      className="flex w-full flex-col justify-center rounded-sm border-4 border-stone-100 px-2 py-2 text-center text-xl text-stone-100 hover:bg-stone-100 hover:text-red-800 md:w-1/2"
+                      href="/Product/From-Nothing-To-Nothing-CD"
+                    >
+                      Purchase
+                    </Link>
+                  </div>
                 </div>
+                <Image
+                  src={album1}
+                  alt="From Nothing To Nothing Album Cover"
+                  width={504}
+                  height={504}
+                  loading="lazy"
+                  className="shadow-2xl"
+                />
               </div>
               <Image
-                src={album1}
-                alt="From Nothing To Nothing Album Cover"
-                width={504}
-                height={504}
-                loading="lazy"
-                className="shadow-2xl"
+                src={red_background}
+                alt="background"
+                className="absolute z-0 object-cover"
+                fill
               />
             </div>
           </div>

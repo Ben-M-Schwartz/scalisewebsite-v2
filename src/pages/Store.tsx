@@ -9,7 +9,8 @@ type Product = InferModel<typeof product_details, "select">;
 
 import { motion, AnimatePresence } from "framer-motion";
 
-import banner from "../../public/porchPhoto.webp";
+import banner from "../../public/Black Crumple Background Darker.png";
+import title from "../../public/Store (Handwritten).png";
 
 /* export const config = {
   runtime: "experimental-edge",
@@ -47,7 +48,7 @@ function Product({ product }: { product: Product }) {
         >
           <div className="">
             <Image
-              className=""
+              className="rounded-lg"
               src={`/${(images[0] as string).trim()}`}
               alt="image"
               height={360}
@@ -199,19 +200,26 @@ const Store: NextPage = (
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-black">
+      <div className="fixed left-0 top-20 -z-10 min-h-screen">
+        <Image
+          src={banner}
+          alt="background photo"
+          width={1496}
+          height={2244}
+          quality={75}
+          className="z-0 object-cover"
+          priority
+        />
+      </div>
+      <main className="flex min-h-screen flex-col items-center justify-center bg-transparent bg-fixed">
         <div className="relative flex w-full items-center justify-center bg-transparent">
           <Image
-            src={banner}
-            alt="background photo"
-            fill
-            quality={75}
-            className="absolute z-0 object-cover object-[0%_35%]"
-            priority
+            src={title}
+            alt="STORE"
+            className="z-10 p-10"
+            height={210}
+            width={281}
           />
-          <h1 className="z-10 py-24 text-center text-8xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-            STORE
-          </h1>
         </div>
         <div className="container flex flex-col items-center justify-center gap-4 pt-16 sm:grid sm:grid-cols-2 sm:items-start sm:justify-center lg:grid-cols-3">
           {products.map((product) => (

@@ -253,8 +253,8 @@ const Product: NextPage = (
 
   if (!productData || !productData[0])
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-black">
-        <div className="flex flex-row justify-between gap-2 text-white">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <div className="flex flex-row justify-between gap-2 text-stone-100">
           <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
           <p className="flex">Loading...</p>
         </div>
@@ -301,17 +301,17 @@ const Product: NextPage = (
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="mx-auto min-h-screen bg-black">
+      <main className="mx-auto min-h-screen bg-stone-950">
         <div className="hidden justify-center md:flex">
           <div className="flex w-full flex-row items-center justify-start gap-4 py-2 md:w-11/12 md:py-4 md:pl-8 lg:py-6 lg:pl-10 xl:w-3/4 xl:py-8 xl:pl-4 ">
             <Link
-              className="text-xl text-white hover:text-blue-400 hover:underline active:text-blue-700 active:underline"
+              className="text-xl text-stone-100 hover:text-blue-400 hover:underline active:text-blue-700 active:underline"
               href="/Store"
             >
               STORE
             </Link>
-            <p className="text-white">&gt;</p>
-            <p className="text-xl text-white">{productData[0].name}</p>
+            <p className="text-stone-100">&gt;</p>
+            <p className="text-xl text-stone-100">{productData[0].name}</p>
           </div>
         </div>
         <div className="flex flex-col items-center justify-center pb-20 pt-8 md:flex-row md:items-start md:gap-10 md:pt-0 xl:px-28">
@@ -328,7 +328,7 @@ const Product: NextPage = (
               }}
             >
               <Image
-                className="full flex border-white object-cover shadow-lg"
+                className="full flex border-stone-100 object-cover shadow-lg"
                 src={`/${images[0]?.trim() as string}`}
                 alt="image"
                 height={719}
@@ -342,12 +342,12 @@ const Product: NextPage = (
 
           <div className="w-2/3 md:w-1/3">
             <div className="container flex flex-col gap-4 pb-4">
-              <h1 className="mt-12 text-4xl text-white md:mt-8 md:text-5xl lg:text-6xl">
+              <h1 className="mt-12 text-4xl text-stone-100 md:mt-8 md:text-5xl lg:text-6xl">
                 {productData[0].name}
               </h1>
               {productData[0].name ===
                 "From Nothing To Nothing Digital Download" && (
-                <h5 className="mb-2 pr-2 text-2xl tracking-tight text-white">
+                <h5 className="mb-2 pr-2 text-2xl tracking-tight text-stone-100">
                   FREE!
                 </h5>
               )}
@@ -355,7 +355,7 @@ const Product: NextPage = (
                 "From Nothing To Nothing Digital Download" && (
                 <div className="flex flex-row">
                   <p
-                    className={`mb-2 pr-2 text-xl tracking-tight text-white ${
+                    className={`mb-2 pr-2 text-xl tracking-tight text-stone-100 ${
                       productData[0].sale_price === null ? "hidden" : "block"
                     }`}
                   >
@@ -365,7 +365,7 @@ const Product: NextPage = (
                       : ""}
                   </p>
                   <p
-                    className={`mb-2 text-xl tracking-tight text-white ${
+                    className={`mb-2 text-xl tracking-tight text-stone-100 ${
                       productData[0].sale_price !== null ? "line-through" : ""
                     }`}
                   >
@@ -375,7 +375,7 @@ const Product: NextPage = (
                 </div>
               )}
             </div>
-            <p className="my-8 text-xl text-white">
+            <p className="my-8 text-xl text-stone-100">
               {productData[0].description}
             </p>
             <div className="container flex flex-col gap-12">
@@ -387,7 +387,7 @@ const Product: NextPage = (
                   <div>
                     <label
                       htmlFor="size"
-                      className="block pb-2 text-sm font-medium text-white"
+                      className="block pb-2 text-sm font-medium text-stone-100"
                     >
                       Size
                     </label>
@@ -397,7 +397,7 @@ const Product: NextPage = (
                         {...cartRegister("size", { required: true })}
                         onChange={handleSizeChange}
                         defaultValue=""
-                        className="z-10 h-12 w-full appearance-none border bg-transparent pl-4 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                        className="z-10 h-12 w-full appearance-none border bg-transparent pl-4 text-stone-100 focus:outline-none focus:ring-2 focus:ring-stone-100 focus:ring-offset-2 focus:ring-offset-stone-950"
                       >
                         <option value="" data-max-quantity={0} disabled>
                           Select Size
@@ -450,7 +450,7 @@ const Product: NextPage = (
                     href="https://drive.google.com/file/d/1wtm3NGxEYZNAJKuiHrc6BPGojMYsEip6/view"
                     rel="noopener noreferrer"
                     target="_blank"
-                    className="mb-2 mr-2 inline-block w-1/2 rounded-lg border py-5 text-center text-sm font-medium text-white hover:bg-white hover:text-black"
+                    className="mb-2 mr-2 inline-block w-1/2 rounded-lg border py-5 text-center text-sm font-medium text-stone-100 hover:bg-stone-100 hover:text-stone-950"
                   >
                     Click here for download
                   </Link>
@@ -463,7 +463,7 @@ const Product: NextPage = (
                         <div>
                           <label
                             htmlFor="quantitiy"
-                            className="block pb-2 text-sm font-medium text-white"
+                            className="block pb-2 text-sm font-medium text-stone-100"
                           >
                             Quantity
                           </label>
@@ -479,7 +479,7 @@ const Product: NextPage = (
                                 }
                               }}
                               onChange={() => setButtonText("Add to Cart")}
-                              className="z-10 h-12 w-full appearance-none border bg-transparent pl-4 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                              className="z-10 h-12 w-full appearance-none border bg-transparent pl-4 text-stone-100 focus:outline-none focus:ring-2 focus:ring-stone-100 focus:ring-offset-2 focus:ring-offset-stone-950"
                             >
                               {[
                                 ...(Array(
@@ -501,7 +501,7 @@ const Product: NextPage = (
                           </div>
                           {/*                       <input
                     id="quantity"
-                    className="block w-1/2 rounded-lg border bg-black px-6 py-2 text-center text-sm text-white [appearance:textfield] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black sm:w-1/4 md:max-lg:px-4"
+                    className="block w-1/2 rounded-lg border bg-stone-950 px-6 py-2 text-center text-sm text-stone-100 [appearance:textfield] focus:outline-none focus:ring-2 focus:ring-stone-100 focus:ring-offset-2 focus:ring-offset-stone-950 sm:w-1/4 md:max-lg:px-4"
                     {...cartRegister("quantity", { required: true })}
                     type="number"
                     defaultValue={1}
@@ -515,7 +515,7 @@ const Product: NextPage = (
                           type="submit"
                           id="submitButton"
                           disabled={addToCartDisabled}
-                          className={`mb-2 mr-2 inline-block w-1/2 rounded-lg border py-5 text-sm font-medium text-white hover:bg-white hover:text-black ${
+                          className={`mb-2 mr-2 inline-block w-1/2 rounded-lg border py-5 text-sm font-medium text-stone-100 hover:bg-stone-100 hover:text-stone-950 ${
                             addToCartDisabled ? "cursor-not-allowed" : ""
                           }`}
                           onClick={(e) => {
@@ -531,7 +531,7 @@ const Product: NextPage = (
                       {processing && (
                         <button
                           type="button"
-                          className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-white"
+                          className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-stone-100"
                           disabled
                         >
                           <div className="flex flex-row justify-center gap-2 px-2">
@@ -545,22 +545,22 @@ const Product: NextPage = (
               </form>
               {soldOut && (
                 <>
-                  <h2 className="text-white">Sold Out</h2>
+                  <h2 className="text-stone-100">Sold Out</h2>
                   <form onSubmit={notifySubmit(notifyWhenInStock)}>
-                    <label htmlFor="notify" className="text-white">
+                    <label htmlFor="notify" className="text-stone-100">
                       Notify when back in stock?
                     </label>
                     <input
                       id="notify"
                       type="email"
                       placeholder="email@example.com"
-                      className="mb-4 block w-auto rounded-lg border bg-black px-6 py-2 text-sm text-white [appearance:textfield] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                      className="mb-4 block w-auto rounded-lg border bg-stone-950 px-6 py-2 text-sm text-stone-100 [appearance:textfield] focus:outline-none focus:ring-2 focus:ring-stone-100 focus:ring-offset-2 focus:ring-offset-stone-950"
                       {...notifyRegister("email", { required: true })}
                     />
                     {!notifyProcessing && (
                       <button
                         type="submit"
-                        className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-white hover:bg-white hover:text-black"
+                        className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-stone-100 hover:bg-stone-100 hover:text-stone-950"
                       >
                         {notifyButtonText}
                       </button>
@@ -568,7 +568,7 @@ const Product: NextPage = (
                     {notifyProcessing && (
                       <button
                         type="button"
-                        className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-white"
+                        className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-stone-100"
                         disabled
                       >
                         <div className="flex flex-row justify-center gap-2 px-2">

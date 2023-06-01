@@ -82,27 +82,29 @@ const Confirm: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
         {invalidLink && loading && (
-          <div className="flex flex-row justify-between gap-2 text-white">
+          <div className="flex flex-row justify-between gap-2 text-stone-100">
             <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
             <p className="flex">Loading...</p>
           </div>
         )}
         {invalidLink && !loading && (
           <>
-            <p className="text-white">
+            <p className="text-stone-100">
               This confirmation link is no longer valid
             </p>
             <Link
               href="/"
-              className="text-center text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+              className="text-center text-xl font-bold text-stone-100 hover:text-blue-700 hover:underline active:text-gray-500"
             >
               Home
             </Link>
           </>
         )}
-        {!invalidLink && loading && <p className="text-white">Loading...</p>}
+        {!invalidLink && loading && (
+          <p className="text-stone-100">Loading...</p>
+        )}
         {!invalidLink && !loading && (
           <>
             <div className="absolute left-0 top-16 flex w-full justify-center bg-transparent md:top-20">
@@ -114,18 +116,18 @@ const Confirm: NextPage = () => {
                 className="absolute z-0 object-cover object-[0%_15%]"
                 priority
               />
-              <h1 className="z-10 py-24 text-center text-5xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] sm:text-6xl md:text-8xl">
+              <h1 className="z-10 py-24 text-center text-5xl text-stone-100 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] sm:text-6xl md:text-8xl">
                 CONFIRMED
               </h1>
             </div>
             <div className="flex flex-col items-center justify-center gap-2">
-              <p className="w-5/6 text-center text-2xl text-white md:w-full">
+              <p className="w-5/6 text-center text-2xl text-stone-100 md:w-full">
                 You Are Now Subscribed! You will start receiving emails from
                 SCALISE
               </p>
               <Link
                 href="/"
-                className="text-center text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+                className="text-center text-xl font-bold text-stone-100 hover:text-blue-700 hover:underline active:text-gray-500"
               >
                 Home
               </Link>

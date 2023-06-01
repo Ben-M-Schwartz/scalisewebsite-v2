@@ -61,18 +61,18 @@ export default function Cancelled() {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <div className="flex flex-col items-center gap-2 text-white">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <div className="flex flex-col items-center gap-2 text-stone-100">
           <h1>Your payment was cancelled</h1>
           <Link
             href="/Store"
-            className="text-center text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+            className="text-center text-xl font-bold text-stone-100 hover:text-red-800 hover:underline active:text-gray-500"
           >
             Back to Store
           </Link>
           <Link
             href="/"
-            className="text-center text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+            className="text-center text-xl font-bold text-stone-100 hover:text-red-800 hover:underline active:text-gray-500"
           >
             Home
           </Link>

@@ -69,7 +69,7 @@ const SuccessPage: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-start bg-gray-800 text-white">
+      <main className="flex min-h-screen flex-col items-center justify-start bg-stone-950 text-stone-100">
         <div className="relative flex w-full justify-center bg-transparent">
           <Image
             src={excited}
@@ -79,7 +79,7 @@ const SuccessPage: NextPage = () => {
             className="absolute z-0 object-cover object-[0%_15%]"
             priority
           />
-          <h1 className="z-10 py-24 text-center text-5xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] sm:text-6xl md:text-8xl">
+          <h1 className="z-10 py-24 text-center text-5xl text-stone-100 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] sm:text-6xl md:text-8xl">
             SUCCESS
           </h1>
         </div>

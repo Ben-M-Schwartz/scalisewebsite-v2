@@ -28,7 +28,8 @@ import {
 
 //import { api } from "~/utils/api";
 
-import banner from "../../public/greenRoomPhoto.webp";
+import banner from "../../public/2.png";
+import title from "../../public/Shows (Handwritten).png";
 
 import { db } from "~/db/db";
 //import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
@@ -41,7 +42,7 @@ type ShowType = InferModel<typeof shows, "select">;
 const variants = {
   hidden: {
     opacity: 0,
-    x: -20,
+    x: -30,
     y: -5,
     transition: {
       x: { stiffness: 1000 },
@@ -52,7 +53,7 @@ const variants = {
   },
   shown: {
     opacity: 1,
-    x: -50,
+    x: -70,
     y: -5,
     transition: {
       x: { stiffness: 1000, velocity: -100 },
@@ -80,19 +81,21 @@ const Show = ({ show }: { show: ShowType }) => {
   return (
     <Link
       href={show.bandsintown_link as string}
-      className="z-0 flex w-full flex-col items-center gap-2 hover:bg-gray-600"
+      className="z-0 flex w-full flex-col items-center gap-2 hover:bg-stone-200 md:px-8"
     >
       <div className="flex w-full flex-col items-center justify-center gap-2 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
         <div className="w-full sm:w-1/2 xl:w-2/3">
-          <div className="font-bold text-gray-100">{show.date}</div>
-          <div className="font-small text-gray-100">{show.location}</div>
-          <div className="font-small text-gray-100 sm:order-2">{show.name}</div>
+          <div className="font-bold text-stone-950">{show.date}</div>
+          <div className="font-small text-stone-950">{show.location}</div>
+          <div className="font-small text-stone-950 sm:order-2">
+            {show.name}
+          </div>
         </div>
         <div className="flex w-1/4 flex-col items-center justify-center gap-3 sm:flex-row sm:gap-8 md:gap-20 xl:w-1/6">
           <motion.div
             onHoverStart={() => setHover(true)}
             onHoverEnd={() => setHover(false)}
-            className="z-30 flex flex-row justify-center gap-3 object-contain text-white sm:translate-x-1 sm:flex-col"
+            className="z-30 flex flex-row justify-center gap-3 object-contain text-stone-950 sm:translate-x-1 sm:flex-col"
           >
             <motion.div
               initial="hidden"
@@ -106,7 +109,7 @@ const Show = ({ show }: { show: ShowType }) => {
                 title={"Check out this upcoming event from Scalise!"}
                 blankTarget
               >
-                <div className="rounde flex text-white hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 md:p-0">
+                <div className="rounde flex text-stone-100 hover:bg-transparent hover:text-red-800 md:p-0">
                   <TwitterIcon />
                 </div>
               </TwitterShareButton>
@@ -117,7 +120,7 @@ const Show = ({ show }: { show: ShowType }) => {
                 blankTarget
               >
                 {" "}
-                <div className="flex rounded hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 md:p-0">
+                <div className="flex rounded text-stone-100 hover:bg-transparent hover:text-red-800 md:p-0">
                   <FacebookIcon />
                 </div>
               </FacebookShareButton>
@@ -127,7 +130,7 @@ const Show = ({ show }: { show: ShowType }) => {
                 body=""
                 blankTarget
               >
-                <div className="flex rounded text-white hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 md:p-0">
+                <div className="flex rounded text-stone-100 hover:bg-transparent hover:text-red-800 md:p-0">
                   <EmailIcon />
                 </div>
               </EmailShareButton>
@@ -145,7 +148,7 @@ const Show = ({ show }: { show: ShowType }) => {
                     .catch((error) => console.error(error));
                 }}
               >
-                <div className="flex rounded text-white hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 md:p-0">
+                <div className="flex rounded text-white hover:bg-gray-100 hover:bg-transparent hover:text-red-800 md:p-0">
                   {!isCopied && <LinkIcon />}
                   {isCopied && (
                     <div className="animate-bounce animate-pulse text-green-400">
@@ -157,7 +160,7 @@ const Show = ({ show }: { show: ShowType }) => {
             </motion.div>
             <button
               id="share"
-              className="z-10 flex flex-row justify-center gap-2 bg-transparent px-10 py-4 focus:text-blue-400"
+              className="z-10 flex flex-row justify-center gap-2 bg-transparent px-10 py-4 focus:text-red-800"
               onClick={(e) => {
                 e.preventDefault();
                 setHover(true);
@@ -173,14 +176,14 @@ const Show = ({ show }: { show: ShowType }) => {
             href={show.maps_link as string}
             rel="noopener noreferrer"
             target="_blank"
-            className="w-1/2 rounded-sm border bg-rose-800 py-2 text-center text-white hover:border-rose-800 hover:bg-white hover:text-rose-800 active:bg-gray-300 sm:w-full"
+            className="w-1/2 rounded-sm border bg-red-800 py-2 text-center text-white hover:border-red-800 hover:bg-white hover:text-red-800 active:bg-gray-300 sm:w-full"
           >
             Directions
           </Link>
           <Link
             rel="noopener noreferrer"
             target="_blank"
-            className="w-1/2 rounded-sm border bg-rose-800 py-2 text-center text-white hover:border-rose-800 hover:bg-white hover:text-rose-800 active:bg-gray-300 sm:w-full"
+            className="w-1/2 rounded-sm border bg-red-800 py-2 text-center text-white hover:border-red-800 hover:bg-white hover:text-red-800 active:bg-gray-300 sm:w-full"
             href={show.ticket_link as string}
           >
             Tickets
@@ -260,19 +263,24 @@ const Shows: NextPage = (
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center bg-gray-800">
-        <div className="relative flex w-full justify-center bg-transparent">
+      <main className="relative flex flex-col items-center bg-gray-800">
+        <Image
+          src={banner}
+          alt="background photo"
+          fill
+          quality={100}
+          //style={{ objectFit: "cover" }}
+          className="absolute z-0 object-cover"
+          priority
+        />
+        <div className="relative flex w-full items-center justify-center bg-transparent">
           <Image
-            src={banner}
-            alt="background photo"
-            fill
-            quality={75}
-            className="absolute z-0 object-cover object-[0%_48%]"
-            priority
+            src={title}
+            alt="SHOWS"
+            className="z-10 p-10"
+            height={210}
+            width={281}
           />
-          <h1 className="z-10 py-32 text-center text-8xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-            SHOWS
-          </h1>
         </div>
         {/* {loading && ( */}
         {/*         <div className="flex flex-row justify-between gap-2 py-20 text-white">
@@ -281,7 +289,7 @@ const Shows: NextPage = (
         </div> */}
         {/* )} */}
         {/* {!loading && ( */}
-        <div className="flex w-2/3 flex-col items-center justify-center">
+        <div className="z-10 mb-16 flex w-2/3 flex-col items-center justify-center rounded-sm bg-stone-100">
           {shows?.length === 0 && (
             <>
               <p className="text-white">
@@ -293,19 +301,19 @@ const Shows: NextPage = (
               </p>
             </>
           )}
-          <div className="my-4 w-full divide-y divide-gray-600 border-y border-gray-600">
+          <div className="my-4 w-full border-y border-stone-300">
             {shows?.map((show, index) => (
               <Show show={show} key={index} />
             ))}
           </div>
 
           <Link
-            className="mb-2 mr-2 inline-block w-auto rounded-lg bg-rose-800 px-5 py-3 text-sm font-medium text-white hover:bg-rose-600 focus:outline-none focus:ring-4 focus:ring-blue-300"
+            className="mb-2 mr-2 inline-block w-auto rounded-lg bg-red-800 px-5 py-3 text-sm font-medium text-white hover:bg-red-950 md:my-4"
             rel="noopener noreferrer"
             target="_blank"
             href="https://bandsintown.com/artist-subscribe/14899628"
           >
-            <div className="flex flex-row items-center gap-1">
+            <div className="flex flex-row items-center gap-1 md:px-2 md:py-1 md:text-xl">
               <BandsintownIcon />
               Follow
             </div>

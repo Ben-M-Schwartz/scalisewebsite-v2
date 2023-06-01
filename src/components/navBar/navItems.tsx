@@ -46,7 +46,7 @@ export function HomeLink() {
   return (
     <div className="z-10">
       <Link href="/" className="items-center">
-        <span className="self-center whitespace-nowrap text-2xl font-semibold tracking-widest text-white md:text-4xl">
+        <span className="self-center whitespace-nowrap text-2xl font-semibold tracking-widest  text-red-800 md:text-4xl">
           SCALISE
         </span>
       </Link>
@@ -85,7 +85,7 @@ export function CartLink() {
   return (
     <Link
       href="/Cart"
-      className="z-10 block rounded border-gray-700 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+      className="hover: ext-stone-950 z-10 block  rounded hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
     >
       <motion.div
         className="flex items-center justify-center align-middle"
@@ -115,13 +115,16 @@ export function PageLinks() {
         <Link
           href="/Music"
           className={
-            (router.pathname === "/Music"
-              ? "font-bold underline underline-offset-8"
-              : "") +
-            "block rounded border-gray-700 py-2 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+            "block rounded py-2 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
           }
         >
-          MUSIC
+          <p
+            className={
+              router.pathname === "/Music" ? "underline underline-offset-8" : ""
+            }
+          >
+            MUSIC
+          </p>
         </Link>
       </motion.li>
       <motion.li
@@ -132,13 +135,16 @@ export function PageLinks() {
         <Link
           href="/Shows"
           className={
-            (router.pathname === "/Shows"
-              ? "font-bold underline underline-offset-8"
-              : "") +
-            "block rounded border-gray-700 py-2 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+            "hover: block rounded py-2 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
           }
         >
-          SHOWS
+          <p
+            className={
+              router.pathname === "/Shows" ? "underline underline-offset-8" : ""
+            }
+          >
+            SHOWS
+          </p>
         </Link>
       </motion.li>
       <motion.li
@@ -149,13 +155,18 @@ export function PageLinks() {
         <Link
           href="/Videos"
           className={
-            (router.pathname === "/Videos"
-              ? "font-bold underline underline-offset-8"
-              : "") +
-            "block rounded border-gray-700 py-2 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+            "hover: block rounded py-2 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
           }
         >
-          VIDOES
+          <p
+            className={
+              router.pathname === "/Videos"
+                ? "underline underline-offset-8"
+                : ""
+            }
+          >
+            VIDOES
+          </p>
         </Link>
       </motion.li>
       <motion.li
@@ -166,13 +177,16 @@ export function PageLinks() {
         <Link
           href="/Store"
           className={
-            (router.pathname === "/Store"
-              ? "font-bold underline underline-offset-8"
-              : "") +
-            "block rounded border-gray-700 py-2 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+            "hover: block rounded py-2 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
           }
         >
-          STORE
+          <p
+            className={
+              router.pathname === "/Store" ? "underline underline-offset-8" : ""
+            }
+          >
+            STORE
+          </p>
         </Link>
       </motion.li>
       <motion.li
@@ -183,13 +197,18 @@ export function PageLinks() {
         <Link
           href="/Contact"
           className={
-            (router.pathname === "/Contact"
-              ? "font-bold underline underline-offset-8"
-              : "") +
-            "block rounded border-gray-700 py-2 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+            "hover: block rounded py-2 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
           }
         >
-          CONTACT
+          <p
+            className={
+              router.pathname === "/Contact"
+                ? "underline underline-offset-8"
+                : ""
+            }
+          >
+            CONTACT
+          </p>
         </Link>
       </motion.li>
     </motion.ul>
@@ -212,7 +231,7 @@ export function SocialLinks() {
         </label>
         <Link
           href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
-          className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
           rel="noopener noreferrer"
           target="_blank"
           id="spotify-link"
@@ -230,7 +249,7 @@ export function SocialLinks() {
         </label>
         <Link
           href="https://music.apple.com/us/artist/scalise/1529031635"
-          className="block rounded border-gray-700 py-2 pl-3  pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+          className="hover: y-2 block rounded  pl-3  pr-4 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
           rel="noopener noreferrer"
           target="_blank"
           id="applemusic-link"
@@ -248,7 +267,7 @@ export function SocialLinks() {
         </label>
         <Link
           href="https://twitter.com/ScaliseTheBand"
-          className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
           rel="noopener noreferrer"
           target="_blank"
           id="twitter-link"
@@ -266,7 +285,7 @@ export function SocialLinks() {
         </label>
         <Link
           href="https://www.facebook.com/ScaliseTheBand"
-          className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
           rel="noopener noreferrer"
           target="_blank"
           id="facebook-link"
@@ -284,7 +303,7 @@ export function SocialLinks() {
         </label>
         <Link
           href="https://www.instagram.com/ScaliseTheBand/"
-          className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
           rel="noopener noreferrer"
           target="_blank"
           id="instagram-link"
@@ -302,7 +321,7 @@ export function SocialLinks() {
         </label>
         <Link
           href="https://www.tiktok.com/@scaliseband"
-          className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
           rel="noopener noreferrer"
           target="_blank"
           id="tiktok-link"
@@ -320,7 +339,7 @@ export function SocialLinks() {
         </label>
         <Link
           href="https://www.youtube.com/channel/UCWBsxAAhmKP1nRHWQQ5N0Qg"
-          className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
           rel="noopener noreferrer"
           target="_blank"
           id="youtube-link"

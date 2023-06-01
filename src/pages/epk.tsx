@@ -6,6 +6,7 @@ import Link from "next/link";
 import fruitSnacks from "../../public/fruitSnacks.webp";
 import airbag from "../../public/airbag.webp";
 import transferred from "../../public/transferred.webp";
+import sgky from "../../public/SGKY Cover.png";
 
 import banner from "../../public/tunnelEPKPhoto.webp";
 
@@ -121,11 +122,11 @@ const Music: NextPage = () => {
             className="absolute z-0 object-cover object-[0%_15%]"
             priority
           />
-          <h1 className="z-10 py-48 text-center text-8xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+          <h1 className="z-10 py-48 text-center text-8xl text-stone-100 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
             SCALISE
           </h1>
         </div>
-        <div className="flex items-center justify-center bg-white pb-36 pt-24">
+        <div className="flex items-center justify-center bg-stone-100 pb-36 pt-24">
           <div className="w-11/12 md:w-2/3">
             <h1 className="pb-12 text-6xl font-extrabold">Bio</h1>
             <p>
@@ -159,14 +160,41 @@ const Music: NextPage = () => {
           </div>
         </div>
         <div className="flex w-full flex-col">
-          <div className="flex flex-col items-center gap-10 bg-black py-24">
+          <div className="z-10 flex flex-col items-center justify-center gap-3 bg-stone-100 py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
+            <div className="h-1/2 w-1/2 text-center md:order-1">
+              <div className="flex flex-col items-center justify-center gap-3">
+                <h1 className="z-1 tex-center text-4xl font-bold text-red-800 md:text-6xl">
+                  &quot;SHE&apos;S GONNA KILL YOU&quot;
+                </h1>
+                <p className="text-red-800">
+                  Listen to the single off the upcoming album now.
+                </p>
+                <AudioPlayer
+                  //demo={false}
+                  player_id="sgky"
+                  source="/18 - She_s Gonna Kill You.mp3"
+                  title="She's Gonna Kill You"
+                />
+              </div>
+            </div>
+            <Image
+              src={sgky}
+              alt="SGKY Image"
+              width={504}
+              height={504}
+              className="order-1 shadow-xl"
+              loading="lazy"
+            />
+          </div>
+
+          <div className="flex flex-col items-center gap-10 bg-stone-950 py-24">
             <div className="flex flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
               <div className="w-1/2 text-center md:order-1">
                 <div className="flex flex-col items-center justify-center gap-3">
-                  <h1 className="text-center text-4xl font-bold text-white md:text-6xl">
+                  <h1 className="text-center text-4xl font-bold text-stone-100 md:text-6xl">
                     &quot;TRANSFERRED TO HOUSTON&quot;
                   </h1>
-                  <p className="text-white">
+                  <p className="text-stone-100">
                     Listen to the single off the upcoming album now.
                   </p>
                   <AudioPlayer
@@ -187,13 +215,13 @@ const Music: NextPage = () => {
             </div>
           </div>
 
-          <div className="z-10 flex flex-col items-center justify-center gap-3 bg-white py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
+          <div className="z-10 flex flex-col items-center justify-center gap-3 bg-stone-100 py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
             <div className="h-1/2 w-1/2 text-center md:order-1">
               <div className="flex flex-col items-center justify-center gap-3">
-                <h1 className="z-1 tex-center text-4xl font-bold text-rose-800 md:text-6xl">
+                <h1 className="z-1 tex-center text-4xl font-bold text-red-800 md:text-6xl">
                   &quot;AIRBAG&quot;
                 </h1>
-                <p className="text-rose-700">
+                <p className="text-red-800">
                   Listen to the single off the upcoming album now.
                 </p>
                 <AudioPlayer
@@ -209,18 +237,18 @@ const Music: NextPage = () => {
               alt="Airbag Image"
               width={504}
               height={504}
-              className="order-1"
+              className="order-1 shadow-xl"
               loading="lazy"
             />
           </div>
 
-          <div className="z-10 flex flex-col items-center justify-center gap-3 bg-black py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
+          <div className="z-10 flex flex-col items-center justify-center gap-3 bg-stone-950 py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
             <div className="w-1/2 text-center md:order-1">
               <div className="flex flex-col items-center justify-center gap-3">
-                <h1 className="z-1 tex-center text-4xl font-bold text-white md:text-6xl">
+                <h1 className="z-1 tex-center text-4xl font-bold text-stone-100 md:text-6xl">
                   &quot;FRUIT SNACKS&quot;
                 </h1>
-                <p className="text-white">
+                <p className="text-stone-100">
                   Listen to the single off the upcoming album now.
                 </p>
                 <AudioPlayer
@@ -240,9 +268,9 @@ const Music: NextPage = () => {
             />
           </div>
         </div>
-        <div className="flex w-full flex-col items-center bg-rose-900 pb-24">
+        <div className="flex w-full flex-col items-center bg-red-950 pb-24">
           <div>
-            <h1 className="py-10 text-center text-8xl text-white">
+            <h1 className="py-10 text-center text-8xl text-stone-100">
               Live Videos
             </h1>
           </div>
@@ -293,7 +321,7 @@ const Music: NextPage = () => {
             </div>
           </div>
         </div>
-        <div className="flex w-full flex-col items-center bg-white">
+        <div className="flex w-full flex-col items-center bg-stone-100">
           <p className="w-5/6 pb-6 pt-24 text-center text-3xl font-bold md:w-2/3">
             “To my ear, they have got a sound that calls to mind a bit of Nickel
             Creek, with a touch of both Dave Matthews Band and Counting Crows.
@@ -304,16 +332,16 @@ const Music: NextPage = () => {
           </p>
           <Link
             href="https://www.youtube.com/watch?v=hl2NoQjDe-E"
-            className="pb-12 text-lg font-bold text-rose-700 underline hover:text-rose-900"
+            className="pb-12 text-lg font-bold text-red-800 underline hover:text-rose-900"
           >
             -TrackXTrack “The Top Ten Best Albums of 2020”
           </Link>
         </div>
-        <div className="w-full bg-black">
-          <h1 className="w-full pb-5 pt-10 text-center text-5xl font-bold text-white">
+        <div className="w-full bg-stone-950">
+          <h1 className="w-full pb-5 pt-10 text-center text-5xl font-bold text-stone-100">
             PRESS PHOTOS
           </h1>
-          <h2 className="w-full pb-10 text-center text-3xl text-white">
+          <h2 className="w-full pb-10 text-center text-3xl text-stone-100">
             Click image for high res download
           </h2>
           <div className="flex flex-row flex-wrap">
@@ -440,13 +468,13 @@ const Music: NextPage = () => {
           </div>
         </div>
 
-        <div className="flex w-full flex-col items-center justify-center bg-white py-12">
+        <div className="flex w-full flex-col items-center justify-center bg-stone-100 py-12">
           <div className="flex w-2/3 flex-col items-center justify-center md:w-3/4 md:flex-row">
             <div className="w-full flex-col items-center justify-center md:w-1/4">
-              <h1 className="text-wrap w-full text-center text-4xl font-bold text-rose-800">
+              <h1 className="text-wrap w-full text-center text-4xl font-bold text-red-800">
                 STAGE PLOT AND TECH RIDER
               </h1>
-              <button className="w-full break-normal border-8 border-rose-800 py-4 text-lg text-rose-800 hover:bg-rose-800 hover:text-white">
+              <button className="w-full break-normal border-8 border-red-800 py-4 text-lg text-red-800 hover:bg-red-800 hover:text-stone-100">
                 <Link href="/ScaliseTechRider.pdf">
                   CLICK HERE TO DOWNLOAD TECH RIDER
                 </Link>
@@ -465,7 +493,7 @@ const Music: NextPage = () => {
           </div>
         </div>
 
-        <div className="flex w-full flex-col items-center justify-center bg-red-950 pb-32 pt-16 text-white md:flex-row">
+        <div className="flex w-full flex-col items-center justify-center bg-red-950 pb-32 pt-16 text-stone-100 md:flex-row">
           <div className="flex w-full flex-col items-center justify-center gap-2 md:w-1/3">
             <h1 className="order-1 text-center text-7xl md:text-left">
               Contact Us
@@ -479,7 +507,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="spotify-link"
@@ -491,7 +519,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://music.apple.com/us/artist/scalise/1529031635"
-                className="block rounded border-gray-700 py-2 pl-3  pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-gray-700 py-2 pl-3  pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="applemusic-link"
@@ -503,7 +531,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://twitter.com/ScaliseTheBand"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="twitter-link"
@@ -515,7 +543,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://www.facebook.com/ScaliseTheBand"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="facebook-link"
@@ -527,7 +555,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://www.instagram.com/ScaliseTheBand/"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="instagram-link"
@@ -539,7 +567,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://www.tiktok.com/@scaliseband"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="tiktok-link"
@@ -551,7 +579,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://www.youtube.com/channel/UCWBsxAAhmKP1nRHWQQ5N0Qg"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-white hover:bg-gray-700 hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="youtube-link"
@@ -570,7 +598,7 @@ const Music: NextPage = () => {
                     <input
                       id="first-name"
                       {...register("firstName", { required: true })}
-                      className="w-full rounded-md border border-gray-400 bg-gray-100 p-2 text-black"
+                      className="w-full rounded-md border border-gray-400 bg-gray-100 p-2 text-stone-950"
                     />
                   </div>
                   <div className="flex flex-col">
@@ -578,7 +606,7 @@ const Music: NextPage = () => {
                     <input
                       id="last-name"
                       {...register("lastName", { required: true })}
-                      className="w-full rounded-md border border-gray-400 bg-gray-100 p-2 text-black"
+                      className="w-full rounded-md border border-gray-400 bg-gray-100 p-2 text-stone-950"
                     />
                   </div>
                 </div>
@@ -586,25 +614,25 @@ const Music: NextPage = () => {
                 <input
                   id="email"
                   {...register("email", { required: true })}
-                  className="rounded-md border border-gray-400 bg-gray-100 p-2 text-black"
+                  className="rounded-md border border-gray-400 bg-gray-100 p-2 text-stone-950"
                 />
                 <h2>Subject</h2>
                 <input
                   id="subject"
                   {...register("subject", { required: true })}
-                  className="rounded-md border border-gray-400 bg-gray-100 p-2 text-black"
+                  className="rounded-md border border-gray-400 bg-gray-100 p-2 text-stone-950"
                 />
                 <h2>Message</h2>
                 <textarea
                   id="message"
                   {...register("message", { required: true })}
-                  className="rounded-md border border-gray-400 bg-gray-100 p-2 text-black"
+                  className="rounded-md border border-gray-400 bg-gray-100 p-2 text-stone-950"
                   rows={4}
                 />
                 {!processing && (
                   <button
                     type="submit"
-                    className="mt-4 w-1/2 rounded-sm border-4 border-white py-4 hover:bg-white hover:text-red-950"
+                    className="mt-4 w-1/2 rounded-sm border-4 border-stone-100 py-4 hover:bg-stone-100 hover:text-red-950"
                   >
                     Submit
                   </button>
@@ -612,7 +640,7 @@ const Music: NextPage = () => {
                 {processing && (
                   <button
                     type="button"
-                    className="mt-4 w-1/2 rounded-sm border-4 border-white bg-white py-4 text-red-950"
+                    className="mt-4 w-1/2 rounded-sm border-4 border-stone-100 bg-stone-100 py-4 text-red-950"
                     disabled
                   >
                     <div className="flex flex-row justify-center gap-2">

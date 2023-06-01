@@ -38,7 +38,7 @@ const Subscribe: NextPage = () => {
   };
   return (
     <main>
-      <div className="flex flex-col items-center justify-center bg-white py-6">
+      <div className="flex flex-col items-center justify-center bg-stone-100 py-6">
         {isSubmitted ? (
           <h1>Thank you for subscribing!</h1>
         ) : (
@@ -54,11 +54,11 @@ const Subscribe: NextPage = () => {
               <input
                 className="rounded-sm bg-gray-200 px-4 py-2 leading-tight focus:border-gray-500 focus:bg-white focus:outline-none"
                 type="email"
-                placeholder="Enter your email address"
+                placeholder="Email address"
                 {...register("email", { required: true })}
               />
               <button
-                className="focus:shadow-outline border border-rose-700 px-4 py-2 font-bold text-rose-700 hover:bg-rose-700 hover:text-white active:bg-rose-400"
+                className="focus:shadow-outline border border-red-800 px-4 py-2 font-bold text-red-800 hover:bg-red-800 hover:text-white active:bg-rose-400"
                 type="submit"
               >
                 SIGN UP

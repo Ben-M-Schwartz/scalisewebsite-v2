@@ -25,7 +25,7 @@ export const MenuBackground = () => {
     <div className="absolute inset-0 h-screen">
       <motion.div
         variants={variants}
-        className="absolute inset-0 w-full bg-gray-500"
+        className="absolute inset-0 w-full bg-stone-100"
       />
     </div>
   );

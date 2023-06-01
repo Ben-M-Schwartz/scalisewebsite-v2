@@ -90,7 +90,7 @@ const Contact: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex flex-col items-center justify-center">
+      <main className="flex flex-col items-center justify-center border-y border-stone-300 bg-stone-100">
         <div className="flex flex-col items-center justify-center gap-10 pb-32 pt-16 md:flex-row">
           <div className="flex w-full flex-col items-center justify-center gap-2 md:w-1/2">
             <h1 className="order-1 text-center text-7xl md:text-left">
@@ -100,16 +100,22 @@ const Contact: NextPage = () => {
               You can also reach out to us at{" "}
               <a
                 href="mailto:graden@scalise.band"
-                className="text-red-700 hover:text-blue-700 hover:underline"
+                className="text-red-700 hover:text-red-800 hover:underline"
               >
                 graden@scalise.band
               </a>{" "}
               or through any socials below.
             </p>
             <div className="order-0 flex h-full w-full flex-col items-center justify-center sm:order-1">
-              <Image src={image} alt="scalise photo" width={544} height={431} />
+              <Image
+                src={image}
+                alt="scalise photo"
+                width={544}
+                height={431}
+                className="rounded-xl"
+              />
             </div>
-            <div className="order-1 mt-4 flex justify-center gap-2 bg-white">
+            <div className="order-1 mt-4 flex justify-center gap-2 bg-stone-100">
               <label htmlFor="spotify-link-3" className="invisible absolute">
                 Scalise Spotify Link
               </label>
@@ -133,7 +139,7 @@ const Contact: NextPage = () => {
               </label>
               <Link
                 href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
-                className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+                className="block rounded py-2 pl-3 pr-4 text-stone-950 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="spotify-link-3"
@@ -143,7 +149,7 @@ const Contact: NextPage = () => {
 
               <Link
                 href="https://music.apple.com/us/artist/scalise/1529031635"
-                className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+                className="block rounded py-2 pl-3 pr-4 text-stone-950 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="applemusic-link-3"
@@ -153,7 +159,7 @@ const Contact: NextPage = () => {
 
               <Link
                 href="https://twitter.com/ScaliseTheBand"
-                className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+                className="block rounded py-2 pl-3 pr-4 text-stone-950 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="twitter-link-3"
@@ -163,7 +169,7 @@ const Contact: NextPage = () => {
 
               <Link
                 href="https://www.facebook.com/ScaliseTheBand"
-                className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+                className="block rounded py-2 pl-3 pr-4 text-stone-950 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="facebook-link-3"
@@ -173,7 +179,7 @@ const Contact: NextPage = () => {
 
               <Link
                 href="https://www.tiktok.com/@scaliseband"
-                className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+                className="block rounded py-2 pl-3 pr-4 text-stone-950 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="instagram-link-3"
@@ -183,7 +189,7 @@ const Contact: NextPage = () => {
 
               <Link
                 href="https://www.tiktok.com/@scaliseband"
-                className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+                className="block rounded py-2 pl-3 pr-4 text-stone-950 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="tiktok-link-3"
@@ -193,7 +199,7 @@ const Contact: NextPage = () => {
 
               <Link
                 href="https://www.youtube.com/channel/UCWBsxAAhmKP1nRHWQQ5N0Qg"
-                className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+                className="block rounded py-2 pl-3 pr-4 text-stone-950 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="youtube-link-3"
@@ -245,7 +251,7 @@ const Contact: NextPage = () => {
                 {!processing && (
                   <button
                     type="submit"
-                    className="mt-4 w-1/2 rounded-sm border-4 border-rose-800 py-4 hover:bg-rose-800 hover:text-white"
+                    className="mt-4 w-1/2 rounded-sm border-4 border-red-800 py-4 hover:bg-red-800 hover:text-stone-100"
                   >
                     Submit
                   </button>
@@ -253,7 +259,7 @@ const Contact: NextPage = () => {
                 {processing && (
                   <button
                     type="button"
-                    className="mt-4 w-1/2 rounded-sm border-4 border-rose-800 bg-rose-800 py-4 text-white"
+                    className="mt-4 w-1/2 rounded-sm border-4 border-red-800 bg-red-800 py-4 text-stone-100"
                     disabled
                   >
                     <div className="flex flex-row justify-center gap-2">

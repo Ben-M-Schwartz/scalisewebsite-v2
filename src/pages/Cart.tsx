@@ -291,9 +291,9 @@ const Cart: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center bg-gray-900 pb-20">
+      <main className="flex min-h-screen flex-col items-center bg-stone-950 pb-20">
         {loading && (
-          <div className="flex min-h-screen flex-row items-center justify-between gap-2 text-white">
+          <div className="flex min-h-screen flex-row items-center justify-between gap-2 text-stone-100">
             <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
             <p className="flex">Loading...</p>
           </div>
@@ -301,11 +301,11 @@ const Cart: NextPage = () => {
         {!loading && emptyCart && (
           <>
             <div className="flex min-h-screen flex-col items-center justify-center gap-2">
-              <h1 className="text-2xl font-bold text-white">
+              <h1 className="text-2xl font-bold text-stone-100">
                 Your cart is empty
               </h1>
               <Link
-                className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-white bg-rose-700 py-4 text-center text-white hover:border-rose-700 hover:bg-white hover:text-rose-700 active:bg-rose-400"
+                className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-stone-100 bg-red-800 py-4 text-center text-stone-100 hover:border-red-800 hover:bg-stone-100 hover:text-red-800 active:bg-rose-400"
                 href="/Store"
               >
                 Return To Store
@@ -316,9 +316,11 @@ const Cart: NextPage = () => {
         {!loading && !emptyCart && (
           <>
             <div className="border-bo flex w-full flex-row items-center justify-start gap-4 px-4 pt-10 sm:w-2/3 sm:px-0">
-              <h1 className="text-2xl font-bold text-white">Shopping Cart</h1>
+              <h1 className="text-2xl font-bold text-stone-100">
+                Shopping Cart
+              </h1>
               <button
-                className="focus:shadow-outline rounded-lg border border-white bg-transparent px-2 py-1 text-xs text-white hover:border-black hover:bg-gray-100 hover:text-black active:bg-blue-600"
+                className="focus:shadow-outline active:bg-red-8000 rounded-lg border border-stone-100 bg-transparent px-2 py-1 text-xs text-stone-100 hover:border-stone-950 hover:bg-gray-100 hover:text-stone-950"
                 onClick={handleClearCart}
               >
                 Clear Cart
@@ -328,13 +330,13 @@ const Cart: NextPage = () => {
                   processing ? "block" : "hidden"
                 }`}
               >
-                <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-white"></span>
-                <p className="flex text-white">Processing...</p>
+                <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-stone-100"></span>
+                <p className="flex text-stone-100">Processing...</p>
               </div>
               <AnimatePresence>
                 {updated && (
                   <motion.p
-                    className={`px-6 text-white ${
+                    className={`px-6 text-stone-100 ${
                       processing ? "absolute" : "relative"
                     }`}
                     initial={{ opacity: 1 }}
@@ -347,7 +349,7 @@ const Cart: NextPage = () => {
                 )}
               </AnimatePresence>
             </div>
-            <div className="flex w-full flex-col justify-between border-b border-b-white px-4 sm:w-2/3 sm:px-0">
+            <div className="flex w-full flex-col justify-between border-b border-b-stone-100 px-4 sm:w-2/3 sm:px-0">
               <div className="divide-y divide-gray-600">
                 {cartItems.map((item: Cart, index) => (
                   <>
@@ -434,7 +436,7 @@ const Cart: NextPage = () => {
                 ))}
               </div>
             </div>
-            <div className="flex w-2/3 flex-col items-end justify-center gap-4 pt-4 text-white">
+            <div className="flex w-2/3 flex-col items-end justify-center gap-4 pt-4 text-stone-100">
               <div className="flex w-full grow flex-row justify-between sm:w-1/3">
                 <p>Subtotal: </p>
                 <p className="text-xl font-bold">
@@ -444,7 +446,7 @@ const Cart: NextPage = () => {
               </div>
               {!processingCheckout && (
                 <button
-                  className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-white bg-rose-700 py-4 text-white hover:border-rose-700 hover:bg-white hover:text-rose-700 active:bg-rose-400 sm:w-1/3"
+                  className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-stone-100 bg-red-800 py-4 text-stone-100 hover:border-red-800 hover:bg-stone-100 hover:text-red-800 active:bg-rose-400 sm:w-1/3"
                   onClick={handleCheckout}
                   disabled={disable}
                 >
@@ -453,10 +455,10 @@ const Cart: NextPage = () => {
               )}
               {processingCheckout && (
                 <button
-                  className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-white bg-rose-700 py-4 text-white sm:w-1/3"
+                  className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-stone-100 bg-red-800 py-4 text-stone-100 sm:w-1/3"
                   disabled
                 >
-                  <div className="flex flex-row justify-center gap-2 px-2 text-white">
+                  <div className="flex flex-row justify-center gap-2 px-2 text-stone-100">
                     <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
                     <p className="flex">Processing...</p>
                   </div>

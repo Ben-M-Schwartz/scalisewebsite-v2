@@ -60,15 +60,15 @@ const Product: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
         {!isUnsubscribed && (
           <>
-            <h1 className="text-white">
+            <h1 className="text-stone-100">
               Are you sure you want to unsubscribe from the Scalise newsletter?
             </h1>
             <button
               onClick={handleUnsubscribe}
-              className="ocus:shadow-outline text-xsl w-full rounded-sm border-2 border-white bg-rose-700 py-4 text-center text-white hover:border-rose-700 hover:bg-white hover:text-rose-700 active:bg-rose-400"
+              className="ocus:shadow-outline text-xsl w-full rounded-sm border-2 border-stone-100 bg-red-800 py-4 text-center text-stone-100 hover:border-red-800 hover:bg-stone-100 hover:text-red-800 active:bg-rose-400"
             >
               Yes
             </button>
@@ -76,10 +76,10 @@ const Product: NextPage = () => {
         )}
         {isUnsubscribed && (
           <>
-            <p className="text-white">You are now unsubscribed</p>
+            <p className="text-stone-100">You are now unsubscribed</p>
             <Link
               href="/"
-              className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+              className="text-xl font-bold text-stone-100 hover:text-blue-700 hover:underline active:text-gray-500"
             >
               Home
             </Link>
