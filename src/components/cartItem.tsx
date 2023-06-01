@@ -141,18 +141,18 @@ export function Item({
         </div>
         <div className="flex flex-col items-end gap-2 sm:flex-row sm:items-center sm:gap-3">
           <div className="text-right text-stone-100">
+            <button
+              onClick={() => onDelete()}
+              disabled={disableUpdates}
+              className="font-medium text-gray-500 hover:text-red-800 hover:underline active:text-gray-500"
+            >
+              Delete
+            </button>
             <div>
               Total: ${(item.price as number) * (quantity as number)}
               {(item.price as number) % 1 === 0 ? ".00" : ""}
             </div>
           </div>
-          <button
-            onClick={() => onDelete()}
-            disabled={disableUpdates}
-            className="font-medium text-gray-500 hover:text-red-800 hover:underline active:text-gray-500"
-          >
-            Delete
-          </button>
         </div>
       </div>
     </main>

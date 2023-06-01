@@ -182,7 +182,7 @@ const Music: NextPage = () => {
               alt="SGKY Image"
               width={504}
               height={504}
-              className="order-1 shadow-xl"
+              className="order-1 flex flex-col items-center justify-center shadow-xl"
               loading="lazy"
             />
           </div>
@@ -211,6 +211,7 @@ const Music: NextPage = () => {
                 loading="lazy"
                 width={504}
                 height={504}
+                className="flex flex-col items-center justify-center"
               />
             </div>
           </div>
@@ -237,7 +238,7 @@ const Music: NextPage = () => {
               alt="Airbag Image"
               width={504}
               height={504}
-              className="order-1 shadow-xl"
+              className="order-1 flex flex-col items-center justify-center shadow-xl"
               loading="lazy"
             />
           </div>
@@ -264,6 +265,7 @@ const Music: NextPage = () => {
               alt="Fruit Snacks Image"
               width={504}
               height={504}
+              className="flex flex-col items-center justify-center"
               loading="lazy"
             />
           </div>
