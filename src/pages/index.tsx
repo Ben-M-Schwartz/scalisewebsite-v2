@@ -131,8 +131,8 @@ const Home: NextPage = () => {
           />
           <div className="relative z-10 flex flex-col items-center gap-10 py-24">
             <h1 className="text-5xl text-stone-100">NEW MERCH!</h1>
-            <h2 className="text-2xl text-stone-100">
-              Screen Printed and vinyl pressed by the band
+            <h2 className="text-center text-2xl text-stone-100">
+              Screen printed and vinyl pressed by the band
             </h2>
             <div className="flex w-1/2 flex-col items-center justify-center gap-4 md:flex-row">
               <Image
@@ -161,17 +161,17 @@ const Home: NextPage = () => {
           <div className="flex flex-col gap-20 pb-20">
             <Image
               src={background}
-              alt="Red Felt"
+              alt="Red Background"
               fill
               quality={75}
               //style={{ objectFit: "cover" }}
-              className="absolute z-0 h-full object-cover"
+              className="object- absolute z-0 h-full object-cover object-[0%_15%]"
             />
             <div className="z-10 flex flex-col items-center justify-center gap-3 pt-20 sm:px-10 md:flex-row md:items-center md:justify-center md:gap-10">
               <div className="w-1/2 text-center md:order-1 md:h-1/2 md:w-1/2">
                 <div className="flex flex-col items-center justify-center gap-3">
                   <h1 className="z-1 tex-center text-4xl font-bold text-stone-100">
-                    She&apos;s Gonna Kill You
+                    SHE&apos;S GONNA KILL YOU
                   </h1>
                   <Link
                     rel="noopener noreferrer"

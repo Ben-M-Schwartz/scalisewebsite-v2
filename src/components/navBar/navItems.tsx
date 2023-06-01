@@ -165,7 +165,7 @@ export function PageLinks() {
                 : ""
             }
           >
-            VIDOES
+            VIDEOS
           </p>
         </Link>
       </motion.li>

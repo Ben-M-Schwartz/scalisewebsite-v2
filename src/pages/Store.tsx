@@ -200,7 +200,7 @@ const Store: NextPage = (
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <div className="fixed left-0 top-0 -z-10 min-h-screen">
+      <div className="fixed left-0 top-16 -z-10 min-h-screen md:top-20">
         <Image
           src={banner}
           alt="background photo"
