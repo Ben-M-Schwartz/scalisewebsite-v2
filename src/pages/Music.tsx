@@ -11,7 +11,7 @@ import red_background from "../../public/Red Background.webp";
 import transferred from "../../public/transferred.webp";
 import fruitSnacks from "../../public/fruitSnacks.webp";
 import airbag from "../../public/airbag.webp";
-import sgky from "../../public/SGKY Cover.png";
+import sgky from "../../public/SGKY Cover.webp";
 import album1 from "../../public/fromNothingToNothing.webp";
 
 import { AudioPlayer } from "~/components/audioPlayer";

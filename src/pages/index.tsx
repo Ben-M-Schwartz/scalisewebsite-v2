@@ -12,7 +12,7 @@ import restOfTheWeek from "../../public/restOfTheWeek.webp";
 import fruitSnacks from "../../public/fruitSnacks.webp";
 import tmynmImage from "../../public/tellMeYouNeedMe.webp";
 import airbag from "../../public/airbag.webp";
-import sgky from "../../public/SGKY Cover.png";
+import sgky from "../../public/SGKY Cover.webp";
 
 import hoodieBack from "../../public/HoodieBack.webp";
 import crewFront from "../../public/CrewneckFront.webp";
