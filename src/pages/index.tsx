@@ -261,7 +261,7 @@ const Home: NextPage = () => {
                   </Link>
                 </div>
               </div>
-              <div className="flex flex h-1/2 w-1/2 flex-col items-center">
+              <div className="flex h-1/2 w-1/2 flex-col items-center">
                 <Image
                   src={fruitSnacks}
                   alt="Fruit Snacks Image"
