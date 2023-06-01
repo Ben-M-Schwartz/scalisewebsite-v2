@@ -37,9 +37,13 @@ export function AudioPlayer({
       : null;
 
   const play = () => {
+    document.querySelectorAll("audio").forEach((el) => el.pause());
     setPlaying(true);
     if (player !== null) {
       player.play().catch((error) => console.error(error));
+      player.addEventListener("pause", () => {
+        setPlaying(false);
+      });
     }
   };
   const pause = () => {

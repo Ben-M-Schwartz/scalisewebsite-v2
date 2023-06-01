@@ -3,6 +3,5 @@
 @tailwind utilities;
 
 main {
-  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
