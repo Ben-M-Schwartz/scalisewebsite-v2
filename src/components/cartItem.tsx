@@ -60,97 +60,100 @@ export function Item({
           <div className="text-gray-500">Price: ${item.price}</div>
         </div>
       </div>
-      <div className="flex items-center">
-        <button
-          onClick={() => {
-            setQuantity((quantity as number) - 1);
-            setPrevQuantity((quantity as number) - 1);
-            onRemove();
-            //setRemoveDisabled(true);
-            //setTimeout(() => setRemoveDisabled(false), 1000);
-          }}
-          disabled={(quantity as number) <= 1 || disableUpdates}
-          type="submit"
-          className="rounded-l-lg bg-gray-700 px-1 py-1 hover:bg-blue-500 active:bg-gray-900 disabled:bg-gray-400"
-        >
-          -
-        </button>
-        <input
-          onChange={(e) => {
-            setQuantity(
-              e.target.value !== ""
-                ? Math.min(
-                    Math.max(parseInt(e.target.value), 1),
-                    (item.quantity_in_stock as number) -
-                      (item.quantity_in_checkouts
-                        ? item.quantity_in_checkouts
-                        : 0)
-                  )
-                : ""
-            );
-          }}
-          onBlur={() => {
-            if (quantity === "") {
-              setQuantity(prevQuantity);
-            } else {
-              if ((quantity as number) <= 0) {
-                setQuantity(1);
-              }
-              if ((quantity as number) > prevQuantity) {
-                onTextUpdate((quantity as number) - prevQuantity, "+");
-              } else if ((quantity as number) < prevQuantity) {
-                onTextUpdate(prevQuantity - (quantity as number), "-");
-              }
-              setPrevQuantity(quantity as number);
-              //setReadOnly(true);
-              //setTimeout(() => setReadOnly(false), 1000);
-            }
-          }}
-          type="number"
-          name="quantity"
-          className="block w-[50px] rounded-none border border-gray-600 bg-gray-700 px-1 py-1 text-sm text-white placeholder-gray-400 [appearance:textfield] focus:border-blue-500 focus:ring-blue-500 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-          value={quantity}
-          max={
-            (item.quantity_in_stock as number) -
-            (item.quantity_in_checkouts ? item.quantity_in_checkouts : 0)
-          }
-          min={1}
-          readOnly={disableUpdates} //isReadOnly
-        />
-        <button
-          onClick={() => {
-            setQuantity((quantity as number) + 1);
-            setPrevQuantity((quantity as number) + 1);
-            onAdd();
-            //setAddDisabled(true);
-            //setTimeout(() => setAddDisabled(false), 1000);
-          }}
-          disabled={
-            (quantity as number) >=
-              (item.quantity_in_stock as number) -
-                (item.quantity_in_checkouts ? item.quantity_in_checkouts : 0) ||
-            disableUpdates
-          }
-          type="submit"
-          className="rounded-r-lg bg-gray-700 px-1 py-1 hover:bg-blue-500 active:bg-gray-900 disabled:bg-gray-400"
-        >
-          +
-        </button>
-      </div>
       <div className="flex flex-col items-end gap-2 sm:flex-row sm:items-center sm:gap-3">
-        <div className="text-right text-gray-100">
-          <div>
-            Total: ${(item.price as number) * (quantity as number)}
-            {(item.price as number) % 1 === 0 ? ".00" : ""}
-          </div>
+        <div className="flex items-center">
+          <button
+            onClick={() => {
+              setQuantity((quantity as number) - 1);
+              setPrevQuantity((quantity as number) - 1);
+              onRemove();
+              //setRemoveDisabled(true);
+              //setTimeout(() => setRemoveDisabled(false), 1000);
+            }}
+            disabled={(quantity as number) <= 1 || disableUpdates}
+            type="submit"
+            className="rounded-l-lg bg-gray-700 px-1 py-1 hover:bg-blue-500 active:bg-gray-900 disabled:bg-gray-400"
+          >
+            -
+          </button>
+          <input
+            onChange={(e) => {
+              setQuantity(
+                e.target.value !== ""
+                  ? Math.min(
+                      Math.max(parseInt(e.target.value), 1),
+                      (item.quantity_in_stock as number) -
+                        (item.quantity_in_checkouts
+                          ? item.quantity_in_checkouts
+                          : 0)
+                    )
+                  : ""
+              );
+            }}
+            onBlur={() => {
+              if (quantity === "") {
+                setQuantity(prevQuantity);
+              } else {
+                if ((quantity as number) <= 0) {
+                  setQuantity(1);
+                }
+                if ((quantity as number) > prevQuantity) {
+                  onTextUpdate((quantity as number) - prevQuantity, "+");
+                } else if ((quantity as number) < prevQuantity) {
+                  onTextUpdate(prevQuantity - (quantity as number), "-");
+                }
+                setPrevQuantity(quantity as number);
+                //setReadOnly(true);
+                //setTimeout(() => setReadOnly(false), 1000);
+              }
+            }}
+            type="number"
+            name="quantity"
+            className="block w-[50px] rounded-none border border-gray-600 bg-gray-700 px-1 py-1 text-sm text-white placeholder-gray-400 [appearance:textfield] focus:border-blue-500 focus:ring-blue-500 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            value={quantity}
+            max={
+              (item.quantity_in_stock as number) -
+              (item.quantity_in_checkouts ? item.quantity_in_checkouts : 0)
+            }
+            min={1}
+            readOnly={disableUpdates} //isReadOnly
+          />
+          <button
+            onClick={() => {
+              setQuantity((quantity as number) + 1);
+              setPrevQuantity((quantity as number) + 1);
+              onAdd();
+              //setAddDisabled(true);
+              //setTimeout(() => setAddDisabled(false), 1000);
+            }}
+            disabled={
+              (quantity as number) >=
+                (item.quantity_in_stock as number) -
+                  (item.quantity_in_checkouts
+                    ? item.quantity_in_checkouts
+                    : 0) || disableUpdates
+            }
+            type="submit"
+            className="rounded-r-lg bg-gray-700 px-1 py-1 hover:bg-red-800 active:bg-gray-900 disabled:bg-gray-400"
+          >
+            +
+          </button>
         </div>
-        <button
-          onClick={() => onDelete()}
-          disabled={disableUpdates}
-          className="font-medium text-gray-500 hover:text-blue-700 hover:underline active:text-gray-500"
-        >
-          Delete
-        </button>
+        <div className="flex flex-col items-end gap-2 sm:flex-row sm:items-center sm:gap-3">
+          <div className="text-right text-stone-100">
+            <div>
+              Total: ${(item.price as number) * (quantity as number)}
+              {(item.price as number) % 1 === 0 ? ".00" : ""}
+            </div>
+          </div>
+          <button
+            onClick={() => onDelete()}
+            disabled={disableUpdates}
+            className="font-medium text-gray-500 hover:text-red-800 hover:underline active:text-gray-500"
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </main>
   );

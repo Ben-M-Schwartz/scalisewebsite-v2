@@ -305,7 +305,7 @@ const Cart: NextPage = () => {
                 Your cart is empty
               </h1>
               <Link
-                className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-stone-100 bg-red-800 py-4 text-center text-stone-100 hover:border-red-800 hover:bg-stone-100 hover:text-red-800 active:bg-rose-400"
+                className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-stone-100 bg-red-800 py-4 text-center text-stone-100 hover:border-red-800 hover:bg-stone-100 hover:text-red-800 active:bg-red-400"
                 href="/Store"
               >
                 Return To Store
@@ -349,7 +349,7 @@ const Cart: NextPage = () => {
                 )}
               </AnimatePresence>
             </div>
-            <div className="flex w-full flex-col justify-between border-b border-b-stone-100 px-4 sm:w-2/3 sm:px-0">
+            <div className="flex w-full flex-col justify-between border-b border-b-stone-100 px-4 sm:w-5/6 sm:px-0 lg:w-2/3">
               <div className="divide-y divide-gray-600">
                 {cartItems.map((item: Cart, index) => (
                   <>
@@ -446,7 +446,7 @@ const Cart: NextPage = () => {
               </div>
               {!processingCheckout && (
                 <button
-                  className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-stone-100 bg-red-800 py-4 text-stone-100 hover:border-red-800 hover:bg-stone-100 hover:text-red-800 active:bg-rose-400 sm:w-1/3"
+                  className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-stone-100 bg-red-800 py-4 text-stone-100 hover:border-red-800 hover:bg-stone-100 hover:text-red-800 active:bg-red-400 sm:w-1/3"
                   onClick={handleCheckout}
                   disabled={disable}
                 >
