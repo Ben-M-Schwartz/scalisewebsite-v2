@@ -84,15 +84,15 @@ const SuccessPage: NextPage = () => {
           </h1>
         </div>
         {session_id && (
-          <>
+          <div className="relative pt-36">
             <h1 className="pt-10 text-center">Payment Successful!</h1>
             <p className="text-center">Thank you for your purchase.</p>
             <p className="text-center">Check your email for order details.</p>
-          </>
+          </div>
         )}
         <Link
           href="/"
-          className="text-xl font-bold text-blue-500 underline hover:text-blue-700 active:text-gray-500"
+          className="text-xl font-bold text-red-800 underline hover:text-red-900 active:text-gray-500"
         >
           Back to Home
         </Link>
