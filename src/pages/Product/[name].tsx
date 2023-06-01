@@ -138,6 +138,7 @@ const Product: NextPage = (
   const [buttonText, setButtonText] = useState("Add to Cart");
   const [notifyProcessing, setNotifyProcessing] = useState(false);
   const [notifyButtonText, setNotifyButtonText] = useState("Notify Me!");
+  const [goToCartButton, setGoToCart] = useState(false);
 
   const { updateAmount } = useContext<CartContextType>(CartContext);
 
@@ -215,6 +216,7 @@ const Product: NextPage = (
       .then(() => {
         updateAmount(mutateOptions.quantity);
         setButtonText("Added to Cart!");
+        setGoToCart(true);
         setProcessing(false);
       })
       .catch(() => window.alert("error please try again later"));
@@ -510,36 +512,46 @@ const Product: NextPage = (
                   /> */}
                         </div>
                       )}
-                      {!processing && (
-                        <button
-                          type="submit"
-                          id="submitButton"
-                          disabled={addToCartDisabled}
-                          className={`mb-2 mr-2 inline-block w-1/2 rounded-lg border py-5 text-sm font-medium text-stone-100 hover:bg-stone-100 hover:text-stone-950 ${
-                            addToCartDisabled ? "cursor-not-allowed" : ""
-                          }`}
-                          onClick={(e) => {
-                            if (pickedSize === "") {
-                              e.preventDefault();
-                              alert("Please pick a size");
-                            }
-                          }}
-                        >
-                          {buttonText}
-                        </button>
-                      )}
-                      {processing && (
-                        <button
-                          type="button"
-                          className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-stone-100"
-                          disabled
-                        >
-                          <div className="flex flex-row justify-center gap-2 px-2">
-                            <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
-                            <p className="flex">Processing...</p>
-                          </div>
-                        </button>
-                      )}
+                      <div className="flex flex-row gap-4">
+                        {!processing && (
+                          <button
+                            type="submit"
+                            id="submitButton"
+                            disabled={addToCartDisabled}
+                            className={`mb-2 mr-2 inline-block w-1/2 rounded-lg border py-5 text-sm font-medium text-stone-100 hover:bg-stone-100 hover:text-stone-950 ${
+                              addToCartDisabled ? "cursor-not-allowed" : ""
+                            }`}
+                            onClick={(e) => {
+                              if (pickedSize === "") {
+                                e.preventDefault();
+                                alert("Please pick a size");
+                              }
+                            }}
+                          >
+                            {buttonText}
+                          </button>
+                        )}
+                        {processing && (
+                          <button
+                            type="button"
+                            className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-stone-100"
+                            disabled
+                          >
+                            <div className="flex flex-row justify-center gap-2 px-2">
+                              <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
+                              <p className="flex">Processing...</p>
+                            </div>
+                          </button>
+                        )}
+                        {goToCartButton && (
+                          <Link
+                            className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-center text-sm font-medium text-stone-100 hover:bg-stone-100 hover:text-stone-950"
+                            href="/Cart"
+                          >
+                            Go To Cart
+                          </Link>
+                        )}
+                      </div>
                     </>
                   )}
               </form>
