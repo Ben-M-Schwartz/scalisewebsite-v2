@@ -6,7 +6,7 @@ import Link from "next/link";
 import fruitSnacks from "../../public/fruitSnacks.webp";
 import airbag from "../../public/airbag.webp";
 import transferred from "../../public/transferred.webp";
-import sgky from "../../public/SGKY Cover.png";
+import sgky from "../../public/SGKY Cover.webp";
 
 import banner from "../../public/tunnelEPKPhoto.webp";
 

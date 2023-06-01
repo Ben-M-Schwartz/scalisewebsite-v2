@@ -28,8 +28,8 @@ import {
 
 //import { api } from "~/utils/api";
 
-import banner from "../../public/2.png";
-import title from "../../public/Shows (Handwritten).png";
+import banner from "../../public/2.webp";
+import title from "../../public/Shows (Handwritten).webp";
 
 import { db } from "~/db/db";
 //import type { InferGetServerSidePropsType, GetServerSideProps } from "next";

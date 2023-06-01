@@ -9,8 +9,8 @@ type Product = InferModel<typeof product_details, "select">;
 
 import { motion, AnimatePresence } from "framer-motion";
 
-import banner from "../../public/Black Crumple Background Darker.png";
-import title from "../../public/Store (Handwritten).png";
+import banner from "../../public/Black Crumple Background Darker.webp";
+import title from "../../public/Store (Handwritten).webp";
 
 /* export const config = {
   runtime: "experimental-edge",

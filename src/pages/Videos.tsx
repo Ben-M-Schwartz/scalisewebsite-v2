@@ -2,9 +2,9 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 
-import banner from "../../public/3.png";
-import title from "../../public/Videos (Handwritten).png";
-import white_paper from "../../public/White Crumple Background Lighter.png";
+import banner from "../../public/3.webp";
+import title from "../../public/Videos (Handwritten).webp";
+import white_paper from "../../public/White Crumple Background Lighter.webp";
 
 /* export const config = {
   runtime: "experimental-edge",

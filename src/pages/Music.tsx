@@ -3,11 +3,11 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 
-import banner from "../../public/1.png";
-import title from "../../public/Music (Handwritten).png";
-import white_paper from "../../public/White Crumple Background Lighter.png";
-import black_paper from "../../public/Black Crumple Background Darker.png";
-import red_background from "../../public/Red Background.png";
+import banner from "../../public/1.webp";
+import title from "../../public/Music (Handwritten).webp";
+import white_paper from "../../public/White Crumple Background Lighter.webp";
+import black_paper from "../../public/Black Crumple Background Darker.webp";
+import red_background from "../../public/Red Background.webp";
 import transferred from "../../public/transferred.webp";
 import fruitSnacks from "../../public/fruitSnacks.webp";
 import airbag from "../../public/airbag.webp";
