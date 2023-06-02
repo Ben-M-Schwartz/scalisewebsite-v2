@@ -2,7 +2,8 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { CartContext, type CartContextType } from "~/pages/_app";
+import { useEffect, useContext } from "react";
 import Image from "next/image";
 import excited from "../../../public/excited.webp";
 
@@ -22,11 +23,14 @@ const SuccessPage: NextPage = () => {
   const cart_id = getCookie("cart_id")?.toString() || "not found";
   const clearCart = api.cart.clearCart.useMutation();
 
+  const { cartAmount, updateAmount } = useContext<CartContextType>(CartContext);
+
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     if (session_id) {
       clearCart
         .mutateAsync({ cart_id: cart_id })
+        .then(() => updateAmount(-cartAmount))
         .catch((error) => console.error(error));
     }
   }, [session_id]);
