@@ -81,7 +81,8 @@ const Cart: NextPage = () => {
     quantity: number,
     product_id: number,
     price: number,
-    weight: number
+    weight: number,
+    maxQuantity: number
   ) => {
     setProcessing(true);
     setDisable(true);
@@ -94,6 +95,7 @@ const Cart: NextPage = () => {
         product_id: product_id,
         price: price,
         weight: weight,
+        max_quantity: maxQuantity,
       })
       .then(() => {
         setProcessing(false);
@@ -372,7 +374,9 @@ const Cart: NextPage = () => {
                             1,
                             item.cart_item?.product_id as number,
                             item.cart_item?.price as number,
-                            item.cart_item?.weight as number
+                            item.cart_item?.weight as number,
+                            (item.cart_item?.quantity_in_checkouts as number) +
+                              (item.cart_item?.quantity_in_stock as number)
                           );
                         }}
                         onRemove={() => {
@@ -402,7 +406,10 @@ const Cart: NextPage = () => {
                               changeAmount,
                               item.cart_item?.product_id as number,
                               item.cart_item?.price as number,
-                              item.cart_item?.weight as number
+                              item.cart_item?.weight as number,
+                              (item.cart_item
+                                ?.quantity_in_checkouts as number) +
+                                (item.cart_item?.quantity_in_stock as number)
                             );
                           } else {
                             handleTotalUpdate(

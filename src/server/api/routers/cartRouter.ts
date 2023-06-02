@@ -29,6 +29,7 @@ export const cartRouter = createTRPCRouter({
         weight: z.number(),
         size: z.string(),
         name: z.string(),
+        max_quantity: z.number(),
       })
     )
     .mutation(async ({ input }) => {
@@ -50,6 +51,16 @@ export const cartRouter = createTRPCRouter({
           );
         const cart_item = itemQuery[0];
         if (cart_item) {
+          if (
+            (cart_item.quantity as number) + input.quantity >
+            input.max_quantity
+          ) {
+            throw new Error(
+              `Cannot have more than ${
+                input.max_quantity
+              } in cart\nYou currently have ${cart_item.quantity as number}`
+            );
+          }
           await db
             .update(cart_items)
             .set({ quantity: sql`${cart_items.quantity} + ${input.quantity}` })

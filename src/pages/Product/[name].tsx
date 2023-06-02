@@ -196,6 +196,7 @@ const Product: NextPage = (
       weight: productData[0]?.weight as number,
       name: productData[0]?.name as string,
       cart_id: "",
+      max_quantity: maxQuantity,
     };
 
     if (!navigator.cookieEnabled) {
@@ -219,7 +220,10 @@ const Product: NextPage = (
         setGoToCart(true);
         setProcessing(false);
       })
-      .catch(() => window.alert("error please try again later"));
+      .catch((error: { message: string }) => {
+        window.alert(error.message);
+        setProcessing(false);
+      });
   };
 
   const handleSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
