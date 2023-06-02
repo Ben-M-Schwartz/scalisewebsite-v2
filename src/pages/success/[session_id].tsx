@@ -22,6 +22,7 @@ const SuccessPage: NextPage = () => {
 
   const cart_id = getCookie("cart_id")?.toString() || "not found";
   const clearCart = api.cart.clearCart.useMutation();
+  const subscribe = api.email.confirm.useMutation();
 
   const { cartAmount, updateAmount } = useContext<CartContextType>(CartContext);
 
@@ -34,6 +35,13 @@ const SuccessPage: NextPage = () => {
         .catch((error) => console.error(error));
     }
   }, [session_id]);
+
+  //TODO: Add a button to sign up for mailing list
+  const queryResult = api.orders.getEmail.useQuery(
+    { session_id: session_id as string },
+    { enabled: session_id !== undefined }
+  );
+  const email = queryResult.data;
 
   return (
     <>
@@ -79,7 +87,7 @@ const SuccessPage: NextPage = () => {
             src={excited}
             alt="background photo"
             fill
-            quality={75}
+            quality={100}
             className="absolute z-0 object-cover object-[0%_15%]"
             priority
           />
@@ -88,7 +96,7 @@ const SuccessPage: NextPage = () => {
           </h1>
         </div>
         {session_id && (
-          <div className="relative pt-36">
+          <div className="relative pt-20">
             <h1 className="pt-10 text-center">Payment Successful!</h1>
             <p className="text-center">Thank you for your purchase.</p>
             <p className="text-center">Check your email for order details.</p>
@@ -100,6 +108,24 @@ const SuccessPage: NextPage = () => {
         >
           Back to Home
         </Link>
+        <button
+          onClick={() => {
+            subscribe
+              .mutateAsync({
+                email: email as string,
+                url: window.location.origin,
+              })
+              .then(() => window.alert("Success"))
+              .catch(() =>
+                window.alert(
+                  "An unexpected error occured\nPlease enter your email in the subscribe form at the bottom of the page"
+                )
+              );
+          }}
+          className="mt-20 rounded-sm border bg-red-800 px-6 py-2 text-center text-white hover:border-red-800 hover:bg-white hover:text-red-800 active:bg-gray-300"
+        >
+          Join Mailing List
+        </button>
       </main>
     </>
   );

@@ -64,7 +64,7 @@ const emailMailingList = async (subject: string, html: string) => {
   await mailerSend.email.sendBulk(bulkMail);
 };
 
-const sendConfirmationEmail = async (
+export const sendConfirmationEmail = async (
   url: string,
   email: string,
   token: string

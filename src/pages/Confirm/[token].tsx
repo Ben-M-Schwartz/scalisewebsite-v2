@@ -91,12 +91,12 @@ const Confirm: NextPage = () => {
         )}
         {invalidLink && !loading && (
           <>
-            <p className="text-stone-100">
+            <p className="text-2xl text-stone-100">
               This confirmation link is no longer valid
             </p>
             <Link
               href="/"
-              className="text-center text-xl font-bold text-stone-100 hover:text-blue-700 hover:underline active:text-gray-500"
+              className="text-center text-xl font-bold text-red-800 underline hover:text-red-900 active:text-gray-500"
             >
               Home
             </Link>

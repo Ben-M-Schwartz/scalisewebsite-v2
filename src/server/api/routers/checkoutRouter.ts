@@ -133,9 +133,9 @@ export const checkoutRouter = createTRPCRouter({
             },
           },
         ],
-        phone_number_collection: {
+        /*         phone_number_collection: {
           enabled: true,
-        },
+        }, */
         shipping_address_collection: {
           allowed_countries: ["US", "CA"],
         },
