@@ -8,6 +8,7 @@ import {
   timestamp,
   float,
   json,
+  boolean,
 } from "drizzle-orm/mysql-core";
 
 export const config = {
@@ -176,6 +177,7 @@ export const orders = mysqlTable("orders", {
   }),
   payment_intent_id: varchar("payment_intent_id", { length: 255 }),
   payment_status: varchar("payment_status", { length: 255 }),
+  shipped: boolean("shipped").default(false),
 });
 
 export const shows = mysqlTable(

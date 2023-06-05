@@ -5,6 +5,11 @@ import { eq } from "drizzle-orm/expressions";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 export const ordersRouter = createTRPCRouter({
+  listOrders: publicProcedure
+    .input(z.object({ unshipped_only: z.boolean() }))
+    .query(({ input }) => {
+      return null;
+    }),
   getEmail: publicProcedure
     .input(z.object({ session_id: z.string() }))
     .query(async ({ input }) => {
