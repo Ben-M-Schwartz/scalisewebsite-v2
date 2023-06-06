@@ -2,6 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 import banner from "../../public/1.webp";
 import title from "../../public/Music (Handwritten).webp";
@@ -22,6 +23,7 @@ import { AudioPlayer } from "~/components/audioPlayer";
 }; */
 
 const Music: NextPage = () => {
+  const [loaded, setLoaded] = useState(false);
   return (
     <>
       <Head>
@@ -60,7 +62,7 @@ const Music: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gray-800">
+      <main className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-stone-950">
         <div className="relative flex w-full items-center justify-center bg-transparent">
           <Image
             src={banner}
@@ -71,10 +73,18 @@ const Music: NextPage = () => {
             className="absolute z-0 object-cover"
             priority
           />
+          {/*           <h1
+            className={`${
+              loaded ? "hidden" : "block"
+            } absolute text-6xl text-stone-100 shadow-sm`}
+          >
+            MUSIC
+          </h1> */}
           <Image
             src={title}
+            onLoad={() => setLoaded(true)}
             alt="MUSIC"
-            className="z-10 p-10"
+            className={`z-10 p-10 ${loaded ? "block" : "invisible"}`}
             height={210}
             width={281}
           />

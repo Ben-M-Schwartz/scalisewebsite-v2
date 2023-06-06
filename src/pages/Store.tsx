@@ -161,7 +161,7 @@ const Store: NextPage = (
   } */
 
   const products = props.products as Product[];
-
+  const [loaded, setLoaded] = useState(false);
   return (
     <>
       <Head>
@@ -211,12 +211,13 @@ const Store: NextPage = (
           priority
         />
       </div>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-transparent bg-fixed">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950 bg-transparent bg-fixed">
         <div className="relative flex w-full items-center justify-center bg-transparent">
           <Image
             src={title}
             alt="STORE"
-            className="z-10 p-10"
+            onLoad={() => setLoaded(true)}
+            className={`z-10 p-10 ${loaded ? "block" : "invisible"}`}
             height={210}
             width={281}
           />

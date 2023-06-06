@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
 
 import banner from "../../public/3.webp";
 import title from "../../public/Videos (Handwritten).webp";
@@ -12,6 +13,7 @@ import white_paper from "../../public/White Crumple Background Lighter.webp";
 }; */
 
 const Videos: NextPage = () => {
+  const [loaded, setLoaded] = useState(false);
   return (
     <>
       <Head>
@@ -50,7 +52,7 @@ const Videos: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-black">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
         <div className="relative flex w-full items-center justify-center bg-transparent">
           <Image
             src={banner}
@@ -64,7 +66,8 @@ const Videos: NextPage = () => {
           <Image
             src={title}
             alt="VIDEOS"
-            className="z-10 p-10"
+            onLoad={() => setLoaded(true)}
+            className={`z-10 p-10 ${loaded ? "block" : "invisible"}`}
             height={210}
             width={281}
           />

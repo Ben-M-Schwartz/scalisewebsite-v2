@@ -223,6 +223,7 @@ const Shows: NextPage = (
     const shows = api.shows.get.useQuery(undefined, {
       onSuccess: () => setLoading(false),
     }).data; */
+  const [loaded, setLoaded] = useState(false);
 
   const shows = props.shows as ShowType[];
   return (
@@ -263,7 +264,7 @@ const Shows: NextPage = (
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="relative flex flex-col items-center bg-gray-800">
+      <main className="relative flex flex-col items-center bg-stone-950">
         <Image
           src={banner}
           alt="background photo"
@@ -277,7 +278,8 @@ const Shows: NextPage = (
           <Image
             src={title}
             alt="SHOWS"
-            className="z-10 p-10"
+            onLoad={() => setLoaded(true)}
+            className={`z-10 p-10 ${loaded ? "block" : "invisible"}`}
             height={210}
             width={281}
           />
