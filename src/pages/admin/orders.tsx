@@ -125,9 +125,10 @@ const Orders: NextPage = () => {
         )}
         {!loading && (
           <>
+            <h1 className="text-4xl text-stone-100">Orders Page</h1>
             <Link
               href="/admin/home"
-              className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+              className="text-xl font-bold text-white underline hover:text-blue-700 hover:underline active:text-gray-500"
             >
               Admin Home
             </Link>
