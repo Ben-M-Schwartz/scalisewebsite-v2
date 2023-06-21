@@ -85,7 +85,7 @@ export function CartLink() {
   return (
     <Link
       href="/Cart"
-      className="hover: ext-stone-950 z-10 block  rounded hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+      className="hover: ext-stone-950 z-10 block  rounded hover:text-red-800 md:p-0"
     >
       <motion.div
         className="flex items-center justify-center align-middle"
@@ -115,7 +115,7 @@ export function PageLinks() {
         <Link
           href="/Music"
           className={
-            "block rounded py-2 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+            "block rounded py-2 text-stone-950 hover:bg-stone-200 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           }
         >
           <p
@@ -135,7 +135,7 @@ export function PageLinks() {
         <Link
           href="/Shows"
           className={
-            "hover: block rounded py-2 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+            "hover: block rounded py-2 text-stone-950 hover:bg-stone-200 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           }
         >
           <p
@@ -155,7 +155,7 @@ export function PageLinks() {
         <Link
           href="/Videos"
           className={
-            "hover: block rounded py-2 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+            "hover: block rounded py-2 text-stone-950 hover:bg-stone-200 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           }
         >
           <p
@@ -177,7 +177,7 @@ export function PageLinks() {
         <Link
           href="/Store"
           className={
-            "hover: block rounded py-2 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+            "hover: block rounded py-2 text-stone-950 hover:bg-stone-200 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           }
         >
           <p
@@ -197,7 +197,7 @@ export function PageLinks() {
         <Link
           href="/Contact"
           className={
-            "hover: block rounded py-2 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+            "hover: block rounded py-2 text-stone-950 hover:bg-stone-200 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           }
         >
           <p
@@ -231,7 +231,7 @@ export function SocialLinks() {
         </label>
         <Link
           href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
-          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           rel="noopener noreferrer"
           target="_blank"
           id="spotify-link"
@@ -249,7 +249,7 @@ export function SocialLinks() {
         </label>
         <Link
           href="https://music.apple.com/us/artist/scalise/1529031635"
-          className="hover: y-2 block rounded  pl-3  pr-4 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+          className="hover: y-2 block rounded  pl-3  pr-4 text-stone-950 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           rel="noopener noreferrer"
           target="_blank"
           id="applemusic-link"
@@ -267,7 +267,7 @@ export function SocialLinks() {
         </label>
         <Link
           href="https://twitter.com/ScaliseTheBand"
-          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           rel="noopener noreferrer"
           target="_blank"
           id="twitter-link"
@@ -285,7 +285,7 @@ export function SocialLinks() {
         </label>
         <Link
           href="https://www.facebook.com/ScaliseTheBand"
-          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           rel="noopener noreferrer"
           target="_blank"
           id="facebook-link"
@@ -303,7 +303,7 @@ export function SocialLinks() {
         </label>
         <Link
           href="https://www.instagram.com/ScaliseTheBand/"
-          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           rel="noopener noreferrer"
           target="_blank"
           id="instagram-link"
@@ -321,7 +321,7 @@ export function SocialLinks() {
         </label>
         <Link
           href="https://www.tiktok.com/@scaliseband"
-          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           rel="noopener noreferrer"
           target="_blank"
           id="tiktok-link"
@@ -339,7 +339,7 @@ export function SocialLinks() {
         </label>
         <Link
           href="https://www.youtube.com/channel/UCWBsxAAhmKP1nRHWQQ5N0Qg"
-          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:bg-stone-300 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
+          className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           rel="noopener noreferrer"
           target="_blank"
           id="youtube-link"

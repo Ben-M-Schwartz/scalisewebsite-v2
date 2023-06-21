@@ -141,6 +141,12 @@ const Home: NextPage = () => {
         >
           Remove A Show
         </Link>
+        <Link
+          href="/admin/orders"
+          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+        >
+          Orders
+        </Link>
       </main>
     </>
   );

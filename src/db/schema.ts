@@ -165,7 +165,6 @@ export const orders = mysqlTable("orders", {
   quantity: int("quantity"),
   customer_name: varchar("customer_name", { length: 255 }),
   customer_email: varchar("customer_email", { length: 255 }),
-  customer_phone: varchar("customer_phone", { length: 255 }),
   customer_city: varchar("customer_city", { length: 255 }),
   customer_state: varchar("customer_state", { length: 255 }),
   customer_zip: varchar("customer_zip", { length: 255 }),

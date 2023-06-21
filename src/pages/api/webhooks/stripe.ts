@@ -58,7 +58,6 @@ export default async function handler(
         quantity: quantity,
         customer_name: session.customer_details?.name,
         customer_email: session.customer_details?.email,
-        customer_phone: session.customer_details?.phone,
         customer_city: session.customer_details?.address?.city,
         customer_state: session.customer_details?.address?.state,
         customer_zip: session.customer_details?.address?.postal_code,
@@ -68,6 +67,7 @@ export default async function handler(
         stripe_checkout_session_id: session.id,
         payment_intent_id: session.payment_intent?.toString(),
         payment_status: session.payment_status,
+        shipped: false,
       });
       if (session.payment_status === "paid") {
         await db

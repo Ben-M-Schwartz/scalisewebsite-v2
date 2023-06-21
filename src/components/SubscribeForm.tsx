@@ -66,7 +66,7 @@ const Subscribe: NextPage = () => {
             </form>
           </>
         )}
-        <div className="mt-4 flex justify-center gap-2 bg-white">
+        <div className="mt-4 flex justify-center gap-2">
           <label htmlFor="spotify-link-2" className="invisible absolute">
             Scalise Spotify Link
           </label>
@@ -90,7 +90,7 @@ const Subscribe: NextPage = () => {
           </label>
           <Link
             href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
-            className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+            className="block rounded  py-2 pl-3 pr-4 text-stone-950 hover:text-red-800 md:p-0"
             rel="noopener noreferrer"
             target="_blank"
             id="spotify-link-2"
@@ -100,7 +100,7 @@ const Subscribe: NextPage = () => {
 
           <Link
             href="https://music.apple.com/us/artist/scalise/1529031635"
-            className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+            className="block rounded  py-2 pl-3 pr-4 text-stone-950 hover:text-red-800 md:p-0"
             rel="noopener noreferrer"
             target="_blank"
             id="applemusic-link-2"
@@ -110,7 +110,7 @@ const Subscribe: NextPage = () => {
 
           <Link
             href="https://twitter.com/ScaliseTheBand"
-            className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+            className="block rounded  py-2 pl-3 pr-4 text-stone-950 hover:text-red-800 md:p-0"
             rel="noopener noreferrer"
             target="_blank"
             id="twitter-link-2"
@@ -120,7 +120,7 @@ const Subscribe: NextPage = () => {
 
           <Link
             href="https://www.facebook.com/ScaliseTheBand"
-            className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+            className="block rounded  py-2 pl-3 pr-4 text-stone-950 hover:text-red-800 md:p-0"
             rel="noopener noreferrer"
             target="_blank"
             id="facebook-link-2"
@@ -130,7 +130,7 @@ const Subscribe: NextPage = () => {
 
           <Link
             href="https://www.tiktok.com/@scaliseband"
-            className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+            className="block rounded  py-2 pl-3 pr-4 text-stone-950 hover:text-red-800 md:p-0"
             rel="noopener noreferrer"
             target="_blank"
             id="instagram-link-2"
@@ -140,7 +140,7 @@ const Subscribe: NextPage = () => {
 
           <Link
             href="https://www.tiktok.com/@scaliseband"
-            className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+            className="block rounded  py-2 pl-3 pr-4 text-stone-950 hover:text-red-800 md:p-0"
             rel="noopener noreferrer"
             target="_blank"
             id="tiktok-link-2"
@@ -150,7 +150,7 @@ const Subscribe: NextPage = () => {
 
           <Link
             href="https://www.youtube.com/channel/UCWBsxAAhmKP1nRHWQQ5N0Qg"
-            className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+            className="block rounded  py-2 pl-3 pr-4 text-stone-950 hover:text-red-800 md:p-0"
             rel="noopener noreferrer"
             target="_blank"
             id="youtube-link-2"
