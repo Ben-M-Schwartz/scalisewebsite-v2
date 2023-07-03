@@ -351,6 +351,27 @@
       "when": 1685735060539,
       "tag": "0049_fluffy_korvac",
       "breakpoints": false
+    },
+    {
+      "idx": 50,
+      "version": "5",
+      "when": 1688411260711,
+      "tag": "0050_last_apocalypse",
+      "breakpoints": false
+    },
+    {
+      "idx": 51,
+      "version": "5",
+      "when": 1688411363932,
+      "tag": "0051_quiet_butterfly",
+      "breakpoints": false
+    },
+    {
+      "idx": 52,
+      "version": "5",
+      "when": 1688411371274,
+      "tag": "0052_perfect_katie_power",
+      "breakpoints": false
     }
   ]
 }

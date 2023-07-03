@@ -14,8 +14,8 @@ CREATE TABLE `carts` (
 	`id` varchar(32) PRIMARY KEY NOT NULL,
 	`total_price` double(10,2),
 	`total_weight` float,
-	`created_at` timestamp DEFAULT NOW() NOT NULL,
-	`updated_at` timestamp DEFAULT NOW() NOT NULL ON UPDATE NOW()
+	`created_at` timestamp NOT NULL DEFAULT (now()),
+	`updated_at` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `emailDesigns` (
@@ -30,7 +30,7 @@ CREATE TABLE `in_checkout_amounts` (
 	`stripe_checkout_id` varchar(255),
 	`size` varchar(255),
 	`quantity` int,
-	`created_at` timestamp DEFAULT NOW() NOT NULL
+	`created_at` timestamp NOT NULL DEFAULT (now())
 );
 
 CREATE TABLE `notifiedAlreadySubscribed` (
@@ -45,7 +45,6 @@ CREATE TABLE `orders` (
 	`quantity` int,
 	`customer_name` varchar(255),
 	`customer_email` varchar(255),
-	`customer_phone` varchar(255),
 	`customer_city` varchar(255),
 	`customer_state` varchar(255),
 	`customer_zip` varchar(255),
@@ -54,14 +53,15 @@ CREATE TABLE `orders` (
 	`customer_addressLine2` varchar(255),
 	`stripe_checkout_session_id` varchar(255),
 	`payment_intent_id` varchar(255),
-	`payment_status` varchar(255)
+	`payment_status` varchar(255),
+	`shipped` boolean DEFAULT false
 );
 
 CREATE TABLE `potential_subscribers` (
 	`id` serial AUTO_INCREMENT PRIMARY KEY NOT NULL,
 	`email` varchar(255),
 	`token` varchar(255),
-	`created_at` timestamp DEFAULT NOW() NOT NULL
+	`created_at` timestamp NOT NULL DEFAULT (now())
 );
 
 CREATE TABLE `product_details` (
@@ -90,8 +90,8 @@ CREATE TABLE `shows` (
 	`location` varchar(255),
 	`name` varchar(255),
 	`maps_link` varchar(255),
-	`bandsintown_link` varchar(255),
-	`ticket_link` varchar(255)
+	`bandsintown_link` varchar(5000),
+	`ticket_link` varchar(5000)
 );
 
 CREATE TABLE `stockNotifications` (

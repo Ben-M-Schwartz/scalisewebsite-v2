@@ -303,7 +303,7 @@ const Shows: NextPage = (
               </p>
             </>
           )}
-          <div className="my-4 w-full border-y border-stone-300">
+          <div className="my-4 w-full divide-y divide-stone-300 border-y border-stone-400">
             {shows?.map((show, index) => (
               <Show show={show} key={index} />
             ))}

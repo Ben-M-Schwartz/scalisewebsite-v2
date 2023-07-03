@@ -32,7 +32,10 @@ const AddShow: NextPage = () => {
     createShow
       .mutateAsync({ ...formData })
       .then(() => window.alert("Success"))
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        window.alert(`An error occured please tell Ben`);
+        console.error(error);
+      });
   };
 
   // if (!isLoaded)
