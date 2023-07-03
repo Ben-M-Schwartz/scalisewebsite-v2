@@ -101,7 +101,7 @@ const Home: NextPage = () => {
               href="/Product/Before-We-Dry-Up-CD"
               className="mt-6 rounded-sm bg-stone-100 px-8 py-2 text-lg text-stone-950 hover:border hover:border-stone-100 hover:bg-stone-950 hover:text-stone-100 active:border active:border-stone-100 active:bg-stone-700 active:text-stone-100 md:px-12 md:text-xl lg:mt-10 lg:py-4 lg:text-2xl"
             >
-              BUY A CD
+              PURCHASE CD
             </Link>
           </div>
         </div>
