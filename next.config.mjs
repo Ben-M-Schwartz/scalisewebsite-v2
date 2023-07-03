@@ -57,6 +57,7 @@ const config = {
                 "https://www.youtube.com/embed/BL1OxvKVllk",
                 "https://www.youtube.com/embed/QMhLvYWD00Y",
                 "https://www.youtube.com/embed/Do7MAZ_EMUI",
+                "https://www.youtube.com/embed/RN1MDSGtY8E",
               ],
               scriptSrc: [
                 "'self'",
