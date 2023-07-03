@@ -84,6 +84,16 @@ const Videos: NextPage = () => {
             <div>
               <iframe
                 width="100%"
+                src="https://www.youtube.com/embed/QMhLvYWD00Y"
+                title="Scalise - Airbag [Live @ 7th St Entry]"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="aspect-video"
+              ></iframe>
+            </div>
+            <div>
+              <iframe
+                width="100%"
                 src="https://www.youtube.com/embed/I5gtiSsExDA"
                 title="Scalise - She&#39;s Gonna Kill You [Live @ 7th St Entry]"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -106,8 +116,19 @@ const Videos: NextPage = () => {
             <div>
               <iframe
                 width="100%"
-                src="https://www.youtube.com/embed/Do7MAZ_EMUI"
-                title="Scalise - Fool&#39;s Coal [Live @ 7th St Entry]"
+                src="https://www.youtube.com/embed/GVAwb-u9Xkk"
+                title="Scalise - Dollar Short [Live @ OMNI Brewing]"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                loading="lazy"
+                className="aspect-video"
+              ></iframe>
+            </div>
+            <div className="max-md:order-1">
+              <iframe
+                width="100%"
+                src="https://www.youtube.com/embed/RN1MDSGtY8E"
+                title="Scalise the Band"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 loading="lazy"
@@ -117,14 +138,17 @@ const Videos: NextPage = () => {
             <div>
               <iframe
                 width="100%"
-                src="https://www.youtube.com/embed/GVAwb-u9Xkk"
-                title="Scalise - Dollar Short [Live @ OMNI Brewing]"
+                src="https://www.youtube.com/embed/Do7MAZ_EMUI"
+                title="Scalise - Fool&#39;s Coal [Live @ 7th St Entry]"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 loading="lazy"
                 className="aspect-video"
               ></iframe>
             </div>
+            <h1 className="z-10 order-1 text-lg text-red-800">
+              Short Documentary by Josh Baumgart
+            </h1>
           </div>
           <h1 className="z-10 py-10 text-8xl text-red-800 md:py-24">VLOGS</h1>
           <div className="z-10 grid w-full grid-cols-1 gap-4 px-10 pb-10 md:grid-cols-2">
