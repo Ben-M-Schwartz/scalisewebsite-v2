@@ -102,7 +102,7 @@ const Show = ({ show }: { show: ShowType }) => {
               animate={isHover ? "shown" : "hidden"}
               whileHover="shown"
               variants={variants}
-              className="absolute left-1/2 z-40 flex flex-row gap-1 bg-gray-800 px-2 py-2 md:gap-3 lg:gap-4"
+              className="absolute left-1/2 z-40 flex flex-row gap-1 bg-stone-950 px-2 py-2 md:gap-3 lg:gap-4"
             >
               <TwitterShareButton
                 url={show.bandsintown_link as string}
@@ -148,7 +148,7 @@ const Show = ({ show }: { show: ShowType }) => {
                     .catch((error) => console.error(error));
                 }}
               >
-                <div className="flex rounded text-white hover:bg-gray-100 hover:bg-transparent hover:text-red-800 md:p-0">
+                <div className="flex rounded text-stone-100 hover:bg-stone-100 hover:bg-transparent hover:text-red-800 md:p-0">
                   {!isCopied && <LinkIcon />}
                   {isCopied && (
                     <div className="animate-bounce animate-pulse text-green-400">
@@ -176,14 +176,14 @@ const Show = ({ show }: { show: ShowType }) => {
             href={show.maps_link as string}
             rel="noopener noreferrer"
             target="_blank"
-            className="w-1/2 rounded-sm border bg-red-800 py-2 text-center text-white hover:border-red-800 hover:bg-white hover:text-red-800 active:bg-gray-300 sm:w-full"
+            className="w-1/2 rounded-sm border bg-red-800 py-2 text-center text-stone-100 hover:border-red-800 hover:bg-stone-100 hover:text-red-800 active:bg-stone-500 sm:w-full"
           >
             Directions
           </Link>
           <Link
             rel="noopener noreferrer"
             target="_blank"
-            className="w-1/2 rounded-sm border bg-red-800 py-2 text-center text-white hover:border-red-800 hover:bg-white hover:text-red-800 active:bg-gray-300 sm:w-full"
+            className="w-1/2 rounded-sm border bg-red-800 py-2 text-center text-stone-100 hover:border-red-800 hover:bg-stone-100 hover:text-red-800 active:bg-stone-500 sm:w-full"
             href={show.ticket_link as string}
           >
             Tickets
@@ -285,7 +285,7 @@ const Shows: NextPage = (
           />
         </div>
         {/* {loading && ( */}
-        {/*         <div className="flex flex-row justify-between gap-2 py-20 text-white">
+        {/*         <div className="flex flex-row justify-between gap-2 py-20 text-stone-100">
           <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
           <p className="flex">Loading...</p>
         </div> */}
@@ -294,10 +294,10 @@ const Shows: NextPage = (
         <div className="z-10 mb-16 flex w-2/3 flex-col items-center justify-center rounded-sm bg-stone-100">
           {shows?.length === 0 && (
             <>
-              <p className="text-white">
+              <p className="text-stone-100">
                 We do not currently have any shows booked
               </p>
-              <p className="text-white">
+              <p className="text-stone-100">
                 If you would like to book us for a show go to our contact page
                 or reach out on social medai
               </p>
@@ -310,7 +310,7 @@ const Shows: NextPage = (
           </div>
 
           <Link
-            className="mb-2 mr-2 inline-block w-auto rounded-lg bg-red-800 px-5 py-3 text-sm font-medium text-white hover:bg-red-950 md:my-4"
+            className="mb-2 mr-2 inline-block w-auto rounded-lg bg-red-800 px-5 py-3 text-sm font-medium text-stone-100 hover:bg-red-950 md:my-4"
             rel="noopener noreferrer"
             target="_blank"
             href="https://bandsintown.com/artist-subscribe/14899628"

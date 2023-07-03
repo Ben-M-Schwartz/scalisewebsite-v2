@@ -112,7 +112,7 @@ const Music: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center bg-gray-800">
+      <main className="flex min-h-screen flex-col items-center bg-stone-950">
         <div className="relative flex w-full justify-center bg-transparent">
           <Image
             src={banner}
@@ -509,7 +509,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="spotify-link"
@@ -521,7 +521,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://music.apple.com/us/artist/scalise/1529031635"
-                className="block rounded border-gray-700 py-2 pl-3  pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-stone-700 py-2 pl-3  pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="applemusic-link"
@@ -533,7 +533,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://twitter.com/ScaliseTheBand"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="twitter-link"
@@ -545,7 +545,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://www.facebook.com/ScaliseTheBand"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="facebook-link"
@@ -557,7 +557,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://www.instagram.com/ScaliseTheBand/"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="instagram-link"
@@ -569,7 +569,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://www.tiktok.com/@scaliseband"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="tiktok-link"
@@ -581,7 +581,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://www.youtube.com/channel/UCWBsxAAhmKP1nRHWQQ5N0Qg"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="youtube-link"
@@ -590,7 +590,7 @@ const Music: NextPage = () => {
               </Link>
             </div>
           </div>
-          <div className="flex w-11/12 flex-col items-center justify-center border border-gray-500 md:w-1/2">
+          <div className="flex w-11/12 flex-col items-center justify-center border border-stone-500 md:w-1/2">
             {/* eslint-disable-next-line */}
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col justify-center gap-2 px-4 py-8 sm:px-0">
@@ -600,7 +600,7 @@ const Music: NextPage = () => {
                     <input
                       id="first-name"
                       {...register("firstName", { required: true })}
-                      className="w-full rounded-md border border-gray-400 bg-gray-100 p-2 text-stone-950"
+                      className="w-full rounded-md border border-stone-400 bg-stone-100 p-2 text-stone-950"
                     />
                   </div>
                   <div className="flex flex-col">
@@ -608,7 +608,7 @@ const Music: NextPage = () => {
                     <input
                       id="last-name"
                       {...register("lastName", { required: true })}
-                      className="w-full rounded-md border border-gray-400 bg-gray-100 p-2 text-stone-950"
+                      className="w-full rounded-md border border-stone-400 bg-stone-100 p-2 text-stone-950"
                     />
                   </div>
                 </div>
@@ -616,19 +616,19 @@ const Music: NextPage = () => {
                 <input
                   id="email"
                   {...register("email", { required: true })}
-                  className="rounded-md border border-gray-400 bg-gray-100 p-2 text-stone-950"
+                  className="rounded-md border border-stone-400 bg-stone-100 p-2 text-stone-950"
                 />
                 <h2>Subject</h2>
                 <input
                   id="subject"
                   {...register("subject", { required: true })}
-                  className="rounded-md border border-gray-400 bg-gray-100 p-2 text-stone-950"
+                  className="rounded-md border border-stone-400 bg-stone-100 p-2 text-stone-950"
                 />
                 <h2>Message</h2>
                 <textarea
                   id="message"
                   {...register("message", { required: true })}
-                  className="rounded-md border border-gray-400 bg-gray-100 p-2 text-stone-950"
+                  className="rounded-md border border-stone-400 bg-stone-100 p-2 text-stone-950"
                   rows={4}
                 />
                 {!processing && (

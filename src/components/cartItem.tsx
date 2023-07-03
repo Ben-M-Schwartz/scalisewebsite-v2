@@ -53,11 +53,13 @@ export function Item({
           />
         </div>
         <div>
-          <div className="pr-4 font-medium text-gray-100">{item.item_name}</div>
+          <div className="pr-4 font-medium text-stone-100">
+            {item.item_name}
+          </div>
           {item.size !== "" && (
-            <div className="text-gray-500">Size: {item.size}</div>
+            <div className="text-stone-500">Size: {item.size}</div>
           )}
-          <div className="text-gray-500">Price: ${item.price}</div>
+          <div className="text-stone-500">Price: ${item.price}</div>
         </div>
       </div>
       <div className="flex flex-col items-end gap-2 sm:flex-row sm:items-center sm:gap-3">
@@ -72,7 +74,7 @@ export function Item({
             }}
             disabled={(quantity as number) <= 1 || disableUpdates}
             type="submit"
-            className="rounded-l-lg bg-gray-700 px-1 py-1 hover:bg-blue-500 active:bg-gray-900 disabled:bg-gray-400"
+            className="rounded-l-lg bg-stone-700 px-1 py-1 hover:bg-blue-500 active:bg-stone-900 disabled:bg-stone-400"
           >
             -
           </button>
@@ -109,7 +111,7 @@ export function Item({
             }}
             type="number"
             name="quantity"
-            className="block w-[50px] rounded-none border border-gray-600 bg-gray-700 px-1 py-1 text-sm text-white placeholder-gray-400 [appearance:textfield] focus:border-blue-500 focus:ring-blue-500 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            className="block w-[50px] rounded-none border border-stone-600 bg-stone-700 px-1 py-1 text-sm text-stone-100 placeholder-stone-400 [appearance:textfield] focus:border-blue-500 focus:ring-blue-500 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
             value={quantity}
             max={
               (item.quantity_in_stock as number) -
@@ -134,7 +136,7 @@ export function Item({
                     : 0) || disableUpdates
             }
             type="submit"
-            className="rounded-r-lg bg-gray-700 px-1 py-1 hover:bg-red-800 active:bg-gray-900 disabled:bg-gray-400"
+            className="rounded-r-lg bg-stone-700 px-1 py-1 hover:bg-red-800 active:bg-stone-900 disabled:bg-stone-400"
           >
             +
           </button>
@@ -144,7 +146,7 @@ export function Item({
             <button
               onClick={() => onDelete()}
               disabled={disableUpdates}
-              className="font-medium text-gray-500 hover:text-red-800 hover:underline active:text-gray-500"
+              className="font-medium text-stone-500 hover:text-red-800 hover:underline active:text-stone-500"
             >
               Delete
             </button>

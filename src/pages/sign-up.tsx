@@ -49,12 +49,12 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
         <div className="flex flex-col items-center gap-2">
-          <p className="text-2xl text-white">
+          <p className="text-2xl text-stone-100">
             Sorry we are not allowing sign ups
           </p>
           <Link
             href="/"
-            className="text-red-800 underline hover:text-red-950 active:text-gray-400"
+            className="text-red-800 underline hover:text-red-950 active:text-stone-400"
           >
             Home
           </Link>

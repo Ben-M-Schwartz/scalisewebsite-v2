@@ -79,7 +79,7 @@ const Product: NextPage = () => {
             <p className="text-stone-100">You are now unsubscribed</p>
             <Link
               href="/"
-              className="text-xl font-bold text-stone-100 hover:text-blue-700 hover:underline active:text-gray-500"
+              className="text-xl font-bold text-stone-100 hover:text-blue-700 hover:underline active:text-stone-500"
             >
               Home
             </Link>

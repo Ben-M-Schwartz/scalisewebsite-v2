@@ -322,7 +322,7 @@ const Cart: NextPage = () => {
                 Shopping Cart
               </h1>
               <button
-                className="focus:shadow-outline active:bg-red-8000 rounded-lg border border-stone-100 bg-transparent px-2 py-1 text-xs text-stone-100 hover:border-stone-950 hover:bg-gray-100 hover:text-stone-950"
+                className="focus:shadow-outline active:bg-red-8000 rounded-lg border border-stone-100 bg-transparent px-2 py-1 text-xs text-stone-100 hover:border-stone-950 hover:bg-stone-100 hover:text-stone-950"
                 onClick={handleClearCart}
               >
                 Clear Cart
@@ -352,7 +352,7 @@ const Cart: NextPage = () => {
               </AnimatePresence>
             </div>
             <div className="flex w-full flex-col justify-between border-b border-b-stone-100 px-4 sm:w-5/6 sm:px-0 lg:w-2/3">
-              <div className="divide-y divide-gray-600">
+              <div className="divide-y divide-stone-600">
                 {cartItems.map((item: Cart, index) => (
                   <>
                     <div
