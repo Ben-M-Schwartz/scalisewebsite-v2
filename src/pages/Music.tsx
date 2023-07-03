@@ -4,12 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
-import banner from "../../public/1.webp";
+import banner from "../../public/black_paper_1.webp";
 import title from "../../public/Music (Handwritten).webp";
 import white_paper from "../../public/White Crumple Background Lighter.webp";
 import black_paper from "../../public/Black Crumple Background Darker.webp";
 import red_background from "../../public/Red Background.webp";
 import transferred from "../../public/transferred.webp";
+import seventy from "../../public/OneInSeventyEightCover.webp";
 import fruitSnacks from "../../public/fruitSnacks.webp";
 import airbag from "../../public/airbag.webp";
 import sgky from "../../public/SGKY Cover.webp";
@@ -92,6 +93,48 @@ const Music: NextPage = () => {
 
         <div className="relative min-h-screen w-full">
           <div className="flex flex-col">
+            <div className="relative flex flex-col items-center gap-10 bg-stone-950 py-24">
+              <div className="z-10 flex flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
+                <div className="w-1/2 text-center md:order-1 md:w-1/2">
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <h1 className="text-center text-4xl font-bold text-stone-100">
+                      ONE IN SEVENTY-EIGHT
+                    </h1>
+                    <Link
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="flex w-full flex-col justify-center rounded-sm border-4 border-stone-100 py-2 text-center text-xl text-stone-100 hover:bg-stone-100 hover:font-bold hover:text-stone-950 md:w-1/2"
+                      href="https://distrokid.com/hyperfollow/scalise/one-in-seventy-eight"
+                    >
+                      Listen Here
+                    </Link>
+                  </div>
+                </div>
+                <div className="flex w-full flex-col items-center md:w-1/2">
+                  <Image
+                    src={seventy}
+                    alt="One In Seventy-Eight Image"
+                    loading="lazy"
+                    width={504}
+                    height={504}
+                    className="shadow-2xl shadow-red-900"
+                  />
+                </div>
+              </div>
+              <AudioPlayer
+                //demo={true}
+                player_id="seventyeightDemo"
+                source="/One in Seenty-Eight Clip.mp3"
+                title="One In Seventy-Eight"
+              />
+              <Image
+                src={black_paper}
+                alt="background"
+                className="absolute z-0"
+                fill
+              />
+            </div>
+
             <div className="relative flex flex-col items-center gap-10 bg-stone-100 py-24">
               <div className="z-10 flex flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
                 <div className="w-1/2 text-center md:order-1 md:w-1/2">

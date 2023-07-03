@@ -28,7 +28,7 @@ import {
 
 //import { api } from "~/utils/api";
 
-import banner from "../../public/2.webp";
+import banner from "../../public/black_paper_2.webp";
 import title from "../../public/Shows (Handwritten).webp";
 
 import { db } from "~/db/db";

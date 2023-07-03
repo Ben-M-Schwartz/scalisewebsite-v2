@@ -5,7 +5,7 @@ import Link from "next/link";
 
 //importing images for static generation on build to speed up load times
 import red_background from "../../public/Red Background.webp";
-import black_paper_background from "../../public/2.webp";
+import black_paper_background from "../../public/black_paper_2.webp";
 import white_paper_background from "../../public/White Crumple Background.webp";
 import beforewedryup from "../../public/LP2_cover.webp";
 import transferred from "../../public/transferred.webp";
