@@ -124,7 +124,7 @@ const Music: NextPage = () => {
               <AudioPlayer
                 //demo={true}
                 player_id="seventyeightDemo"
-                source="/One in Seenty-Eight Clip.mp3"
+                source="/One in Seventy-Eight Clip.mp3"
                 title="One In Seventy-Eight"
               />
               <Image
