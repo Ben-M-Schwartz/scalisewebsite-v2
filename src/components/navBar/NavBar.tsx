@@ -32,13 +32,13 @@ export function NavBar() {
   return (
     <main className="max-w-screen sticky left-0 top-0 z-20 w-full border-b bg-stone-100">
       <nav>
-        <div className="mx-auto flex flex-wrap items-center justify-between p-4">
+        <div className="mx-auto flex flex-wrap items-center justify-between p-4 md:px-0 md:py-4 xl:px-24 xl:py-5">
           <div className="flex flex-row items-center justify-center align-middle">
-            <div className="z-10 sm:pl-4 lg:pl-6">
+            <div className="z-10 md:pl-2 lg:pl-6">
               <HomeLink />
             </div>
             <div
-              className="hidden w-full items-center justify-start text-center md:order-1 md:flex md:w-auto md:pl-4 lg:pl-6 xl:pl-12"
+              className="hidden w-full items-center justify-start text-center md:order-1 md:flex md:w-auto md:pl-2 lg:pl-6 xl:pl-12"
               id="page-links"
             >
               <PageLinks />

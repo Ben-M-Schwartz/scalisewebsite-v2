@@ -273,7 +273,7 @@ const NewProduct: NextPage = () => {
               <input
                 id="store_order"
                 className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
-                {...register("store_order", { required: true })}
+                {...register("store_order", { required: false })}
               />
             </div>
 

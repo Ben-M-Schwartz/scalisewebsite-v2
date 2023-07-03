@@ -4,9 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 //importing images for static generation on build to speed up load times
-import background from "../../public/Red Background.webp";
-import paper_background from "../../public/Black Crumple Background.webp";
-import partyPoster from "../../public/releasePartyPoster.webp";
+import red_background from "../../public/Red Background.webp";
+import black_paper_background from "../../public/2.webp";
+import white_paper_background from "../../public/White Crumple Background.webp";
+import beforewedryup from "../../public/LP2_cover.webp";
 import transferred from "../../public/transferred.webp";
 import restOfTheWeek from "../../public/restOfTheWeek.webp";
 import fruitSnacks from "../../public/fruitSnacks.webp";
@@ -64,8 +65,8 @@ const Home: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-stone-950">
         <div className="relative min-h-screen w-full pb-20 pt-12">
           <Image
-            src={background}
-            alt="Red Felt"
+            src={black_paper_background}
+            alt="Black background"
             fill
             sizes="1497 827"
             quality={75}
@@ -73,56 +74,72 @@ const Home: NextPage = () => {
             className="absolute z-0 object-cover"
             priority
           />
-          <h1 className="relative pb-6 text-center text-4xl font-semibold text-stone-100 md:text-5xl lg:text-6xl xl:text-7xl">
-            ALBUM RELEASE PARTY
-          </h1>
-          <div className="relative flex flex-col items-center justify-center gap-10 md:flex-row md:gap-20">
-            <div className="order-2 flex w-full md:order-1 md:w-1/3">
-              <div className="flex flex-col gap-2 lg:gap-3 xl:gap-4">
-                <h2 className="order-1 w-3/4 self-center text-left text-3xl font-bold text-stone-100 md:w-full md:text-right xl:text-4xl">
-                  JUNE 22
-                </h2>
-                <h3 className="order-1 w-3/4 self-center text-left  text-xl text-stone-100 md:w-full md:text-right">
-                  THE GREEN ROOM
-                </h3>
-                <h3 className="order-1 w-3/4 self-center  text-left text-xl text-stone-100 md:w-full md:text-right">
-                  Minneapolis, MN
-                </h3>
-                <p className="text-l order-1 w-3/4  self-center pt-4 text-left text-stone-100 md:w-full md:text-right md:text-xl">
-                  &quot;Before We Dry Up&quot;, our double LP, is releasing on
-                  Friday, June 23rd with the album release show on Thursday,
-                  June 22nd at the Green Room in Uptown Minneapolis. Two AWESOME
-                  acts, Asparagus and Lily Blue, are going to be opening for us.
-                  We&apos;re huge fans of their work and are stoked that they
-                  wanted to hop on the bill. We hope to see you all there.
-                </p>
-                <div className="order-0 flex items-center justify-center md:order-2 md:justify-end xl:mt-12">
-                  <Link
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="mb-8 flex w-1/2 flex-col justify-center rounded-sm border-8 border-stone-100 py-4 text-center text-xl text-stone-100 hover:bg-stone-100 hover:font-bold hover:text-stone-950 md:mb-0 md:py-2 xl:py-4"
-                    href="https://www.greenroommn.com/events#/events?event_id=73908"
-                  >
-                    Tickets
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="order-1 h-full w-2/3 sm:w-1/2 md:order-2 md:w-1/3">
+          <div className="relative z-10 flex w-full flex-col items-center justify-center">
+            <h1 className="pt-6 text-4xl font-medium text-stone-100 md:text-6xl lg:pt-10 lg:text-7xl">
+              BEFORE WE DRY UP
+            </h1>
+            <h1 className="pt-2 text-2xl font-normal text-stone-100 md:text-3xl lg:pt-4">
+              NEW ALBUM OUT NOW
+            </h1>
+            <Link
+              href="https://distrokid.com/hyperfollow/scalise/before-we-dry-up"
+              className="my-6 rounded-sm bg-stone-100 px-8 py-2 text-lg text-stone-950 hover:border hover:border-stone-100 hover:bg-stone-950 hover:text-stone-100 active:border active:border-stone-100 active:bg-stone-700 active:text-stone-100 md:px-12 md:text-xl lg:my-10 lg:py-4 lg:text-2xl"
+            >
+              LISTEN HERE
+            </Link>
+            <div className="relative flex w-3/4 flex-col items-center md:w-1/2">
               <Image
-                src={partyPoster}
-                alt="release party"
-                width={386}
-                height={579}
+                src={beforewedryup}
+                alt="LP2 Cover Art"
+                width={695}
+                height={695}
+                quality={75}
+                priority
               />
+            </div>
+            <Link
+              href="/Product/Before-We-Dry-Up-CD"
+              className="mt-6 rounded-sm bg-stone-100 px-8 py-2 text-lg text-stone-950 hover:border hover:border-stone-100 hover:bg-stone-950 hover:text-stone-100 active:border active:border-stone-100 active:bg-stone-700 active:text-stone-100 md:px-12 md:text-xl lg:mt-10 lg:py-4 lg:text-2xl"
+            >
+              BUY A CD
+            </Link>
+          </div>
+        </div>
+
+        <div className="relative w-full">
+          <Image
+            src={white_paper_background}
+            alt="White Background"
+            fill
+            quality={75}
+            className="absolute z-0 h-full object-cover"
+          />
+          <div className="relative z-10 my-8 flex flex-col items-center justify-center md:flex-row md:gap-6 lg:gap-10 xl:gap-24">
+            <div className="flex flex-col items-center justify-center pb-6 md:w-2/5 md:gap-4 lg:w-1/3 lg:gap-10">
+              <h1 className="text-center text-4xl font-bold text-stone-950 md:text-5xl xl:text-6xl">
+                AIRBAG LIVE
+              </h1>
+              <h2 className="text-center text-2xl text-stone-950 lg:text-3xl">
+                NEW LIVE VIDEO FROM 7TH STREET ENTRY!
+              </h2>
+            </div>
+            <div className="w-5/6 md:w-1/2 xl:w-1/3">
+              <iframe
+                width="100%"
+                src="https://www.youtube.com/embed/QMhLvYWD00Y"
+                title="Scalise - Airbag [Live @ 7th St Entry]"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="aspect-video"
+              ></iframe>
             </div>
           </div>
         </div>
 
         <div className="relative w-full">
           <Image
-            src={paper_background}
-            alt="Red Felt"
+            src={black_paper_background}
+            alt="Black Background"
             fill
             sizes="1497 827"
             quality={75}
@@ -160,7 +177,7 @@ const Home: NextPage = () => {
         <div className="relative min-h-screen w-full">
           <div className="flex flex-col gap-20 pb-20">
             <Image
-              src={background}
+              src={red_background}
               alt="Red Background"
               fill
               quality={75}

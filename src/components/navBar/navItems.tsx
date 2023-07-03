@@ -46,7 +46,7 @@ export function HomeLink() {
   return (
     <div className="z-10">
       <Link href="/" className="items-center">
-        <span className="self-center whitespace-nowrap text-2xl font-semibold tracking-widest  text-red-800 md:text-4xl">
+        <span className="self-center whitespace-nowrap text-2xl font-semibold tracking-widest  text-red-800 md:text-3xl lg:text-4xl">
           SCALISE
         </span>
       </Link>
