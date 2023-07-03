@@ -526,7 +526,7 @@ const Product: NextPage = (
                               addToCartDisabled ? "cursor-not-allowed" : ""
                             }`}
                             onClick={(e) => {
-                              if (pickedSize === "") {
+                              if (pickedSize === "" && loadSizes === true) {
                                 e.preventDefault();
                                 alert("Please pick a size");
                               }
