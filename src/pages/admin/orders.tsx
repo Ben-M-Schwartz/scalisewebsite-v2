@@ -5,7 +5,6 @@ import Link from "next/link";
 import { api } from "~/utils/api";
 import { useState } from "react";
 
-//TODO: list all orders that haven't been shipped with an option to ship them
 const Orders: NextPage = () => {
   const [unshipped, setUnshipped] = useState(true);
   const [buttonText, setText] = useState("See All");
@@ -40,34 +39,14 @@ const Orders: NextPage = () => {
   };
   // if (!isLoaded)
   //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
   //       <div>Loading...</div>;
   //     </main>
   //   );
   // if (!userId) {
-  //   document.addEventListener("contextmenu", (e) => {
-  //     e.preventDefault();
-  //   });
-  //   document.onkeydown = function (e) {
-  //     if (e.key === "F12") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.shiftKey && e.key === "i") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.shiftKey && e.key === "c") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.shiftKey && e.key === "j") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.key === "u") {
-  //       return false;
-  //     }
-  //   };
   //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-  //       <h1 className="text-2xl text-white">
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+  //       <h1 className="text-2xl text-stone-100">
   //         This page is for band members only
   //       </h1>
   //       <div>
@@ -128,7 +107,7 @@ const Orders: NextPage = () => {
             <h1 className="text-4xl text-stone-100">Orders Page</h1>
             <Link
               href="/admin/home"
-              className="text-xl font-bold text-white underline hover:text-blue-700 hover:underline active:text-gray-500"
+              className="py-6 text-xl font-bold text-stone-100 underline underline hover:text-red-800 active:text-red-950"
             >
               Admin Home
             </Link>

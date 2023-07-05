@@ -72,10 +72,10 @@ function Card({
   const images = (product.image as string).split(",");
 
   return (
-    <div className="max-w-sm rounded-lg border border-gray-700 bg-gray-700 shadow">
+    <div className="max-w-sm rounded-lg border border-stone-500 bg-transparent">
       <div className="relative h-full w-full">
         <Image
-          className=""
+          className="rounded-lg"
           src={`/${images[0] as string}`}
           alt="image"
           height={360}
@@ -83,7 +83,7 @@ function Card({
         />
       </div>
       <div className="p-5">
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">
+        <h5 className="mb-2 text-2xl font-bold tracking-tight text-stone-100">
           {product.name} - ${product.price}
         </h5>
         <form onSubmit={handleUpdate}>
@@ -127,7 +127,7 @@ function Card({
           ))}
           <button
             type="submit"
-            className=":hover:bg-blue-700 inline-flex items-center rounded-lg bg-blue-600 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-800"
+            className=":hover:bg-blue-700 inline-flex items-center rounded-lg bg-red-800 px-3 py-2 text-center text-sm font-medium text-stone-100 hover:bg-red-900 active:bg-red-950"
           >
             Update
             <svg
@@ -158,14 +158,14 @@ const updateInventory: NextPage = () => {
 
   // if (!isLoaded)
   //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
   //       <div>Loading...</div>;
   //     </main>
   //   );
   // if (!userId)
   //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-  //       <h1 className="text-2xl text-white">
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+  //       <h1 className="text-2xl text-stone-100">
   //         This page is for band members only
   //       </h1>
   //       <div>
@@ -228,17 +228,17 @@ const updateInventory: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
         <Link
           href="/admin/home"
-          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+          className="py-6 text-xl font-bold text-stone-100 underline hover:text-red-800 active:text-red-950"
         >
           Admin Home
         </Link>
-        <h1 className="mt-12 pl-4 text-4xl text-white">
+        <h1 className="mt-12 pl-4 text-4xl text-stone-100">
           Fill in the inventory changes
         </h1>
-        <div className="container flex flex-col items-center justify-center gap-4 sm:grid sm:grid-cols-2 sm:items-center sm:justify-center lg:grid-cols-3">
+        <div className="container flex flex-col items-center justify-center gap-4 sm:grid sm:grid-cols-2 sm:items-start sm:justify-center lg:grid-cols-3">
           {products?.data?.map((product, index) => (
             <Card
               key={index}

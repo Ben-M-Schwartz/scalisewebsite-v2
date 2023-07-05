@@ -19,14 +19,14 @@ const Shows: NextPage = () => {
 
   // if (!isLoaded)
   //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-  //       <div className="text-white">Loading...</div>;
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+  //       <div className="text-stone-100">Loading...</div>;
   //     </main>
   //   );
   // if (!userId)
   //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-  //       <h1 className="text-2xl text-white">
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+  //       <h1 className="text-2xl text-stone-100">
   //         This page is for band members only
   //       </h1>
   //       <div>
@@ -74,15 +74,15 @@ const Shows: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex  min-h-screen flex-col items-center justify-center bg-gray-800">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
         <Link
           href="/admin/home"
-          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+          className="py-6 text-xl font-bold text-stone-100 underline hover:text-red-800 active:text-red-950"
         >
           Admin Home
         </Link>
         <div className="flex flex-col items-center gap-2">
-          <p className="text-2xl text-white">Remove Shows</p>
+          <p className="text-2xl text-stone-100">Remove Shows</p>
           {shows.data?.map((show, index) => (
             <div key={index} className="flex flex-col items-center gap-2">
               <div className="divide-y">
@@ -102,7 +102,7 @@ const Shows: NextPage = () => {
                       window.alert("success");
                       router.reload();
                     }}
-                    className="mb-2 mr-2 inline-block w-auto rounded-lg  bg-blue-600 px-10 py-3 text-sm font-medium  text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-800"
+                    className="mb-2 mr-2 inline-block w-auto rounded-lg  bg-red-800 px-10 py-3 text-sm font-medium  text-stone-100 hover:bg-red-900 active:bg-red-950"
                   >
                     remove
                   </button>

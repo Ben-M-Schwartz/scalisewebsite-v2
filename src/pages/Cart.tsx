@@ -176,7 +176,7 @@ const Cart: NextPage = () => {
       };
     });
     await createCheckoutSession
-      .mutateAsync({ cartItems: cart_items })
+      .mutateAsync({ cartItems: cart_items, total_price: totalPrice })
       .then(async (result) => {
         setProcessingCheckout(false);
         if (result[0] === "Not Enough Inventory") {

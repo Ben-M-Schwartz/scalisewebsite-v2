@@ -40,7 +40,7 @@ const AddShow: NextPage = () => {
 
   // if (!isLoaded)
   //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
   //       <div>Loading...</div>;
   //     </main>
   //   );
@@ -66,8 +66,8 @@ const AddShow: NextPage = () => {
   //     }
   //   };
   //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-  //       <h1 className="text-2xl text-white">
+  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+  //       <h1 className="text-2xl text-stone-100">
   //         This page is for band members only
   //       </h1>
   //       <div>
@@ -116,15 +116,15 @@ const AddShow: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
         <Link
           href="/admin/home"
-          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+          className="py-6 text-xl font-bold text-stone-100 underline hover:text-red-800 active:text-red-950"
         >
           Admin Home
         </Link>
         <div className="container flex flex-col gap-12 px-4 py-16 ">
-          <h1 className="text-4xl text-white">
+          <h1 className="text-4xl text-stone-100">
             Create a listing for a new show
           </h1>
           <form
@@ -134,26 +134,26 @@ const AddShow: NextPage = () => {
             <div>
               <label
                 htmlFor="name"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Show Name
               </label>
               <input
                 id="name"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 {...register("name", { required: true })}
               />
             </div>
             <div>
               <label
                 htmlFor="date"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Date
               </label>
               <input
                 id="date"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 placeholder="enter the string you would like to have displayed for the date i.e Jan. 01, 2023"
                 {...register("date", { required: true })}
               />
@@ -162,13 +162,13 @@ const AddShow: NextPage = () => {
             <div>
               <label
                 htmlFor="time"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Time
               </label>
               <input
                 id="time"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 placeholder="enter full time string i.e 7:00 p.m"
                 {...register("time", { required: true })}
               />
@@ -177,13 +177,13 @@ const AddShow: NextPage = () => {
             <div>
               <label
                 htmlFor="location"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Location
               </label>
               <input
                 id="location"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 placeholder="i.e Minneapolis, MN"
                 {...register("location", { required: true })}
               />
@@ -192,13 +192,13 @@ const AddShow: NextPage = () => {
             <div>
               <label
                 htmlFor="maps_link"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Google Maps Link
               </label>
               <input
                 id="maps_link"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 {...register("maps_link", { required: true })}
               />
             </div>
@@ -206,13 +206,13 @@ const AddShow: NextPage = () => {
             <div>
               <label
                 htmlFor="bandsintown_link"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Link for sharing
               </label>
               <input
                 id="bandsintown_link"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 {...register("bandsintown_link", { required: true })}
               />
             </div>
@@ -220,20 +220,20 @@ const AddShow: NextPage = () => {
             <div>
               <label
                 htmlFor="ticket_link"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Ticket Link
               </label>
               <input
                 id="ticket_link"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 {...register("ticket_link", { required: true })}
               />
             </div>
 
             <button
               type="submit"
-              className="mb-2 mr-2 rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="mb-2 mr-2 rounded-lg bg-red-800 px-5 py-2.5 text-sm font-medium text-stone-100 hover:bg-red-900 active:bg-red-950"
             >
               Create
             </button>

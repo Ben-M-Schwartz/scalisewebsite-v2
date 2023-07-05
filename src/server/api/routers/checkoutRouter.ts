@@ -30,6 +30,7 @@ export const checkoutRouter = createTRPCRouter({
             image: z.string(),
           })
         ),
+        total_price: z.number(),
       })
     )
     .mutation(async ({ input }) => {
@@ -100,7 +101,14 @@ export const checkoutRouter = createTRPCRouter({
             item.is_taxed === 1 ? ["txr_1N10EAHmtb6xoR6RcIowDGt8"] : undefined,
         };
       });
-      //TODO: calculate shipping based on weight, need Graden to tell his preferences for this
+      //TODO: calculate shipping based on weight, need Graden to tell his preferences for this.
+      //TODO: Alternatively have flat shipping rates
+      let shipping_cost = 1000;
+      if (input.total_price > 100) {
+        shipping_cost = 0;
+      } else if (input.total_price > 50) {
+        shipping_cost = 500;
+      }
       const session = await stripe.checkout.sessions.create({
         //payment_method_types: ['card'],
         line_items: lineItems,
@@ -113,7 +121,7 @@ export const checkoutRouter = createTRPCRouter({
           {
             shipping_rate_data: {
               type: "fixed_amount",
-              fixed_amount: { amount: 581, currency: "usd" },
+              fixed_amount: { amount: shipping_cost, currency: "usd" },
               display_name: "USPS First",
               delivery_estimate: {
                 minimum: { unit: "business_day", value: 5 },
@@ -124,7 +132,7 @@ export const checkoutRouter = createTRPCRouter({
           {
             shipping_rate_data: {
               type: "fixed_amount",
-              fixed_amount: { amount: 1018, currency: "usd" },
+              fixed_amount: { amount: shipping_cost + 500, currency: "usd" },
               display_name: "USPS Priority",
               delivery_estimate: {
                 minimum: { unit: "business_day", value: 1 },
