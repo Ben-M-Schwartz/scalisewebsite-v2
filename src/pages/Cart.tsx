@@ -35,8 +35,6 @@ type Cart = {
   cart_item: CartItem | null;
 };
 
-//TODO: Link Shipping Policy
-
 const Cart: NextPage = () => {
   const [emptyCart, setEmptyCart] = useState(false);
   const [loading, setLoading] = useState(true);

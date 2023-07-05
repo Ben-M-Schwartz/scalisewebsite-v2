@@ -118,6 +118,7 @@ export const checkoutRouter = createTRPCRouter({
         //payment_method_types: ['card'],
         line_items: lineItems,
         mode: "payment",
+        payment_method_types: ["card"],
         success_url: `${domainURL as string}/success/{CHECKOUT_SESSION_ID}`,
         cancel_url: `${domainURL as string}/canceled/{CHECKOUT_SESSION_ID}`,
         billing_address_collection: "required",
