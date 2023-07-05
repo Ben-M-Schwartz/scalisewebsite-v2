@@ -107,7 +107,7 @@ const Orders: NextPage = () => {
             <h1 className="text-4xl text-stone-100">Orders Page</h1>
             <Link
               href="/admin/home"
-              className="py-6 text-xl font-bold text-stone-100 underline underline hover:text-red-800 active:text-red-950"
+              className="py-6 text-xl font-bold text-stone-100 underline hover:text-red-800 active:text-red-950"
             >
               Admin Home
             </Link>
