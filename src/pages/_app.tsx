@@ -32,6 +32,8 @@ export const config = {
   regions: ["cle1"],
 };
 
+//TODO: eslint-config-next@13.4.8 depends on semver@6.3.0 which has a ReDos vulnerability. Fix This
+
 const MyApp: AppType = ({ Component, pageProps }) => {
   const [cartAmount, setCartAmount] = useState(0);
   const updateAmount = (amount: number) => setCartAmount(cartAmount + amount);

@@ -35,6 +35,8 @@ type Cart = {
   cart_item: CartItem | null;
 };
 
+//TODO: Link Shipping Policy
+
 const Cart: NextPage = () => {
   const [emptyCart, setEmptyCart] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -451,6 +453,58 @@ const Cart: NextPage = () => {
                   {totalPrice % 1 === 0 ? ".00" : ""}
                 </p>
               </div>
+              {/* 
+              ---Decided against flat shipping rates for now---
+
+              <div className="flex w-full grow flex-row justify-between sm:w-1/3">
+                <button
+                  className="text-red-800 hover:text-red-900 active:text-red-950"
+                  onClick={() =>
+                    (
+                      document.getElementById(
+                        "shippingRatesDialog"
+                      ) as HTMLDialogElement
+                    ).showModal()
+                  }
+                >
+                  View Shipping Rates
+                </button>
+              </div>
+              <dialog
+                id="shippingRatesDialog"
+                className="rounded-lg bg-stone-100"
+              >
+                <h1 className="text-2xl text-stone-950 md:text-4xl">
+                  Scalise Shipping Rates
+                </h1>
+                <table className="w-full text-left text-stone-950">
+                  <tr>
+                    <th>Order Value</th>
+                    <th>Standard</th>
+                    <th>Priority</th>
+                  </tr>
+                  <tr>
+                    <td>Up to $50</td>
+                    <td>$10.18</td>
+                    <td>$15.18</td>
+                  </tr>
+                  <tr>
+                    <td>$51 to $100</td>
+                    <td>$5.81</td>
+                    <td>$10.18</td>
+                  </tr>
+                  <tr>
+                    <td>$101+</td>
+                    <td>FREE</td>
+                    <td>$10.18</td>
+                  </tr>
+                </table>
+                <form method="dialog">
+                  <button className="rounded-md bg-red-800 px-4 py-2 text-stone-100 hover:bg-red-900 active:bg-red-950">
+                    OK
+                  </button>
+                </form>
+              </dialog> */}
               {!processingCheckout && (
                 <button
                   className="focus:shadow-outline text-xsl w-full rounded-sm border-2 border-stone-100 bg-red-800 py-4 text-stone-100 hover:border-red-800 hover:bg-stone-100 hover:text-red-800 active:bg-red-400 sm:w-1/3"

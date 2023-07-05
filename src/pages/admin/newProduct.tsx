@@ -170,7 +170,7 @@ const NewProduct: NextPage = () => {
                 htmlFor="weight"
                 className="mb-2 block text-sm font-medium text-stone-100"
               >
-                Weight
+                Weight (oz)
               </label>
               <input
                 id="weight"
