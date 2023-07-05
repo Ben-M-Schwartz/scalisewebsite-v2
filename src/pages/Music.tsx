@@ -117,7 +117,7 @@ const Music: NextPage = () => {
                     </Link>
                   </div>
                 </div>
-                <div className="order-1 flex w-full flex-col items-center md:w-1/2">
+                <div className="order-1 flex w-5/6 flex-col items-center md:w-1/2">
                   <Image
                     src={album2}
                     alt="Album 2 Cover"
@@ -153,7 +153,7 @@ const Music: NextPage = () => {
                     </Link>
                   </div>
                 </div>
-                <div className="flex w-full flex-col items-center md:w-1/2">
+                <div className="flex w-5/6 flex-col items-center md:w-1/2">
                   <Image
                     src={seventy}
                     alt="One In Seventy-Eight Image"
@@ -195,7 +195,7 @@ const Music: NextPage = () => {
                     </Link>
                   </div>
                 </div>
-                <div className="order-1 flex w-full flex-col items-center md:w-1/2">
+                <div className="order-1 flex w-5/6 flex-col items-center md:w-1/2">
                   <Image
                     src={sgky}
                     alt="She's Gonna Kill You Cover"
@@ -237,7 +237,7 @@ const Music: NextPage = () => {
                     </Link>
                   </div>
                 </div>
-                <div className="flex w-full flex-col items-center md:w-1/2">
+                <div className="flex w-5/6 flex-col items-center md:w-1/2">
                   <Image
                     src={transferred}
                     alt="Transferred To Houston Image"
@@ -263,7 +263,7 @@ const Music: NextPage = () => {
             </div>
 
             <div className="relative flex w-full flex-col items-center gap-10 bg-stone-100 py-24">
-              <div className="z-10 flex w-full flex-col items-center justify-center gap-3 md:flex-row md:gap-16">
+              <div className="z-10 flex flex-col items-center justify-center gap-3 md:flex-row md:gap-16">
                 <div className="w-1/2 text-center md:order-1 md:w-1/3">
                   <div className="flex flex-col items-center justify-center gap-3">
                     <h1 className="z-1 tex-center text-4xl font-bold text-red-800">
@@ -279,7 +279,7 @@ const Music: NextPage = () => {
                     </Link>
                   </div>
                 </div>
-                <div className="order-1 flex w-full flex-col items-center justify-center md:w-1/2">
+                <div className="order-1 flex w-5/6 flex-col items-center justify-center md:w-1/2">
                   <Image
                     src={airbag}
                     alt="Airbag Image"
@@ -305,7 +305,7 @@ const Music: NextPage = () => {
             </div>
 
             <div className="relative flex w-screen flex-col items-center gap-10 bg-stone-950 py-24">
-              <div className="z-10 flex w-full flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:gap-0">
+              <div className="z-10 flex flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:gap-0">
                 <div className="w-1/2 text-center md:order-1 md:w-1/2">
                   <div className="flex flex-col items-center justify-center gap-3">
                     <h1 className="z-1 tex-center text-4xl font-bold text-stone-100">
@@ -321,7 +321,7 @@ const Music: NextPage = () => {
                     </Link>
                   </div>
                 </div>
-                <div className="flex w-full flex-col items-center justify-center md:w-1/2">
+                <div className="flex w-5/6 flex-col items-center justify-center md:w-1/2">
                   <Image
                     src={fruitSnacks}
                     alt="Fruit Snacks Image"
@@ -346,8 +346,8 @@ const Music: NextPage = () => {
               />
             </div>
 
-            <div className="relative flex w-screen bg-red-800">
-              <div className="z-10 flex w-full flex-col items-center justify-center gap-3 py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
+            <div className="relative flex w-screen flex-col items-center bg-red-800">
+              <div className="z-10 flex flex-col items-center justify-center gap-3 py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
                 <div className="md:order-0 w-1/2 text-center">
                   <div className="flex flex-col items-center justify-center gap-3">
                     <h1 className="text-center text-4xl font-bold text-stone-100">
@@ -369,14 +369,16 @@ const Music: NextPage = () => {
                     </Link>
                   </div>
                 </div>
-                <Image
-                  src={album1}
-                  alt="From Nothing To Nothing Album Cover"
-                  width={504}
-                  height={504}
-                  loading="lazy"
-                  className="shadow-2xl"
-                />
+                <div className="flex w-5/6 flex-col items-center justify-center md:w-1/2">
+                  <Image
+                    src={album1}
+                    alt="From Nothing To Nothing Album Cover"
+                    width={504}
+                    height={504}
+                    loading="lazy"
+                    className="shadow-2xl"
+                  />
+                </div>
               </div>
               <Image
                 src={red_background}
