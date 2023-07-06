@@ -4,8 +4,8 @@ import Head from "next/head";
 import Link from "next/link";
 import { api } from "~/utils/api";
 import { useForm } from "react-hook-form";
-//import { SignIn } from "@clerk/clerk-react";
-//import { useAuth } from "@clerk/nextjs";
+import { SignIn } from "@clerk/clerk-react";
+import { useAuth } from "@clerk/nextjs";
 
 /* export const config = {
   runtime: "experimental-edge",
@@ -25,7 +25,7 @@ type NewProductForm = {
 
 const NewProduct: NextPage = () => {
   const { register, handleSubmit } = useForm<NewProductForm>();
-  //const { isLoaded, userId } = useAuth();
+  const { isLoaded, userId } = useAuth();
 
   const createProduct = api.inventory.create.useMutation();
 
@@ -46,25 +46,25 @@ const NewProduct: NextPage = () => {
       .catch((error) => console.error(error));
   };
 
-  // if (!isLoaded)
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
-  //       <div>Loading...</div>;
-  //     </main>
-  //   );
-  // if (!userId) {
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
-  //       <h1 className="text-2xl text-stone-100">
-  //         This page is for band members only
-  //       </h1>
-  //       <div>
-  //         <SignIn redirectUrl="/admin/newProduct" />
-  //         <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
-  //       </div>
-  //     </main>
-  //   );
-  // }
+  if (!isLoaded)
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <div>Loading...</div>;
+      </main>
+    );
+  if (!userId) {
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <h1 className="text-2xl text-stone-100">
+          This page is for band members only
+        </h1>
+        <div>
+          <SignIn redirectUrl="/admin/newProduct" />
+          <div className="absolute z-10 h-16 w-60 -translate-y-24 translate-x-7 bg-white object-contain sm:-translate-y-20 sm:translate-x-10"></div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <>

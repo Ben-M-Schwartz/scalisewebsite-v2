@@ -4,6 +4,8 @@ import Head from "next/head";
 import Link from "next/link";
 import { api } from "~/utils/api";
 import { useState } from "react";
+import { SignIn } from "@clerk/clerk-react";
+import { useAuth } from "@clerk/nextjs";
 
 const Orders: NextPage = () => {
   const [unshipped, setUnshipped] = useState(true);
@@ -37,25 +39,26 @@ const Orders: NextPage = () => {
         window.alert("Something went wrong, try again or message Ben")
       );
   };
-  // if (!isLoaded)
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
-  //       <div>Loading...</div>;
-  //     </main>
-  //   );
-  // if (!userId) {
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
-  //       <h1 className="text-2xl text-stone-100">
-  //         This page is for band members only
-  //       </h1>
-  //       <div>
-  //         <SignIn redirectUrl="/admin/emailEditor" />
-  //         <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
-  //       </div>
-  //     </main>
-  //   );
-  // }
+  const { isLoaded, userId } = useAuth();
+  if (!isLoaded)
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <div>Loading...</div>;
+      </main>
+    );
+  if (!userId) {
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <h1 className="text-2xl text-stone-100">
+          This page is for band members only
+        </h1>
+        <div>
+          <SignIn redirectUrl="/admin/emailEditor" />
+          <div className="absolute z-10 h-16 w-60 -translate-y-24 translate-x-7 bg-white object-contain sm:-translate-y-20 sm:translate-x-10"></div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <>

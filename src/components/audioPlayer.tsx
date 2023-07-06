@@ -111,7 +111,7 @@ export function AudioPlayer({
   }, [player]);
 
   return (
-    <main className="z-10 w-2/3">
+    <main className="z-10 w-2/3 max-md:w-5/6">
       <div className="container relative flex h-16 w-full flex-row items-center bg-stone-900">
         <audio id={player_id} src={source} preload="metadata"></audio>
         <div className="flex h-full w-20 items-center justify-center border-r border-stone-700">

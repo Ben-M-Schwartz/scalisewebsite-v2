@@ -6,8 +6,8 @@ import { type EditorRef } from "react-email-editor";
 import EmailEditor from "react-email-editor";
 import { api } from "~/utils/api";
 import { useState } from "react";
-//import { SignIn } from "@clerk/clerk-react";
-//import { useAuth } from "@clerk/nextjs";
+import { SignIn } from "@clerk/clerk-react";
+import { useAuth } from "@clerk/nextjs";
 
 /* 
 import dynamic from "next/dynamic";
@@ -23,7 +23,7 @@ export default function Email() {
   const [showForm, setShowForm] = useState(false);
   const [designToLoad, setDesignToLoad] = useState("");
   const [queryEnabled, setQueryEnabled] = useState(false);
-  //const { isLoaded, userId } = useAuth();
+  const { isLoaded, userId } = useAuth();
   const designNames = api.email.getEmailDesignNames.useQuery();
   const savedesign = api.email.saveEmailDesign.useMutation();
 
@@ -74,24 +74,25 @@ export default function Email() {
     // editor is ready
   } */
 
-  // if (!isLoaded)
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
-  //       <div>Loading...</div>;
-  //     </main>
-  //   );
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
-  //       <h1 className="text-2xl text-stone-100">
-  //         This page is for band members only
-  //       </h1>
-  //       <div>
-  //         <SignIn redirectUrl="/admin/emailEditor" />
-  //         <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
-  //       </div>
-  //     </main>
-  //   );
-  // }
+  if (!isLoaded)
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <div>Loading...</div>;
+      </main>
+    );
+  if (!userId) {
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <h1 className="text-2xl text-stone-100">
+          This page is for band members only
+        </h1>
+        <div>
+          <SignIn redirectUrl="/admin/emailEditor" />
+          <div className="absolute z-10 h-16 w-60 -translate-y-24 translate-x-7 bg-white object-contain sm:-translate-y-20 sm:translate-x-10"></div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <>

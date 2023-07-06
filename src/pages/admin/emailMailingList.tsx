@@ -3,8 +3,8 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-//import { SignIn } from "@clerk/clerk-react";
-//import { useAuth } from "@clerk/nextjs";
+import { SignIn } from "@clerk/clerk-react";
+import { useAuth } from "@clerk/nextjs";
 import { useState } from "react";
 
 import { api } from "~/utils/api";
@@ -22,9 +22,7 @@ type emailForm = {
 
 const MailingList: NextPage = () => {
   const { register, handleSubmit } = useForm<emailForm>();
-  //const { isLoaded, userId } = useAuth();
-
-  //const emailtest = api.subscription.testMailerSend.useMutation();
+  const { isLoaded, userId } = useAuth();
 
   const [sendtest, setSendtest] = useState(false);
 
@@ -58,24 +56,25 @@ const MailingList: NextPage = () => {
     }
   };
 
-  // if (!isLoaded)
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
-  //       <div>Loading...</div>;
-  //     </main>
-  //   );
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
-  //       <h1 className="text-2xl text-stone-100">
-  //         This page is for band members only
-  //       </h1>
-  //       <div>
-  //         <SignIn redirectUrl="/admin/emailMailingList" />
-  //         <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
-  //       </div>
-  //     </main>
-  //   );
-  // }
+  if (!isLoaded)
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <div>Loading...</div>;
+      </main>
+    );
+  if (!userId) {
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <h1 className="text-2xl text-stone-100">
+          This page is for band members only
+        </h1>
+        <div>
+          <SignIn redirectUrl="/admin/emailMailingList" />
+          <div className="absolute z-10 h-16 w-60 -translate-y-24 translate-x-7 bg-white object-contain sm:-translate-y-20 sm:translate-x-10"></div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <>

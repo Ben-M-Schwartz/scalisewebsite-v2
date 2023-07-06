@@ -63,5 +63,8 @@
   },
   "ct3aMetadata": {
     "initVersion": "7.10.3"
+  },
+  "resolutions": {
+    "semver": "^7.5.3"
   }
 }
