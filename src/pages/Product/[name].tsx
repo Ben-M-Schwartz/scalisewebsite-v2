@@ -311,7 +311,7 @@ const Product: NextPage = (
         <div className="hidden justify-center md:flex">
           <div className="flex w-full flex-row items-center justify-start gap-4 py-2 md:w-11/12 md:py-4 md:pl-8 lg:py-6 lg:pl-10 xl:w-3/4 xl:py-8 xl:pl-4 ">
             <Link
-              className="text-xl text-stone-100 hover:text-blue-400 hover:underline active:text-blue-700 active:underline"
+              className="text-xl text-stone-100 hover:text-red-800 hover:underline active:text-red-950 active:underline"
               href="/Store"
             >
               STORE
@@ -526,7 +526,7 @@ const Product: NextPage = (
                               addToCartDisabled ? "cursor-not-allowed" : ""
                             }`}
                             onClick={(e) => {
-                              if (pickedSize === "") {
+                              if (pickedSize === "" && loadSizes === true) {
                                 e.preventDefault();
                                 alert("Please pick a size");
                               }

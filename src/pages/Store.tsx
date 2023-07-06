@@ -79,7 +79,7 @@ function Product({ product }: { product: Product }) {
         </motion.div>
         <div className="p-5">
           <div className="flex flex-row justify-between">
-            <h4 className="mb-2 text-xl font-bold tracking-tight text-white">
+            <h4 className="mb-2 text-xl font-bold tracking-tight text-stone-100">
               {product.name}
             </h4>
             <h4
@@ -93,7 +93,7 @@ function Product({ product }: { product: Product }) {
           <div className="flex flex-row">
             {product.name === "From Nothing To Nothing Digital Download" && (
               <>
-                <h5 className="mb-2 pr-2 text-lg tracking-tight text-white">
+                <h5 className="mb-2 pr-2 text-lg tracking-tight text-stone-100">
                   FREE!
                 </h5>
               </>
@@ -101,7 +101,7 @@ function Product({ product }: { product: Product }) {
             {product.name !== "From Nothing To Nothing Digital Download" && (
               <>
                 <h5
-                  className={`mb-2 pr-2 text-lg tracking-tight text-white ${
+                  className={`mb-2 pr-2 text-lg tracking-tight text-stone-100 ${
                     product.sale_price === null ? "hidden" : "block"
                   }`}
                 >
@@ -109,7 +109,7 @@ function Product({ product }: { product: Product }) {
                   {(product.sale_price as number) % 1 === 0 ? ".00" : ""}
                 </h5>
                 <h5
-                  className={`mb-2 text-lg tracking-tight text-white ${
+                  className={`mb-2 text-lg tracking-tight text-stone-100 ${
                     product.sale_price !== null ? "line-through" : ""
                   }`}
                 >
@@ -151,8 +151,8 @@ const Store: NextPage = (
 
   if (isLoading) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-        <div className="flex flex-row justify-between gap-2 text-white">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-800">
+        <div className="flex flex-row justify-between gap-2 text-stone-100">
           <span className="flex h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></span>
           <p className="flex">Loading...</p>
         </div>

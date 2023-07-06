@@ -104,7 +104,7 @@ const SuccessPage: NextPage = () => {
         )}
         <Link
           href="/"
-          className="text-xl font-bold text-red-800 underline hover:text-red-900 active:text-gray-500"
+          className="text-xl font-bold text-red-800 underline hover:text-red-900 active:text-stone-500"
         >
           Back to Home
         </Link>
@@ -122,7 +122,7 @@ const SuccessPage: NextPage = () => {
                 )
               );
           }}
-          className="mt-20 rounded-sm border bg-red-800 px-6 py-2 text-center text-white hover:border-red-800 hover:bg-white hover:text-red-800 active:bg-gray-300"
+          className="mt-20 rounded-sm border bg-red-800 px-6 py-2 text-center text-stone-100 hover:border-red-800 hover:bg-stone-100 hover:text-red-800 active:bg-stone-300"
         >
           Join Mailing List
         </button>

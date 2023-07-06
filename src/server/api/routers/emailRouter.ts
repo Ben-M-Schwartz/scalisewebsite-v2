@@ -53,8 +53,7 @@ const emailMailingList = async (subject: string, html: string) => {
     const emailParams = new EmailParams()
       .setFrom(sentFrom)
       .setTo([new Recipient(subscriber.email as string)])
-      //TODO: Change this to gradens email
-      .setReplyTo(new Recipient("benschwartz33@gmail.com"))
+      .setReplyTo(new Recipient("graden@scalise.band"))
       .setSubject(subject)
       .setHtml(html);
 
@@ -149,8 +148,7 @@ const sendContactFormEmail = async (
   message: string
 ) => {
   const sentFrom = new Sender("noreply@scalise.band", "Contact Form");
-  //TODO: change this to gradens email
-  const recipients = [new Recipient("benschwartz33@gmail.com")];
+  const recipients = [new Recipient("graden@scalise.band")];
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
     .setTo(recipients)
@@ -325,8 +323,7 @@ export const emailRouter = createTRPCRouter({
         const emailParams = new EmailParams()
           .setFrom(sentFrom)
           .setTo(recipients)
-          //TODO: Change this to gradens email
-          .setReplyTo(new Recipient("benschwartz33@gmail.com"))
+          .setReplyTo(new Recipient("graden@scalise.band"))
           .setSubject(input.subject)
           .setHtml(input.html);
         await mailerSend.email.send(emailParams);

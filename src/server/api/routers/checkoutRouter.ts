@@ -30,6 +30,7 @@ export const checkoutRouter = createTRPCRouter({
             image: z.string(),
           })
         ),
+        total_price: z.number(),
       })
     )
     .mutation(async ({ input }) => {
@@ -78,8 +79,10 @@ export const checkoutRouter = createTRPCRouter({
         return ["Not Enough Inventory", cartOverflows];
       }
 
+      let total_weight = 0;
       //convert cart_items to stripe line items
       const lineItems = items.map((item) => {
+        total_weight += item.weight;
         const images = item.image.split(",");
         return {
           price_data: {
@@ -100,11 +103,22 @@ export const checkoutRouter = createTRPCRouter({
             item.is_taxed === 1 ? ["txr_1N10EAHmtb6xoR6RcIowDGt8"] : undefined,
         };
       });
-      //TODO: calculate shipping based on weight, need Graden to tell his preferences for this
+
+      let shipping = 581;
+      if (total_weight > 16) {
+        shipping = 1018;
+      } else if (total_weight > 12) {
+        shipping = 822;
+      } else if (total_weight > 8) {
+        shipping = 688;
+      } else if (total_weight > 4) {
+        shipping = 620;
+      }
       const session = await stripe.checkout.sessions.create({
         //payment_method_types: ['card'],
         line_items: lineItems,
         mode: "payment",
+        payment_method_types: ["card"],
         success_url: `${domainURL as string}/success/{CHECKOUT_SESSION_ID}`,
         cancel_url: `${domainURL as string}/canceled/{CHECKOUT_SESSION_ID}`,
         billing_address_collection: "required",
@@ -113,10 +127,10 @@ export const checkoutRouter = createTRPCRouter({
           {
             shipping_rate_data: {
               type: "fixed_amount",
-              fixed_amount: { amount: 581, currency: "usd" },
+              fixed_amount: { amount: shipping, currency: "usd" },
               display_name: "USPS First",
               delivery_estimate: {
-                minimum: { unit: "business_day", value: 5 },
+                minimum: { unit: "business_day", value: 4 },
                 maximum: { unit: "business_day", value: 7 },
               },
             },
@@ -128,7 +142,7 @@ export const checkoutRouter = createTRPCRouter({
               display_name: "USPS Priority",
               delivery_estimate: {
                 minimum: { unit: "business_day", value: 1 },
-                maximum: { unit: "business_day", value: 1 },
+                maximum: { unit: "business_day", value: 3 },
               },
             },
           },
@@ -137,7 +151,7 @@ export const checkoutRouter = createTRPCRouter({
           enabled: true,
         }, */
         shipping_address_collection: {
-          allowed_countries: ["US", "CA"],
+          allowed_countries: ["US"],
         },
         expires_at: Math.floor((new Date().getTime() + 1800000) / 1000),
       });

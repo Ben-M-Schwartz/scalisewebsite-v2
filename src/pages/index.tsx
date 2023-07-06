@@ -5,7 +5,7 @@ import Link from "next/link";
 
 //importing images for static generation on build to speed up load times
 import red_background from "../../public/Red Background.webp";
-import black_paper_background from "../../public/2.webp";
+import black_paper_background from "../../public/black_paper_2.webp";
 import white_paper_background from "../../public/White Crumple Background.webp";
 import beforewedryup from "../../public/LP2_cover.webp";
 import transferred from "../../public/transferred.webp";
@@ -101,7 +101,7 @@ const Home: NextPage = () => {
               href="/Product/Before-We-Dry-Up-CD"
               className="mt-6 rounded-sm bg-stone-100 px-8 py-2 text-lg text-stone-950 hover:border hover:border-stone-100 hover:bg-stone-950 hover:text-stone-100 active:border active:border-stone-100 active:bg-stone-700 active:text-stone-100 md:px-12 md:text-xl lg:mt-10 lg:py-4 lg:text-2xl"
             >
-              BUY A CD
+              PURCHASE CD
             </Link>
           </div>
         </div>

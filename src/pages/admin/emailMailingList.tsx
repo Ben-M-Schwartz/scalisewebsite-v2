@@ -3,8 +3,8 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-//import { SignIn } from "@clerk/clerk-react";
-//import { useAuth } from "@clerk/nextjs";
+import { SignIn } from "@clerk/clerk-react";
+import { useAuth } from "@clerk/nextjs";
 import { useState } from "react";
 
 import { api } from "~/utils/api";
@@ -22,9 +22,7 @@ type emailForm = {
 
 const MailingList: NextPage = () => {
   const { register, handleSubmit } = useForm<emailForm>();
-  //const { isLoaded, userId } = useAuth();
-
-  //const emailtest = api.subscription.testMailerSend.useMutation();
+  const { isLoaded, userId } = useAuth();
 
   const [sendtest, setSendtest] = useState(false);
 
@@ -32,7 +30,7 @@ const MailingList: NextPage = () => {
   const onSubmit = (formData: emailForm) => {
     if (!sendtest) {
       const answer = window.confirm(
-        "Are you sure this email is ready to be sent to the mailing list?"
+        "Are you sure this email is ready to be sent to the mailing list? Did you send it to yourself first?"
       );
       if (answer) {
         sendEmails
@@ -58,45 +56,25 @@ const MailingList: NextPage = () => {
     }
   };
 
-  // if (!isLoaded)
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-  //       <div>Loading...</div>;
-  //     </main>
-  //   );
-  // if (!userId) {
-  //   document.addEventListener("contextmenu", (e) => {
-  //     e.preventDefault();
-  //   });
-  //   document.onkeydown = function (e) {
-  //     if (e.key === "F12") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.shiftKey && e.key === "i") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.shiftKey && e.key === "c") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.shiftKey && e.key === "j") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.key === "u") {
-  //       return false;
-  //     }
-  //   };
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-  //       <h1 className="text-2xl text-white">
-  //         This page is for band members only
-  //       </h1>
-  //       <div>
-  //         <SignIn redirectUrl="/admin/emailMailingList" />
-  //         <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
-  //       </div>
-  //     </main>
-  //   );
-  // }
+  if (!isLoaded)
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <div>Loading...</div>;
+      </main>
+    );
+  if (!userId) {
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <h1 className="text-2xl text-stone-100">
+          This page is for band members only
+        </h1>
+        <div>
+          <SignIn redirectUrl="/admin/emailMailingList" />
+          <div className="absolute z-10 h-16 w-60 -translate-y-24 translate-x-7 bg-white object-contain sm:-translate-y-20 sm:translate-x-10"></div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <>
@@ -136,15 +114,17 @@ const MailingList: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
         <Link
           href="/admin/home"
-          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+          className="py-6 text-xl font-bold text-stone-100 underline hover:text-red-800 active:text-red-950"
         >
           Admin Home
         </Link>
         <div className="container flex flex-col gap-12 px-4 py-16 ">
-          <h1 className="text-4xl text-white">Email Mailing List</h1>
+          <h1 className="text-center text-4xl text-stone-100">
+            Email Mailing List
+          </h1>
           <form
             className="flex flex-col gap-4"
             onSubmit={handleSubmit(onSubmit)}
@@ -152,33 +132,33 @@ const MailingList: NextPage = () => {
             <div>
               <label
                 htmlFor="subject"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Subject
               </label>
               <input
                 id="subject"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("subject", { required: true })}
               />
             </div>
             <div>
               <label
                 htmlFor="body"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 HTML exported from page /admin/emailEditor
               </label>
               <textarea
                 id="body"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 {...register("html", { required: true })}
               />
             </div>
 
             <label
               htmlFor="testsend"
-              className="mb-2 block text-sm font-medium text-white"
+              className="mb-2 block text-sm font-medium text-stone-100"
             >
               Send test email?
             </label>
@@ -192,20 +172,20 @@ const MailingList: NextPage = () => {
             <div className={sendtest ? "block" : "hidden"}>
               <label
                 htmlFor="testRecipient"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Address to send test email to:
               </label>
               <input
                 type="text"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 {...register("testRecipient", { required: false })}
               />
             </div>
 
             <button
               type="submit"
-              className="mb-2 mr-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-800"
+              className="active:red-950 mb-2 mr-2 rounded-lg bg-red-800 px-5 py-2.5 text-sm font-medium text-stone-100 hover:bg-red-900"
             >
               Send
             </button>

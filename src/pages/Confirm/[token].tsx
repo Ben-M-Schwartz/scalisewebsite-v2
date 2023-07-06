@@ -96,7 +96,7 @@ const Confirm: NextPage = () => {
             </p>
             <Link
               href="/"
-              className="text-center text-xl font-bold text-red-800 underline hover:text-red-900 active:text-gray-500"
+              className="text-center text-xl font-bold text-red-800 underline hover:text-red-900 active:text-stone-500"
             >
               Home
             </Link>
@@ -127,7 +127,7 @@ const Confirm: NextPage = () => {
               </p>
               <Link
                 href="/"
-                className="text-center text-xl font-bold text-stone-100 hover:text-blue-700 hover:underline active:text-gray-500"
+                className="text-center text-xl font-bold text-stone-100 hover:text-blue-700 hover:underline active:text-stone-500"
               >
                 Home
               </Link>

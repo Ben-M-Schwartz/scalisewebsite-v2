@@ -52,13 +52,13 @@ const Subscribe: NextPage = () => {
               onSubmit={handleSubmit(onSubmit)}
             >
               <input
-                className="rounded-sm bg-gray-200 px-4 py-2 leading-tight focus:border-gray-500 focus:bg-white focus:outline-none"
+                className="rounded-sm bg-stone-200 px-4 py-2 leading-tight focus:border-stone-500 focus:bg-stone-100 focus:outline-none"
                 type="email"
                 placeholder="Email address"
                 {...register("email", { required: true })}
               />
               <button
-                className="focus:shadow-outline border border-red-800 px-4 py-2 font-bold text-red-800 hover:bg-red-800 hover:text-white active:bg-rose-400"
+                className="focus:shadow-outline border border-red-800 px-4 py-2 font-bold text-red-800 hover:bg-red-800 hover:text-stone-100 active:bg-rose-400"
                 type="submit"
               >
                 SIGN UP

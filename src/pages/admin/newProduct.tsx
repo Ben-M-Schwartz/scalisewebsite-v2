@@ -4,8 +4,8 @@ import Head from "next/head";
 import Link from "next/link";
 import { api } from "~/utils/api";
 import { useForm } from "react-hook-form";
-//import { SignIn } from "@clerk/clerk-react";
-//import { useAuth } from "@clerk/nextjs";
+import { SignIn } from "@clerk/clerk-react";
+import { useAuth } from "@clerk/nextjs";
 
 /* export const config = {
   runtime: "experimental-edge",
@@ -25,7 +25,7 @@ type NewProductForm = {
 
 const NewProduct: NextPage = () => {
   const { register, handleSubmit } = useForm<NewProductForm>();
-  //const { isLoaded, userId } = useAuth();
+  const { isLoaded, userId } = useAuth();
 
   const createProduct = api.inventory.create.useMutation();
 
@@ -46,45 +46,25 @@ const NewProduct: NextPage = () => {
       .catch((error) => console.error(error));
   };
 
-  // if (!isLoaded)
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-  //       <div>Loading...</div>;
-  //     </main>
-  //   );
-  // if (!userId) {
-  //   document.addEventListener("contextmenu", (e) => {
-  //     e.preventDefault();
-  //   });
-  //   document.onkeydown = function (e) {
-  //     if (e.key === "F12") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.shiftKey && e.key === "i") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.shiftKey && e.key === "c") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.shiftKey && e.key === "j") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.key === "u") {
-  //       return false;
-  //     }
-  //   };
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-  //       <h1 className="text-2xl text-white">
-  //         This page is for band members only
-  //       </h1>
-  //       <div>
-  //         <SignIn redirectUrl="/admin/newProduct" />
-  //         <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
-  //       </div>
-  //     </main>
-  //   );
-  // }
+  if (!isLoaded)
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <div>Loading...</div>;
+      </main>
+    );
+  if (!userId) {
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <h1 className="text-2xl text-stone-100">
+          This page is for band members only
+        </h1>
+        <div>
+          <SignIn redirectUrl="/admin/newProduct" />
+          <div className="absolute z-10 h-16 w-60 -translate-y-24 translate-x-7 bg-white object-contain sm:-translate-y-20 sm:translate-x-10"></div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <>
@@ -124,15 +104,15 @@ const NewProduct: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
         <Link
           href="/admin/home"
-          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+          className="py-6 text-xl font-bold text-stone-100 underline hover:text-red-800 active:text-red-950"
         >
           Admin Home
         </Link>
         <div className="container flex flex-col gap-12 px-4 py-16 ">
-          <h1 className="text-4xl text-white">Create A New Product</h1>
+          <h1 className="text-4xl text-stone-100">Create A New Product</h1>
           <form
             className="flex flex-col gap-4"
             onSubmit={handleSubmit(onSubmit)}
@@ -140,7 +120,7 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="name"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Item Name (note: include a &lsquo;-&rsquo; in the name will
                 cause an error in the store. If we want to be able to add those
@@ -148,7 +128,7 @@ const NewProduct: NextPage = () => {
               </label>
               <input
                 id="name"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 {...register("name", { required: true })}
               />
             </div>
@@ -156,7 +136,7 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="price"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Price
               </label>
@@ -165,7 +145,7 @@ const NewProduct: NextPage = () => {
                 type="number"
                 min="0"
                 step=".01"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 {...register("price", { required: true })}
               />
             </div>
@@ -173,14 +153,14 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="desc"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Description (optional)
               </label>
               <textarea
                 id="desc"
                 maxLength={999}
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 {...register("description", { required: false })}
               />
             </div>
@@ -188,16 +168,16 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="weight"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
-                Weight
+                Weight (oz)
               </label>
               <input
                 id="weight"
                 type="number"
                 step=".01"
                 min="0"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 {...register("weight", { required: true })}
               />
             </div>
@@ -205,13 +185,13 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="sizes"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Sizes (listed as -&gt; S, M, L)
               </label>
               <input
                 id="weight"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 {...register("sizes", { required: false })}
               />
             </div>
@@ -219,13 +199,13 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="quantities"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Quantites
               </label>
               <input
                 id="quantities"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 {...register("quantities", { required: true })}
               />
             </div>
@@ -233,7 +213,7 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="quantities"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Image Names (if multiple images list them in the order you wish
                 displayed on the store i.e image1.png, image2.png, image3.png)
@@ -243,7 +223,7 @@ const NewProduct: NextPage = () => {
               </label>
               <input
                 id="imageName"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 {...register("imageName", { required: true })}
               />
             </div>
@@ -251,13 +231,13 @@ const NewProduct: NextPage = () => {
             {/*             <div>
               <label
                 htmlFor="is_taxed"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Is it taxed? (1 for yes 0 for no)
               </label>
               <input
                 id="is_taxed"
-                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 :bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 :bg-gray-700 text-stone-100 placeholder-gray-400"
                 {...register("is_taxed", { required: true })}
               />
             </div> */}
@@ -265,21 +245,21 @@ const NewProduct: NextPage = () => {
             <div>
               <label
                 htmlFor="store_order"
-                className="mb-2 block text-sm font-medium text-white"
+                className="mb-2 block text-sm font-medium text-stone-100"
               >
                 What location in the order of the store display? (Defaults to
                 the first spot index 1)
               </label>
               <input
                 id="store_order"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 {...register("store_order", { required: false })}
               />
             </div>
 
             <button
               type="submit"
-              className="mb-2 mr-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-800"
+              className="mb-2 mr-2 rounded-lg bg-red-800 px-5 py-2.5 text-sm font-medium text-stone-100 hover:bg-red-900 active:bg-red-950"
             >
               Create
             </button>

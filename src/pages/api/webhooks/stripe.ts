@@ -95,33 +95,19 @@ export default async function handler(
       .where(eq(in_checkout_amounts.stripe_checkout_id, session.id));
   }
 
-  if (event.type === "checkout.session.async_payment_failed") {
-    //TODO: test following two functions
-    //TODO: Send email to user saying thier payment failed?
+  /*   
+Not needed since we only allow card payments
+if (event.type === "checkout.session.async_payment_failed") {
     await db
       .delete(orders)
       .where(eq(orders.stripe_checkout_session_id, session.id));
   }
   if (event.type === "checkout.session.async_payment_succeeded") {
-    const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
-      expand: ["data.price.product"],
-    });
-    lineItems.data.map(async (item) => {
-      const product = item.price?.product as Stripe.Product;
-      const metadata = product?.metadata;
-      const size = metadata.size || "";
-      const product_id = metadata.product_id || "";
-      await db
-        .update(product_quantity)
-        .set({ quantity: sql`${product_quantity.quantity} - ${item.quantity}` })
-        .where(
-          and(
-            eq(product_quantity.product_id, parseInt(product_id)),
-            eq(product_quantity.size, size)
-          )
-        );
-    });
-  }
+    await db
+      .update(orders)
+      .set({ payment_status: "paid" })
+      .where(eq(orders.stripe_checkout_session_id, session.id));
+  } */
 
   return res.json({});
 }

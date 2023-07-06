@@ -5,8 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import type { product_details } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
-//import { SignIn } from "@clerk/clerk-react";
-//import { useAuth } from "@clerk/nextjs";
+import { SignIn } from "@clerk/clerk-react";
+import { useAuth } from "@clerk/nextjs";
 
 /* export const config = {
   runtime: "experimental-edge",
@@ -39,10 +39,10 @@ function Card({ product }: { product: Product }) {
   const images = (product.image as string).split(",");
 
   return (
-    <div className="max-w-sm rounded-lg border border-gray-700 bg-gray-700 shadow">
+    <div className="max-w-sm bg-transparent shadow">
       <div className="relative h-full w-full">
         <Image
-          className=""
+          className="rounded-lg"
           src={`/${images[0] as string}`}
           alt="image"
           height={360}
@@ -51,7 +51,7 @@ function Card({ product }: { product: Product }) {
       </div>
       <div className="p-5">
         <a href="#">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-stone-100">
             {product.name} - ${product.price}
           </h5>
         </a>
@@ -64,7 +64,7 @@ function Card({ product }: { product: Product }) {
           />
           <button
             type="submit"
-            className="inline-flex items-center rounded-lg bg-blue-600 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-800"
+            className="inline-flex items-center rounded-lg bg-red-800 px-3 py-2 text-center text-sm font-medium text-stone-100 hover:bg-red-900 active:bg-red-950"
           >
             Remove
             <svg
@@ -89,47 +89,27 @@ function Card({ product }: { product: Product }) {
 
 const removeProduct: NextPage = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  //const { isLoaded, userId } = useAuth();
+  const { isLoaded, userId } = useAuth();
   const products = api.inventory.list.useQuery();
-  // if (!isLoaded)
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-  //       <div className="text-white">Loading...</div>;
-  //     </main>
-  //   );
-  // if (!userId) {
-  //   document.addEventListener("contextmenu", (e) => {
-  //     e.preventDefault();
-  //   });
-  //   document.onkeydown = function (e) {
-  //     if (e.key === "F12") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.shiftKey && e.key === "i") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.shiftKey && e.key === "c") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.shiftKey && e.key === "j") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.key === "u") {
-  //       return false;
-  //     }
-  //   };
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-  //       <h1 className="text-2xl text-white">
-  //         This page is for band members only
-  //       </h1>
-  //       <div>
-  //         <SignIn redirectUrl="/admin/removeProduct" />
-  //         <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
-  //       </div>
-  //     </main>
-  //   );
-  // }
+  if (!isLoaded)
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <div className="text-stone-100">Loading...</div>;
+      </main>
+    );
+  if (!userId) {
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <h1 className="text-2xl text-stone-100">
+          This page is for band members only
+        </h1>
+        <div>
+          <SignIn redirectUrl="/admin/removeProduct" />
+          <div className="absolute z-10 h-16 w-60 -translate-y-24 translate-x-7 bg-white object-contain sm:-translate-y-20 sm:translate-x-10"></div>
+        </div>
+      </main>
+    );
+  }
   return (
     <>
       <Head>
@@ -168,17 +148,17 @@ const removeProduct: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
         <Link
           href="/admin/home"
-          className="text-xl font-bold text-white hover:text-blue-700 hover:underline active:text-gray-500"
+          className="py-6 text-xl font-bold text-stone-100 underline hover:text-red-800 active:text-red-950"
         >
           Admin Home
         </Link>
-        <h1 className="mt-12 pl-4 text-4xl text-white">
+        <h1 className="mt-12 pl-4 text-4xl text-stone-100">
           Which product would you like to remove from the website?
         </h1>
-        <div className="container flex flex-col items-center justify-center gap-4 sm:grid sm:grid-cols-2 sm:items-center sm:justify-center lg:grid-cols-3">
+        <div className="container flex flex-col items-center justify-center gap-4 sm:grid sm:grid-cols-2 sm:items-start sm:justify-center lg:grid-cols-3">
           {products?.data?.map((product) => (
             <Card key={product.id} product={product} />
           ))}

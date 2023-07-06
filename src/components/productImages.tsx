@@ -120,13 +120,13 @@ export const Images = ({ images }: { images: string[] }) => {
             </motion.div>
           </AnimatePresence>
           <div
-            className="next absolute right-3 top-1/2 z-10 flex h-10 w-10 cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold xl:right-10"
+            className="next absolute right-3 top-1/2 z-10 flex h-10 w-10 cursor-pointer select-none items-center justify-center rounded-full bg-stone-100 text-lg font-bold xl:right-10"
             onClick={() => paginate(1)}
           >
             {"‣"}
           </div>
           <div
-            className="prev absolute left-3 top-1/2 z-10 flex h-10 w-10 -scale-x-100 transform cursor-pointer select-none items-center justify-center rounded-full bg-white text-lg font-bold xl:left-10"
+            className="prev absolute left-3 top-1/2 z-10 flex h-10 w-10 -scale-x-100 transform cursor-pointer select-none items-center justify-center rounded-full bg-stone-100 text-lg font-bold xl:left-10"
             onClick={() => paginate(-1)}
           >
             {"‣"}

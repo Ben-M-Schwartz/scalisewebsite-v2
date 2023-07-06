@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 
-import banner from "../../public/3.webp";
+import banner from "../../public/black_paper_3.webp";
 import title from "../../public/Videos (Handwritten).webp";
 import white_paper from "../../public/White Crumple Background Lighter.webp";
 

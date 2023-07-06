@@ -6,8 +6,8 @@ import { type EditorRef } from "react-email-editor";
 import EmailEditor from "react-email-editor";
 import { api } from "~/utils/api";
 import { useState } from "react";
-//import { SignIn } from "@clerk/clerk-react";
-//import { useAuth } from "@clerk/nextjs";
+import { SignIn } from "@clerk/clerk-react";
+import { useAuth } from "@clerk/nextjs";
 
 /* 
 import dynamic from "next/dynamic";
@@ -23,7 +23,7 @@ export default function Email() {
   const [showForm, setShowForm] = useState(false);
   const [designToLoad, setDesignToLoad] = useState("");
   const [queryEnabled, setQueryEnabled] = useState(false);
-  //const { isLoaded, userId } = useAuth();
+  const { isLoaded, userId } = useAuth();
   const designNames = api.email.getEmailDesignNames.useQuery();
   const savedesign = api.email.saveEmailDesign.useMutation();
 
@@ -63,7 +63,7 @@ export default function Email() {
     }
   );
 
-  function onLoad() {
+  /*   function onLoad() {
     // editor instance is created
     // you can load your template here;
     // const templateJson = {};
@@ -72,47 +72,27 @@ export default function Email() {
 
   function onReady() {
     // editor is ready
-  }
+  } */
 
-  // if (!isLoaded)
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-  //       <div>Loading...</div>;
-  //     </main>
-  //   );
-  // if (!userId) {
-  //   document.addEventListener("contextmenu", (e) => {
-  //     e.preventDefault();
-  //   });
-  //   document.onkeydown = function (e) {
-  //     if (e.key === "F12") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.shiftKey && e.key === "i") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.shiftKey && e.key === "c") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.shiftKey && e.key === "j") {
-  //       return false;
-  //     }
-  //     if (e.ctrlKey && e.key === "u") {
-  //       return false;
-  //     }
-  //   };
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-800">
-  //       <h1 className="text-2xl text-white">
-  //         This page is for band members only
-  //       </h1>
-  //       <div>
-  //         <SignIn redirectUrl="/admin/emailEditor" />
-  //         <div className="absolute z-10 h-16 w-60 -translate-y-20 translate-x-10 bg-white object-contain"></div>
-  //       </div>
-  //     </main>
-  //   );
-  // }
+  if (!isLoaded)
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <div>Loading...</div>;
+      </main>
+    );
+  if (!userId) {
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center bg-stone-950">
+        <h1 className="text-2xl text-stone-100">
+          This page is for band members only
+        </h1>
+        <div>
+          <SignIn redirectUrl="/admin/emailEditor" />
+          <div className="absolute z-10 h-16 w-60 -translate-y-24 translate-x-7 bg-white object-contain sm:-translate-y-20 sm:translate-x-10"></div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <>
@@ -152,85 +132,105 @@ export default function Email() {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <div className="flex flex-row gap-4">
-        <Link
-          href="/admin/emailMailingList"
-          className="text-xl font-bold text-gray-800 hover:text-blue-700 hover:underline active:text-gray-500"
-        >
-          Email Mailing List
-        </Link>
-        <Link
-          href="/admin/home"
-          className="text-xl font-bold text-gray-800 hover:text-blue-700 hover:underline active:text-gray-500"
-        >
-          Admin Home
-        </Link>
-      </div>
-      <div className="">
-        <div className="flex flex-row gap-4">
-          <input
-            type="text"
-            id="design_name"
-            placeholder="Design Name"
-            className="bg-gray-600 text-white"
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          ></input>
-          <button
-            onClick={saveDesign}
-            className="hover:text-blue-700 active:text-blue-400"
+      <main className="bg-stone-100">
+        <div className="flex flex-row justify-center gap-4 py-6">
+          <Link
+            href="/admin/emailMailingList"
+            className="text-xl font-bold text-red-800 underline hover:text-red-900 active:text-red-950"
           >
-            Save Design
-          </button>
-          <button
-            onClick={() => {
-              setShowForm(!showForm);
-            }}
-            className="hover:text-blue-700 active:text-blue-400"
+            Email Mailing List
+          </Link>
+          <Link
+            href="/admin/home"
+            className="text-xl font-bold text-red-800 underline hover:text-red-900 active:text-red-950"
           >
-            Load Design
-          </button>
-          <div className={showForm ? "block" : "hidden"}>
-            <label htmlFor="names">Which design would you like to load?</label>
-            <select
-              id="names"
+            Admin Home
+          </Link>
+        </div>
+        <div className="">
+          <div className="flex flex-row justify-center gap-4 pb-6">
+            <input
+              type="text"
+              id="design_name"
+              placeholder="Design Name"
+              className="rounded-md bg-gray-600 px-2 text-stone-100"
               onChange={(e) => {
-                setDesignToLoad(e.target.value);
+                setName(e.target.value);
               }}
-              defaultValue=""
-            >
-              <option value="" disabled selected>
-                Select Design
-              </option>
-              {designNames.data?.map((design) => (
-                <option
-                  key={design.name as string}
-                  value={design.name as string}
-                >
-                  {design.name}
-                </option>
-              ))}
-            </select>
+            ></input>
             <button
-              onClick={() => setQueryEnabled(true)}
-              disabled={designToLoad === ""}
+              onClick={saveDesign}
+              className="rounded-md border bg-red-800 px-4 py-2 text-stone-100 hover:bg-red-900 active:bg-red-950"
             >
-              Load
+              Save Design
+            </button>
+            <button
+              onClick={() => {
+                setShowForm(!showForm);
+              }}
+              className="rounded-md border bg-red-800 px-4 py-2 text-stone-100 hover:bg-red-900 active:bg-red-950"
+            >
+              Load Design
+            </button>
+            <div className={showForm ? "block" : "hidden"}>
+              <label htmlFor="names">
+                Which design would you like to load?
+              </label>
+              <select
+                id="names"
+                onChange={(e) => {
+                  setDesignToLoad(e.target.value);
+                }}
+                defaultValue=""
+              >
+                <option value="" disabled selected>
+                  Select Design
+                </option>
+                {designNames.data?.map((design) => (
+                  <option
+                    key={design.name as string}
+                    value={design.name as string}
+                  >
+                    {design.name}
+                  </option>
+                ))}
+              </select>
+              <button
+                onClick={() => setQueryEnabled(true)}
+                disabled={designToLoad === ""}
+                className="rounded-md border bg-red-800 px-4 py-2 text-stone-100 hover:bg-red-900 active:bg-red-950"
+              >
+                Load
+              </button>
+            </div>
+            <button
+              onClick={exportHtml}
+              className="rounded-md border bg-red-800 px-4 py-2 text-stone-100 hover:bg-red-900 active:bg-red-950"
+            >
+              Export HTML
             </button>
           </div>
-          <button
-            onClick={exportHtml}
-            className="hover:text-blue-700 active:text-blue-400"
-          >
-            Export HTML
-          </button>
-        </div>
 
-        <div className="h-screen overflow-hidden">
-          <EmailEditor ref={emailEditorRef} onLoad={onLoad} onReady={onReady} />
+          <p className="text-center text-stone-950">
+            If the editor doesn&apos;t load go back to the homepage and follow
+            the link to this page again
+          </p>
+          <p className="text-center text-stone-950">
+            The editor doesn&apos;t load on a page refresh for some reason
+          </p>
+          <p className="text-center text-stone-950">
+            NOTE: Nothing is auto saved. To save your design type the name above
+            and click save. If you type the name of an already existing design
+            it will override the previous database entry.
+          </p>
+
+          <div className="h-screen overflow-hidden">
+            <EmailEditor
+              ref={emailEditorRef} /* onLoad={onLoad} onReady={onReady} */
+            />
+          </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }

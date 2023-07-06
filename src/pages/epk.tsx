@@ -112,14 +112,14 @@ const Music: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center bg-gray-800">
+      <main className="flex min-h-screen flex-col items-center bg-stone-950">
         <div className="relative flex w-full justify-center bg-transparent">
           <Image
             src={banner}
             alt="background photo"
             fill
             quality={100}
-            className="absolute z-0 object-cover object-[0%_15%]"
+            className="absolute z-0 object-cover md:object-[0%_15%]"
             priority
           />
           <h1 className="z-10 py-48 text-center text-8xl text-stone-100 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
@@ -161,7 +161,7 @@ const Music: NextPage = () => {
         </div>
         <div className="flex w-full flex-col">
           <div className="z-10 flex flex-col items-center justify-center gap-3 bg-stone-100 py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
-            <div className="h-1/2 w-1/2 text-center md:order-1">
+            <div className="h-1/2 w-full text-center md:order-1 md:w-1/2">
               <div className="flex flex-col items-center justify-center gap-3">
                 <h1 className="z-1 tex-center text-4xl font-bold text-red-800 md:text-6xl">
                   &quot;SHE&apos;S GONNA KILL YOU&quot;
@@ -189,7 +189,7 @@ const Music: NextPage = () => {
 
           <div className="flex flex-col items-center gap-10 bg-stone-950 py-24">
             <div className="flex flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
-              <div className="w-1/2 text-center md:order-1">
+              <div className="w-full text-center md:order-1 md:w-1/2">
                 <div className="flex flex-col items-center justify-center gap-3">
                   <h1 className="text-center text-4xl font-bold text-stone-100 md:text-6xl">
                     &quot;TRANSFERRED TO HOUSTON&quot;
@@ -217,7 +217,7 @@ const Music: NextPage = () => {
           </div>
 
           <div className="z-10 flex flex-col items-center justify-center gap-3 bg-stone-100 py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
-            <div className="h-1/2 w-1/2 text-center md:order-1">
+            <div className="h-1/2 w-full text-center md:order-1 md:w-1/2">
               <div className="flex flex-col items-center justify-center gap-3">
                 <h1 className="z-1 tex-center text-4xl font-bold text-red-800 md:text-6xl">
                   &quot;AIRBAG&quot;
@@ -244,7 +244,7 @@ const Music: NextPage = () => {
           </div>
 
           <div className="z-10 flex flex-col items-center justify-center gap-3 bg-stone-950 py-24 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10">
-            <div className="w-1/2 text-center md:order-1">
+            <div className="w-full text-center md:order-1 md:w-1/2">
               <div className="flex flex-col items-center justify-center gap-3">
                 <h1 className="z-1 tex-center text-4xl font-bold text-stone-100 md:text-6xl">
                   &quot;FRUIT SNACKS&quot;
@@ -324,7 +324,7 @@ const Music: NextPage = () => {
           </div>
         </div>
         <div className="flex w-full flex-col items-center bg-stone-100">
-          <p className="w-5/6 pb-6 pt-24 text-center text-3xl font-bold md:w-2/3">
+          <p className="w-5/6 pb-6 pt-24 text-center text-lg font-bold md:w-2/3 md:text-3xl">
             “To my ear, they have got a sound that calls to mind a bit of Nickel
             Creek, with a touch of both Dave Matthews Band and Counting Crows.
             One thing I have to say I&quot;m struck by is how for a band this
@@ -471,8 +471,8 @@ const Music: NextPage = () => {
         </div>
 
         <div className="flex w-full flex-col items-center justify-center bg-stone-100 py-12">
-          <div className="flex w-2/3 flex-col items-center justify-center md:w-3/4 md:flex-row">
-            <div className="w-full flex-col items-center justify-center md:w-1/4">
+          <div className="flex w-5/6 flex-col items-center justify-center md:w-3/4 md:flex-row">
+            <div className="w-full flex-col items-center justify-center md:w-1/2">
               <h1 className="text-wrap w-full text-center text-4xl font-bold text-red-800">
                 STAGE PLOT AND TECH RIDER
               </h1>
@@ -482,7 +482,7 @@ const Music: NextPage = () => {
                 </Link>
               </button>
             </div>
-            <div className="container relative h-96 w-full md:w-3/4">
+            <div className="relative h-64 w-96 md:h-96 md:w-3/4">
               <Link href="/stageplot.png">
                 <Image
                   src={stagePlot}
@@ -509,7 +509,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="spotify-link"
@@ -521,7 +521,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://music.apple.com/us/artist/scalise/1529031635"
-                className="block rounded border-gray-700 py-2 pl-3  pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-stone-700 py-2 pl-3  pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="applemusic-link"
@@ -533,7 +533,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://twitter.com/ScaliseTheBand"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="twitter-link"
@@ -545,7 +545,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://www.facebook.com/ScaliseTheBand"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="facebook-link"
@@ -557,7 +557,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://www.instagram.com/ScaliseTheBand/"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="instagram-link"
@@ -569,7 +569,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://www.tiktok.com/@scaliseband"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="tiktok-link"
@@ -581,7 +581,7 @@ const Music: NextPage = () => {
               </label>
               <Link
                 href="https://www.youtube.com/channel/UCWBsxAAhmKP1nRHWQQ5N0Qg"
-                className="block rounded border-gray-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-gray-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
+                className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
                 id="youtube-link"
@@ -590,7 +590,7 @@ const Music: NextPage = () => {
               </Link>
             </div>
           </div>
-          <div className="flex w-11/12 flex-col items-center justify-center border border-gray-500 md:w-1/2">
+          <div className="flex w-11/12 flex-col items-center justify-center border border-stone-500 md:w-1/2">
             {/* eslint-disable-next-line */}
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col justify-center gap-2 px-4 py-8 sm:px-0">
@@ -600,7 +600,7 @@ const Music: NextPage = () => {
                     <input
                       id="first-name"
                       {...register("firstName", { required: true })}
-                      className="w-full rounded-md border border-gray-400 bg-gray-100 p-2 text-stone-950"
+                      className="w-full rounded-md border border-stone-400 bg-stone-100 p-2 text-stone-950"
                     />
                   </div>
                   <div className="flex flex-col">
@@ -608,7 +608,7 @@ const Music: NextPage = () => {
                     <input
                       id="last-name"
                       {...register("lastName", { required: true })}
-                      className="w-full rounded-md border border-gray-400 bg-gray-100 p-2 text-stone-950"
+                      className="w-full rounded-md border border-stone-400 bg-stone-100 p-2 text-stone-950"
                     />
                   </div>
                 </div>
@@ -616,19 +616,19 @@ const Music: NextPage = () => {
                 <input
                   id="email"
                   {...register("email", { required: true })}
-                  className="rounded-md border border-gray-400 bg-gray-100 p-2 text-stone-950"
+                  className="rounded-md border border-stone-400 bg-stone-100 p-2 text-stone-950"
                 />
                 <h2>Subject</h2>
                 <input
                   id="subject"
                   {...register("subject", { required: true })}
-                  className="rounded-md border border-gray-400 bg-gray-100 p-2 text-stone-950"
+                  className="rounded-md border border-stone-400 bg-stone-100 p-2 text-stone-950"
                 />
                 <h2>Message</h2>
                 <textarea
                   id="message"
                   {...register("message", { required: true })}
-                  className="rounded-md border border-gray-400 bg-gray-100 p-2 text-stone-950"
+                  className="rounded-md border border-stone-400 bg-stone-100 p-2 text-stone-950"
                   rows={4}
                 />
                 {!processing && (
