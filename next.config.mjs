@@ -97,6 +97,10 @@ const config = {
         source: "/contact",
         destination: "/Contact",
       },
+      {
+        source: "/home",
+        destination: "/",
+      },
     ];
   },
   /*   experimental: {
