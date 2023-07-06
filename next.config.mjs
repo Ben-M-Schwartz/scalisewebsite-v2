@@ -82,7 +82,7 @@ const config = {
         destination: "/Store",
       },
       {
-        source: "/show",
+        source: "/shows",
         destination: "/Shows",
       },
       {
