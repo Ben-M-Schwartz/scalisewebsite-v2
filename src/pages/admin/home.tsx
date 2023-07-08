@@ -110,6 +110,12 @@ const Home: NextPage = () => {
           Email Mailing List
         </Link>
         <Link
+          href="/admin/manageMailingList"
+          className="text-xl font-bold text-stone-100 hover:text-red-800 hover:underline active:text-red-950"
+        >
+          Manage Mailing List
+        </Link>
+        <Link
           href="/admin/addShow"
           className="text-xl font-bold text-stone-100 hover:text-red-800 hover:underline active:text-red-950"
         >
