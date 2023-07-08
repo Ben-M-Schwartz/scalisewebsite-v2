@@ -165,6 +165,10 @@ const sendContactFormEmail = async (
 };
 
 export const emailRouter = createTRPCRouter({
+  get: publicProcedure.query(async () => {
+    return await db.select().from(subscribers);
+  }),
+
   confirm: publicProcedure
     .input(z.object({ email: z.string(), url: z.string() }))
     .mutation(async ({ input }) => {
@@ -236,6 +240,12 @@ export const emailRouter = createTRPCRouter({
         .catch((error) => {
           throw error;
         });
+    }),
+
+  adminSubscribe: publicProcedure
+    .input(z.object({ email: z.string() }))
+    .mutation(async ({ input }) => {
+      await db.insert(subscribers).values({ email: input.email });
     }),
 
   notificationSignUp: publicProcedure
