@@ -173,20 +173,20 @@ const Show = ({ show }: { show: ShowType }) => {
         </div>
         <div className="flex w-full flex-col items-center justify-center gap-2 sm:w-1/4 sm:items-end sm:justify-end xl:w-1/6">
           <Link
-            href={show.maps_link as string}
-            rel="noopener noreferrer"
-            target="_blank"
-            className="w-1/2 rounded-sm border bg-red-800 py-2 text-center text-stone-100 hover:border-red-800 hover:bg-stone-100 hover:text-red-800 active:bg-stone-500 sm:w-full"
-          >
-            Directions
-          </Link>
-          <Link
             rel="noopener noreferrer"
             target="_blank"
             className="w-1/2 rounded-sm border bg-red-800 py-2 text-center text-stone-100 hover:border-red-800 hover:bg-stone-100 hover:text-red-800 active:bg-stone-500 sm:w-full"
             href={show.ticket_link as string}
           >
             Tickets
+          </Link>
+          <Link
+            href={show.maps_link as string}
+            rel="noopener noreferrer"
+            target="_blank"
+            className="w-1/2 rounded-sm border bg-red-800 py-2 text-center text-stone-100 hover:border-red-800 hover:bg-stone-100 hover:text-red-800 active:bg-stone-500 sm:w-full"
+          >
+            Directions
           </Link>
         </div>
       </div>
