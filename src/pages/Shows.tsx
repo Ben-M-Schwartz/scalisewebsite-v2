@@ -304,9 +304,16 @@ const Shows: NextPage = (
             </>
           )}
           <div className="my-4 w-full divide-y divide-stone-300 border-y border-stone-400">
-            {shows?.map((show, index) => (
-              <Show show={show} key={index} />
-            ))}
+            {shows
+              ?.sort((a, b) => {
+                return Date.parse(a.date as string) <
+                  Date.parse(b.date as string)
+                  ? -1
+                  : 1;
+              })
+              .map((show, index) => (
+                <Show show={show} key={index} />
+              ))}
           </div>
 
           <Link
