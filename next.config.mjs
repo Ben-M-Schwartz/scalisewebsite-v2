@@ -101,6 +101,10 @@ const config = {
         source: "/home",
         destination: "/",
       },
+      {
+        source: "/landing",
+        destination: "/",
+      },
     ];
   },
   /*   experimental: {
