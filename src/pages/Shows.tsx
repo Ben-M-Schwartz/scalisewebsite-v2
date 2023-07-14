@@ -37,51 +37,71 @@ import type { InferGetStaticPropsType, GetStaticProps } from "next";
 
 import { shows } from "~/db/schema";
 import { type InferModel } from "drizzle-orm";
-type ShowType = InferModel<typeof shows, "select">;
 
-const variants = {
-  hidden: {
-    opacity: 0,
-    x: -30,
-    y: -5,
-    transition: {
-      x: { stiffness: 1000 },
-    },
-    transitionEnd: {
-      display: "none",
-    },
-  },
-  shown: {
-    opacity: 1,
-    x: -70,
-    y: -5,
-    transition: {
-      x: { stiffness: 1000, velocity: -100 },
-    },
-    display: "flex",
-  },
-};
+type ShowType = InferModel<typeof shows, "select">;
 
 const Show = ({ show }: { show: ShowType }) => {
   const [isHover, setHover] = useState(false);
   const [isCopied, setCopied] = useState(false);
   const [eventListen, setListen] = useState(false);
+  const [viewSize, setViewSize] = useState("desktop");
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      x: viewSize === "desktop" ? -20 : -10,
+      y: viewSize === "desktop" ? -5 : 8,
+      transition: {
+        x: { stiffness: 1000 },
+      },
+      transitionEnd: {
+        display: "none",
+      },
+    },
+    shown: {
+      opacity: 1,
+      x: viewSize === "desktop" ? -60 : -40,
+      y: viewSize === "desktop" ? -5 : 8,
+      transition: {
+        x: { stiffness: 1000, velocity: -100 },
+      },
+      display: "flex",
+    },
+  };
+
   useEffect(() => {
-    document.addEventListener(
-      "click",
-      () => {
-        if (eventListen) {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 650) {
+        setViewSize("desktop");
+      } else {
+        setViewSize("mobile");
+      }
+    });
+
+    if (window.innerWidth >= 650) {
+      setViewSize("desktop");
+    } else {
+      setViewSize("mobile");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (eventListen) {
+      document.addEventListener(
+        "click",
+        (e) => {
+          e.preventDefault();
           setHover(false);
           setListen(false);
-        }
-      },
-      { capture: true }
-    );
+        },
+        { capture: true }
+      );
+    }
   }, [eventListen]);
   return (
     <Link
       href={show.bandsintown_link as string}
-      className="z-0 flex w-full flex-col items-center gap-2 hover:bg-stone-200 md:px-8"
+      className="z-0 flex w-full flex-col items-center gap-2 hover:bg-stone-200 sm:px-2 md:px-8"
     >
       <div className="flex w-full flex-col items-center justify-center gap-2 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
         <div className="w-full sm:w-1/2 xl:w-2/3">
@@ -93,8 +113,16 @@ const Show = ({ show }: { show: ShowType }) => {
         </div>
         <div className="flex w-1/4 flex-col items-center justify-center gap-3 sm:flex-row sm:gap-8 md:gap-20 xl:w-1/6">
           <motion.div
-            onHoverStart={() => setHover(true)}
-            onHoverEnd={() => setHover(false)}
+            onHoverStart={() => {
+              if (window.innerWidth >= 650) {
+                setHover(true);
+              }
+            }}
+            onHoverEnd={() => {
+              if (window.innerWidth >= 650) {
+                setHover(false);
+              }
+            }}
             className="z-30 flex flex-row justify-center gap-3 object-contain text-stone-950 sm:translate-x-1 sm:flex-col"
           >
             <motion.div
@@ -102,7 +130,7 @@ const Show = ({ show }: { show: ShowType }) => {
               animate={isHover ? "shown" : "hidden"}
               whileHover="shown"
               variants={variants}
-              className="absolute left-1/2 z-40 flex flex-row gap-1 bg-stone-950 px-2 py-2 md:gap-3 lg:gap-4"
+              className="absolute left-1/2 z-50 flex -translate-x-1/2 transform flex-row gap-1 bg-stone-950 px-2 py-2 md:gap-3 lg:gap-4"
             >
               <TwitterShareButton
                 url={show.bandsintown_link as string}
@@ -160,11 +188,13 @@ const Show = ({ show }: { show: ShowType }) => {
             </motion.div>
             <button
               id="share"
-              className="z-10 flex flex-row justify-center gap-2 bg-transparent px-10 py-4 focus:text-red-800"
+              className="z-40 flex flex-row justify-center gap-2 bg-transparent px-10 py-4 focus:text-red-800"
               onClick={(e) => {
                 e.preventDefault();
-                setHover(true);
-                setListen(true);
+                if (window.innerWidth < 650) {
+                  setHover(true);
+                  setListen(true);
+                }
               }}
             >
               <ShareIcon />
@@ -212,7 +242,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       shows: result,
     },
-    revalidate: 86400,
+    revalidate: 3600,
   };
 };
 
