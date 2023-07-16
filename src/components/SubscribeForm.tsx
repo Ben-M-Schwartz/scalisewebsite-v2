@@ -58,7 +58,7 @@ const Subscribe: NextPage = () => {
                 {...register("email", { required: true })}
               />
               <button
-                className="focus:shadow-outline border border-red-800 px-4 py-2 font-bold text-red-800 hover:bg-red-800 hover:text-stone-100 active:bg-rose-400"
+                className="focus:shadow-outline border border-red-800 px-4 py-2 text-sm font-bold text-red-800 hover:bg-red-800 hover:text-stone-100 active:bg-rose-400"
                 type="submit"
               >
                 SIGN UP
@@ -66,7 +66,7 @@ const Subscribe: NextPage = () => {
             </form>
           </>
         )}
-        <div className="mt-4 flex justify-around">
+        <div className="mt-4 flex justify-around md:justify-center md:gap-2 xl:gap-4">
           <label htmlFor="spotify-link-2" className="invisible absolute">
             Scalise Spotify Link
           </label>
