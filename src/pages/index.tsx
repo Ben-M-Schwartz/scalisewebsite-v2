@@ -62,7 +62,7 @@ const Home: NextPage = () => {
           href="/images/apple-touch-icon.png"
         />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-stone-950">
+      <main className="max-w-screen flex min-h-screen flex-col items-center justify-center overflow-hidden bg-stone-950 text-center">
         <div className="relative min-h-screen w-full pb-20 pt-12">
           <Image
             src={black_paper_background}

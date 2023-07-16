@@ -48,11 +48,11 @@ const Subscribe: NextPage = () => {
               Sign up with your email address to receive news and updates.
             </p>
             <form
-              className="flex items-center"
+              className="flex items-center justify-center"
               onSubmit={handleSubmit(onSubmit)}
             >
               <input
-                className="rounded-sm bg-stone-200 px-4 py-2 leading-tight focus:border-stone-500 focus:bg-stone-100 focus:outline-none"
+                className="rounded-sm bg-stone-200 px-4 py-2 leading-tight focus:bg-stone-100 focus:outline-red-800 max-md:w-1/2"
                 type="email"
                 placeholder="Email address"
                 {...register("email", { required: true })}
@@ -66,7 +66,7 @@ const Subscribe: NextPage = () => {
             </form>
           </>
         )}
-        <div className="mt-4 flex justify-center gap-2">
+        <div className="mt-4 flex justify-around">
           <label htmlFor="spotify-link-2" className="invisible absolute">
             Scalise Spotify Link
           </label>

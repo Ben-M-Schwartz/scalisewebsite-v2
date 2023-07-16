@@ -219,7 +219,7 @@ export function SocialLinks() {
   return (
     <motion.ul
       variants={list_variants}
-      className="tranform absolute top-96 flex w-full justify-center space-x-3 max-md:translate-y-24 md:relative md:right-0 md:top-0 md:flex-row md:space-x-2 md:border-0 lg:space-x-4 xl:space-x-6"
+      className="tranform absolute top-96 flex w-full justify-around max-md:translate-y-24 md:relative md:right-0 md:top-0 md:flex-row md:space-x-2 md:border-0 lg:space-x-4 xl:space-x-6"
     >
       <motion.li
         variants={item_variants}
