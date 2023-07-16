@@ -24,56 +24,56 @@ const config = {
 
   reactStrictMode: true,
 
-  // async headers() {
-  //   return [
-  //     {
-  //       source: "/:path*",
-  //       headers: createSecureHeaders({
-  //         contentSecurityPolicy: {
-  //           directives: {
-  //             defaultSrc: ["'self'", "https://clerk.scalise.band"],
-  //             styleSrc: ["'self'", "'unsafe-inline'"],
-  //             imgSrc: [
-  //               "'self'",
-  //               "https://img.clerk.com",
-  //               "https://www.gravatar.com",
-  //             ],
-  //             baseUri: "'self'",
-  //             formAction: "'self'",
-  //             frameSrc: [
-  //               "https://editor.unlayer.com",
-  //               "https://clerk.scalise.band",
-  //               "https://www.youtube.com",
-  //             ],
-  //             scriptSrc: [
-  //               "'self'",
-  //               "https://editor.unlayer.com/embed.js",
-  //               "https://clerk.scalise.band",
-  //             ],
-  //             workerSrc: "blob: 'self'",
-  //             connectSrc: [
-  //               "'self'",
-  //               "https://clerk.scalise.band",
-  //               "https://vitals.vercel-insights.com",
-  //             ],
-  //             //eslint-disable-next-line
-  //             //@ts-ignore
-  //             frameAncestors: true,
-  //           },
-  //         },
-  //         frameGuard: "deny",
-  //         noopen: "noopen",
-  //         nosniff: "nosniff",
-  //         xssProtection: "sanitize",
-  //         forceHTTPSRedirect: [
-  //           true,
-  //           { maxAge: 60 * 60 * 24 * 360, includeSubDomains: true },
-  //         ],
-  //         referrerPolicy: "same-origin",
-  //       }),
-  //     },
-  //   ];
-  // },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: createSecureHeaders({
+          contentSecurityPolicy: {
+            directives: {
+              defaultSrc: ["'self'", "https://clerk.scalise.band"],
+              styleSrc: ["'self'", "'unsafe-inline'"],
+              imgSrc: [
+                "'self'",
+                "https://img.clerk.com",
+                "https://www.gravatar.com",
+              ],
+              baseUri: "'self'",
+              formAction: "'self'",
+              frameSrc: [
+                "https://editor.unlayer.com",
+                "https://clerk.scalise.band",
+                "https://www.youtube.com",
+              ],
+              scriptSrc: [
+                "'self'",
+                "https://editor.unlayer.com/embed.js",
+                "https://clerk.scalise.band",
+              ],
+              workerSrc: "blob: 'self'",
+              connectSrc: [
+                "'self'",
+                "https://clerk.scalise.band",
+                "https://vitals.vercel-insights.com",
+              ],
+              //eslint-disable-next-line
+              //@ts-ignore
+              frameAncestors: true,
+            },
+          },
+          frameGuard: "deny",
+          noopen: "noopen",
+          nosniff: "nosniff",
+          xssProtection: "sanitize",
+          forceHTTPSRedirect: [
+            true,
+            { maxAge: 60 * 60 * 24 * 360, includeSubDomains: true },
+          ],
+          referrerPolicy: "same-origin",
+        }),
+      },
+    ];
+  },
 
   async rewrites() {
     return [
