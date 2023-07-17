@@ -40,7 +40,10 @@ const Subscribe: NextPage = () => {
     <main>
       <div className="flex flex-col items-center justify-center bg-stone-100 py-6">
         {isSubmitted ? (
-          <h1>Thank you for subscribing!</h1>
+          <>
+            <h1>Thank you for subscribing!</h1>
+            <h1>We have sent a confirmation link to your email</h1>
+          </>
         ) : (
           <>
             <h1 className="py-4 text-center text-4xl font-bold">SUBSCRIBE</h1>
