@@ -242,7 +242,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       shows: result,
     },
-    revalidate: 3600,
+    revalidate: 21600,
   };
 };
 
@@ -335,7 +335,13 @@ const Shows: NextPage = (
           )}
           <div className="my-4 w-full divide-y divide-stone-300 border-y border-stone-400">
             {shows
-              ?.sort((a, b) => {
+              ?.filter((a) => {
+                return (
+                  Date.parse(a.date as string) >=
+                  Date.parse(new Date(Date.now()).toDateString())
+                );
+              })
+              .sort((a, b) => {
                 return Date.parse(a.date as string) <
                   Date.parse(b.date as string)
                   ? -1
