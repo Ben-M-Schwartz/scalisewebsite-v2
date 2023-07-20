@@ -141,7 +141,8 @@ const Music: NextPage = () => {
               the height of the COVID-19 pandemic, they&apos;ve been performing
               at local venues and have opened for nationally touring acts at 7th
               St. Entry in Minneapolis. Scalise is currently promoting the
-              release of their upcoming sophomore album.
+              promoting the release of their sophomore album, &quot;Before We
+              Dry Up&quot;
             </p>
 
             <p className="">
