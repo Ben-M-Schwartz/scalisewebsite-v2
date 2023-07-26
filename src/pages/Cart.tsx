@@ -258,7 +258,7 @@ const Cart: NextPage = () => {
   return (
     <>
       <Head>
-        <title>SCALISE</title>
+        <title>CART-SCALISE</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"

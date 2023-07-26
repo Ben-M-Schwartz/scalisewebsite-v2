@@ -51,7 +51,7 @@ const ManageMailingList: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Remove</title>
+        <title>Manage Mailing List</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"

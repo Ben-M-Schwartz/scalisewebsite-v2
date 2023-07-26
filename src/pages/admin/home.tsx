@@ -36,7 +36,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Admin</title>
+        <title>Admin Home</title>
         <link rel="shortcut icon" href="/images/scaliseIcon.png" />
         <link
           rel="apple-touch-icon"

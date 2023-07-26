@@ -159,7 +159,7 @@ const removeProduct: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Remove</title>
+        <title>Manage Sales</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"
