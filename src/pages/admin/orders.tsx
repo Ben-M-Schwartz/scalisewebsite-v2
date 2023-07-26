@@ -63,7 +63,7 @@ const Orders: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Remove</title>
+        <title>Orders</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"
@@ -139,6 +139,9 @@ const Orders: NextPage = () => {
                     <p>{order.customer_city}</p>
                     <p>{order.customer_state}</p>
                     <p>{order.customer_zip}</p>
+                    <p>
+                      {new Date(order.created_at).toLocaleDateString("en-US")}
+                    </p>
                     {order.shipped ? (
                       <p>shipped</p>
                     ) : (

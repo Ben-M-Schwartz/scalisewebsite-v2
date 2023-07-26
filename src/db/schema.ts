@@ -177,6 +177,7 @@ export const orders = mysqlTable("orders", {
   payment_intent_id: varchar("payment_intent_id", { length: 255 }),
   payment_status: varchar("payment_status", { length: 255 }),
   shipped: boolean("shipped").default(false),
+  created_at: timestamp("created_at").notNull().defaultNow(),
 });
 
 export const shows = mysqlTable(
