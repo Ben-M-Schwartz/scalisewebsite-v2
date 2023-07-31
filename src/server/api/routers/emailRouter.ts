@@ -165,6 +165,17 @@ const sendContactFormEmail = async (
 };
 
 export const emailRouter = createTRPCRouter({
+  notifyGraden: publicProcedure.mutation(async () => {
+    const emailParams = new EmailParams()
+      .setFrom(new Sender("orders@scalise.band"))
+      .setTo([new Recipient("graden@scalise.band")])
+      .setReplyTo(new Recipient("benschwartz33@gmail.com"))
+      .setSubject("SCALISE - New Online Order")
+      .setText("There is a new online order from the website");
+
+    await mailerSend.email.send(emailParams);
+  }),
+
   get: publicProcedure.query(async () => {
     return await db.select().from(subscribers);
   }),

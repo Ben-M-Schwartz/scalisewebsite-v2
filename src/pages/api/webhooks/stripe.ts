@@ -12,6 +12,8 @@ import { and, eq } from "drizzle-orm/expressions";
 import { stripe } from "~/utils/stripe";
 import { sql } from "drizzle-orm/sql";
 
+import { api } from "~/utils/api";
+
 export const config = {
   /* runtime: "edge", */
   api: {
@@ -87,6 +89,8 @@ export default async function handler(
     await db
       .delete(in_checkout_amounts)
       .where(eq(in_checkout_amounts.stripe_checkout_id, session.id));
+
+    api.email.notifyGraden.useMutation().mutate();
   }
 
   if (event.type === "checkout.session.expired") {
