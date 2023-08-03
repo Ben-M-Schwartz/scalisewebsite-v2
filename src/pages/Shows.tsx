@@ -99,10 +99,11 @@ const Show = ({ show }: { show: ShowType }) => {
     }
   }, [eventListen]);
   return (
-    <Link
-      href={show.bandsintown_link as string}
-      className="z-0 flex w-full flex-col items-center gap-2 hover:bg-stone-200 sm:px-2 md:px-8"
-    >
+    <div className="relative z-0 flex w-full flex-col items-center gap-2 hover:bg-stone-200 sm:px-2 md:px-8">
+      <Link
+        href={show.bandsintown_link as string}
+        className="absolute left-0 top-0 z-10 h-full w-full"
+      />
       <div className="flex w-full flex-col items-center justify-center gap-2 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
         <div className="w-full sm:w-1/2 xl:w-2/3">
           <div className="font-bold text-stone-950">{show.date}</div>
@@ -220,7 +221,7 @@ const Show = ({ show }: { show: ShowType }) => {
           </Link>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

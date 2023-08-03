@@ -59,7 +59,6 @@ const Videos: NextPage = () => {
             alt="background photo"
             fill
             quality={100}
-            //style={{ objectFit: "cover" }}
             className="absolute z-0 object-cover"
             priority
           />

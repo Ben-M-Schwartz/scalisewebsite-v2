@@ -67,12 +67,9 @@ const Home: NextPage = () => {
           <Image
             src={black_paper_background}
             alt="Black background"
-            fill
-            sizes="1497 827"
-            quality={75}
-            //style={{ objectFit: "cover" }}
-            className="absolute z-0 object-cover"
             priority
+            fill
+            className="absolute z-0 object-cover"
           />
           <div className="relative z-10 flex w-full flex-col items-center justify-center">
             <h1 className="pt-6 text-4xl font-medium text-stone-100 md:text-6xl lg:pt-10 lg:text-7xl">
@@ -112,6 +109,7 @@ const Home: NextPage = () => {
             alt="White Background"
             fill
             quality={75}
+            loading="lazy"
             className="absolute z-0 h-full object-cover"
           />
           <div className="relative z-10 my-8 flex flex-col items-center justify-center md:flex-row md:gap-6 lg:gap-10 xl:gap-24">
@@ -141,9 +139,7 @@ const Home: NextPage = () => {
             src={black_paper_background}
             alt="Black Background"
             fill
-            sizes="1497 827"
-            quality={75}
-            //style={{ objectFit: "cover" }}
+            loading="lazy"
             className="absolute z-0 h-full object-cover"
           />
           <div className="relative z-10 flex flex-col items-center gap-10 py-24">
@@ -175,12 +171,13 @@ const Home: NextPage = () => {
         </div>
 
         <div className="relative min-h-screen w-full">
-          <div className="flex flex-col gap-20 pb-20">
+          <div className="relative flex flex-col gap-20 pb-20">
             <Image
               src={red_background}
               alt="Red Background"
               fill
               quality={75}
+              loading="lazy"
               //style={{ objectFit: "cover" }}
               className="absolute z-0 h-full object-cover brightness-75"
             />

@@ -85,7 +85,13 @@ const SingleLayout = ({
         source={songsrc}
         title={demotitle}
       />
-      <Image src={background} alt="background" className="absolute z-0" fill />
+      <Image
+        src={background}
+        alt="background"
+        className="absolute z-0"
+        fill
+        loading="lazy"
+      />
     </div>
   );
 };
@@ -142,7 +148,6 @@ const Music: NextPage = () => {
             alt="background photo"
             fill
             quality={100}
-            //style={{ objectFit: "cover" }}
             className="absolute z-0 object-cover"
             priority
           />
@@ -205,6 +210,7 @@ const Music: NextPage = () => {
                 alt="background"
                 className="absolute z-0"
                 fill
+                priority
               />
             </div>
 
