@@ -7,6 +7,29 @@ import banner from "../../public/black_paper_3.webp";
 import title from "../../public/Videos (Handwritten).webp";
 import white_paper from "../../public/White Crumple Background Lighter.webp";
 
+const Video = ({ embedId }: { embedId: string }) => {
+  return (
+    <div className="relative flex">
+      <Image
+        src={`https://img.youtube.com/vi/${embedId}/sddefault.jpg`}
+        alt="yt thumbnail"
+        priority
+        fill
+        className="absolute z-0 aspect-video"
+      />
+      <iframe
+        width="100%"
+        id="video"
+        src={`https://www.youtube.com/embed/${embedId}`}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        loading="lazy"
+        className="z-10 aspect-video"
+      ></iframe>
+    </div>
+  );
+};
+
 /* export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
@@ -80,165 +103,28 @@ const Videos: NextPage = () => {
           />
           <h1 className="z-10 py-10 text-8xl text-red-800 md:py-24">LIVE</h1>
           <div className="z-10 grid w-full grid-cols-1 gap-4 px-10 md:grid-cols-2">
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/QMhLvYWD00Y"
-                title="Scalise - Airbag [Live @ 7th St Entry]"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="aspect-video"
-              ></iframe>
-            </div>
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/I5gtiSsExDA"
-                title="Scalise - She&#39;s Gonna Kill You [Live @ 7th St Entry]"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/8dCrG2TTlF4"
-                title="Scalise - Perfect Occasions [Home Session]"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/GVAwb-u9Xkk"
-                title="Scalise - Dollar Short [Live @ OMNI Brewing]"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
+            <Video embedId={"QMhLvYWD00Y"} />
+            <Video embedId={"I5gtiSsExDA"} />
+            <Video embedId={"8dCrG2TTlF4"} />
+            <Video embedId={"GVAwb-u9Xkk"} />
             <div className="max-md:order-1">
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/RN1MDSGtY8E"
-                title="Scalise the Band"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
+              <Video embedId={"RN1MDSGtY8E"} />
             </div>
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/Do7MAZ_EMUI"
-                title="Scalise - Fool&#39;s Coal [Live @ 7th St Entry]"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
+            <Video embedId={"Do7MAZ_EMUI"} />
             <h1 className="z-10 order-1 text-lg text-red-800">
               Short Documentary by Josh Baumgart
             </h1>
           </div>
           <h1 className="z-10 py-10 text-8xl text-red-800 md:py-24">VLOGS</h1>
           <div className="z-10 grid w-full grid-cols-1 gap-4 px-10 pb-10 md:grid-cols-2">
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/jXnpekrt3y0"
-                title="The Band Plays a Wedding and Terrible Golf- Vlog 8"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/gHX7W-cWr2U"
-                title="We Give an Album 2 Update!!! - Vlog 7"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/zVqXWE4Y6c4"
-                title="The Band Plays a HUGE Show - Vlog 6"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/kCOOUUlcss8"
-                title="The Band&#39;s Equipment Gets SOAKED - Vlog 5"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/1NB1fkEZxRk"
-                title="The Band Split Up... But Got Back Together - Vlog 4"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/4MYu-auxBuM"
-                title="The Band Finally Plays Music and Looks Cool - Vlog 3"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/6B3uocHyZu4"
-                title="We Try Releasing GOOD Music??? - Vlog 2"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/BL1OxvKVllk"
-                title="What We Really Do in Our Band - Vlog 1"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
+            <Video embedId={"jXnpekrt3y0"} />
+            <Video embedId={"gHX7W-cWr2U"} />
+            <Video embedId={"zVqXWE4Y6c4"} />
+            <Video embedId={"kCOOUUlcss8"} />
+            <Video embedId={"1NB1fkEZxRk"} />
+            <Video embedId={"4MYu-auxBuM"} />
+            <Video embedId={"6B3uocHyZu4"} />
+            <Video embedId={"gHX7W-cWr2U"} />
           </div>
         </div>
       </main>

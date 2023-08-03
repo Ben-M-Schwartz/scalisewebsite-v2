@@ -53,7 +53,30 @@ type FormData = {
   message: string;
 };
 
-const Music: NextPage = () => {
+const Video = ({ embedId }: { embedId: string }) => {
+  return (
+    <div className="relative flex">
+      <Image
+        src={`https://img.youtube.com/vi/${embedId}/sddefault.jpg`}
+        alt="yt thumbnail"
+        priority
+        fill
+        className="absolute z-0 aspect-video"
+      />
+      <iframe
+        width="100%"
+        id="video"
+        src={`https://www.youtube.com/embed/${embedId}`}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        loading="lazy"
+        className="z-10 aspect-video"
+      ></iframe>
+    </div>
+  );
+};
+
+const EPK: NextPage = () => {
   const { register, handleSubmit, reset } = useForm<FormData>();
   const [processing, setProcessing] = useState(false);
   const contactSubmit = api.email.contactForm.useMutation();
@@ -278,50 +301,10 @@ const Music: NextPage = () => {
             </h1>
           </div>
           <div className="grid w-full grid-cols-1 gap-4 px-10 md:w-5/6 md:grid-cols-2">
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/I5gtiSsExDA"
-                title="Scalise - She&#39;s Gonna Kill You [Live @ 7th St Entry]"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/8dCrG2TTlF4"
-                title="Scalise - Perfect Occasions [Home Session]"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/Do7MAZ_EMUI"
-                title="Scalise - Fool&#39;s Coal [Live @ 7th St Entry]"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
-            <div>
-              <iframe
-                width="100%"
-                src="https://www.youtube.com/embed/GVAwb-u9Xkk"
-                title="Scalise - Dollar Short [Live @ OMNI Brewing]"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                className="aspect-video"
-              ></iframe>
-            </div>
+            <Video embedId={"I5gtiSsExDA"} />
+            <Video embedId={"8dCrG2TTlF4"} />
+            <Video embedId={"Do7MAZ_EMUI"} />
+            <Video embedId={"GVAwb-u9Xkk"} />
           </div>
         </div>
         <div className="flex w-full flex-col items-center bg-stone-100">
@@ -661,4 +644,4 @@ const Music: NextPage = () => {
   );
 };
 
-export default Music;
+export default EPK;
