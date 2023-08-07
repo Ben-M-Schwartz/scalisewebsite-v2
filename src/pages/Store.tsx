@@ -204,8 +204,6 @@ const Store: NextPage = (
         <Image
           src={banner}
           alt="background photo"
-          width={1496}
-          height={2244}
           quality={75}
           className="z-0 min-h-screen object-cover"
           priority
