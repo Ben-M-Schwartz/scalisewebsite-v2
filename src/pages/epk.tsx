@@ -159,13 +159,12 @@ const EPK: NextPage = () => {
             <p className="text-right">- Ben</p>
             <p className="pb-12">
               Named after their high-school band director, Scalise is an indie
-              folk/rock band with two lead singers and horns out of the south
-              metro Twin Cities area. Since the release of their debut album at
-              the height of the COVID-19 pandemic, they&apos;ve been performing
-              at local venues and have opened for nationally touring acts at 7th
-              St. Entry in Minneapolis. Scalise is currently promoting the
-              promoting the release of their sophomore album, &quot;Before We
-              Dry Up&quot;
+              folk/rock band with two lead singers and a horn section out of the
+              south metro Twin Cities area. Since the release of their debut
+              album at the height of the COVID-19 pandemic, they&aops;ve been
+              performing at local venues and have opened for nationally touring
+              acts. Scalise is currently promoting the release of their
+              sophomore album, &quot;Before We Dry Up.&quot;
             </p>
 
             <p className="">
@@ -176,10 +175,11 @@ const EPK: NextPage = () => {
               jazz combo including Collyn Camara (guitar/trombone) and Sarah
               Navratil (saxophone). After practicing rock music instead of jazz,
               Camara, and as an occasional member, Navratil, were added to the
-              lineup. Frustrated with the current band name, Schwartz decided it
-              was best to ask the director what to name the band. After
-              rejecting Mr. Scalise&apos;s suggestions, Schwartz presented
-              &quot;Scalise&quot;.
+              lineup. After three years of constantly changing band names
+              (Backwards Boat, Dry Run, The Decent, The Black Hills, Broken
+              Bear, etc.) Schwartz decided it was best to ask the director what
+              to name the band. After rejecting Mr. Scalise&apos;s suggestions,
+              Schwartz presented &quot;Scalise&quot;.
             </p>
           </div>
         </div>
