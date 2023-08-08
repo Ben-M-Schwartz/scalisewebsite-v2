@@ -311,7 +311,7 @@ const EPK: NextPage = () => {
           <p className="w-5/6 pb-6 pt-24 text-center text-lg font-bold md:w-2/3 md:text-3xl">
             “To my ear, they have got a sound that calls to mind a bit of Nickel
             Creek, with a touch of both Dave Matthews Band and Counting Crows.
-            One thing I have to say I&quot;m struck by is how for a band this
+            One thing I have to say I&apos;m struck by is how for a band this
             young, they are making such mature musical choices. There are so
             many unexpectedly nuanced moments on this album with everything so
             well balanced.”
