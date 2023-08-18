@@ -20,6 +20,7 @@ type AddShowForm = {
   maps_link: string;
   bandsintown_link: string;
   ticket_link: string;
+  free: boolean;
 };
 
 const AddShow: NextPage = () => {
@@ -208,6 +209,21 @@ const AddShow: NextPage = () => {
                 id="ticket_link"
                 className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 {...register("ticket_link", { required: true })}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="free"
+                className="mb-2 block text-sm font-medium text-stone-100"
+              >
+                Free?
+              </label>
+              <input
+                id="free"
+                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
+                type="checkbox"
+                {...register("free")}
               />
             </div>
 

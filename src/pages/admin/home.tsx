@@ -122,10 +122,10 @@ const Home: NextPage = () => {
           Add New Show
         </Link>
         <Link
-          href="/admin/removeShow"
+          href="/admin/editShow"
           className="text-xl font-bold text-stone-100 hover:text-red-800 hover:underline active:text-red-950"
         >
-          Remove A Show
+          Edit A Show
         </Link>
         <Link
           href="/admin/orders"

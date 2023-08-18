@@ -209,7 +209,7 @@ const Show = ({ show }: { show: ShowType }) => {
             className="w-1/2 rounded-sm border bg-red-800 py-2 text-center text-stone-100 hover:border-red-800 hover:bg-stone-100 hover:text-red-800 active:bg-stone-500 sm:w-full"
             href={show.ticket_link as string}
           >
-            Tickets
+            {show.free ? "Free" : "Tickets"}
           </Link>
           <Link
             href={show.maps_link as string}
@@ -235,7 +235,6 @@ const Show = ({ show }: { show: ShowType }) => {
   };
 }; */
 
-//Static props to avoid load times but revalidating shows once a day
 export const getStaticProps: GetStaticProps = async () => {
   const result = await db.select().from(shows);
 
@@ -243,7 +242,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       shows: result,
     },
-    revalidate: 21600,
+    revalidate: 3600,
   };
 };
 

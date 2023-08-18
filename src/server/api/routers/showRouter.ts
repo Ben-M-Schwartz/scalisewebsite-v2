@@ -24,6 +24,7 @@ export const showRouter = createTRPCRouter({
         maps_link: z.string(),
         bandsintown_link: z.string(),
         ticket_link: z.string(),
+        free: z.boolean(),
       })
     )
     .mutation(async ({ input }) => {
@@ -36,6 +37,7 @@ export const showRouter = createTRPCRouter({
         location: input.location,
         bandsintown_link: input.bandsintown_link,
         ticket_link: input.ticket_link,
+        free: input.free,
       };
       await db
         .insert(shows)
@@ -52,4 +54,33 @@ export const showRouter = createTRPCRouter({
   get: publicProcedure.query(() => {
     return db.select().from(shows);
   }),
+
+  update: publicProcedure
+    .input(
+      z.object({
+        id: z.number(),
+        date: z.string(),
+        time: z.string(),
+        location: z.string(),
+        name: z.string(),
+        maps_link: z.string(),
+        bandsintown_link: z.string(),
+        ticket_link: z.string(),
+        free: z.boolean(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      await db
+        .update(shows)
+        .set({
+          date: input.date,
+          time: input.time,
+          location: input.location,
+          name: input.name,
+          maps_link: input.maps_link,
+          ticket_link: input.ticket_link,
+          free: input.free,
+        })
+        .where(eq(shows.id, input.id));
+    }),
 });
