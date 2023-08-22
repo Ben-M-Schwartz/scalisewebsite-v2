@@ -4,9 +4,13 @@ import { env } from "~/env.mjs";
 import { createTRPCContext } from "~/server/api/trpc";
 import { appRouter } from "~/server/api/root";
 
-/* export const config = {
-  runtime: "edge",
-}; */
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "10mb",
+    },
+  },
+};
 
 // export API handler
 export default createNextApiHandler({

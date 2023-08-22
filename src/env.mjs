@@ -17,6 +17,8 @@ const server = z.object({
   PAYMENT_METHOD_TYPES: z.string(),
 
   DOMAIN: z.string(),
+
+  GITHUB_ACCESS_TOKEN: z.string(),
 });
 
 /**
@@ -46,6 +48,8 @@ const processEnv = {
   PAYMENT_METHOD_TYPES: process.env.PAYMENT_METHOD_TYPES,
 
   DOMAIN: process.env.DOMAIN,
+
+  GITHUB_ACCESS_TOKEN: process.env.GITHUB_ACCESS_TOKEN,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 

@@ -10,18 +10,6 @@ import { createSecureHeaders } from "next-secure-headers";
 
 /** @type {import("next").NextConfig} */
 const config = {
-  /*   webpack(config) {
-    config.output.crossOriginLoading = "anonymous";
-    config.plugins.push(
-      new SubresourceIntegrityPlugin({
-        hashFuncNames: ["sha256", "sha384"],
-        enabled: true,
-      })
-    );
-
-    return config;
-  }, */
-
   reactStrictMode: true,
 
   async headers() {

@@ -23,11 +23,43 @@ type NewProductForm = {
   description: string | null;
 };
 
+type ImageForm = {
+  images: FileList;
+};
+
+function blobToBase64(blob: File) {
+  return new Promise((resolve) => {
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      const srcData = fileReader.result;
+      resolve(srcData);
+    };
+    fileReader.readAsDataURL(blob);
+  });
+}
+
 const NewProduct: NextPage = () => {
+  const { register: registerImage, handleSubmit: handleSubmitImage } =
+    useForm<ImageForm>();
   const { register, handleSubmit } = useForm<NewProductForm>();
   const { isLoaded, userId } = useAuth();
 
   const createProduct = api.inventory.create.useMutation();
+  const uploadImage = api.inventory.uploadImage.useMutation();
+
+  const handleUpload = async (formData: ImageForm) => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const name: string = formData.images[0]!.name;
+    const base64: string = (await blobToBase64(
+      formData.images[0] as File
+    )) as string;
+    const data: string = base64.split("base64,")[1] as string;
+
+    await uploadImage
+      .mutateAsync({ name: name, data: data })
+      .then(() => window.alert("Success"))
+      .catch((error) => console.error(error));
+  };
 
   const onSubmit = (formData: NewProductForm) => {
     createProduct
@@ -112,6 +144,20 @@ const NewProduct: NextPage = () => {
           Admin Home
         </Link>
         <div className="container flex flex-col gap-12 px-4 py-16 ">
+          <h1 className="text-4xl text-stone-100">Upload an image</h1>
+          <form
+            className="flex flex-row gap-2"
+            onSubmit={handleSubmitImage(handleUpload)}
+          >
+            <input
+              type="file"
+              accept="image/*"
+              {...registerImage("images", { required: true })}
+            />
+            <button className='className="mb-2 mr-2 w-36 rounded-lg bg-red-800 px-5 py-2.5 text-sm font-medium text-stone-100 hover:bg-red-900 active:bg-red-950'>
+              Upload
+            </button>
+          </form>
           <h1 className="text-4xl text-stone-100">Create A New Product</h1>
           <form
             className="flex flex-col gap-4"

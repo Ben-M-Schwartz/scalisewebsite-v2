@@ -68,6 +68,33 @@ export const getProductRoutes = async () => {
 };
 
 export const inventoryRouter = createTRPCRouter({
+  uploadImage: publicProcedure
+    .input(z.object({ name: z.string(), data: z.string() }))
+    .mutation(async ({ input }) => {
+      return fetch(
+        `https://api.github.com/repos/Ben-M-Schwartz/scalisewebsite-v2/contents/public/${input.name}`,
+        {
+          method: "PUT",
+          headers: {
+            Accept: "application/vnd.github+json",
+            Authorization: `Bearer ${
+              process.env.GITHUB_ACCESS_TOKEN as string
+            }`,
+          },
+          body: JSON.stringify({
+            message: "upload image from api",
+            content: input.data,
+            committer: {
+              name: "Ben Schwartz",
+              email: "benschwartz33@gmail.com",
+            },
+          }),
+        }
+      )
+        .then((res) => res.json())
+        .catch((error) => console.error(error));
+    }),
+
   list: publicProcedure.query(async () => {
     return await db
       .select()
