@@ -25,7 +25,6 @@ export const product_details = mysqlTable(
     description: varchar("description", { length: 1000 }),
     image: varchar("image", { length: 255 }),
     weight: float("weight"),
-    is_taxed: int("is_taxed"),
     store_order: int("store_order"),
     sale_price: double("sale_price", { precision: 10, scale: 2 }),
   },
@@ -125,6 +124,7 @@ export const subscribers = mysqlTable(
   {
     id: serial("id").primaryKey().notNull(),
     email: varchar("email", { length: 255 }),
+    created_at: timestamp("created_at").notNull().defaultNow(),
   },
   (table) => ({
     subscribedIndex: index("subscribed_index").on(table.email),

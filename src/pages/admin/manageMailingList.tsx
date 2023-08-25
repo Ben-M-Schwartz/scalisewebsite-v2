@@ -4,15 +4,19 @@ import Head from "next/head";
 import Link from "next/link";
 import { api } from "~/utils/api";
 import { SignIn } from "@clerk/clerk-react";
+import { useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { useForm } from "react-hook-form";
 
 const ManageMailingList: NextPage = () => {
   const { register, handleSubmit } = useForm<{ email: string }>();
+  const [sortBy, setSortBy] = useState<"email" | "dateAdded">("email");
+  const [order, setOrder] = useState<"asc" | "desc">("asc");
 
   const queryResult = api.email.get.useQuery();
-  const subs: { id: number; email: string | null }[] | undefined =
-    queryResult.data;
+  const subs:
+    | { id: number; email: string | null; created_at: Date }[]
+    | undefined = queryResult.data;
 
   const addSub = api.email.adminSubscribe.useMutation();
   const unsub = api.email.unsubscribe.useMutation();
@@ -104,25 +108,108 @@ const ManageMailingList: NextPage = () => {
             className="bg-stone-100 text-stone-950"
             {...register("email", { required: true })}
           ></input>
-          <button type="submit">Submit</button>
+          <button
+            type="submit"
+            className="bg-red-800 px-2 py-1 text-stone-100 hover:bg-red-900 active:bg-red-950"
+          >
+            Submit
+          </button>
+        </form>
+
+        <form className="text-stone-100">
+          <h1>Sort By</h1>
+          <section className="flex justify-between">
+            <div>
+              <input
+                type="radio"
+                id="email"
+                value="email"
+                name="sort_by"
+                onChange={() => setSortBy("email")}
+                checked={sortBy === "email"}
+              />
+              <label htmlFor="email">Email</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="dateAdded"
+                value="dateAdded"
+                name="sort_by"
+                onChange={() => setSortBy("dateAdded")}
+                checked={sortBy === "dateAdded"}
+              />
+              <label htmlFor="dateDdded">Date Added</label>
+            </div>
+          </section>
+          <section className="flex gap-4">
+            <div>
+              <input
+                type="radio"
+                id="asc"
+                name="order"
+                value="asc"
+                onChange={() => setOrder("asc")}
+                checked={order === "asc"}
+              />
+              <label htmlFor="asc">Ascending</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="desc"
+                name="order"
+                value="desc"
+                onChange={() => setOrder("desc")}
+                checked={order === "desc"}
+              />
+              <label htmlFor="desc">Descending</label>
+            </div>
+          </section>
         </form>
 
         <h1 className="border-b">Subscribers</h1>
-        {subs?.map((sub) => (
-          <div key={sub.id} className="flex w-1/3 flex-row justify-between">
-            <p className="text-stone-100">{sub.email}</p>
-            <button
-              onClick={() => {
-                unsub
-                  .mutateAsync({ email: sub.email as string })
-                  .then(() => window.alert("success"))
-                  .catch(() => window.alert("an error occured"));
-              }}
-            >
-              Remove
-            </button>
-          </div>
-        ))}
+        {subs
+          ?.sort(
+            (
+              a: { id: number; email: string | null; created_at: Date },
+              b: { id: number; email: string | null; created_at: Date }
+            ) => {
+              if (sortBy === "email")
+                return (
+                  ((a.email as string) > (b.email as string) ? 1 : -1) *
+                  (order === "asc" ? 1 : -1)
+                );
+              return a.created_at > b.created_at
+                ? order === "desc"
+                  ? -1
+                  : 1
+                : order === "desc"
+                ? 1
+                : -1;
+            }
+          )
+          .map((sub) => (
+            <div key={sub.id} className="flex w-1/2 items-center">
+              <div className="grid w-full grid-cols-2">
+                <p className="text-stone-100">{sub.email}</p>
+                <p className="text-center text-stone-100">
+                  {sub.created_at.toDateString()}
+                </p>
+              </div>
+              <button
+                className="rounded-lg bg-red-800 px-2 py-1 text-stone-100 hover:bg-red-900 active:bg-red-950"
+                onClick={() => {
+                  unsub
+                    .mutateAsync({ email: sub.email as string })
+                    .then(() => window.alert("success"))
+                    .catch(() => window.alert("an error occured"));
+                }}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
       </main>
     </>
   );
