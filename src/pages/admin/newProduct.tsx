@@ -71,7 +71,6 @@ const NewProduct: NextPage = () => {
         weight: parseFloat(formData.weight),
         quantities: formData.quantities,
         imageName: formData.imageName,
-        is_taxed: 0,
         store_order: parseInt(formData.store_order) || 1,
       })
       .then(() => window.alert("Success"))
@@ -247,7 +246,7 @@ const NewProduct: NextPage = () => {
                 htmlFor="quantities"
                 className="mb-2 block text-sm font-medium text-stone-100"
               >
-                Quantites
+                Quantites (list in same order as sizes)
               </label>
               <input
                 id="quantities"
@@ -258,14 +257,19 @@ const NewProduct: NextPage = () => {
 
             <div>
               <label
-                htmlFor="quantities"
+                htmlFor="imageName"
                 className="mb-2 block text-sm font-medium text-stone-100"
               >
                 Image Names (if multiple images list them in the order you wish
                 displayed on the store i.e image1.png, image2.png, image3.png)
-                (note: The image must be uploaded into the public folder in this
-                directory. Include the file type in the image name i.e
-                image.png)
+              </label>
+              <label
+                htmlFor="imageName"
+                className="mb-2 block text-sm font-medium text-stone-100"
+              >
+                (note: The image must be uploaded to the github repo through the
+                upload link at the top of this page. Include the file type in
+                the image name i.e image.png)
               </label>
               <input
                 id="imageName"
@@ -273,20 +277,6 @@ const NewProduct: NextPage = () => {
                 {...register("imageName", { required: true })}
               />
             </div>
-
-            {/*             <div>
-              <label
-                htmlFor="is_taxed"
-                className="mb-2 block text-sm font-medium text-stone-100"
-              >
-                Is it taxed? (1 for yes 0 for no)
-              </label>
-              <input
-                id="is_taxed"
-                className="block w-full rounded-lg border p-2.5 text-sm border-gray-600 :bg-gray-700 text-stone-100 placeholder-gray-400"
-                {...register("is_taxed", { required: true })}
-              />
-            </div> */}
 
             <div>
               <label

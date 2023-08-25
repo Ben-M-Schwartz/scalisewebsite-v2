@@ -36,7 +36,6 @@ const SuccessPage: NextPage = () => {
     }
   }, [session_id]);
 
-  //TODO: Add a button to sign up for mailing list
   const queryResult = api.orders.getEmail.useQuery(
     { session_id: session_id as string },
     { enabled: session_id !== undefined }

@@ -94,6 +94,10 @@ const config = {
         source: "/landing",
         destination: "/",
       },
+      {
+        source: "/cart",
+        destination: "/Cart",
+      },
     ];
   },
   /*   experimental: {

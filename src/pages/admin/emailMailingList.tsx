@@ -183,6 +183,8 @@ const MailingList: NextPage = () => {
               />
             </div>
 
+            <p className="text-stone-100">Schedule Send</p>
+
             <button
               type="submit"
               className="active:red-950 mb-2 mr-2 rounded-lg bg-red-800 px-5 py-2.5 text-sm font-medium text-stone-100 hover:bg-red-900"

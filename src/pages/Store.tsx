@@ -66,7 +66,7 @@ function Product({ product }: { product: Product }) {
                   transition={{ duration: 1 }}
                 >
                   <Image
-                    className=""
+                    className="rounded-lg"
                     src={`/${images[1].trim()}`}
                     alt="image"
                     height={360}

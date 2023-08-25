@@ -80,22 +80,10 @@ const Home: NextPage = () => {
           Create New Product
         </Link>
         <Link
-          href="/admin/removeProduct"
+          href="/admin/editProducts"
           className="text-xl font-bold text-stone-100 hover:text-red-800 hover:underline active:text-red-950"
         >
-          Remove Product
-        </Link>
-        <Link
-          href="/admin/manageSalePrices"
-          className="text-xl font-bold text-stone-100 hover:text-red-800 hover:underline active:text-red-950"
-        >
-          Manage Sale Prices
-        </Link>
-        <Link
-          href="/admin/updateInventory"
-          className="text-xl font-bold text-stone-100 hover:text-red-800 hover:underline active:text-red-950"
-        >
-          Update Inventory
+          Edit Products
         </Link>
         <Link
           href="/admin/emailEditor"

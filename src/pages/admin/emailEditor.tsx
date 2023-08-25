@@ -23,6 +23,7 @@ export default function Email() {
   const [showForm, setShowForm] = useState(false);
   const [designToLoad, setDesignToLoad] = useState("");
   const [queryEnabled, setQueryEnabled] = useState(false);
+
   const { isLoaded, userId } = useAuth();
   const designNames = api.email.getEmailDesignNames.useQuery();
   const savedesign = api.email.saveEmailDesign.useMutation();
@@ -58,6 +59,7 @@ export default function Email() {
         emailEditorRef.current?.loadDesign(data[0]!.json);
         setShowForm(false);
         setQueryEnabled(false);
+        setName(designToLoad);
       },
       enabled: queryEnabled,
     }
@@ -153,7 +155,8 @@ export default function Email() {
               type="text"
               id="design_name"
               placeholder="Design Name"
-              className="rounded-md bg-gray-600 px-2 text-stone-100"
+              value={name}
+              className="w-1/6 rounded-md bg-gray-600 px-2 text-stone-100"
               onChange={(e) => {
                 setName(e.target.value);
               }}
@@ -212,16 +215,17 @@ export default function Email() {
           </div>
 
           <p className="text-center text-stone-950">
-            If the editor doesn&apos;t load go back to the homepage and follow
-            the link to this page again
-          </p>
-          <p className="text-center text-stone-950">
-            The editor doesn&apos;t load on a page refresh for some reason
+            If the editor doesn&apos;t load on a page refresh go back to the
+            homepage and follow the link to this page again
           </p>
           <p className="text-center text-stone-950">
             NOTE: Nothing is auto saved. To save your design type the name above
             and click save. If you type the name of an already existing design
             it will override the previous database entry.
+          </p>
+          <p className="text-center text-stone-950">
+            Name is auto entered on loading a design. Change it to save a new
+            design.
           </p>
 
           <div className="h-screen overflow-hidden">

@@ -212,7 +212,6 @@ export const cartRouter = createTRPCRouter({
             quantity_in_stock: product_quantity.quantity,
             quantity_in_checkouts: in_checkout_amounts.quantity,
             image: product_details.image,
-            is_taxed: product_details.is_taxed,
           },
         })
         .from(carts)

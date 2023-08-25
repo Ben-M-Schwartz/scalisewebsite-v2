@@ -122,6 +122,7 @@ export const inventoryRouter = createTRPCRouter({
       /* db.select().from(product_details).where(eq(product_details.id, parseInt(input.id))) */
       return await getProductPage(input.name);
     }),
+
   create: publicProcedure
     .input(
       z.object({
@@ -132,7 +133,6 @@ export const inventoryRouter = createTRPCRouter({
         sizes: z.string(),
         quantities: z.string(),
         imageName: z.string(),
-        is_taxed: z.number(),
         store_order: z.number(),
       })
     )
@@ -151,7 +151,6 @@ export const inventoryRouter = createTRPCRouter({
         description: input.description,
         weight: input.weight,
         image: input.imageName,
-        is_taxed: input.is_taxed,
         store_order: input.store_order,
       };
       const result = await db.insert(product_details).values(newProduct);
@@ -172,7 +171,7 @@ export const inventoryRouter = createTRPCRouter({
       await db.insert(product_quantity).values(newProductQuantities);
     }),
 
-  update: publicProcedure
+  updateInventory: publicProcedure
     .input(
       z.object({
         product_id: z.number(),
@@ -192,6 +191,70 @@ export const inventoryRouter = createTRPCRouter({
               ? sql`${product_quantity.quantity} - ${input.quantity}`
               : input.quantity,
         })
+        .where(
+          and(
+            eq(product_quantity.product_id, input.product_id),
+            eq(product_quantity.size, input.size)
+          )
+        );
+    }),
+
+  updateProductInfo: publicProcedure
+    .input(
+      z.object({
+        product_id: z.number(),
+        name: z.string(),
+        price: z.number(),
+        description: z.string(),
+        weight: z.number(),
+        imageName: z.string(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      await db
+        .update(product_details)
+        .set({
+          name: input.name,
+          price: input.price,
+          description: input.description,
+          weight: input.weight,
+          image: input.imageName,
+        })
+        .where(eq(product_details.id, input.product_id));
+    }),
+
+  addSizes: publicProcedure
+    .input(
+      z.object({
+        product_id: z.number(),
+        sizes: z.string(),
+        quantities: z.string(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      type NewProdcutQuantity = InferModel<typeof product_quantity, "insert">;
+
+      const sizesArray = input.sizes.split(",");
+      const quantityArray: Array<number> = JSON.parse(
+        "[" + input.quantities + "]"
+      ) as Array<number>;
+      const newProductQuantities = [];
+      for (let i = 0; i < sizesArray.length; i++) {
+        const newProductQuantity: NewProdcutQuantity = {
+          product_id: input.product_id,
+          size: sizesArray[i],
+          quantity: quantityArray[i],
+        };
+        newProductQuantities.push(newProductQuantity);
+      }
+      await db.insert(product_quantity).values(newProductQuantities);
+    }),
+
+  removeSize: publicProcedure
+    .input(z.object({ product_id: z.number(), size: z.string() }))
+    .mutation(async ({ input }) => {
+      await db
+        .delete(product_quantity)
         .where(
           and(
             eq(product_quantity.product_id, input.product_id),

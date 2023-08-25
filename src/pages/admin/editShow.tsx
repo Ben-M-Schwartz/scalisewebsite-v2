@@ -70,6 +70,11 @@ const Edit = ({
       .catch((error) => {
         window.alert(`An error occured please tell Ben`);
         console.error(error);
+        (
+          document.getElementById(
+            `${show.id as number}_editForm`
+          ) as HTMLDialogElement
+        ).close();
       });
   };
 
