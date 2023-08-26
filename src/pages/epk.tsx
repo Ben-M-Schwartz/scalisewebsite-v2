@@ -145,7 +145,7 @@ const EPK: NextPage = () => {
             className="absolute z-0 object-cover md:object-[0%_15%]"
             priority
           />
-          <h1 className="z-10 py-48 text-center text-8xl text-stone-100 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+          <h1 className="z-10 py-48 text-center text-6xl text-stone-100 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] sm:text-8xl">
             SCALISE
           </h1>
         </div>
@@ -318,7 +318,7 @@ const EPK: NextPage = () => {
           </p>
           <Link
             href="https://www.youtube.com/watch?v=hl2NoQjDe-E"
-            className="pb-12 text-lg font-bold text-red-800 underline hover:text-rose-900"
+            className="pb-12 text-center text-lg font-bold text-red-800 underline hover:text-rose-900"
           >
             -TrackXTrack “The Top Ten Best Albums of 2020”
           </Link>
@@ -466,7 +466,7 @@ const EPK: NextPage = () => {
                 </Link>
               </button>
             </div>
-            <div className="relative h-64 w-96 md:h-96 md:w-3/4">
+            <div className="relative h-64 w-64 sm:w-96 md:h-96 md:w-3/4">
               <Link href="/stageplot.png">
                 <Image
                   src={stagePlot}
@@ -487,7 +487,7 @@ const EPK: NextPage = () => {
             <p className="order-1 w-2/3 text-center text-xl md:w-4/5 md:text-center">
               Fill out this form or reach out to us at graden@scalise.band
             </p>
-            <div className="order-1 mt-4 flex justify-center gap-4">
+            <div className="order-1 mt-4 flex justify-center sm:gap-4">
               <label htmlFor="spotify-link" className="invisible absolute">
                 Scalise Spotify Link
               </label>

@@ -6,8 +6,9 @@ import { useForm } from "react-hook-form";
 import { SignIn } from "@clerk/clerk-react";
 import { useAuth } from "@clerk/nextjs";
 import { useState } from "react";
-
 import { api } from "~/utils/api";
+
+import { DateTimePicker } from "~/components/dateTimePicker";
 
 /* export const config = {
   runtime: "experimental-edge",
@@ -21,8 +22,18 @@ type emailForm = {
 };
 
 const MailingList: NextPage = () => {
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [time, setTime] = useState<string>(
+    `${((new Date().getHours() % 12) + 1).toString()}:00`
+  );
+  const [am, setAm] = useState<string>(
+    new Date().getHours() >= 12 ? "PM" : "AM"
+  );
+
   const { register, handleSubmit } = useForm<emailForm>();
   const { isLoaded, userId } = useAuth();
+
+  const [scheduled, setScheduled] = useState<boolean>(false);
 
   const [sendtest, setSendtest] = useState(false);
 
@@ -38,6 +49,8 @@ const MailingList: NextPage = () => {
             subject: formData.subject,
             html: formData.html,
             testRecipient: "",
+            scheduled: scheduled,
+            date: Date.parse(`${(date as Date).toDateString()} ${time} ${am}`),
           })
           .then(() => window.alert("success"))
           .catch((error) => console.error(error));
@@ -50,6 +63,8 @@ const MailingList: NextPage = () => {
           subject: formData.subject,
           html: formData.html,
           testRecipient: formData.testRecipient || "graden@scalise.band",
+          scheduled: scheduled,
+          date: Date.parse(`${(date as Date).toDateString()} ${time} ${am}`),
         })
         .then(() => window.alert("success"))
         .catch((error) => console.error(error));
@@ -183,7 +198,27 @@ const MailingList: NextPage = () => {
               />
             </div>
 
-            <p className="text-stone-100">Schedule Send</p>
+            <section className="flex flex-row items-center gap-4">
+              <label htmlFor="schedule" className="text-stone-100">
+                Schedule Send
+              </label>
+              <input
+                type="checkbox"
+                checked={scheduled}
+                onChange={() => setScheduled(!scheduled)}
+              />
+            </section>
+
+            <DateTimePicker
+              date={date}
+              time={time}
+              am={am}
+              setDate={setDate}
+              setTime={setTime}
+              setAm={setAm}
+            />
+
+            {/* <input type="datetime-local" /> */}
 
             <button
               type="submit"

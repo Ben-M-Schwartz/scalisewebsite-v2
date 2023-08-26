@@ -40,15 +40,15 @@ const SingleLayout = ({
 }) => {
   return (
     <div
-      className={`relative flex flex-col items-center gap-10 ${
+      className={`relative flex w-full flex-col items-center gap-10 ${
         background_color === "black"
           ? "bg-stone-950 text-stone-100"
           : "bg-stone-100 text-red-800"
       } py-24`}
     >
-      <div className="sm: z-10 flex w-full flex-col items-center justify-center gap-3 px-24 md:flex-row md:items-center md:justify-center md:gap-10 lg:w-5/6">
+      <div className="z-10 flex w-full flex-col items-center justify-center gap-3 sm:px-24 md:flex-row md:items-center md:justify-center md:gap-10 lg:w-5/6">
         <div className="w-1/2 text-center md:order-1 md:w-1/2">
-          <div className="flex flex-col items-center justify-center gap-3">
+          <div className="flex w-full flex-col items-center justify-center gap-3">
             <h1 className=" text-center text-4xl font-bold">{title}</h1>
             <Link
               rel="noopener noreferrer"

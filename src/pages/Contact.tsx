@@ -93,7 +93,7 @@ const Contact: NextPage = () => {
       <main className="flex flex-col items-center justify-center border-y border-stone-300 bg-stone-100">
         <div className="flex flex-col items-center justify-center gap-10 pb-32 pt-16 md:flex-row">
           <div className="flex w-full flex-col items-center justify-center gap-2 md:w-1/2">
-            <h1 className="order-1 text-center text-7xl md:text-left">
+            <h1 className="order-1 text-center text-4xl md:text-left md:text-7xl">
               Contact Us
             </h1>
             <p className="order-1 w-2/3 text-center md:w-4/5">
@@ -115,7 +115,7 @@ const Contact: NextPage = () => {
                 className="rounded-xl"
               />
             </div>
-            <div className="order-1 mt-4 flex justify-center gap-2 bg-stone-100">
+            <div className="order-1 mt-4 flex justify-center bg-stone-100 md:gap-2">
               <label htmlFor="spotify-link-3" className="invisible absolute">
                 Scalise Spotify Link
               </label>

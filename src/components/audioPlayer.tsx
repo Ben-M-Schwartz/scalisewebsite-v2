@@ -112,9 +112,9 @@ export function AudioPlayer({
 
   return (
     <main className="z-10 w-2/3 max-md:w-5/6">
-      <div className="container relative flex h-16 w-full flex-row items-center bg-stone-900">
+      <div className="relative flex h-16 w-full flex-row items-center bg-stone-900">
         <audio id={player_id} src={source} preload="metadata"></audio>
-        <div className="flex h-full w-20 items-center justify-center border-r border-stone-700">
+        <div className="flex h-full w-20 items-center justify-center border-r border-stone-700 md:w-32">
           <button
             onClick={() => {
               play();
@@ -134,13 +134,13 @@ export function AudioPlayer({
             <PauseIcon />
           </button>
         </div>
-        <div className="container relative flex h-full w-full items-center">
-          <div className="z-20 pl-4">
-            <p className="text-stone-100">{title}</p>
-            <p className="text-left text-sm text-stone-400">Scalise</p>
+        <div className="relative flex h-full w-full flex-row items-center max-md:justify-between">
+          <div className="z-20 w-full pl-2 md:pl-6">
+            <p className="w-full text-stone-100 max-md:text-xs">{title}</p>
+            <p className="text-sm text-stone-400">Scalise</p>
           </div>
-          <div className="z-20 flex h-full items-start justify-start pl-6 text-sm">
-            <span className="pt-2 text-stone-400">
+          <div className="z-20 flex h-full w-full items-start justify-center text-sm max-md:w-3/5">
+            <span className="pt-2 text-stone-400 max-md:text-xs">
               {currentTime} / {duration}
             </span>
           </div>

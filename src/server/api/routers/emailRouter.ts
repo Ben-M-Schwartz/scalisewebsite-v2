@@ -334,6 +334,8 @@ export const emailRouter = createTRPCRouter({
         subject: z.string(),
         html: z.string(),
         testRecipient: z.string(),
+        scheduled: z.boolean(),
+        date: z.number(),
       })
     )
     .mutation(async ({ input }) => {
@@ -347,6 +349,7 @@ export const emailRouter = createTRPCRouter({
           .setReplyTo(new Recipient("graden@scalise.band"))
           .setSubject(input.subject)
           .setHtml(input.html);
+        if (input.scheduled) emailParams.setSendAt(input.date);
         await mailerSend.email.send(emailParams);
       } else {
         await emailMailingList(input.subject, input.html);
