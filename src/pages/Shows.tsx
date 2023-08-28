@@ -180,7 +180,7 @@ const Show = ({ show }: { show: ShowType }) => {
                 <div className="flex rounded text-stone-100 hover:bg-stone-100 hover:bg-transparent hover:text-red-800 md:p-0">
                   {!isCopied && <LinkIcon />}
                   {isCopied && (
-                    <div className="animate-bounce animate-pulse text-green-400">
+                    <div className="animate-pulse text-green-400">
                       <CheckIcon />
                     </div>
                   )}
@@ -202,7 +202,7 @@ const Show = ({ show }: { show: ShowType }) => {
             </button>
           </motion.div>
         </div>
-        <div className="flex w-full flex-col items-center justify-center gap-2 sm:w-1/4 sm:items-end sm:justify-end xl:w-1/6">
+        <div className="z-10 flex w-full flex-col items-center justify-center gap-2 sm:w-1/4 sm:items-end sm:justify-end xl:w-1/6">
           <Link
             rel="noopener noreferrer"
             target="_blank"
