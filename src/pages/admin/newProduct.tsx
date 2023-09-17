@@ -73,7 +73,12 @@ const NewProduct: NextPage = () => {
         imageName: formData.imageName,
         store_order: parseInt(formData.store_order) || 1,
       })
-      .then(() => window.alert("Success"))
+      .then(async () => {
+        window.alert("Success");
+        await fetch(
+          `/api/revalidateStore?secret=${process.env.MY_API_SECRET as string}`
+        ).catch((error) => console.error(error));
+      })
       .catch((error) => console.error(error));
   };
 

@@ -16,6 +16,8 @@ const server = z.object({
   STRIPE_WEBHOOK_SECRET: z.string(),
   PAYMENT_METHOD_TYPES: z.string(),
 
+  MY_API_SECRET: z.string(),
+
   DOMAIN: z.string(),
 
   GITHUB_ACCESS_TOKEN: z.string(),
@@ -46,6 +48,8 @@ const processEnv = {
   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
   STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
   PAYMENT_METHOD_TYPES: process.env.PAYMENT_METHOD_TYPES,
+
+  MY_API_SECRET: process.env.MY_API_SECRET,
 
   DOMAIN: process.env.DOMAIN,
 

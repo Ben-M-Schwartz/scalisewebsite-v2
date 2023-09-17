@@ -42,15 +42,18 @@ function AddSale({ product }: { product: Product }) {
   const { register, handleSubmit } = useForm<saleForm>();
 
   const handleAddSale = (formData: saleForm) => {
-    try {
-      addsale.mutate({
+    addsale
+      .mutateAsync({
         product_id: product.id,
         sale_price: formData.sale_price,
-      });
-      window.alert("success");
-    } catch (error) {
-      console.error(error);
-    }
+      })
+      .then(async () => {
+        window.alert("success");
+        await fetch(
+          `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
+        ).catch((error) => console.error(error));
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -108,8 +111,11 @@ function EditProduct({ product }: { product: Product }) {
         weight: formData.weight || (product.weight as number),
         imageName: formData.imageName || (product.image as string),
       })
-      .then(() => {
+      .then(async () => {
         window.alert("Success");
+        await fetch(
+          `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
+        ).catch((error) => console.error(error));
         (
           document.getElementById(`${product.id}_editForm`) as HTMLDialogElement
         ).close();
@@ -468,26 +474,32 @@ function ProductInfo({
       "Are you sure you want to remove this product?"
     );
     if (answer) {
-      try {
-        removeProduct.mutate({ product_id: product.id });
-        window.alert("success");
-      } catch (error) {
-        console.error(error);
-      }
+      removeProduct
+        .mutateAsync({ product_id: product.id })
+        .then(async () => {
+          window.alert("success");
+          await fetch(
+            `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
+          ).catch((error) => console.error(error));
+        })
+        .catch((error) => console.error(error));
     } else {
       return;
     }
   };
 
   const handleRemoveSale = () => {
-    try {
-      removeSale.mutate({
+    removeSale
+      .mutateAsync({
         product_id: product.id,
-      });
-      window.alert("success");
-    } catch (error) {
-      console.error(error);
-    }
+      })
+      .then(async () => {
+        window.alert("success");
+        await fetch(
+          `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
+        ).catch((error) => console.error(error));
+      })
+      .catch((error) => console.error(error));
   };
 
   //const router = useRouter();
