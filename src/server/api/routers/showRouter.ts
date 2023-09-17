@@ -42,13 +42,25 @@ export const showRouter = createTRPCRouter({
       await db
         .insert(shows)
         .values(newShow)
-        .catch((error) => console.error(error));
+        .catch((error) => console.error(error))
+        .then(async () => {
+          await fetch(
+            `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
+          ).catch((error) => console.error(error));
+        });
     }),
 
   remove: publicProcedure
     .input(z.object({ id: z.number() }))
     .mutation(async ({ input }) => {
-      await db.delete(shows).where(eq(shows.id, input.id));
+      await db
+        .delete(shows)
+        .where(eq(shows.id, input.id))
+        .then(async () => {
+          await fetch(
+            `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
+          ).catch((error) => console.error(error));
+        });
     }),
 
   get: publicProcedure.query(() => {
@@ -81,6 +93,11 @@ export const showRouter = createTRPCRouter({
           ticket_link: input.ticket_link,
           free: input.free,
         })
-        .where(eq(shows.id, input.id));
+        .where(eq(shows.id, input.id))
+        .then(async () => {
+          await fetch(
+            `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
+          ).catch((error) => console.error(error));
+        });
     }),
 });

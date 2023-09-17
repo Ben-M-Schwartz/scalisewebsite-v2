@@ -47,11 +47,8 @@ function AddSale({ product }: { product: Product }) {
         product_id: product.id,
         sale_price: formData.sale_price,
       })
-      .then(async () => {
+      .then(() => {
         window.alert("success");
-        await fetch(
-          `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
-        ).catch((error) => console.error(error));
       })
       .catch((error) => console.error(error));
   };
@@ -111,11 +108,8 @@ function EditProduct({ product }: { product: Product }) {
         weight: formData.weight || (product.weight as number),
         imageName: formData.imageName || (product.image as string),
       })
-      .then(async () => {
+      .then(() => {
         window.alert("Success");
-        await fetch(
-          `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
-        ).catch((error) => console.error(error));
         (
           document.getElementById(`${product.id}_editForm`) as HTMLDialogElement
         ).close();
@@ -476,11 +470,8 @@ function ProductInfo({
     if (answer) {
       removeProduct
         .mutateAsync({ product_id: product.id })
-        .then(async () => {
+        .then(() => {
           window.alert("success");
-          await fetch(
-            `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
-          ).catch((error) => console.error(error));
         })
         .catch((error) => console.error(error));
     } else {
@@ -493,11 +484,8 @@ function ProductInfo({
       .mutateAsync({
         product_id: product.id,
       })
-      .then(async () => {
+      .then(() => {
         window.alert("success");
-        await fetch(
-          `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
-        ).catch((error) => console.error(error));
       })
       .catch((error) => console.error(error));
   };

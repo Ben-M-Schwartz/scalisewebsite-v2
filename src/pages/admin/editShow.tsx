@@ -59,11 +59,8 @@ const Edit = ({
         ticket_link: data.ticket_link || (show.ticket_link as string),
         free: data.free as boolean,
       })
-      .then(async () => {
+      .then(() => {
         window.alert("Success");
-        await fetch(
-          `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
-        ).catch((error) => console.error(error));
         (
           document.getElementById(
             `${show.id as number}_editForm`

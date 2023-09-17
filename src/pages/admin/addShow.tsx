@@ -32,11 +32,8 @@ const AddShow: NextPage = () => {
   const onSubmit = (formData: AddShowForm) => {
     createShow
       .mutateAsync({ ...formData })
-      .then(async () => {
+      .then(() => {
         window.alert("Success");
-        await fetch(
-          `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
-        ).catch((error) => console.error(error));
       })
       .catch((error) => {
         window.alert(`An error occured please tell Ben`);

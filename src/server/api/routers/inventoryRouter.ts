@@ -169,6 +169,10 @@ export const inventoryRouter = createTRPCRouter({
         newProductQuantities.push(newProductQuantity);
       }
       await db.insert(product_quantity).values(newProductQuantities);
+
+      await fetch(
+        `/api/revalidateStore?secret=${process.env.MY_API_SECRET as string}`
+      ).catch((error) => console.error(error));
     }),
 
   updateInventory: publicProcedure
@@ -221,6 +225,10 @@ export const inventoryRouter = createTRPCRouter({
           image: input.imageName,
         })
         .where(eq(product_details.id, input.product_id));
+
+      await fetch(
+        `/api/revalidateStore?secret=${process.env.MY_API_SECRET as string}`
+      ).catch((error) => console.error(error));
     }),
 
   addSizes: publicProcedure
@@ -248,6 +256,10 @@ export const inventoryRouter = createTRPCRouter({
         newProductQuantities.push(newProductQuantity);
       }
       await db.insert(product_quantity).values(newProductQuantities);
+
+      await fetch(
+        `/api/revalidateStore?secret=${process.env.MY_API_SECRET as string}`
+      ).catch((error) => console.error(error));
     }),
 
   removeSize: publicProcedure
@@ -261,6 +273,10 @@ export const inventoryRouter = createTRPCRouter({
             eq(product_quantity.size, input.size)
           )
         );
+
+      await fetch(
+        `/api/revalidateStore?secret=${process.env.MY_API_SECRET as string}`
+      ).catch((error) => console.error(error));
     }),
 
   remove: publicProcedure
@@ -285,6 +301,10 @@ export const inventoryRouter = createTRPCRouter({
           .set({ store_order: sql`${product_details.store_order} - 1` })
           .where(gte(product_details.store_order, order));
       });
+
+      await fetch(
+        `/api/revalidateStore?secret=${process.env.MY_API_SECRET as string}`
+      ).catch((error) => console.error(error));
     }),
 
   addSale: publicProcedure
@@ -294,6 +314,10 @@ export const inventoryRouter = createTRPCRouter({
         .update(product_details)
         .set({ sale_price: input.sale_price })
         .where(eq(product_details.id, input.product_id));
+
+      await fetch(
+        `/api/revalidateStore?secret=${process.env.MY_API_SECRET as string}`
+      ).catch((error) => console.error(error));
     }),
 
   removeSale: publicProcedure
@@ -303,5 +327,9 @@ export const inventoryRouter = createTRPCRouter({
         .update(product_details)
         .set({ sale_price: null })
         .where(eq(product_details.id, input.product_id));
+
+      await fetch(
+        `/api/revalidateStore?secret=${process.env.MY_API_SECRET as string}`
+      ).catch((error) => console.error(error));
     }),
 });
