@@ -45,7 +45,12 @@ export const showRouter = createTRPCRouter({
         .catch((error) => console.error(error))
         .then(async () => {
           await fetch(
-            `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
+            `https://www.scalise.band/api/revalidateShows?secret=${
+              process.env.MY_API_SECRET as string
+            }`,
+            {
+              method: "GET",
+            }
           ).catch((error) => console.error(error));
         });
     }),
@@ -58,7 +63,12 @@ export const showRouter = createTRPCRouter({
         .where(eq(shows.id, input.id))
         .then(async () => {
           await fetch(
-            `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
+            `https://www.scalise.band/api/revalidateShows?secret=${
+              process.env.MY_API_SECRET as string
+            }`,
+            {
+              method: "GET",
+            }
           ).catch((error) => console.error(error));
         });
     }),
@@ -96,7 +106,12 @@ export const showRouter = createTRPCRouter({
         .where(eq(shows.id, input.id))
         .then(async () => {
           await fetch(
-            `/api/revalidateShows?secret=${process.env.MY_API_SECRET as string}`
+            `https://www.scalise.band/api/revalidateShows?secret=${
+              process.env.MY_API_SECRET as string
+            }`,
+            {
+              method: "GET",
+            }
           ).catch((error) => console.error(error));
         });
     }),
