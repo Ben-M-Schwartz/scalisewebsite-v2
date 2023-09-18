@@ -10,10 +10,10 @@ import { api } from "~/utils/api";
 import { Item } from "~/components/cartItem";
 import { motion, AnimatePresence } from "framer-motion";
 
-export const config = {
-  runtime: "experimental-edge",
-  regions: ["cle1"],
-};
+// export const config = {
+//   runtime: "experimental-edge",
+//   regions: ["cle1"],
+// };
 
 type CartItem = {
   product_id: number | null;
