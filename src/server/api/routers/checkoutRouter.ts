@@ -23,7 +23,7 @@ export const checkoutRouter = createTRPCRouter({
             product_id: z.number(),
             price: z.number(),
             quantity: z.number(),
-            is_taxed: z.number(),
+            //is_taxed: z.number(),
             size: z.string(),
             weight: z.number(),
             item_name: z.string(),
@@ -99,8 +99,8 @@ export const checkoutRouter = createTRPCRouter({
             },
           },
           quantity: item.quantity,
-          tax_rates:
-            item.is_taxed === 1 ? ["txr_1N10EAHmtb6xoR6RcIowDGt8"] : undefined,
+          //tax_rates:
+          //  item.is_taxed === 1 ? ["txr_1N10EAHmtb6xoR6RcIowDGt8"] : undefined,
         };
       });
 
