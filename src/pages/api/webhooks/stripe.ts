@@ -90,7 +90,7 @@ export default async function handler(
       .delete(in_checkout_amounts)
       .where(eq(in_checkout_amounts.stripe_checkout_id, session.id));
 
-    api.email.notifyGraden.useMutation().mutate();
+    // api.email.notifyGraden.useMutation().mutate();
   }
 
   if (event.type === "checkout.session.expired") {

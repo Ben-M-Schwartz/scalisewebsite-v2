@@ -1,10 +1,4 @@
-#Scalise
-
-# ScaliseTheBandWebsite
-
-Webpage for the band Scalise
-
-This is the second version of my code for this website, the first used express and mongoDB
+# Scalise The Band Website
 
 Tools used:
 
