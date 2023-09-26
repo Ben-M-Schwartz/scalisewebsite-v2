@@ -20,11 +20,13 @@ type AddShowForm = {
   maps_link: string;
   bandsintown_link: string;
   ticket_link: string;
-  free: boolean;
+  ticket_button_text: string;
 };
 
 const AddShow: NextPage = () => {
-  const { register, handleSubmit } = useForm<AddShowForm>();
+  const { register, handleSubmit } = useForm<AddShowForm>({
+    defaultValues: { ticket_button_text: "Tickets" },
+  });
   const { isLoaded, userId } = useAuth();
 
   const createShow = api.shows.create.useMutation();
@@ -216,16 +218,15 @@ const AddShow: NextPage = () => {
 
             <div>
               <label
-                htmlFor="free"
+                htmlFor="ticket_button_text"
                 className="mb-2 block text-sm font-medium text-stone-100"
               >
-                Free?
+                Ticket button text (Defaults to &aposTickets&apos)
               </label>
               <input
-                id="free"
+                id="ticket_button_text"
                 className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
-                type="checkbox"
-                {...register("free")}
+                {...register("ticket_button_text", { required: true })}
               />
             </div>
 

@@ -22,7 +22,7 @@ type EditForm = {
   maps_link: string | undefined;
   bandsintown_link: string | undefined;
   ticket_link: string | undefined;
-  free: boolean | undefined;
+  ticket_button_text: string | undefined;
 };
 
 const Edit = ({
@@ -37,12 +37,10 @@ const Edit = ({
     maps_link: string | null;
     bandsintown_link: string | null;
     ticket_link: string | null;
-    free: boolean | null;
+    ticket_button_text: string | null;
   };
 }) => {
-  const { register, handleSubmit } = useForm<EditForm>({
-    defaultValues: { free: show.free as boolean },
-  });
+  const { register, handleSubmit } = useForm<EditForm>();
   const editShow = api.shows.update.useMutation();
 
   const onSubmit = (data: EditForm) => {
@@ -57,7 +55,8 @@ const Edit = ({
         bandsintown_link:
           data.bandsintown_link || (show.bandsintown_link as string),
         ticket_link: data.ticket_link || (show.ticket_link as string),
-        free: data.free as boolean,
+        ticket_button_text:
+          data.ticket_button_text || (show.ticket_button_text as string),
       })
       .then(() => {
         window.alert("Success");
@@ -189,16 +188,16 @@ const Edit = ({
 
       <div>
         <label
-          htmlFor="free"
+          htmlFor="ticket_button_text"
           className="mb-2 block text-sm font-medium text-stone-100"
         >
-          Free?
+          Ticket Button Text
         </label>
         <input
-          id="free"
+          id="ticket_button_text"
           className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
-          type="checkbox"
-          {...register("free")}
+          placeholder={`${show.ticket_button_text as string}`}
+          {...register("ticket_button_text", { required: false })}
         />
       </div>
 

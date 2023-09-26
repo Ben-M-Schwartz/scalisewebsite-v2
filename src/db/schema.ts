@@ -191,7 +191,8 @@ export const shows = mysqlTable(
     maps_link: varchar("maps_link", { length: 255 }),
     bandsintown_link: varchar("bandsintown_link", { length: 5000 }),
     ticket_link: varchar("ticket_link", { length: 5000 }),
-    free: boolean("free").default(false),
+    ticket_button_text: varchar("ticket_button_text", { length: 255 }),
+    // free: boolean("free").default(false),
   },
   (table) => ({
     showIndex: index("showIndex").on(table.id),
