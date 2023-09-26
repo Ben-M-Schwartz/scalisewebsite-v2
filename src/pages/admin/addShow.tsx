@@ -14,7 +14,6 @@ import { useAuth } from "@clerk/nextjs";
 
 type AddShowForm = {
   date: string;
-  time: string;
   location: string;
   name: string;
   maps_link: string;
@@ -142,21 +141,6 @@ const AddShow: NextPage = () => {
                 className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
                 placeholder="enter the string you would like to have displayed for the date i.e Jan. 01, 2023"
                 {...register("date", { required: true })}
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="time"
-                className="mb-2 block text-sm font-medium text-stone-100"
-              >
-                Time
-              </label>
-              <input
-                id="time"
-                className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
-                placeholder="enter full time string i.e 7:00 p.m"
-                {...register("time", { required: true })}
               />
             </div>
 

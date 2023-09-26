@@ -185,7 +185,6 @@ export const shows = mysqlTable(
   {
     id: serial("id").primaryKey().notNull(),
     date: varchar("date", { length: 255 }),
-    time: varchar("time", { length: 255 }),
     location: varchar("location", { length: 255 }),
     name: varchar("name", { length: 255 }),
     maps_link: varchar("maps_link", { length: 255 }),

@@ -18,7 +18,6 @@ export const showRouter = createTRPCRouter({
     .input(
       z.object({
         date: z.string(),
-        time: z.string(),
         location: z.string(),
         name: z.string(),
         maps_link: z.string(),
@@ -31,7 +30,6 @@ export const showRouter = createTRPCRouter({
       type NewShow = InferModel<typeof shows, "insert">;
       const newShow: NewShow = {
         date: input.date,
-        time: input.time,
         name: input.name,
         maps_link: input.maps_link,
         location: input.location,
@@ -82,7 +80,6 @@ export const showRouter = createTRPCRouter({
       z.object({
         id: z.number(),
         date: z.string(),
-        time: z.string(),
         location: z.string(),
         name: z.string(),
         maps_link: z.string(),
@@ -96,7 +93,6 @@ export const showRouter = createTRPCRouter({
         .update(shows)
         .set({
           date: input.date,
-          time: input.time,
           location: input.location,
           name: input.name,
           maps_link: input.maps_link,

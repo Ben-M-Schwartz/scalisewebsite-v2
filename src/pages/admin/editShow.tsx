@@ -31,7 +31,6 @@ const Edit = ({
   show: {
     id: number | null;
     date: string | null;
-    time: string | null;
     location: string | null;
     name: string | null;
     maps_link: string | null;
@@ -48,7 +47,6 @@ const Edit = ({
       .mutateAsync({
         id: show.id as number,
         date: data.date || (show.date as string),
-        time: data.time || (show.time as string),
         location: data.location || (show.location as string),
         name: data.name || (show.name as string),
         maps_link: data.maps_link || (show.maps_link as string),
@@ -108,21 +106,6 @@ const Edit = ({
           className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
           placeholder={`${show.date as string}`}
           {...register("date", { required: false })}
-        />
-      </div>
-
-      <div>
-        <label
-          htmlFor="time"
-          className="mb-2 block text-sm font-medium text-stone-100"
-        >
-          Time
-        </label>
-        <input
-          id="time"
-          className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-stone-100 placeholder-gray-400"
-          placeholder={`${show.time as string}`}
-          {...register("time", { required: false })}
         />
       </div>
 
