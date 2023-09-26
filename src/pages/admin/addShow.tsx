@@ -134,7 +134,8 @@ const AddShow: NextPage = () => {
                 htmlFor="date"
                 className="mb-2 block text-sm font-medium text-stone-100"
               >
-                Date
+                Date (Put in format &aposMMM. DD, YYYY&apos Adding th or rd at
+                the end of the day will cause it not to render)
               </label>
               <input
                 id="date"
