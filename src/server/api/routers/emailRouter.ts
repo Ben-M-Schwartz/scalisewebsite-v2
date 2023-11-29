@@ -42,7 +42,12 @@ function generateString(length: number) {
   return result;
 }
 
-const emailMailingList = async (subject: string, html: string, scheduled: boolean, date: number) => {
+const emailMailingList = async (
+  subject: string,
+  html: string,
+  scheduled: boolean,
+  date: number
+) => {
   const subList = await db.select().from(subscribers);
 
   const sentFrom = new Sender("noreply@scalise.band", "Scalise");
@@ -57,7 +62,7 @@ const emailMailingList = async (subject: string, html: string, scheduled: boolea
       .setSubject(subject)
       .setHtml(html);
 
-    if(scheduled) emailParams.setSendAt(date)
+    if (scheduled) emailParams.setSendAt(date);
     bulkMail.push(emailParams);
   }
 
@@ -353,7 +358,12 @@ export const emailRouter = createTRPCRouter({
         if (input.scheduled) emailParams.setSendAt(input.date);
         await mailerSend.email.send(emailParams);
       } else {
-        await emailMailingList(input.subject, input.html, input.scheduled, input.date);
+        await emailMailingList(
+          input.subject,
+          input.html,
+          input.scheduled,
+          input.date
+        );
       }
     }),
 

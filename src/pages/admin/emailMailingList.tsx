@@ -50,7 +50,9 @@ const MailingList: NextPage = () => {
             html: formData.html,
             testRecipient: "",
             scheduled: scheduled,
-            date: Date.parse(`${(date as Date).toDateString()} ${time} ${am}`),
+            date:
+              Date.parse(`${(date as Date).toDateString()} ${time} ${am}`) /
+              1000,
           })
           .then(() => window.alert("success"))
           .catch((error) => console.error(error));
@@ -64,10 +66,11 @@ const MailingList: NextPage = () => {
           html: formData.html,
           testRecipient: formData.testRecipient || "graden@scalise.band",
           scheduled: scheduled,
-          date: Date.parse(`${(date as Date).toDateString()} ${time} ${am}`),
+          date:
+            Date.parse(`${(date as Date).toDateString()} ${time} ${am}`) / 1000,
         })
         .then(() => window.alert("success"))
-        .catch((error) => console.error(error));
+        .catch((error) => window.alert(error));
     }
   };
 
