@@ -272,7 +272,7 @@ const Product: NextPage = (
   return (
     <>
       <Head>
-        <title>SCALISE - PRODUCTS</title>
+        <title>SECOND HAND DAN - PRODUCTS</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"

@@ -50,7 +50,7 @@ const emailMailingList = async (
 ) => {
   const subList = await db.select().from(subscribers);
 
-  const sentFrom = new Sender("noreply@scalise.band", "Scalise");
+  const sentFrom = new Sender("noreply@scalise.band", "Second Hand Dan");
   const bulkMail = [];
 
   // Send email to each subscriber using mailersend
@@ -74,13 +74,13 @@ export const sendConfirmationEmail = async (
   email: string,
   token: string
 ) => {
-  const sentFrom = new Sender("noreply@scalise.band", "Scalise");
+  const sentFrom = new Sender("noreply@scalise.band", "Second Hand Dan");
   const recipients = [new Recipient(email)];
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
     .setTo(recipients)
     .setReplyTo(new Recipient(""))
-    .setSubject("SCALISE - Confirm Subscription")
+    .setSubject("SECOND HAND DAN - Confirm Subscription")
     .setHtml(confirmSubscription)
     .setVariables([
       {
@@ -99,13 +99,13 @@ const sendInitialNotificationEmail = async (
   product_name: string,
   product_size: string
 ) => {
-  const sentFrom = new Sender("noreply@scalise.band", "Scalise");
+  const sentFrom = new Sender("noreply@scalise.band", "Second Hand Dan");
   const recipients = [new Recipient(email)];
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
     .setTo(recipients)
     .setReplyTo(new Recipient(""))
-    .setSubject("SCALISE - Back in Stock Notification")
+    .setSubject("SECOND HAND DAN - Back in Stock Notification")
     .setHtml(backInStockSignUp(product_name, product_size));
   await mailerSend.email.send(emailParams);
 };
@@ -116,26 +116,26 @@ const sendNotifications = async (
   size: string
 ) => {
   for (const user of users) {
-    const sentFrom = new Sender("noreply@scalise.band", "Scalise");
+    const sentFrom = new Sender("noreply@scalise.band", "Second Hand Dan");
     const recipients = [new Recipient(user.email)];
     const emailParams = new EmailParams()
       .setFrom(sentFrom)
       .setTo(recipients)
       .setReplyTo(new Recipient(""))
-      .setSubject("SCALISE - Back In Stock!")
+      .setSubject("SECOND HAND DAN - Back In Stock!")
       .setHtml(backInStock(item_name, size));
     await mailerSend.email.send(emailParams);
   }
 };
 
 const userAlreadySubscribed = async (email: string, url: string) => {
-  const sentFrom = new Sender("noreply@scalise.band", "Scalise");
+  const sentFrom = new Sender("noreply@scalise.band", "Second Hand Dan");
   const recipients = [new Recipient(email)];
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
     .setTo(recipients)
     .setReplyTo(new Recipient(""))
-    .setSubject("SCALISE - Subscription Confirmed")
+    .setSubject("SECOND HAND DAN - Subscription Confirmed")
     .setHtml(alreadySubscribed)
     .setVariables([
       {
@@ -176,7 +176,7 @@ export const emailRouter = createTRPCRouter({
       .setFrom(new Sender("orders@scalise.band"))
       .setTo([new Recipient("graden@scalise.band")])
       .setReplyTo(new Recipient("benschwartz33@gmail.com"))
-      .setSubject("SCALISE - New Online Order")
+      .setSubject("SECOND HAND DAN - New Online Order")
       .setText("There is a new online order from the website");
 
     await mailerSend.email.send(emailParams);
@@ -347,7 +347,7 @@ export const emailRouter = createTRPCRouter({
     .mutation(async ({ input }) => {
       if (input.testRecipient !== "") {
         //await testEmail(input.subject, input.html, input.testRecipient);
-        const sentFrom = new Sender("noreply@scalise.band", "Scalise");
+        const sentFrom = new Sender("noreply@scalise.band", "Second Hand Dan");
         const recipients = [new Recipient(input.testRecipient)];
         const emailParams = new EmailParams()
           .setFrom(sentFrom)

@@ -137,7 +137,7 @@ export function AudioPlayer({
         <div className="relative flex h-full w-full flex-row items-center max-md:justify-between">
           <div className="z-20 w-full pl-2 md:pl-6">
             <p className="w-full text-stone-100 max-md:text-xs">{title}</p>
-            <p className="text-sm text-stone-400">Scalise</p>
+            <p className="text-sm text-stone-400">Second Hand Dan</p>
           </div>
           <div className="z-20 flex h-full w-full items-start justify-center text-sm max-md:w-3/5">
             <span className="pt-2 text-stone-400 max-md:text-xs">

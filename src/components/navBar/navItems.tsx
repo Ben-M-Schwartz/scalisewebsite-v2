@@ -46,8 +46,8 @@ export function HomeLink() {
   return (
     <div className="z-10">
       <Link href="/" className="items-center">
-        <span className="self-center whitespace-nowrap text-2xl font-semibold tracking-widest  text-red-800 md:text-3xl lg:text-4xl">
-          SCALISE
+        <span className="self-center whitespace-nowrap text-2xl font-semibold tracking-widest text-red-800 md:text-4xl  lg:text-2xl xl:text-4xl">
+          SECOND HAND DAN
         </span>
       </Link>
     </div>
@@ -227,10 +227,10 @@ export function SocialLinks() {
         whileTap={{ scale: 1.1 }}
       >
         <label htmlFor="spotify-link" className="invisible absolute">
-          Scalise Spotify Link
+          Second Hand Dan Spotify Link
         </label>
         <Link
-          href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
+          href="https://open.spotify.com/artist/6aSMP8tczWHrqgKCwuG4bv"
           className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           rel="noopener noreferrer"
           target="_blank"
@@ -245,7 +245,7 @@ export function SocialLinks() {
         whileTap={{ scale: 1.1 }}
       >
         <label htmlFor="applemusic-link" className="invisible absolute">
-          Scalise Apple Music Link
+          Second Hand Dan Apple Music Link
         </label>
         <Link
           href="https://music.apple.com/us/artist/scalise/1529031635"
@@ -263,10 +263,10 @@ export function SocialLinks() {
         whileTap={{ scale: 1.1 }}
       >
         <label htmlFor="twitter-link" className="invisible absolute">
-          Scalise Twitter Link
+          Second Hand Dan Twitter Link
         </label>
         <Link
-          href="https://twitter.com/ScaliseTheBand"
+          href="https://twitter.com/secondhanddanband"
           className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           rel="noopener noreferrer"
           target="_blank"
@@ -281,10 +281,10 @@ export function SocialLinks() {
         whileTap={{ scale: 1.1 }}
       >
         <label htmlFor="facebook-link" className="invisible absolute">
-          Scalise Facebook Link
+          Second Hand Dan Facebook Link
         </label>
         <Link
-          href="https://www.facebook.com/ScaliseTheBand"
+          href="https://www.facebook.com/secondhanddanband"
           className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           rel="noopener noreferrer"
           target="_blank"
@@ -299,10 +299,10 @@ export function SocialLinks() {
         whileTap={{ scale: 1.1 }}
       >
         <label htmlFor="instagram-link" className="invisible absolute">
-          Scalise Instagram Link
+          Second Hand Dan Instagram Link
         </label>
         <Link
-          href="https://www.instagram.com/ScaliseTheBand/"
+          href="https://www.instagram.com/secondhanddanband/"
           className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           rel="noopener noreferrer"
           target="_blank"
@@ -317,7 +317,7 @@ export function SocialLinks() {
         whileTap={{ scale: 1.1 }}
       >
         <label htmlFor="tiktok-link" className="invisible absolute">
-          Scalise TikTok Link
+          Second Hand Dan TikTok Link
         </label>
         <Link
           href="https://www.tiktok.com/@scaliseband"
@@ -335,7 +335,7 @@ export function SocialLinks() {
         whileTap={{ scale: 1.1 }}
       >
         <label htmlFor="youtube-link" className="invisible absolute">
-          Scalise Youtube Link
+          Second Hand Dan Youtube Link
         </label>
         <Link
           href="https://www.youtube.com/channel/UCWBsxAAhmKP1nRHWQQ5N0Qg"

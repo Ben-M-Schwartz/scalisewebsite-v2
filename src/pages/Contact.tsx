@@ -55,7 +55,7 @@ const Contact: NextPage = () => {
   return (
     <>
       <Head>
-        <title>CONTACT-SCALISE</title>
+        <title>CONTACT-SECOND HAND DAN</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"
@@ -117,28 +117,28 @@ const Contact: NextPage = () => {
             </div>
             <div className="order-1 mt-4 flex justify-center bg-stone-100 md:gap-2">
               <label htmlFor="spotify-link-3" className="invisible absolute">
-                Scalise Spotify Link
+                Second Hand Dan Spotify Link
               </label>
               <label htmlFor="applemusic-link-3" className="invisible absolute">
-                Scalise Apple Music Link
+                Second Hand Dan Apple Music Link
               </label>
               <label htmlFor="twitter-link-3" className="invisible absolute">
-                Scalise Twitter Link
+                Second Hand Dan Twitter Link
               </label>
               <label htmlFor="facebook-link-3" className="invisible absolute">
-                Scalise Facebook Link
+                Second Hand Dan Facebook Link
               </label>
               <label htmlFor="instagram-link-3" className="invisible absolute">
-                Scalise Instagram Link
+                Second Hand Dan Instagram Link
               </label>
               <label htmlFor="tiktok-link-3" className="invisible absolute">
-                Scalise TikTok Link
+                Second Hand Dan TikTok Link
               </label>
               <label htmlFor="youtube-link-3" className="invisible absolute">
-                Scalise Youtube Link
+                Second Hand Dan Youtube Link
               </label>
               <Link
-                href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
+                href="https://open.spotify.com/artist/6aSMP8tczWHrqgKCwuG4bv"
                 className="block rounded py-2 pl-3 pr-4 text-stone-950 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -158,7 +158,7 @@ const Contact: NextPage = () => {
               </Link>
 
               <Link
-                href="https://twitter.com/ScaliseTheBand"
+                href="https://twitter.com/secondhanddanband"
                 className="block rounded py-2 pl-3 pr-4 text-stone-950 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -168,7 +168,7 @@ const Contact: NextPage = () => {
               </Link>
 
               <Link
-                href="https://www.facebook.com/ScaliseTheBand"
+                href="https://www.facebook.com/secondhanddanband"
                 className="block rounded py-2 pl-3 pr-4 text-stone-950 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
                 rel="noopener noreferrer"
                 target="_blank"

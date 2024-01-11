@@ -71,7 +71,7 @@ const SingleLayout = ({
         >
           <Image
             src={image}
-            alt="Scalise Single Cover"
+            alt="Second Hand Dan Single Cover"
             loading="lazy"
             width={504}
             height={504}
@@ -106,7 +106,7 @@ const Music: NextPage = () => {
   return (
     <>
       <Head>
-        <title>MUSIC-SCALISE</title>
+        <title>MUSIC-SECOND HAND DAN</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"

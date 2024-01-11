@@ -64,7 +64,8 @@ const Product: NextPage = () => {
         {!isUnsubscribed && (
           <>
             <h1 className="text-stone-100">
-              Are you sure you want to unsubscribe from the Scalise newsletter?
+              Are you sure you want to unsubscribe from the Second Hand Dan
+              newsletter?
             </h1>
             <button
               onClick={handleUnsubscribe}

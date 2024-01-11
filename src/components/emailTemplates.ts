@@ -231,7 +231,7 @@ export const backInStock = (item_name: string, size: string) => {
           <td style="overflow-wrap:break-word;word-break:break-word;padding:30px 20px 20px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <div style="font-size: 14px; line-height: 140%; text-align: left; word-wrap: break-word;">
-        <p style="line-height: 140%;"><span style="line-height: 19.6px;">SCALISE</span></p>
+        <p style="line-height: 140%;"><span style="line-height: 19.6px;">SECOND HAND DAN</span></p>
       </div>
     
           </td>
@@ -298,7 +298,7 @@ export const backInStock = (item_name: string, size: string) => {
           <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 20px 30px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <div style="font-size: 12px; line-height: 140%; text-align: left; word-wrap: break-word;">
-        <p style="line-height: 140%;"><span style="color: #95a5a6; line-height: 16.8px;">Don't want more emails from Scalise? <a rel="noopener" href="{$unsubscribe}" target="_blank">Unsubscribe</a></span></p>
+        <p style="line-height: 140%;"><span style="color: #95a5a6; line-height: 16.8px;">Don't want more emails from Second Hand Dan? <a rel="noopener" href="{$unsubscribe}" target="_blank">Unsubscribe</a></span></p>
       </div>
     
           </td>
@@ -592,7 +592,7 @@ export const backInStockSignUp = (
           <td style="overflow-wrap:break-word;word-break:break-word;padding:30px 20px 20px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <div style="font-size: 14px; line-height: 140%; text-align: left; word-wrap: break-word;">
-        <p style="line-height: 140%;"><span style="line-height: 19.6px;">SCALISE</span></p>
+        <p style="line-height: 140%;"><span style="line-height: 19.6px;">SECOND HAND DAN</span></p>
       </div>
     
           </td>
@@ -660,7 +660,7 @@ export const backInStockSignUp = (
           <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 20px 30px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <div style="font-size: 12px; line-height: 140%; text-align: left; word-wrap: break-word;">
-        <p style="line-height: 140%;"><span style="color: #95a5a6; line-height: 16.8px;">Don't want more emails from Scalise? <a rel="noopener" href="{$unsubscribe}" target="_blank">Unsubscribe</a></span></p>
+        <p style="line-height: 140%;"><span style="color: #95a5a6; line-height: 16.8px;">Don't want more emails from Second Hand Dan? <a rel="noopener" href="{$unsubscribe}" target="_blank">Unsubscribe</a></span></p>
       </div>
     
           </td>
@@ -950,7 +950,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
         <td style="overflow-wrap:break-word;word-break:break-word;padding:30px 20px 20px;font-family:arial,helvetica,sans-serif;" align="left">
           
     <div style="font-size: 14px; line-height: 140%; text-align: left; word-wrap: break-word;">
-      <p style="line-height: 140%;"><span style="line-height: 19.6px;">SCALISE</span></p>
+      <p style="line-height: 140%;"><span style="line-height: 19.6px;">SECOND HAND DAN</span></p>
     </div>
   
         </td>
@@ -1025,7 +1025,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
         <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 20px 30px;font-family:arial,helvetica,sans-serif;" align="left">
           
     <div style="font-size: 12px; line-height: 140%; text-align: left; word-wrap: break-word;">
-      <p style="line-height: 140%;"><span style="color: #95a5a6; line-height: 16.8px;">Don't want more emails from Scalise? <a rel="noopener" href="{$unsubscribe}" target="_blank">Unsubscribe</a></span></p>
+      <p style="line-height: 140%;"><span style="color: #95a5a6; line-height: 16.8px;">Don't want more emails from Second Hand Dan? <a rel="noopener" href="{$unsubscribe}" target="_blank">Unsubscribe</a></span></p>
     </div>
   
         </td>
@@ -1314,7 +1314,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
         <td style="overflow-wrap:break-word;word-break:break-word;padding:30px 20px 20px;font-family:arial,helvetica,sans-serif;" align="left">
           
     <div style="font-size: 14px; line-height: 140%; text-align: left; word-wrap: break-word;">
-      <p style="line-height: 140%;"><span style="line-height: 19.6px;">SCALISE</span></p>
+      <p style="line-height: 140%;"><span style="line-height: 19.6px;">SECOND HAND DAN</span></p>
     </div>
   
         </td>
@@ -1379,7 +1379,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
         <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 20px 30px;font-family:arial,helvetica,sans-serif;" align="left">
           
     <div style="font-size: 12px; line-height: 140%; text-align: left; word-wrap: break-word;">
-      <p style="line-height: 140%;"><span style="color: #95a5a6; line-height: 16.8px;">Don't want more emails from Scalise? <a rel="noopener" href="{$unsubscribe}" target="_blank">Unsubscribe</a></span></p>
+      <p style="line-height: 140%;"><span style="color: #95a5a6; line-height: 16.8px;">Don't want more emails from Second Hand Dan? <a rel="noopener" href="{$unsubscribe}" target="_blank">Unsubscribe</a></span></p>
     </div>
   
         </td>

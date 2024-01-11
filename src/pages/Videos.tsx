@@ -40,7 +40,7 @@ const Videos: NextPage = () => {
   return (
     <>
       <Head>
-        <title>VIDEOS-SCALISE</title>
+        <title>VIDEOS-SECOND HAND DAN</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"

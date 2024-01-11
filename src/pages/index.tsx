@@ -27,7 +27,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>SCALISE</title>
+        <title>SECOND HAND DAN</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"
@@ -63,6 +63,12 @@ const Home: NextPage = () => {
         />
       </Head>
       <main className="max-w-screen flex min-h-screen flex-col items-center justify-center overflow-hidden bg-stone-950 text-center">
+        <h1 className="pt-6 text-lg font-medium text-stone-100 md:text-xl lg:pt-10 lg:text-2xl">
+          Formerly Scalise <br />
+          <br /> Website function may be limited until our transition is
+          complete on all platforms <br />
+          <br /> We appreciate your patience
+        </h1>
         <div className="relative min-h-screen w-full pb-20 pt-12">
           <Image
             src={black_paper_background}
@@ -125,7 +131,7 @@ const Home: NextPage = () => {
               <iframe
                 width="100%"
                 src="https://www.youtube.com/embed/QMhLvYWD00Y"
-                title="Scalise - Airbag [Live @ 7th St Entry]"
+                title="Second Hand Dan - Airbag [Live @ 7th St Entry]"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="aspect-video"

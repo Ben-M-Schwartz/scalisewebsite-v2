@@ -38,7 +38,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <Head>
           <meta
             name="description"
-            content="Band Webpage for Scalise The Band"
+            content="Band Webpage for Second Hand Dan The Band"
           />
           <link rel="shortcut icon" href="/images/favicon.ico" />
           <link

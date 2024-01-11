@@ -71,28 +71,28 @@ const Subscribe: NextPage = () => {
         )}
         <div className="mt-4 flex justify-around md:justify-center md:gap-2 xl:gap-4">
           <label htmlFor="spotify-link-2" className="invisible absolute">
-            Scalise Spotify Link
+            Second Hand Dan Spotify Link
           </label>
           <label htmlFor="applemusic-link-2" className="invisible absolute">
-            Scalise Apple Music Link
+            Second Hand Dan Apple Music Link
           </label>
           <label htmlFor="twitter-link-2" className="invisible absolute">
-            Scalise Twitter Link
+            Second Hand Dan Twitter Link
           </label>
           <label htmlFor="facebook-link-2" className="invisible absolute">
-            Scalise Facebook Link
+            Second Hand Dan Facebook Link
           </label>
           <label htmlFor="instagram-link-2" className="invisible absolute">
-            Scalise Instagram Link
+            Second Hand Dan Instagram Link
           </label>
           <label htmlFor="tiktok-link-2" className="invisible absolute">
-            Scalise TikTok Link
+            Second Hand Dan TikTok Link
           </label>
           <label htmlFor="youtube-link-2" className="invisible absolute">
-            Scalise Youtube Link
+            Second Hand Dan Youtube Link
           </label>
           <Link
-            href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
+            href="https://open.spotify.com/artist/6aSMP8tczWHrqgKCwuG4bv"
             className="block rounded  py-2 pl-3 pr-4 text-stone-950 hover:text-red-800 md:p-0"
             rel="noopener noreferrer"
             target="_blank"
@@ -112,7 +112,7 @@ const Subscribe: NextPage = () => {
           </Link>
 
           <Link
-            href="https://twitter.com/ScaliseTheBand"
+            href="https://twitter.com/secondhanddanband"
             className="block rounded  py-2 pl-3 pr-4 text-stone-950 hover:text-red-800 md:p-0"
             rel="noopener noreferrer"
             target="_blank"
@@ -122,7 +122,7 @@ const Subscribe: NextPage = () => {
           </Link>
 
           <Link
-            href="https://www.facebook.com/ScaliseTheBand"
+            href="https://www.facebook.com/secondhanddanband"
             className="block rounded  py-2 pl-3 pr-4 text-stone-950 hover:text-red-800 md:p-0"
             rel="noopener noreferrer"
             target="_blank"
@@ -161,7 +161,7 @@ const Subscribe: NextPage = () => {
             <YoutubeIcon />
           </Link>
         </div>
-        <p className="mt-4 text-center">© Scalise 2023</p>
+        <p className="mt-4 text-center">© Second Hand Dan 2024</p>
       </div>
     </main>
   );

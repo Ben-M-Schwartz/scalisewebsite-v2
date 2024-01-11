@@ -100,7 +100,7 @@ const EPK: NextPage = () => {
   return (
     <>
       <Head>
-        <title>EPK - SCALISE</title>
+        <title>EPK - SECOND HAND DAN</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"
@@ -146,26 +146,14 @@ const EPK: NextPage = () => {
             priority
           />
           <h1 className="z-10 py-48 text-center text-6xl text-stone-100 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] sm:text-8xl">
-            SCALISE
+            SECOND HAND DAN
           </h1>
         </div>
         <div className="flex items-center justify-center bg-stone-100 pb-36 pt-24">
           <div className="w-11/12 md:w-2/3">
             <h1 className="pb-12 text-6xl font-extrabold">Bio</h1>
-            <p>
-              “We should ask Mr. Scalise what our band name should be... and if
-              it sucks we’ll just be Scalise.”
-            </p>
-            <p className="text-right">- Ben</p>
-            <p className="pb-12">
-              Named after their high-school band director, Scalise is an indie
-              folk/rock band with two lead singers and a horn section out of the
-              south metro Twin Cities area. Since the release of their debut
-              album at the height of the COVID-19 pandemic, they&aops;ve been
-              performing at local venues and have opened for nationally touring
-              acts. Scalise is currently promoting the release of their
-              sophomore album, &quot;Before We Dry Up.&quot;
-            </p>
+            <p></p>
+            <p className="pb-12">Currently in the middle of rebranding</p>
 
             <p className="">
               The band started when core members Graden Hill (vocals/guitar),
@@ -175,11 +163,7 @@ const EPK: NextPage = () => {
               jazz combo including Collyn Camara (guitar/trombone) and Sarah
               Navratil (saxophone). After practicing rock music instead of jazz,
               Camara, and as an occasional member, Navratil, were added to the
-              lineup. After three years of constantly changing band names
-              (Backwards Boat, Dry Run, The Decent, The Black Hills, Broken
-              Bear, etc.) Schwartz decided it was best to ask the director what
-              to name the band. After rejecting Mr. Scalise&apos;s suggestions,
-              Schwartz presented &quot;Scalise&quot;.
+              lineup.
             </p>
           </div>
         </div>
@@ -461,7 +445,7 @@ const EPK: NextPage = () => {
                 STAGE PLOT AND TECH RIDER
               </h1>
               <button className="w-full break-normal border-8 border-red-800 py-4 text-lg text-red-800 hover:bg-red-800 hover:text-stone-100">
-                <Link href="/ScaliseTechRider.pdf">
+                <Link href="/Second Hand DanTechRider.pdf">
                   CLICK HERE TO DOWNLOAD TECH RIDER
                 </Link>
               </button>
@@ -489,7 +473,7 @@ const EPK: NextPage = () => {
             </p>
             <div className="order-1 mt-4 flex justify-center sm:gap-4">
               <label htmlFor="spotify-link" className="invisible absolute">
-                Scalise Spotify Link
+                Second Hand Dan Spotify Link
               </label>
               <Link
                 href="https://open.spotify.com/artist/1p2Ey5OjAPtcfhzmwlfIPZ?si=E5OkbxepRJSOZ1Zq7eeiKg"
@@ -501,7 +485,7 @@ const EPK: NextPage = () => {
                 <SpotifyIcon />
               </Link>
               <label htmlFor="applemusic-link" className="invisible absolute">
-                Scalise Apple Music Link
+                Second Hand Dan Apple Music Link
               </label>
               <Link
                 href="https://music.apple.com/us/artist/scalise/1529031635"
@@ -513,10 +497,10 @@ const EPK: NextPage = () => {
                 <AppleMusicIcon />
               </Link>
               <label htmlFor="twitter-link" className="invisible absolute">
-                Scalise Twitter Link
+                Second Hand Dan Twitter Link
               </label>
               <Link
-                href="https://twitter.com/ScaliseTheBand"
+                href="https://twitter.com/Second Hand DanTheBand"
                 className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -525,10 +509,10 @@ const EPK: NextPage = () => {
                 <TwitterIcon />
               </Link>
               <label htmlFor="facebook-link" className="invisible absolute">
-                Scalise Facebook Link
+                Second Hand Dan Facebook Link
               </label>
               <Link
-                href="https://www.facebook.com/ScaliseTheBand"
+                href="https://www.facebook.com/Second Hand DanTheBand"
                 className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -537,10 +521,10 @@ const EPK: NextPage = () => {
                 <FacebookIcon />
               </Link>
               <label htmlFor="instagram-link" className="invisible absolute">
-                Scalise Instagram Link
+                Second Hand Dan Instagram Link
               </label>
               <Link
-                href="https://www.instagram.com/ScaliseTheBand/"
+                href="https://www.instagram.com/Second Hand DanTheBand/"
                 className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -549,7 +533,7 @@ const EPK: NextPage = () => {
                 <InstagramIcon />
               </Link>
               <label htmlFor="tiktok-link" className="invisible absolute">
-                Scalise TikTok Link
+                Second Hand Dan TikTok Link
               </label>
               <Link
                 href="https://www.tiktok.com/@scaliseband"
@@ -561,7 +545,7 @@ const EPK: NextPage = () => {
                 <TikTokIcon />
               </Link>
               <label htmlFor="youtube-link" className="invisible absolute">
-                Scalise Youtube Link
+                Second Hand Dan Youtube Link
               </label>
               <Link
                 href="https://www.youtube.com/channel/UCWBsxAAhmKP1nRHWQQ5N0Qg"

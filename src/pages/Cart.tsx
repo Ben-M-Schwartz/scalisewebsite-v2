@@ -256,7 +256,7 @@ const Cart: NextPage = () => {
   return (
     <>
       <Head>
-        <title>CART-SCALISE</title>
+        <title>CART-SECOND HAND DAN</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"
@@ -471,7 +471,7 @@ const Cart: NextPage = () => {
                 className="rounded-lg bg-stone-100"
               >
                 <h1 className="text-2xl text-stone-950 md:text-4xl">
-                  Scalise Shipping Rates
+                  Second Hand Dan Shipping Rates
                 </h1>
                 <table className="w-full text-left text-stone-950">
                   <tr>

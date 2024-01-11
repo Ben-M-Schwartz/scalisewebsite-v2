@@ -165,7 +165,7 @@ const Store: NextPage = (
   return (
     <>
       <Head>
-        <title>STORE-SCALISE</title>
+        <title>STORE-SECOND HAND DAN</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"
@@ -220,6 +220,14 @@ const Store: NextPage = (
             width={281}
           />
         </div>
+        <h1 className="pt-6 text-center text-lg font-medium text-stone-100 md:text-xl lg:pt-10 lg:text-2xl">
+          NOTICE <br />
+          The merch currently shown is using the band&apos;s previous name.
+          Updated designs with the new name will be available soon
+          <br />
+          <br />
+          We appreciate your patience
+        </h1>
         <div className="container flex flex-col items-center justify-center gap-4 pt-16 sm:grid sm:grid-cols-2 sm:items-start sm:justify-center lg:grid-cols-3">
           {products.map((product) => (
             <Product key={product.id} product={product} />

@@ -135,7 +135,7 @@ const Show = ({ show }: { show: ShowType }) => {
             >
               <TwitterShareButton
                 url={show.bandsintown_link as string}
-                title={"Check out this upcoming event from Scalise!"}
+                title={"Check out this upcoming event from Second Hand Dan!"}
                 blankTarget
               >
                 <div className="rounde flex text-stone-100 hover:bg-transparent hover:text-red-800 md:p-0">
@@ -144,7 +144,7 @@ const Show = ({ show }: { show: ShowType }) => {
               </TwitterShareButton>
               <FacebookShareButton
                 url={show.bandsintown_link as string}
-                quote={"Check out this upcoming event from Scalise!"}
+                quote={"Check out this upcoming event from Second Hand Dan!"}
                 hashtag={"#music"}
                 blankTarget
               >
@@ -155,7 +155,7 @@ const Show = ({ show }: { show: ShowType }) => {
               </FacebookShareButton>
               <EmailShareButton
                 url={show.bandsintown_link as string}
-                subject={"Check out this upcoming event from Scalise!"}
+                subject={"Check out this upcoming event from Second Hand Dan!"}
                 body=""
                 blankTarget
               >
@@ -259,7 +259,7 @@ const Shows: NextPage = (
   return (
     <>
       <Head>
-        <title>SHOWS-SCALISE</title>
+        <title>SHOWS-SECOND HAND DAN</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"

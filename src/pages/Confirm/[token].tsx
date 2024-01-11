@@ -123,7 +123,7 @@ const Confirm: NextPage = () => {
             <div className="flex flex-col items-center justify-center gap-2">
               <p className="w-5/6 text-center text-2xl text-stone-100 md:w-full">
                 You Are Now Subscribed! You will start receiving emails from
-                SCALISE
+                SECOND HAND DAN
               </p>
               <Link
                 href="/"
