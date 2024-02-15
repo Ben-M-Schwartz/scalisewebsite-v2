@@ -20,11 +20,16 @@ const config = {
         headers: createSecureHeaders({
           contentSecurityPolicy: {
             directives: {
-              defaultSrc: ["'self'", "https://clerk.scalise.band"],
+              defaultSrc: [
+                "'self'",
+                "https://clerk.scalise.band",
+                "httpd://clerk.secondhanddan.com",
+              ],
               styleSrc: ["'self'", "'unsafe-inline'"],
               imgSrc: [
                 "'self'",
                 "https://img.clerk.com",
+                "httpd://clerk.secondhanddan.com",
                 "https://www.gravatar.com",
               ],
               baseUri: "'self'",
@@ -32,18 +37,21 @@ const config = {
               frameSrc: [
                 "https://editor.unlayer.com",
                 "https://clerk.scalise.band",
+                "httpd://clerk.secondhanddan.com",
                 "https://www.youtube.com",
               ],
               scriptSrc: [
                 "'self'",
                 "https://editor.unlayer.com/embed.js",
                 "https://clerk.scalise.band",
+                "httpd://clerk.secondhanddan.com",
               ],
               workerSrc: "blob: 'self'",
               connectSrc: [
                 "'self'",
                 "https://clerk.scalise.band",
                 "https://vitals.vercel-insights.com",
+                "https://clerk.secondhanddan.com",
               ],
               //eslint-disable-next-line
               //@ts-ignore
