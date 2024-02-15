@@ -469,7 +469,7 @@ const EPK: NextPage = () => {
               Contact Us
             </h1>
             <p className="order-1 w-2/3 text-center text-xl md:w-4/5 md:text-center">
-              Fill out this form or reach out to us at graden@scalise.band
+              Fill out this form or reach out to us at graden@secondhanddan.com
             </p>
             <div className="order-1 mt-4 flex justify-center sm:gap-4">
               <label htmlFor="spotify-link" className="invisible absolute">
@@ -500,7 +500,7 @@ const EPK: NextPage = () => {
                 Second Hand Dan Twitter Link
               </label>
               <Link
-                href="https://twitter.com/Second Hand DanTheBand"
+                href="https://twitter.com/secondhanddanband"
                 className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -512,7 +512,7 @@ const EPK: NextPage = () => {
                 Second Hand Dan Facebook Link
               </label>
               <Link
-                href="https://www.facebook.com/Second Hand DanTheBand"
+                href="https://www.facebook.com/secondhanddanband"
                 className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -524,7 +524,7 @@ const EPK: NextPage = () => {
                 Second Hand Dan Instagram Link
               </label>
               <Link
-                href="https://www.instagram.com/Second Hand DanTheBand/"
+                href="https://www.instagram.com/secondhanddanband/"
                 className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -536,7 +536,7 @@ const EPK: NextPage = () => {
                 Second Hand Dan TikTok Link
               </label>
               <Link
-                href="https://www.tiktok.com/@scaliseband"
+                href="https://www.tiktok.com/@secondhanddanband"
                 className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
