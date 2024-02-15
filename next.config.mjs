@@ -23,13 +23,13 @@ const config = {
               defaultSrc: [
                 "'self'",
                 "https://clerk.scalise.band",
-                "httpd://clerk.secondhanddan.com",
+                "https://clerk.secondhanddan.com",
               ],
               styleSrc: ["'self'", "'unsafe-inline'"],
               imgSrc: [
                 "'self'",
                 "https://img.clerk.com",
-                "httpd://clerk.secondhanddan.com",
+                "https://clerk.secondhanddan.com",
                 "https://www.gravatar.com",
               ],
               baseUri: "'self'",
@@ -37,14 +37,14 @@ const config = {
               frameSrc: [
                 "https://editor.unlayer.com",
                 "https://clerk.scalise.band",
-                "httpd://clerk.secondhanddan.com",
+                "https://clerk.secondhanddan.com",
                 "https://www.youtube.com",
               ],
               scriptSrc: [
                 "'self'",
                 "https://editor.unlayer.com/embed.js",
                 "https://clerk.scalise.band",
-                "httpd://clerk.secondhanddan.com",
+                "https://clerk.secondhanddan.com",
               ],
               workerSrc: "blob: 'self'",
               connectSrc: [
