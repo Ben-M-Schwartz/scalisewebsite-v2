@@ -50,7 +50,7 @@ const emailMailingList = async (
 ) => {
   const subList = await db.select().from(subscribers);
 
-  const sentFrom = new Sender("noreply@scalise.band", "Second Hand Dan");
+  const sentFrom = new Sender("noreply@secondhanddan.com", "Second Hand Dan");
   const bulkMail = [];
 
   // Send email to each subscriber using mailersend
@@ -58,7 +58,7 @@ const emailMailingList = async (
     const emailParams = new EmailParams()
       .setFrom(sentFrom)
       .setTo([new Recipient(subscriber.email as string)])
-      .setReplyTo(new Recipient("graden@scalise.band"))
+      .setReplyTo(new Recipient("graden@secondhanddan.com"))
       .setSubject(subject)
       .setHtml(html);
 
@@ -74,7 +74,7 @@ export const sendConfirmationEmail = async (
   email: string,
   token: string
 ) => {
-  const sentFrom = new Sender("noreply@scalise.band", "Second Hand Dan");
+  const sentFrom = new Sender("noreply@secondhanddan.com", "Second Hand Dan");
   const recipients = [new Recipient(email)];
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
@@ -99,7 +99,7 @@ const sendInitialNotificationEmail = async (
   product_name: string,
   product_size: string
 ) => {
-  const sentFrom = new Sender("noreply@scalise.band", "Second Hand Dan");
+  const sentFrom = new Sender("noreply@secondhanddan.com", "Second Hand Dan");
   const recipients = [new Recipient(email)];
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
@@ -116,7 +116,7 @@ const sendNotifications = async (
   size: string
 ) => {
   for (const user of users) {
-    const sentFrom = new Sender("noreply@scalise.band", "Second Hand Dan");
+    const sentFrom = new Sender("noreply@secondhanddan.com", "Second Hand Dan");
     const recipients = [new Recipient(user.email)];
     const emailParams = new EmailParams()
       .setFrom(sentFrom)
@@ -129,7 +129,7 @@ const sendNotifications = async (
 };
 
 const userAlreadySubscribed = async (email: string, url: string) => {
-  const sentFrom = new Sender("noreply@scalise.band", "Second Hand Dan");
+  const sentFrom = new Sender("noreply@secondhanddan.com", "Second Hand Dan");
   const recipients = [new Recipient(email)];
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
@@ -153,8 +153,8 @@ const sendContactFormEmail = async (
   subject: string,
   message: string
 ) => {
-  const sentFrom = new Sender("noreply@scalise.band", "Contact Form");
-  const recipients = [new Recipient("graden@scalise.band")];
+  const sentFrom = new Sender("noreply@secondhanddan.com", "Contact Form");
+  const recipients = [new Recipient("graden@secondhanddan.com")];
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
     .setTo(recipients)
@@ -173,8 +173,8 @@ const sendContactFormEmail = async (
 export const emailRouter = createTRPCRouter({
   notifyGraden: publicProcedure.mutation(async () => {
     const emailParams = new EmailParams()
-      .setFrom(new Sender("orders@scalise.band"))
-      .setTo([new Recipient("graden@scalise.band")])
+      .setFrom(new Sender("orders@secondhanddan.com"))
+      .setTo([new Recipient("graden@secondhanddan.com")])
       .setReplyTo(new Recipient("benschwartz33@gmail.com"))
       .setSubject("SECOND HAND DAN - New Online Order")
       .setText("There is a new online order from the website");
@@ -347,12 +347,15 @@ export const emailRouter = createTRPCRouter({
     .mutation(async ({ input }) => {
       if (input.testRecipient !== "") {
         //await testEmail(input.subject, input.html, input.testRecipient);
-        const sentFrom = new Sender("noreply@scalise.band", "Second Hand Dan");
+        const sentFrom = new Sender(
+          "noreply@secondhanddan.com",
+          "Second Hand Dan"
+        );
         const recipients = [new Recipient(input.testRecipient)];
         const emailParams = new EmailParams()
           .setFrom(sentFrom)
           .setTo(recipients)
-          .setReplyTo(new Recipient("graden@scalise.band"))
+          .setReplyTo(new Recipient("graden@secondhanddan.com"))
           .setSubject(input.subject)
           .setHtml(input.html);
         if (input.scheduled) emailParams.setSendAt(input.date);

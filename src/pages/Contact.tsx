@@ -99,10 +99,10 @@ const Contact: NextPage = () => {
             <p className="order-1 w-2/3 text-center md:w-4/5">
               You can also reach out to us at{" "}
               <a
-                href="mailto:graden@scalise.band"
+                href="mailto:graden@secondhanddan.com"
                 className="text-red-700 hover:text-red-800 hover:underline"
               >
-                graden@scalise.band
+                graden@secondhanddan.com
               </a>{" "}
               or through any socials below.
             </p>
@@ -178,7 +178,7 @@ const Contact: NextPage = () => {
               </Link>
 
               <Link
-                href="https://www.tiktok.com/@scaliseband"
+                href="https://www.instagram.com/secondhanddanband"
                 className="block rounded py-2 pl-3 pr-4 text-stone-950 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -188,7 +188,7 @@ const Contact: NextPage = () => {
               </Link>
 
               <Link
-                href="https://www.tiktok.com/@scaliseband"
+                href="https://www.tiktok.com/@secondhanddanband"
                 className="block rounded py-2 pl-3 pr-4 text-stone-950 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
                 rel="noopener noreferrer"
                 target="_blank"

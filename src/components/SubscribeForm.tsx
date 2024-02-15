@@ -132,7 +132,7 @@ const Subscribe: NextPage = () => {
           </Link>
 
           <Link
-            href="https://www.tiktok.com/@scaliseband"
+            href="https://www.instagram.com/secondhanddanband"
             className="block rounded  py-2 pl-3 pr-4 text-stone-950 hover:text-red-800 md:p-0"
             rel="noopener noreferrer"
             target="_blank"
@@ -142,7 +142,7 @@ const Subscribe: NextPage = () => {
           </Link>
 
           <Link
-            href="https://www.tiktok.com/@scaliseband"
+            href="https://www.tiktok.com/@secondhanddanband"
             className="block rounded  py-2 pl-3 pr-4 text-stone-950 hover:text-red-800 md:p-0"
             rel="noopener noreferrer"
             target="_blank"

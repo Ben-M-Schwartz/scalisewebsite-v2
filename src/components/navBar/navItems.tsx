@@ -320,7 +320,7 @@ export function SocialLinks() {
           Second Hand Dan TikTok Link
         </label>
         <Link
-          href="https://www.tiktok.com/@scaliseband"
+          href="https://www.tiktok.com/@secondhanddanband"
           className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           rel="noopener noreferrer"
           target="_blank"
