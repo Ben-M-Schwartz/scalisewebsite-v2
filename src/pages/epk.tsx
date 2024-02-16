@@ -500,7 +500,7 @@ const EPK: NextPage = () => {
                 Second Hand Dan Twitter Link
               </label>
               <Link
-                href="https://twitter.com/secondhanddanband"
+                href="https://twitter.com/2ndHandDan"
                 className="block rounded border-stone-700 py-2 pl-3 pr-4 text-stone-100 hover:bg-stone-700 hover:text-stone-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
                 rel="noopener noreferrer"
                 target="_blank"
