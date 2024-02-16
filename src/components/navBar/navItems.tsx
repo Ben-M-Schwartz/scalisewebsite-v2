@@ -266,7 +266,7 @@ export function SocialLinks() {
           Second Hand Dan Twitter Link
         </label>
         <Link
-          href="https://twitter.com/secondhanddanband"
+          href="https://twitter.com/2ndHandDan"
           className="hover: y-2 block rounded pl-3  pr-4 text-stone-950 hover:text-red-800 md:p-0 md:hover:bg-transparent"
           rel="noopener noreferrer"
           target="_blank"
