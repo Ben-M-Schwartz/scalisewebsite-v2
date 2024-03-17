@@ -158,7 +158,7 @@ const Contact: NextPage = () => {
               </Link>
 
               <Link
-                href="https://twitter.com/secondhanddanband"
+                href="https://twitter.com/2ndHandDan"
                 className="block rounded py-2 pl-3 pr-4 text-stone-950 md:p-0 md:hover:bg-transparent md:hover:text-red-800"
                 rel="noopener noreferrer"
                 target="_blank"
