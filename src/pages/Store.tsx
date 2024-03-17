@@ -223,7 +223,8 @@ const Store: NextPage = (
         <h1 className="pt-6 text-center text-lg font-medium text-stone-100 md:text-xl lg:pt-10 lg:text-2xl">
           NOTICE <br />
           The merch currently shown is using the band&apos;s previous name.
-          Updated designs with the new name will be available soon
+          Updated designs with the new name will be available soon. Please email
+          graden@secondhanddan.com to order any &apos;Scalise&apos; merch.
           <br />
           <br />
           We appreciate your patience
