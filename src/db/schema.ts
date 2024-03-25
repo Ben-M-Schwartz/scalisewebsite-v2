@@ -1,32 +1,42 @@
+// import {
+//   sqliteTable,
+//   int,
+//   real,
+//   text,
+//   index,
+//   serial,
+//   timestamp,
+//   real,
+//   json,
+//   boolean,
+// } from "drizzle-orm/mysql-core";
+
+import { sql } from "drizzle-orm";
 import {
-  mysqlTable,
-  int,
-  double,
-  varchar,
+  sqliteTable,
+  integer,
+  real,
+  text,
   index,
-  serial,
-  timestamp,
-  float,
-  json,
-  boolean,
-} from "drizzle-orm/mysql-core";
+  blob,
+} from "drizzle-orm/sqlite-core";
 
 export const config = {
   runtime: "experimental-edge",
   regions: ["cle1"],
 };
 
-export const product_details = mysqlTable(
+export const product_details = sqliteTable(
   "product_details",
   {
-    id: serial("id").primaryKey().notNull(),
-    name: varchar("name", { length: 255 }),
-    price: double("price", { precision: 10, scale: 2 }),
-    description: varchar("description", { length: 1000 }),
-    image: varchar("image", { length: 255 }),
-    weight: float("weight"),
-    store_order: int("store_order"),
-    sale_price: double("sale_price", { precision: 10, scale: 2 }),
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    name: text("name"),
+    price: real("price"),
+    description: text("description"),
+    image: text("image"),
+    weight: real("weight"),
+    store_order: integer("store_order"),
+    sale_price: real("sale_price"),
   },
   (product_details) => ({
     idIndex: index("productDetails_id_index").on(product_details.id),
@@ -34,13 +44,13 @@ export const product_details = mysqlTable(
   })
 );
 
-export const product_quantity = mysqlTable(
+export const product_quantity = sqliteTable(
   "product_quantity",
   {
-    id: serial("id").primaryKey().notNull(),
-    product_id: int("product_id"),
-    size: varchar("size", { length: 255 }),
-    quantity: int("quantity"),
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    product_id: integer("product_id"),
+    size: text("size"),
+    quantity: integer("quantity"),
   },
   (product_quantity) => ({
     id_size_index_inventory: index("id_size_index_inventory").on(
@@ -50,15 +60,17 @@ export const product_quantity = mysqlTable(
   })
 );
 
-export const in_checkout_amounts = mysqlTable(
+export const in_checkout_amounts = sqliteTable(
   "in_checkout_amounts",
   {
-    id: serial("id").primaryKey().notNull(),
-    product_id: int("product_id"),
-    stripe_checkout_id: varchar("stripe_checkout_id", { length: 255 }),
-    size: varchar("size", { length: 255 }),
-    quantity: int("quantity"),
-    created_at: timestamp("created_at").notNull().defaultNow(),
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    product_id: integer("product_id"),
+    stripe_checkout_id: text("stripe_checkout_id"),
+    size: text("size"),
+    quantity: integer("quantity"),
+    created_at: integer("created_at", { mode: "timestamp" }).default(
+      sql`(CURRENT_TIMESTAMP)`
+    ),
   },
   (amounts) => ({
     id_size_index_checkouts: index("id_size_index_checkouts").on(
@@ -68,33 +80,37 @@ export const in_checkout_amounts = mysqlTable(
   })
 );
 
-export const carts = mysqlTable(
+export const carts = sqliteTable(
   "carts",
   {
-    id: serial("id").primaryKey().notNull(),
-    cart_id: varchar("id", { length: 32 }).primaryKey().notNull(),
-    total_price: double("total_price", { precision: 10, scale: 2 }),
-    total_weight: float("total_weight"),
-    created_at: timestamp("created_at").notNull().defaultNow(),
-    updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    cart_id: text("id").primaryKey().notNull(),
+    total_price: real("total_price"),
+    total_weight: real("total_weight"),
+    created_at: integer("created_at", { mode: "timestamp" }).default(
+      sql`(CURRENT_TIMESTAMP)`
+    ),
+    updated_at: integer("updated_at", { mode: "timestamp" }).default(
+      sql`(CURRENT_TIMESTAMP) on update (CURRENT_TIMESTAMP)`
+    ),
   },
   (table) => ({
     idIndex: index("cart_id_index").on(table.cart_id),
   })
 );
 
-export const cart_items = mysqlTable(
+export const cart_items = sqliteTable(
   "cart_items",
   {
-    id: serial("id").primaryKey().notNull(),
-    cart_id: varchar("cart_id", { length: 32 }),
-    product_id: int("product_id"),
-    size: varchar("size", { length: 255 }),
-    quantity: int("quantity"),
-    price: double("price", { precision: 10, scale: 2 }),
-    weight: float("weight"),
-    item_name: varchar("item_name", { length: 255 }),
-    image: varchar("image", { length: 255 }),
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    cart_id: text("cart_id"),
+    product_id: integer("product_id"),
+    size: text("size"),
+    quantity: integer("quantity"),
+    price: real("price"),
+    weight: real("weight"),
+    item_name: text("item_name"),
+    image: text("image"),
   },
   (cart_items) => ({
     cartIdIndex: index("cart_items__cart_id__idx").on(cart_items.cart_id),
@@ -106,48 +122,52 @@ export const cart_items = mysqlTable(
   })
 );
 
-export const potential_subscribers = mysqlTable(
+export const potential_subscribers = sqliteTable(
   "potential_subscribers",
   {
-    id: serial("id").primaryKey().notNull(),
-    email: varchar("email", { length: 255 }),
-    token: varchar("token", { length: 255 }),
-    created_at: timestamp("created_at").notNull().defaultNow(),
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    email: text("email"),
+    token: text("token"),
+    created_at: integer("updated_at", { mode: "timestamp" }).default(
+      sql`(CURRENT_TIMESTAMP) on update (CURRENT_TIMESTAMP)`
+    ),
   },
   (table) => ({
     subscriberIndex: index("subscriber_index").on(table.token),
   })
 );
 
-export const subscribers = mysqlTable(
+export const subscribers = sqliteTable(
   "subscribers",
   {
-    id: serial("id").primaryKey().notNull(),
-    email: varchar("email", { length: 255 }),
-    created_at: timestamp("created_at").notNull().defaultNow(),
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    email: text("email"),
+    created_at: integer("updated_at", { mode: "timestamp" }).default(
+      sql`(CURRENT_TIMESTAMP) on update (CURRENT_TIMESTAMP)`
+    ),
   },
   (table) => ({
     subscribedIndex: index("subscribed_index").on(table.email),
   })
 );
-export const notifiedAlreadySubscribed = mysqlTable(
+export const notifiedAlreadySubscribed = sqliteTable(
   "notifiedAlreadySubscribed",
   {
-    id: serial("id").primaryKey().notNull(),
-    email: varchar("email", { length: 255 }),
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    email: text("email"),
   },
   (table) => ({
     notifiedIndex: index("notified_index").on(table.email),
   })
 );
 
-export const stockNotifications = mysqlTable(
+export const stockNotifications = sqliteTable(
   "stockNotifications",
   {
-    id: serial("id").primaryKey().notNull(),
-    email: varchar("email", { length: 255 }),
-    product_id: int("product_id"),
-    size: varchar("size", { length: 255 }),
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    email: text("email"),
+    product_id: integer("product_id"),
+    size: text("size"),
   },
   (table) => ({
     notificationIndex: index("notificationIndex").on(
@@ -158,39 +178,39 @@ export const stockNotifications = mysqlTable(
   })
 );
 
-export const orders = mysqlTable("orders", {
-  id: serial("id").primaryKey().notNull(),
-  item: varchar("item", { length: 255 }),
-  size: varchar("size", { length: 255 }),
-  quantity: int("quantity"),
-  customer_name: varchar("customer_name", { length: 255 }),
-  customer_email: varchar("customer_email", { length: 255 }),
-  customer_city: varchar("customer_city", { length: 255 }),
-  customer_state: varchar("customer_state", { length: 255 }),
-  customer_zip: varchar("customer_zip", { length: 255 }),
-  customer_country: varchar("customer_country", { length: 255 }),
-  customer_addressLine1: varchar("customer_addressLine1", { length: 255 }),
-  customer_addressLine2: varchar("customer_addressLine2", { length: 255 }),
-  stripe_checkout_session_id: varchar("stripe_checkout_session_id", {
-    length: 255,
-  }),
-  payment_intent_id: varchar("payment_intent_id", { length: 255 }),
-  payment_status: varchar("payment_status", { length: 255 }),
-  shipped: boolean("shipped").default(false),
-  created_at: timestamp("created_at").notNull().defaultNow(),
+export const orders = sqliteTable("orders", {
+  id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+  item: text("item"),
+  size: text("size"),
+  quantity: integer("quantity"),
+  customer_name: text("customer_name"),
+  customer_email: text("customer_email"),
+  customer_city: text("customer_city"),
+  customer_state: text("customer_state"),
+  customer_zip: text("customer_zip"),
+  customer_country: text("customer_country"),
+  customer_addressLine1: text("customer_addressLine1"),
+  customer_addressLine2: text("customer_addressLine2"),
+  stripe_checkout_session_id: text("stripe_checkout_session_id"),
+  payment_intent_id: text("payment_intent_id"),
+  payment_status: text("payment_status"),
+  shipped: integer("shipped", { mode: "boolean" }).default(0),
+  created_at: integer("updated_at", { mode: "timestamp" }).default(
+    sql`(CURRENT_TIMESTAMP) on update (CURRENT_TIMESTAMP)`
+  ),
 });
 
-export const shows = mysqlTable(
+export const shows = sqliteTable(
   "shows",
   {
-    id: serial("id").primaryKey().notNull(),
-    date: varchar("date", { length: 255 }),
-    location: varchar("location", { length: 255 }),
-    name: varchar("name", { length: 255 }),
-    maps_link: varchar("maps_link", { length: 255 }),
-    bandsintown_link: varchar("bandsintown_link", { length: 5000 }),
-    ticket_link: varchar("ticket_link", { length: 5000 }),
-    ticket_button_text: varchar("ticket_button_text", { length: 255 }),
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    date: text("date"),
+    location: text("location"),
+    name: text("name"),
+    maps_link: text("maps_link"),
+    bandsintown_link: text("bandsintown_link"),
+    ticket_link: text("ticket_link"),
+    ticket_button_text: text("ticket_button_text"),
     // free: boolean("free").default(false),
   },
   (table) => ({
@@ -198,20 +218,14 @@ export const shows = mysqlTable(
   })
 );
 
-export const emailDesigns = mysqlTable(
+export const emailDesigns = sqliteTable(
   "emailDesigns",
   {
-    id: serial("id").primaryKey().notNull(),
-    name: varchar("name", { length: 255 }),
-    json: json("json"),
+    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    name: text("name"),
+    json: blob("json", { mode: "json" }).$type<{ foo: string }>(),
   },
   (table) => ({
     designIndex: index("designIndex").on(table.name),
   })
 );
-
-/*
-!DRIZZLE HAS AN ERROR FOR TIMESTAMPS NEED TO CHANGE (now()) to NOW() and manually add ON UPDATE NOW() to
-!updated_at column in migrations
-*/
-//npx drizzle-kit generate:mysql --out migrations-folder --schema src/db/schema.ts
