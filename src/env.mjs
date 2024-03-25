@@ -11,6 +11,11 @@ const server = z.object({
   DATABASE_USERNAME: z.string(),
   DATABASE_PASSWORD: z.string(),
 
+  TIDB_HOST: z.string(),
+  TIDB_USER: z.string(),
+  TIDB_PASSWORD: z.string(),
+  TIDB_DB_NAME: z.string(),
+
   STRIPE_PUBLISHABLE_KEY: z.string(),
   STRIPE_SECRET_KEY: z.string(),
   STRIPE_WEBHOOK_SECRET: z.string(),
@@ -40,9 +45,14 @@ const client = z.object({
 const processEnv = {
   NODE_ENV: process.env.NODE_ENV,
 
-  DATABASE_HOST: process.env.DATABASE_HOST,
-  DATABASE_USERNAME: process.env.DATABASE_USERNAME,
-  DATABASE_PASSWORD: process.env.DATABASE_PASSWORD,
+  DATABASE_HOST: process.env.PLANETSCALE_DATABASE_HOST,
+  DATABASE_USERNAME: process.env.PLANETSCALE_DATABASE_USERNAME,
+  DATABASE_PASSWORD: process.env.PLANETSCALE_DATABASE_PASSWORD,
+
+  TIDB_HOST: process.env.TIDB_HOST,
+  TIDB_USER: process.env.TIDB_USER,
+  TIDB_PASSWORD: process.env.TIDB_PASSWORD,
+  TIDB_DB_NAME: process.env.TIDB_DB_NAME,
 
   STRIPE_PUBLISHABLE_KEY: process.env.STRIPE_PUBLISHABLE_KEY,
   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
