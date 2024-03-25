@@ -522,7 +522,7 @@ const Product: NextPage = (
                             type="submit"
                             id="submitButton"
                             disabled={addToCartDisabled}
-                            className={`mb-2 mr-2 inline-block w-1/2 rounded-lg border py-5 text-sm font-medium text-stone-100 hover:bg-stone-100 hover:text-stone-950 ${
+                            className={`mb-2 mr-2 inline-block w-full rounded-lg border py-5 text-sm font-medium text-stone-100 hover:bg-stone-100 hover:text-stone-950 md:w-1/2 ${
                               addToCartDisabled ? "cursor-not-allowed" : ""
                             }`}
                             onClick={(e) => {
@@ -538,7 +538,7 @@ const Product: NextPage = (
                         {processing && (
                           <button
                             type="button"
-                            className="mb-2 mr-2 w-1/2 rounded-lg border py-5 text-sm font-medium text-stone-100"
+                            className="mb-2 mr-2 w-full rounded-lg border py-5 text-sm font-medium text-stone-100 md:w-1/2"
                             disabled
                           >
                             <div className="flex flex-row justify-center gap-2 px-2">

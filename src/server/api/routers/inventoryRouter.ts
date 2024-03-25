@@ -154,6 +154,9 @@ export const inventoryRouter = createTRPCRouter({
         store_order: input.store_order,
       };
       const result = await db.insert(product_details).values(newProduct);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const productId = result.insertId;
       const sizesArray = input.sizes.split(",");
       const quantityArray: Array<number> = JSON.parse(
@@ -162,7 +165,8 @@ export const inventoryRouter = createTRPCRouter({
       const newProductQuantities = [];
       for (let i = 0; i < sizesArray.length; i++) {
         const newProductQuantity: NewProdcutQuantity = {
-          product_id: parseInt(productId),
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          product_id: productId,
           size: sizesArray[i],
           quantity: quantityArray[i],
         };
@@ -231,14 +235,14 @@ export const inventoryRouter = createTRPCRouter({
         })
         .where(eq(product_details.id, input.product_id));
 
-        await fetch(
-          `https://www.scalise.band/api/revalidateStore?secret=${
-            process.env.MY_API_SECRET as string
-          }`,
-          {
-            method: "GET",
-          }
-        ).catch((error) => console.error(error));
+      await fetch(
+        `https://www.scalise.band/api/revalidateStore?secret=${
+          process.env.MY_API_SECRET as string
+        }`,
+        {
+          method: "GET",
+        }
+      ).catch((error) => console.error(error));
     }),
 
   addSizes: publicProcedure
@@ -289,14 +293,14 @@ export const inventoryRouter = createTRPCRouter({
           )
         );
 
-        await fetch(
-          `https://www.scalise.band/api/revalidateStore?secret=${
-            process.env.MY_API_SECRET as string
-          }`,
-          {
-            method: "GET",
-          }
-        ).catch((error) => console.error(error));
+      await fetch(
+        `https://www.scalise.band/api/revalidateStore?secret=${
+          process.env.MY_API_SECRET as string
+        }`,
+        {
+          method: "GET",
+        }
+      ).catch((error) => console.error(error));
     }),
 
   remove: publicProcedure
@@ -340,14 +344,14 @@ export const inventoryRouter = createTRPCRouter({
         .set({ sale_price: input.sale_price })
         .where(eq(product_details.id, input.product_id));
 
-        await fetch(
-          `https://www.scalise.band/api/revalidateStore?secret=${
-            process.env.MY_API_SECRET as string
-          }`,
-          {
-            method: "GET",
-          }
-        ).catch((error) => console.error(error));
+      await fetch(
+        `https://www.scalise.band/api/revalidateStore?secret=${
+          process.env.MY_API_SECRET as string
+        }`,
+        {
+          method: "GET",
+        }
+      ).catch((error) => console.error(error));
     }),
 
   removeSale: publicProcedure
@@ -358,13 +362,13 @@ export const inventoryRouter = createTRPCRouter({
         .set({ sale_price: null })
         .where(eq(product_details.id, input.product_id));
 
-        await fetch(
-          `https://www.scalise.band/api/revalidateStore?secret=${
-            process.env.MY_API_SECRET as string
-          }`,
-          {
-            method: "GET",
-          }
-        ).catch((error) => console.error(error));
+      await fetch(
+        `https://www.scalise.band/api/revalidateStore?secret=${
+          process.env.MY_API_SECRET as string
+        }`,
+        {
+          method: "GET",
+        }
+      ).catch((error) => console.error(error));
     }),
 });
