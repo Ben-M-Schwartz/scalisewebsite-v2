@@ -210,7 +210,8 @@ export const cartRouter = createTRPCRouter({
             weight: cart_items.weight,
             item_name: cart_items.item_name,
             quantity_in_stock: product_quantity.quantity,
-            quantity_in_checkouts: in_checkout_amounts.quantity,
+            quantity_in_checkouts:
+              sql`sum(${in_checkout_amounts.quantity})`.mapWith(Number),
             image: product_details.image,
           },
         })
@@ -234,6 +235,19 @@ export const cartRouter = createTRPCRouter({
           product_details,
           eq(cart_items.product_id, product_details.id)
         )
-        .where(eq(carts.cart_id, input.cart_id));
+        .groupBy(
+          cart_items.cart_id,
+          carts.total_price,
+          carts.total_weight,
+          cart_items.product_id,
+          cart_items.price,
+          cart_items.quantity,
+          cart_items.size,
+          cart_items.weight,
+          cart_items.item_name,
+          product_quantity.quantity,
+          product_details.image
+        )
+        .having(({ cart_id }) => eq(cart_id, input.cart_id));
     }),
 });
