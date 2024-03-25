@@ -12,8 +12,6 @@ import { and, eq } from "drizzle-orm/expressions";
 import { stripe } from "~/utils/stripe";
 import { sql } from "drizzle-orm/sql";
 
-import { api } from "~/utils/api";
-
 export const config = {
   /* runtime: "edge", */
   api: {
