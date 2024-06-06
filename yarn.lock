@@ -4457,12 +4457,10 @@ react-dom@18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
-react-email-editor@^1.7.8:
-  version "1.7.10"
-  resolved "https://registry.yarnpkg.com/react-email-editor/-/react-email-editor-1.7.10.tgz#e20eb51c3bddf1ade613fc45ab551d71ff3b9148"
-  integrity sha512-nIBohccq/oIG50/Xdgf3Q9Cml1/URywtQpl9i4HYofEPKYoDqC3gabbYwOeUSC78VkIAGBMzKkyPdyDHUvgsRg==
-  dependencies:
-    unlayer-types latest
+react-email-editor@1.7.8:
+  version "1.7.8"
+  resolved "https://registry.yarnpkg.com/react-email-editor/-/react-email-editor-1.7.8.tgz#f8b56e92fbd3249f3fe83fb26983145f7efd103d"
+  integrity sha512-hnoWpOmBjCnRdLwd6uwZRN+tfCEaSEzZ0KN357pAAF6lotDT7DWHM15QZ2NYhlki4p7yDkMPwVrYgmLEv9aDHw==
 
 react-hook-form@^7.45.4:
   version "7.51.5"
@@ -5376,11 +5374,6 @@ unfetch@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/unfetch/-/unfetch-4.2.0.tgz#7e21b0ef7d363d8d9af0fb929a5555f6ef97a3be"
   integrity sha512-F9p7yYCn6cIW9El1zi0HI6vqpeIvBsr3dSuRO6Xuppb1u5rXpCPmMvLSyECLhybr9isec8Ohl0hPekMVrEinDA==
-
-unlayer-types@latest:
-  version "1.33.0"
-  resolved "https://registry.yarnpkg.com/unlayer-types/-/unlayer-types-1.33.0.tgz#e199a9b4743932964f1027c4fad5b2753819a4ff"
-  integrity sha512-Px6uMWKSPsmVgW3Bc6g1UDiIN1/7xKsEUlm+BjiVIwGD7osUEJUQfh5GYLOseStQT6bISfuGMsKg1OkjJ2ABtQ==
 
 unpipe@1.0.0:
   version "1.0.0"
