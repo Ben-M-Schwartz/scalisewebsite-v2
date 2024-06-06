@@ -103,6 +103,20 @@ const Videos: NextPage = () => {
           />
           <h1 className="z-10 py-10 text-8xl text-red-800 md:py-24">LIVE</h1>
           <div className="z-10 grid w-full grid-cols-1 gap-4 px-10 md:grid-cols-2">
+            <Video embedId={"OzNevfogf3A"} />
+            <Video embedId={"NIlWPTuro3o"} />
+            <Video embedId={"XSrdVCySesQ"} />
+            <Video embedId={"WPhmBEAFOic"} />
+            <Video embedId={"oYSLk_Hwc40"} />
+            <Video embedId={"zBF3moA8QRI"} />
+            <Video embedId={"zal4SZiCZio"} />
+            {/* <Video embedId={"ZPLhr723rQ4"} /> */}
+            {/* <Video embedId={"FK5YZ7trUBQ"} /> */}
+            {/* <Video embedId={"VpMybxNjX_I"} /> */}
+            {/* <Video embedId={"BtEIT-48Uyo"} /> */}
+            {/* <Video embedId={"_EiLHe2B2ps"} /> */}
+            {/* <Video embedId={"fNKKvQzrSk4"} /> */}
+            {/* <Video embedId={"TvdF7yx0EnU"} /> */}
             <Video embedId={"QMhLvYWD00Y"} />
             <Video embedId={"I5gtiSsExDA"} />
             <Video embedId={"8dCrG2TTlF4"} />
@@ -115,17 +129,17 @@ const Videos: NextPage = () => {
               Short Documentary by Josh Baumgart
             </h1>
           </div>
-          <h1 className="z-10 py-10 text-8xl text-red-800 md:py-24">VLOGS</h1>
-          <div className="z-10 grid w-full grid-cols-1 gap-4 px-10 pb-10 md:grid-cols-2">
-            <Video embedId={"jXnpekrt3y0"} />
-            <Video embedId={"gHX7W-cWr2U"} />
-            <Video embedId={"zVqXWE4Y6c4"} />
-            <Video embedId={"kCOOUUlcss8"} />
-            <Video embedId={"1NB1fkEZxRk"} />
-            <Video embedId={"4MYu-auxBuM"} />
-            <Video embedId={"6B3uocHyZu4"} />
-            <Video embedId={"gHX7W-cWr2U"} />
-          </div>
+          {/* <h1 className="z-10 py-10 text-8xl text-red-800 md:py-24">VLOGS</h1> */}
+          {/* <div className="z-10 grid w-full grid-cols-1 gap-4 px-10 pb-10 md:grid-cols-2"> */}
+          {/*   <Video embedId={"jXnpekrt3y0"} /> */}
+          {/*   <Video embedId={"gHX7W-cWr2U"} /> */}
+          {/*   <Video embedId={"zVqXWE4Y6c4"} /> */}
+          {/*   <Video embedId={"kCOOUUlcss8"} /> */}
+          {/*   <Video embedId={"1NB1fkEZxRk"} /> */}
+          {/*   <Video embedId={"4MYu-auxBuM"} /> */}
+          {/*   <Video embedId={"6B3uocHyZu4"} /> */}
+          {/*   <Video embedId={"gHX7W-cWr2U"} /> */}
+          {/* </div> */}
         </div>
       </main>
     </>
