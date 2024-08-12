@@ -63,12 +63,6 @@ const Home: NextPage = () => {
         />
       </Head>
       <main className="max-w-screen flex min-h-screen flex-col items-center justify-center overflow-hidden bg-stone-950 text-center">
-        <h1 className="pt-6 text-lg font-medium text-stone-100 md:text-xl lg:pt-10 lg:text-2xl">
-          Formerly Scalise <br />
-          <br /> Website function may be limited until our transition is
-          complete on all platforms <br />
-          <br /> We appreciate your patience
-        </h1>
         <div className="relative min-h-screen w-full pb-20 pt-12">
           <Image
             src={black_paper_background}

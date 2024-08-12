@@ -111,12 +111,14 @@ const Videos: NextPage = () => {
             <Video embedId={"zBF3moA8QRI"} />
             <Video embedId={"zal4SZiCZio"} />
             <Video embedId={"ZPLhr723rQ4"} />
-            {/* <Video embedId={"FK5YZ7trUBQ"} /> */}
-            {/* <Video embedId={"VpMybxNjX_I"} /> */}
-            {/* <Video embedId={"BtEIT-48Uyo"} /> */}
-            {/* <Video embedId={"_EiLHe2B2ps"} /> */}
-            {/* <Video embedId={"fNKKvQzrSk4"} /> */}
+            <Video embedId={"FK5YZ7trUBQ"} />
+            <Video embedId={"VpMybxNjX_I"} />
+            <Video embedId={"BtEIT-48Uyo"} />
+            <Video embedId={"_EiLHe2B2ps"} />
+            <Video embedId={"fNKKvQzrSk4"} />
+
             {/* <Video embedId={"TvdF7yx0EnU"} /> */}
+
             <Video embedId={"QMhLvYWD00Y"} />
             <Video embedId={"I5gtiSsExDA"} />
             <Video embedId={"8dCrG2TTlF4"} />
