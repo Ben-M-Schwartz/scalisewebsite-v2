@@ -75,9 +75,9 @@ const Home: NextPage = () => {
             <h1 className="pt-6 text-4xl font-medium text-stone-100 md:text-6xl lg:pt-10 lg:text-7xl">
               BEFORE WE DRY UP
             </h1>
-            <h1 className="pt-2 text-2xl font-normal text-stone-100 md:text-3xl lg:pt-4">
+            {/* <h1 className="pt-2 text-2xl font-normal text-stone-100 md:text-3xl lg:pt-4">
               NEW ALBUM OUT NOW
-            </h1>
+            </h1> */}
             <Link
               href="https://distrokid.com/hyperfollow/scalise/before-we-dry-up"
               className="my-6 rounded-sm bg-stone-100 px-8 py-2 text-lg text-stone-950 hover:border hover:border-stone-100 hover:bg-stone-950 hover:text-stone-100 active:border active:border-stone-100 active:bg-stone-700 active:text-stone-100 md:px-12 md:text-xl lg:my-10 lg:py-4 lg:text-2xl"
@@ -134,7 +134,7 @@ const Home: NextPage = () => {
           </div>
         </div>
 
-        <div className="relative w-full">
+        {/* <div className="relative w-full">
           <Image
             src={black_paper_background}
             alt="Black Background"
@@ -168,7 +168,7 @@ const Home: NextPage = () => {
               Shop Now
             </Link>
           </div>
-        </div>
+        </div> */}
 
         <div className="relative min-h-screen w-full">
           <div className="relative flex flex-col gap-20 pb-20">
