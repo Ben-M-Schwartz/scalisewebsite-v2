@@ -118,7 +118,7 @@ const Home: NextPage = () => {
                 AIRBAG LIVE
               </h1>
               <h2 className="text-center text-2xl text-stone-950 lg:text-3xl">
-                NEW LIVE VIDEO FROM 7TH STREET ENTRY!
+                LIVE VIDEO FROM 7TH STREET ENTRY!
               </h2>
             </div>
             <div className="w-5/6 md:w-1/2 xl:w-1/3">
