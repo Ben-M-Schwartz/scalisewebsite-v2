@@ -103,6 +103,7 @@ const Videos: NextPage = () => {
           />
           <h1 className="z-10 py-10 text-8xl text-red-800 md:py-24">LIVE</h1>
           <div className="z-10 grid w-full grid-cols-1 gap-4 px-10 md:grid-cols-2">
+            <Video embedId={"TvdF7yx0EnU"} />
             <Video embedId={"OzNevfogf3A"} />
             <Video embedId={"NIlWPTuro3o"} />
             <Video embedId={"XSrdVCySesQ"} />
@@ -117,7 +118,6 @@ const Videos: NextPage = () => {
             <Video embedId={"_EiLHe2B2ps"} />
             <Video embedId={"fNKKvQzrSk4"} />
 
-            <Video embedId={"TvdF7yx0EnU"} />
 
             <Video embedId={"QMhLvYWD00Y"} />
             <Video embedId={"I5gtiSsExDA"} />
