@@ -220,22 +220,23 @@ const Store: NextPage = (
             width={281}
           />
         </div>
+        <div className="container flex flex-col items-center justify-center gap-4 pt-16 sm:grid sm:grid-cols-2 sm:items-start sm:justify-center lg:grid-cols-3">
+          {products
+            .filter((product) => product.is_legacy === 0)
+            .map((product) => (
+              <Product key={product.id} product={product} />
+            ))}
+        </div>
         <h1 className="pt-6 text-center text-lg font-medium text-stone-100 md:text-xl lg:pt-10 lg:text-2xl">
-          NOTICE <br />
-          The merch currently shown is using the band&apos;s previous name.
-          <br />
-          Updated designs with the new name will be available soon.
-          <br />
-          Please email graden@secondhanddan.com to order any &apos;Scalise&apos;
-          merch.
-          <br />
-          <br />
-          We appreciate your patience
+          50% OFF &quot;SCALISE&quot; MERCH <br />
+          (our former band name)
         </h1>
         <div className="container flex flex-col items-center justify-center gap-4 pt-16 sm:grid sm:grid-cols-2 sm:items-start sm:justify-center lg:grid-cols-3">
-          {products.map((product) => (
-            <Product key={product.id} product={product} />
-          ))}
+          {products
+            .filter((product) => product.is_legacy === 1)
+            .map((product) => (
+              <Product key={product.id} product={product} />
+            ))}
         </div>
       </main>
     </>

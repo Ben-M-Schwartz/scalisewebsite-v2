@@ -152,6 +152,7 @@ export const inventoryRouter = createTRPCRouter({
         weight: input.weight,
         image: input.imageName,
         store_order: input.store_order,
+        is_legacy: 0,
       };
       const result = await db.insert(product_details).values(newProduct);
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
