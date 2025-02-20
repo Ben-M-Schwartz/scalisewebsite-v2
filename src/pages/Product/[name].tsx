@@ -453,7 +453,18 @@ const Product: NextPage = (
                 {productData[0].name ===
                   "From Nothing To Nothing Digital Download" && (
                   <Link
-                    href="https://drive.google.com/file/d/1wtm3NGxEYZNAJKuiHrc6BPGojMYsEip6/view"
+                    href="https://drive.google.com/file/d/1AGlGgKizEhCJwYyhF3XmR9tpMqTefuPv/view?usp=sharing"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="mb-2 mr-2 inline-block w-1/2 rounded-lg border py-5 text-center text-sm font-medium text-stone-100 hover:bg-stone-100 hover:text-stone-950"
+                  >
+                    Click here for download
+                  </Link>
+                )}
+                {productData[0].name ===
+                  "Before We Dry Up Digital Download" && (
+                  <Link
+                    href="https://drive.google.com/file/d/18l5rcGkTyYuI0BduXy6Nj4x5oThe_Udv/view?usp=drive_link"
                     rel="noopener noreferrer"
                     target="_blank"
                     className="mb-2 mr-2 inline-block w-1/2 rounded-lg border py-5 text-center text-sm font-medium text-stone-100 hover:bg-stone-100 hover:text-stone-950"
