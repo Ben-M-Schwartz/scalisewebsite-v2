@@ -91,34 +91,41 @@ function Product({ product }: { product: Product }) {
             </h4>
           </div>
           <div className="flex flex-row">
-            {product.name === "From Nothing To Nothing Digital Download" ||
-              (product.name === "Before We Dry Up Digital Download" && (
-                <>
-                  <h5 className="mb-2 pr-2 text-lg tracking-tight text-stone-100">
-                    FREE!
-                  </h5>
-                </>
-              ))}
-            {product.name !== "From Nothing To Nothing Digital Download" && (
+            {product.name === "From Nothing To Nothing Digital Download" && (
               <>
-                <h5
-                  className={`mb-2 pr-2 text-lg tracking-tight text-stone-100 ${
-                    product.sale_price === null ? "hidden" : "block"
-                  }`}
-                >
-                  ${product.sale_price}
-                  {(product.sale_price as number) % 1 === 0 ? ".00" : ""}
-                </h5>
-                <h5
-                  className={`mb-2 text-lg tracking-tight text-stone-100 ${
-                    product.sale_price !== null ? "line-through" : ""
-                  }`}
-                >
-                  ${product.price}
-                  {(product.price as number) % 1 === 0 ? ".00" : ""}
+                <h5 className="mb-2 pr-2 text-lg tracking-tight text-stone-100">
+                  FREE!
                 </h5>
               </>
             )}
+            {product.name === "Before We Dry Up Digital Download" && (
+              <>
+                <h5 className="mb-2 pr-2 text-lg tracking-tight text-stone-100">
+                  FREE!
+                </h5>
+              </>
+            )}
+            {product.name !== "From Nothing To Nothing Digital Download" &&
+              product.name != "Before We Dry Up Digital Download" && (
+                <>
+                  <h5
+                    className={`mb-2 pr-2 text-lg tracking-tight text-stone-100 ${
+                      product.sale_price === null ? "hidden" : "block"
+                    }`}
+                  >
+                    ${product.sale_price}
+                    {(product.sale_price as number) % 1 === 0 ? ".00" : ""}
+                  </h5>
+                  <h5
+                    className={`mb-2 text-lg tracking-tight text-stone-100 ${
+                      product.sale_price !== null ? "line-through" : ""
+                    }`}
+                  >
+                    ${product.price}
+                    {(product.price as number) % 1 === 0 ? ".00" : ""}
+                  </h5>
+                </>
+              )}
           </div>
         </div>
       </Link>
