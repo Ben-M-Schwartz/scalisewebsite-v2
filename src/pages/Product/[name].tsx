@@ -474,7 +474,9 @@ const Product: NextPage = (
                 )}
                 {!soldOut &&
                   productData[0].name !==
-                    "From Nothing To Nothing Digital Download" && (
+                    "From Nothing To Nothing Digital Download" &&
+                  productData[0].name !==
+                    "Before We Dry Up Digital Download" && (
                     <>
                       {maxQuantity !== -1 && (
                         <div>
